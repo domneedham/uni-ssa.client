@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
+import 'package:ssa_app/app/data/models/enums/user_role.dart';
+import 'package:ssa_app/app/data/models/user.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 
+import '../mocks/mocks.dart';
 import '../testable_widget.dart';
 
 void main() {
@@ -19,51 +22,30 @@ void main() {
     Get.reset();
   });
 
-  testWidgets('Counter is displayed on screen and updated',
+  testWidgets('Staff home page is displayed if the user is staff',
       (WidgetTester tester) async {
-    final controller = Get.find<HomeController>();
+    final mockRepo = TestMocks.userRepository;
 
-    expect(controller.counter.value, 0);
+    when(mockRepo.user).thenReturn(User(name: "DN", userRole: UserRole.STAFF));
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    controller.increment();
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Staff Home Page'), findsOneWidget);
+    expect(find.text('Manager Home Page'), findsNothing);
   });
 
-  testWidgets('Add icon increments the counter', (WidgetTester tester) async {
-    final controller = Get.find<HomeController>();
-
-    await tester.pumpWidget(TestableWidget(child: HomePage()));
-
-    expect(controller.counter.value, 0);
-
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    expect(controller.counter.value, 1);
-  });
-
-  testWidgets('Subtract icon decreases the counter',
+  testWidgets('Manager home page is displayed if user is manager',
       (WidgetTester tester) async {
-    final controller = Get.find<HomeController>();
+    final mockRepo = TestMocks.userRepository;
 
+    when(mockRepo.user)
+        .thenReturn(User(name: "DN", userRole: UserRole.MANAGER));
+
+    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    expect(controller.counter.value, 0);
-
-    await tester.tap(find.byIcon(Icons.remove));
-    await tester.pump();
-
-    expect(controller.counter.value, -1);
+    expect(find.text('Staff Home Page'), findsNothing);
+    expect(find.text('Manager Home Page'), findsOneWidget);
   });
 }

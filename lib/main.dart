@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/bindings/home_binding.dart';
+import 'package:ssa_app/app/bindings/app_binding.dart';
 import './app/routes/app_pages.dart';
 import './app/ui/theme/app_theme.dart';
 
@@ -18,7 +18,7 @@ class StaffSkillAuditorApp extends StatelessWidget {
       theme: appThemeData,
       defaultTransition: Transition.fade,
       getPages: AppPages.pages,
-      initialBinding: HomeBinding(),
+      initialBinding: AppBinding(),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:ssa_app/app/data/models/user.dart';
+import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class HomeController extends GetxController {
-  var counter = 0.obs;
+  final UserRepository repo = Get.find<UserRepository>();
 
-  void increment() => counter++;
-  void decrement() => counter--;
+  User get user => repo.user;
 }

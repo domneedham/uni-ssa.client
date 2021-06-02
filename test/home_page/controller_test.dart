@@ -2,8 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
+import 'package:ssa_app/app/data/models/enums/user_role.dart';
+import 'package:ssa_app/app/data/models/user.dart';
 
-class MockController extends Mock implements HomeController {}
+import '../mocks/mocks.dart';
 
 void main() {
   final binding = BindingsBuilder(() {
@@ -18,28 +20,16 @@ void main() {
     Get.reset();
   });
 
-  test('Increment should add one', () async {
+  test('Get user should return the user from the repository', () async {
+    final mockUserRepo = TestMocks.userRepository;
+
+    final user = User(name: "DN", userRole: UserRole.STAFF);
+
+    when(mockUserRepo.user).thenReturn(user);
+
     // recover your controller
     final controller = Get.find<HomeController>();
 
-    // check initial status
-    expect(controller.counter.value, 0);
-
-    // await time request
-    controller.increment();
-
-    expect(controller.counter.value, 1);
-  });
-
-  test('Decrement should subtract one', () async {
-    final controller = Get.find<HomeController>();
-
-    // check initial status
-    expect(controller.counter.value, 0);
-
-    // await time request
-    controller.decrement();
-
-    expect(controller.counter.value, -1);
+    expect(controller.user, user);
   });
 }

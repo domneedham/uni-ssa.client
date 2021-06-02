@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ssa_app/app/data/models/enums/user_role.dart';
+import 'package:ssa_app/app/ui/pages/home_page/manager/manager_home.dart';
+import 'package:ssa_app/app/ui/pages/home_page/staff/staff_home.dart';
 import '../../../controllers/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -7,28 +10,11 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomePage'),
+        title: Text('Home'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Obx(() => Text("${controller.counter}")),
-          Padding(padding: const EdgeInsets.all(8)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: controller.increment,
-                icon: Icon(Icons.add),
-              ),
-              IconButton(
-                onPressed: controller.decrement,
-                icon: Icon(Icons.remove),
-              ),
-            ],
-          ),
-        ],
-      ),
+      body: controller.user.userRole == UserRole.STAFF
+          ? StaffHomePage()
+          : ManagerHomePage(),
     );
   }
 }
