@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:ssa_app/app/controllers/home_staff.controller.dart';
+import 'package:ssa_app/app/controllers/home_staff_controller.dart';
 import 'package:ssa_app/app/ui/pages/home_page/user_debug.dart';
+
+import 'skill_list_tile.dart';
 
 class StaffHomePage extends GetWidget<HomeStaffController> {
   @override
@@ -22,31 +24,19 @@ class StaffHomePage extends GetWidget<HomeStaffController> {
               style: Get.textTheme.headline4,
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.skills.length,
-            itemBuilder: (ctx, pos) {
-              final skill = controller.skills[pos];
-              return ListTile(
-                leading: Icon(skill.category.icon),
-                title: Text(skill.name),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Wrap(
-                    spacing: 1,
-                    children: List.generate(
-                      skill.rating.toInt(),
-                      (index) => Icon(
-                        Icons.star,
-                        size: 18,
-                      ),
-                    ),
-                  ),
+          controller.skills.length == 0
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("You have no registered skills"),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.skills.length,
+                  itemBuilder: (ctx, pos) {
+                    final skill = controller.skills[pos];
+                    return SkillListTile(skill: skill);
+                  },
                 ),
-                trailing: Icon(Icons.chevron_right),
-              );
-            },
-          ),
         ],
       ),
     );

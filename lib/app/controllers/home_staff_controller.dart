@@ -18,8 +18,11 @@ class HomeStaffController extends GetxController {
         tempList.add(skill);
       }
     });
-    // sort alphabetically
-    tempList.sort((a, b) => a.category.name[0].compareTo(b.category.name[0]));
+    if (tempList.isNotEmpty) {
+      // sort alphabetically
+      tempList.sort((a, b) => a.category.name[0].compareTo(b.category.name[0]));
+    }
+
     return tempList;
   }
 }

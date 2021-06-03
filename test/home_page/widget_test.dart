@@ -2,13 +2,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
-import 'package:ssa_app/app/controllers/home_staff.controller.dart';
+import 'package:ssa_app/app/controllers/home_staff_controller.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
 import 'package:ssa_app/app/data/models/user.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
+import 'staff/staff_home_test_data.dart';
 
 void main() {
   final mockUserStaff = User(id: 1, name: "DN", userRole: UserRole.STAFF);
@@ -30,8 +31,12 @@ void main() {
   testWidgets('Staff home page is displayed if the user is staff',
       (WidgetTester tester) async {
     final mockRepo = TestMocks.userRepository;
+    final mockSkillRepo = TestMocks.skillRepository;
+
+    when(mockSkillRepo.getStaffSkillById(any)).thenReturn(mockSkillOne);
 
     when(mockRepo.user).thenReturn(mockUserStaff);
+    when(mockRepo.staff).thenReturn(mockUserOneSkill);
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
