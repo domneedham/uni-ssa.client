@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_staff_controller.dart';
-import 'package:ssa_app/app/ui/pages/home_page/staff/skill_list_tile.dart';
 import 'package:ssa_app/app/ui/pages/home_page/staff/staff_home.dart';
+import 'package:ssa_app/app/ui/pages/home_page/staff/staff_skill_card.dart';
 
 import '../../mocks/mocks.dart';
 import '../../testable_widget.dart';
@@ -63,10 +63,10 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
 
-    expect(find.byType(SkillListTile), findsNWidgets(2));
+    expect(find.byType(StaffSkillCard), findsNWidgets(2));
   });
 
-  testWidgets('No SkillListTile widgets are shown if the user has no skills',
+  testWidgets('No StaffSkillCard widgets are shown if the user has no skills',
       (WidgetTester tester) async {
     final mockSkillRepo = TestMocks.skillRepository;
     final mockUserRepo = TestMocks.userRepository;
@@ -77,7 +77,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
 
-    expect(find.byType(SkillListTile), findsNothing);
+    expect(find.byType(StaffSkillCard), findsNothing);
   });
 
   testWidgets('Text is shown informing the user they have no skills if true',

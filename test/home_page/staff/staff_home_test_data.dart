@@ -7,7 +7,7 @@ final mockSkillOne = StaffSkill(
   rating: 3,
   lastUpdated: DateTime.now(),
   id: 1,
-  name: "ZZZ",
+  name: "Sleeping",
   category: Category(id: 1, name: "ZZZ", icon: Icons.bed),
 );
 
@@ -16,7 +16,7 @@ final mockSkillTwo = StaffSkill(
   lastUpdated: DateTime.now(),
   id: 2,
   name: "Test",
-  category: Category(id: 2, name: "Test", icon: Icons.text_fields),
+  category: Category(id: 2, name: "Test Category", icon: Icons.text_fields),
 );
 
 final mockUserNoSkills = Staff(id: 1, name: "DN", skills: []);

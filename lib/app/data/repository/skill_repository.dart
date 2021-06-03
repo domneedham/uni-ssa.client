@@ -35,7 +35,17 @@ class SkillRepository {
     category: Category(id: 2, name: "Organisation", icon: Icons.sort),
   );
 
-  List<StaffSkill> get _skills => [skillOne, skillTwo, skillThree, skillFour];
+  final skillFive = StaffSkill(
+    rating: 5,
+    lastUpdated: DateTime.now(),
+    id: 5,
+    name: "JavaScript",
+    category: Category(id: 1, name: "Code", icon: Icons.code),
+    expires: DateTime.utc(2021, 7, 23),
+  );
+
+  List<StaffSkill> get _skills =>
+      [skillOne, skillTwo, skillThree, skillFour, skillFive];
 
   StaffSkill? getStaffSkillById(int id) {
     try {
