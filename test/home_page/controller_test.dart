@@ -23,7 +23,7 @@ void main() {
   test('Get user should return the user from the repository', () async {
     final mockUserRepo = TestMocks.userRepository;
 
-    final user = User(name: "DN", userRole: UserRole.STAFF);
+    final user = User(id: 1, name: "DN", userRole: UserRole.STAFF);
 
     when(mockUserRepo.user).thenReturn(user);
 

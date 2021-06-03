@@ -11,8 +11,8 @@ import '../mocks/mocks.dart';
 import '../testable_widget.dart';
 
 void main() {
-  final mockUserStaff = User(name: "DN", userRole: UserRole.STAFF);
-  final mockUserManager = User(name: "DN", userRole: UserRole.MANAGER);
+  final mockUserStaff = User(id: 1, name: "DN", userRole: UserRole.STAFF);
+  final mockUserManager = User(id: 2, name: "DN", userRole: UserRole.MANAGER);
 
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());

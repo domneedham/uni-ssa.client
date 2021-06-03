@@ -1,15 +1,25 @@
 import 'package:get/get.dart';
-import 'package:ssa_app/app/data/models/user.dart';
+import 'package:ssa_app/app/data/models/staff.dart';
+import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class HomeStaffController extends GetxController {
-  final UserRepository repo = Get.find<UserRepository>();
+  final UserRepository userRepo = Get.find<UserRepository>();
+  final SkillRepository skillRepo = Get.find<SkillRepository>();
 
-  User get user => repo.user;
+  Staff get user => userRepo.staff;
 
-  final _skills = ["Awesomeness", "Skillz", "To", "Pay", "The", "Bills"].obs;
-
-  RxList<String> get skills => _skills;
-
-  void addItem() => _skills.add("Item");
+  List<StaffSkill> get skills {
+    List<StaffSkill> tempList = [];
+    user.skills.forEach((element) {
+      final skill = skillRepo.getStaffSkillById(element);
+      if (skill != null) {
+        tempList.add(skill);
+      }
+    });
+    // sort alphabetically
+    tempList.sort((a, b) => a.category.name[0].compareTo(b.category.name[0]));
+    return tempList;
+  }
 }

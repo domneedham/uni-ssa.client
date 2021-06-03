@@ -4,6 +4,7 @@
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ssa_app/app/data/models/user.dart' as _i2;
+import 'package:ssa_app/app/data/repository/skill_repository.dart' as _i4;
 import 'package:ssa_app/app/data/repository/user_repository.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,4 +27,13 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   _i2.User get user =>
       (super.noSuchMethod(Invocation.getter(#user), returnValue: _FakeUser())
           as _i2.User);
+}
+
+/// A class which mocks [SkillRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSkillRepository extends _i1.Mock implements _i4.SkillRepository {
+  MockSkillRepository() {
+    _i1.throwOnMissingStub(this);
+  }
 }
