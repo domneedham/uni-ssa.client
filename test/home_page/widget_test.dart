@@ -36,8 +36,8 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    expect(find.text(mockUserStaff.toString()), findsOneWidget);
-    expect(find.text(mockUserManager.toString()), findsNothing);
+    expect(find.text(mockUserStaff.userDebugInfo), findsOneWidget);
+    expect(find.text(mockUserManager.userDebugInfo), findsNothing);
   });
 
   testWidgets('Manager home page is displayed if user is manager',
@@ -49,7 +49,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    expect(find.text(mockUserStaff.toString()), findsNothing);
-    expect(find.text(mockUserManager.toString()), findsOneWidget);
+    expect(find.text(mockUserStaff.userDebugInfo), findsNothing);
+    expect(find.text(mockUserManager.userDebugInfo), findsOneWidget);
   });
 }
