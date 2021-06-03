@@ -5,8 +5,18 @@ import 'package:ssa_app/app/controllers/home_controller.dart';
 class ManagerHomePage extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Manager Home Page"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(controller.user.toString()),
+          ),
+        ],
+      ),
     );
   }
 }

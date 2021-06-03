@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
+import 'package:ssa_app/app/controllers/home_staff.controller.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
 import 'package:ssa_app/app/data/models/user.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
@@ -10,8 +11,12 @@ import '../mocks/mocks.dart';
 import '../testable_widget.dart';
 
 void main() {
+  final mockUserStaff = User(name: "DN", userRole: UserRole.STAFF);
+  final mockUserManager = User(name: "DN", userRole: UserRole.MANAGER);
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
+    Get.lazyPut<HomeStaffController>(() => HomeStaffController());
   });
 
   setUp(() async {
@@ -26,26 +31,25 @@ void main() {
       (WidgetTester tester) async {
     final mockRepo = TestMocks.userRepository;
 
-    when(mockRepo.user).thenReturn(User(name: "DN", userRole: UserRole.STAFF));
+    when(mockRepo.user).thenReturn(mockUserStaff);
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    expect(find.text('Staff Home Page'), findsOneWidget);
-    expect(find.text('Manager Home Page'), findsNothing);
+    expect(find.text(mockUserStaff.toString()), findsOneWidget);
+    expect(find.text(mockUserManager.toString()), findsNothing);
   });
 
   testWidgets('Manager home page is displayed if user is manager',
       (WidgetTester tester) async {
     final mockRepo = TestMocks.userRepository;
 
-    when(mockRepo.user)
-        .thenReturn(User(name: "DN", userRole: UserRole.MANAGER));
+    when(mockRepo.user).thenReturn(mockUserManager);
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: HomePage()));
 
-    expect(find.text('Staff Home Page'), findsNothing);
-    expect(find.text('Manager Home Page'), findsOneWidget);
+    expect(find.text(mockUserStaff.toString()), findsNothing);
+    expect(find.text(mockUserManager.toString()), findsOneWidget);
   });
 }

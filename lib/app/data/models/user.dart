@@ -5,4 +5,9 @@ class User {
 
   final String name;
   final UserRole userRole;
+
+  @override
+  String toString() {
+    return "$name, $userRole";
+  }
 }
