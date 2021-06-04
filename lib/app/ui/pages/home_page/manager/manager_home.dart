@@ -34,7 +34,7 @@ class ManagerHomePage extends GetWidget<HomeManagerController> {
               if (snapshot.hasData) {
                 final skills = snapshot.data!;
                 if (skills.isEmpty) {
-                  return HomePageFutureStateText(text: "No skills loaded");
+                  return HomePageFutureStateText(text: "No skills loaded.");
                 }
                 return HomePageSkillList(
                   gridChildAspectRatio: 2.5,

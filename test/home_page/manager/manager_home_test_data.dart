@@ -4,14 +4,14 @@ import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 
-final mockSkillOne = ManagerStaffSkill(
+final mockManagerStaffSkillOne = ManagerStaffSkill(
   id: 1,
   name: "Sleeping",
   category: Category(id: 1, name: "ZZZ", icon: Icons.bed),
   staff: [1],
 );
 
-final mockSkillTwo = ManagerStaffSkill(
+final mockManagerStaffSkillTwo = ManagerStaffSkill(
   id: 2,
   name: "Test",
   category: Category(id: 2, name: "Test Category", icon: Icons.text_fields),
