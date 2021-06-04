@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/controllers/home_staff_controller.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
-import 'package:ssa_app/app/data/models/user.dart';
+import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 
 import '../mocks/mocks.dart';

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
-import 'package:ssa_app/app/data/models/staff.dart';
+import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';

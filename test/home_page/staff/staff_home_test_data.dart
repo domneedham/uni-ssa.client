@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/models/staff.dart';
+import 'package:ssa_app/app/data/models/user/staff.dart';
 
 final mockSkillOne = StaffSkill(
   rating: 3,

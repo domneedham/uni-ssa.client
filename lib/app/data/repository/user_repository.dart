@@ -1,5 +1,5 @@
-import 'package:ssa_app/app/data/models/staff.dart';
-import 'package:ssa_app/app/data/models/user.dart';
+import 'package:ssa_app/app/data/models/user/staff.dart';
+import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
 
 class UserRepository {
