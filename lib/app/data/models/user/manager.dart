@@ -5,8 +5,8 @@ class Manager extends User {
   final List<int> staff;
 
   Manager({
-    required this.staff,
     required int id,
     required String name,
+    required this.staff,
   }) : super(id: id, name: name, userRole: UserRole.MANAGER);
 }
