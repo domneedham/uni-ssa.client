@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/repository/skill_repository.dart';
+import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class HomeStaffController extends GetxController {
@@ -11,15 +11,16 @@ class HomeStaffController extends GetxController {
 
   Staff get user => userRepo.staff;
 
-  Map<Category, List<StaffSkill>> get skills {
+  Future<Map<Category, List<StaffSkill>>> get skills async {
     // get a list of all of the users skills
-    List<StaffSkill> tempList = [];
-    user.skills.forEach((element) {
-      final skill = skillRepo.getStaffSkillById(element);
-      if (skill != null) {
-        tempList.add(skill);
-      }
-    });
+    // List<StaffSkill> tempList = [];
+    final tempList = await skillRepo.getSkillsByIds(user.skills);
+    // user.skills.forEach((element) {
+    //   final skill = skillRepo.getStaffSkillById(element);
+    //   if (skill != null) {
+    //     tempList.add(skill);
+    //   }
+    // });
 
     // get unique categories from skills
     List<Category> cats = [];

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/home_staff_controller.dart';
+import 'package:ssa_app/app/data/models/skill/category.dart';
+import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/ui/pages/home_page/staff/staff_skill_card.dart';
 import 'package:ssa_app/app/ui/pages/home_page/user_debug.dart';
 
@@ -22,17 +24,21 @@ class StaffHomePage extends GetWidget<HomeStaffController> {
               style: Get.textTheme.headline4,
             ),
           ),
-          controller.skills.length == 0
-              ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("You have no registered skills"),
-                )
-              : ListView.builder(
+          FutureBuilder(
+            future: controller.skills,
+            builder: (BuildContext ctx,
+                AsyncSnapshot<Map<Category, List<StaffSkill>>?> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Fetching data and waiting.");
+              }
+              if (snapshot.hasData) {
+                final skills = snapshot.data!;
+                return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: controller.skills.length,
+                  itemCount: skills.length,
                   itemBuilder: (c, p) {
-                    final entry = controller.skills.entries.elementAt(p);
+                    final entry = skills.entries.elementAt(p);
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -71,7 +77,17 @@ class StaffHomePage extends GetWidget<HomeStaffController> {
                       ],
                     );
                   },
-                ),
+                );
+              }
+              if (snapshot.hasError) {
+                return Text("Oh no, that didn't work.");
+              }
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("You have no registered skills"),
+              );
+            },
+          ),
         ],
       ),
     );

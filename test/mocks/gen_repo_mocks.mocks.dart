@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i4;
 import 'package:ssa_app/app/data/models/user/staff.dart' as _i3;
 import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
-import 'package:ssa_app/app/data/repository/skill_repository.dart' as _i6;
+import 'package:ssa_app/app/data/repository/skill_staff_repository.dart' as _i6;
 import 'package:ssa_app/app/data/repository/user_repository.dart' as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values

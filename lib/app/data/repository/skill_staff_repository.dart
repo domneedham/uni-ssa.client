@@ -54,4 +54,16 @@ class SkillRepository {
       return null;
     }
   }
+
+  Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {
+    return Future.delayed(Duration(seconds: 2), () {
+      return _skills.where((element) => ids.contains(element.id)).toList();
+    });
+  }
+
+  Future<List<StaffSkill>> get skills async {
+    return Future.delayed(Duration(seconds: 2), () {
+      return _skills;
+    });
+  }
 }
