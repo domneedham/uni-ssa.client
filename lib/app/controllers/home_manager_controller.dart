@@ -51,7 +51,7 @@ class HomeManagerController extends GetxController {
         final items = skills
             .where((element) => element.category.name == cat.name)
             .toList();
-        if (items != null && items.isNotEmpty) {
+        if (items.isNotEmpty) {
           Map<Category, List<ManagerStaffSkill>> item = {cat: items};
           list.addAll(item);
         }

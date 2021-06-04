@@ -33,6 +33,12 @@ class StaffHomePage extends GetWidget<HomeStaffController> {
               }
               if (snapshot.hasData) {
                 final skills = snapshot.data!;
+                if (skills.isEmpty) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("You have no registered skills"),
+                  );
+                }
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),

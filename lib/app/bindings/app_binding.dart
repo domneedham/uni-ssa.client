@@ -7,7 +7,7 @@ class AppBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<UserRepository>(() => UserRepository());
-    Get.lazyPut<SkillRepository>(() => SkillRepository());
+    Get.lazyPut<SkillStaffRepository>(() => SkillStaffRepository());
     Get.lazyPut<SkillManagerRepository>(() => SkillManagerRepository());
   }
 }

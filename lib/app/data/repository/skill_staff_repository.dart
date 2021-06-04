@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
 
-class SkillRepository {
+class SkillStaffRepository {
   final skillOne = StaffSkill(
     rating: 4,
     lastUpdated: DateTime.now(),
@@ -56,9 +57,13 @@ class SkillRepository {
   }
 
   Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {
-    return Future.delayed(Duration(seconds: 2), () {
-      return _skills.where((element) => ids.contains(element.id)).toList();
-    });
+    try {
+      return Future.delayed(Duration(seconds: 2), () {
+        return _skills.where((element) => ids.contains(element.id)).toList();
+      });
+    } catch (StateError) {
+      throw NoDataReturned("No data returned from the server");
+    }
   }
 
   Future<List<StaffSkill>> get skills async {

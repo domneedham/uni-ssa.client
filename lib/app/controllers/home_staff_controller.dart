@@ -7,20 +7,17 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class HomeStaffController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
-  final SkillRepository skillRepo = Get.find<SkillRepository>();
+  final SkillStaffRepository skillRepo = Get.find<SkillStaffRepository>();
 
   Staff get user => userRepo.staff;
 
   Future<Map<Category, List<StaffSkill>>> get skills async {
     // get a list of all of the users skills
-    // List<StaffSkill> tempList = [];
     final tempList = await skillRepo.getSkillsByIds(user.skills);
-    // user.skills.forEach((element) {
-    //   final skill = skillRepo.getStaffSkillById(element);
-    //   if (skill != null) {
-    //     tempList.add(skill);
-    //   }
-    // });
+
+    if (tempList.isEmpty) {
+      return {};
+    }
 
     // get unique categories from skills
     List<Category> cats = [];
@@ -31,8 +28,10 @@ class HomeStaffController extends GetxController {
       }
     });
 
-    // sort alphabetically on the categories
-    cats.sort((a, b) => a.name[0].compareTo(b.name[0]));
+    if (cats.isNotEmpty) {
+      // sort alphabetically on the categories
+      cats.sort((a, b) => a.name[0].compareTo(b.name[0]));
+    }
 
     // for each category, get the skills and insert into the map
     Map<Category, List<StaffSkill>> list = {};
@@ -40,8 +39,10 @@ class HomeStaffController extends GetxController {
       final items = tempList
           .where((element) => element.category.name == cat.name)
           .toList();
-      Map<Category, List<StaffSkill>> item = {cat: items};
-      list.addAll(item);
+      if (items.isNotEmpty) {
+        Map<Category, List<StaffSkill>> item = {cat: items};
+        list.addAll(item);
+      }
     });
 
     return list;
