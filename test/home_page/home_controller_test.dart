@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
-import 'package:ssa_app/app/data/models/user.dart';
+import 'package:ssa_app/app/data/models/user/user.dart';
 
 import '../mocks/mocks.dart';
 
@@ -23,7 +23,7 @@ void main() {
   test('Get user should return the user from the repository', () async {
     final mockUserRepo = TestMocks.userRepository;
 
-    final user = User(name: "DN", userRole: UserRole.STAFF);
+    final user = User(id: 1, name: "DN", userRole: UserRole.STAFF);
 
     when(mockUserRepo.user).thenReturn(user);
 

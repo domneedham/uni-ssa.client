@@ -8,13 +8,8 @@ import '../../../controllers/home_controller.dart';
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: controller.user.userRole == UserRole.STAFF
-          ? StaffHomePage()
-          : ManagerHomePage(),
-    );
+    return controller.user.userRole == UserRole.STAFF
+        ? StaffHomePage()
+        : ManagerHomePage();
   }
 }
