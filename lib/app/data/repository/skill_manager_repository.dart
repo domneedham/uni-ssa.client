@@ -11,7 +11,14 @@ class SkillManagerRepository {
     staff: [1],
   );
 
-  List<ManagerStaffSkill> get _skills => [skillOne];
+  final skillTwo = ManagerStaffSkill(
+    id: 1,
+    name: "Organisation",
+    category: Category(id: 5, name: "People", icon: Icons.people),
+    staff: [1],
+  );
+
+  List<ManagerStaffSkill> get _skills => [skillOne, skillTwo];
 
   Future<ManagerStaffSkill?> getManagerStaffSkillById(int id) async {
     try {
