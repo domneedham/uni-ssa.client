@@ -5,6 +5,7 @@ import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 
 class HomeManagerController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
@@ -61,4 +62,6 @@ class HomeManagerController extends GetxController {
       loading.value = false;
     }
   }
+
+  void navigateToSkillOverview() => Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW);
 }
