@@ -119,8 +119,8 @@ class MockSkillManagerRepository extends _i1.Mock
                   <_i6.ManagerStaffSkill>[]))
           as _i9.Future<List<_i6.ManagerStaffSkill>>);
   @override
-  _i9.Future<_i6.ManagerStaffSkill?> getManagerStaffSkillById(int? id) =>
+  _i9.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue: Future<_i6.ManagerStaffSkill?>.value())
-          as _i9.Future<_i6.ManagerStaffSkill?>);
+              returnValue: Future<_i6.ManagerStaffSkill>.value())
+          as _i9.Future<_i6.ManagerStaffSkill>);
 }

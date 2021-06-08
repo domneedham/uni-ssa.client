@@ -14,7 +14,7 @@ class ManagerSkillCard extends GetWidget<HomeManagerController> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: controller.navigateToSkillOverview,
+      onTap: () => controller.navigateToSkillOverview(skill.id),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

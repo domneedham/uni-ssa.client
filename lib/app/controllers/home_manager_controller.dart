@@ -63,5 +63,8 @@ class HomeManagerController extends GetxController {
     }
   }
 
-  void navigateToSkillOverview() => Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW);
+  void navigateToSkillOverview(int id) {
+    var parameters = <String, String>{"id": id.toString()};
+    Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW, parameters: parameters);
+  }
 }
