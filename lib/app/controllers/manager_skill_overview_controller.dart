@@ -10,12 +10,14 @@ class ManagerSkillOverviewController extends GetxController {
 
   var parameters = Get.parameters;
 
+  late Rx<ManagerStaffSkill>? skill;
+
   Future<ManagerStaffSkill> getSkill() async {
     try {
       int id = int.parse(parameters["id"]!);
       ManagerStaffSkill fetchedSkill =
           await skillRepo.getManagerStaffSkillById(id);
-      // skill.value = fetchedSkill;
+      skill = fetchedSkill.obs;
       return fetchedSkill;
     } catch (error) {
       return Future.error(error);
@@ -24,5 +26,13 @@ class ManagerSkillOverviewController extends GetxController {
 
   Future<Staff> getStaffById(int id) async {
     return userRepo.getStaffById(id);
+  }
+
+  void editSkill() {
+    if (skill == null) {
+      Get.snackbar("Edit!", "Skill is empty");
+    } else {
+      Get.snackbar("Edit!", "Skill is ${skill!.value.name}");
+    }
   }
 }

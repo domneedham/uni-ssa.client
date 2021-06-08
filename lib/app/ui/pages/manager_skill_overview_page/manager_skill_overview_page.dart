@@ -10,6 +10,12 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Skill Overview'),
+        actions: [
+          IconButton(
+            onPressed: controller.editSkill,
+            icon: Icon(Icons.edit),
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: controller.getSkill(),
