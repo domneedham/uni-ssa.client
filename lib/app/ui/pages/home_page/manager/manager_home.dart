@@ -4,8 +4,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/home_manager_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
+import 'package:ssa_app/app/ui/global_widgets/page_title.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page_future_state_text.dart';
-import 'package:ssa_app/app/ui/pages/home_page/home_page_header.dart';
 import 'package:ssa_app/app/ui/pages/home_page/user_debug.dart';
 
 import '../home_page_skill_list.dart';
@@ -22,14 +22,14 @@ class ManagerHomePage extends GetWidget<HomeManagerController> {
         physics: ClampingScrollPhysics(),
         children: [
           UserDebug(user: controller.user),
-          HomePageHeader(text: "Skills"),
+          PageTitle(text: "Skills"),
           FutureBuilder(
             future: controller.skills,
             builder: (BuildContext ctx,
                 AsyncSnapshot<Map<Category, List<ManagerStaffSkill>>?>
                     snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return HomePageFutureStateText(text: "Fetching data");
+                return HomePageFutureStateText(text: "Loading");
               }
               if (snapshot.hasData) {
                 final skills = snapshot.data!;
