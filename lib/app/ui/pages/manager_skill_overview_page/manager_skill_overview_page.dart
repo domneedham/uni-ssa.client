@@ -20,7 +20,7 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
         ],
       ),
       body: FutureBuilder(
-        future: controller.getSkill(),
+        future: controller.getSkill(Get.parameters["id"]!),
         builder: (BuildContext ctx, AsyncSnapshot<ManagerStaffSkill> snapshot) {
           if (snapshot.hasData) {
             final skill = snapshot.data!;

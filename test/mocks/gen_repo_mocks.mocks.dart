@@ -2,7 +2,7 @@
 // in ssa_app/test/mocks/gen_repo_mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i9;
+import 'dart:async' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i6;
@@ -12,7 +12,7 @@ import 'package:ssa_app/app/data/models/user/staff.dart' as _i3;
 import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart'
     as _i10;
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart' as _i8;
+import 'package:ssa_app/app/data/repository/skill_staff_repository.dart' as _i9;
 import 'package:ssa_app/app/data/repository/user_repository.dart' as _i7;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -49,15 +49,24 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
       (super.noSuchMethod(Invocation.getter(#staff), returnValue: _FakeStaff())
           as _i3.Staff);
   @override
+  _i3.Staff get staff2 =>
+      (super.noSuchMethod(Invocation.getter(#staff2), returnValue: _FakeStaff())
+          as _i3.Staff);
+  @override
   _i4.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
       returnValue: _FakeManager()) as _i4.Manager);
+  @override
+  _i8.Future<_i3.Staff> getStaffById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
+              returnValue: Future<_i3.Staff>.value(_FakeStaff()))
+          as _i8.Future<_i3.Staff>);
 }
 
 /// A class which mocks [SkillStaffRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSkillStaffRepository extends _i1.Mock
-    implements _i8.SkillStaffRepository {
+    implements _i9.SkillStaffRepository {
   MockSkillStaffRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -83,20 +92,20 @@ class MockSkillStaffRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#skillFive),
           returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
   @override
-  _i9.Future<List<_i5.StaffSkill>> get skills => (super.noSuchMethod(
+  _i8.Future<List<_i5.StaffSkill>> get skills => (super.noSuchMethod(
           Invocation.getter(#skills),
           returnValue: Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-      as _i9.Future<List<_i5.StaffSkill>>);
+      as _i8.Future<List<_i5.StaffSkill>>);
   @override
   _i5.StaffSkill? getStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffSkillById, [id]))
           as _i5.StaffSkill?);
   @override
-  _i9.Future<List<_i5.StaffSkill>> getSkillsByIds(List<int>? ids) =>
+  _i8.Future<List<_i5.StaffSkill>> getSkillsByIds(List<int>? ids) =>
       (super.noSuchMethod(Invocation.method(#getSkillsByIds, [ids]),
               returnValue:
                   Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-          as _i9.Future<List<_i5.StaffSkill>>);
+          as _i8.Future<List<_i5.StaffSkill>>);
 }
 
 /// A class which mocks [SkillManagerRepository].
@@ -113,14 +122,19 @@ class MockSkillManagerRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#skillOne),
           returnValue: _FakeManagerStaffSkill()) as _i6.ManagerStaffSkill);
   @override
-  _i9.Future<List<_i6.ManagerStaffSkill>> get skills =>
+  _i6.ManagerStaffSkill get skillTwo =>
+      (super.noSuchMethod(Invocation.getter(#skillTwo),
+          returnValue: _FakeManagerStaffSkill()) as _i6.ManagerStaffSkill);
+  @override
+  _i8.Future<List<_i6.ManagerStaffSkill>> get skills =>
       (super.noSuchMethod(Invocation.getter(#skills),
               returnValue: Future<List<_i6.ManagerStaffSkill>>.value(
                   <_i6.ManagerStaffSkill>[]))
-          as _i9.Future<List<_i6.ManagerStaffSkill>>);
+          as _i8.Future<List<_i6.ManagerStaffSkill>>);
   @override
-  _i9.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
+  _i8.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue: Future<_i6.ManagerStaffSkill>.value())
-          as _i9.Future<_i6.ManagerStaffSkill>);
+              returnValue:
+                  Future<_i6.ManagerStaffSkill>.value(_FakeManagerStaffSkill()))
+          as _i8.Future<_i6.ManagerStaffSkill>);
 }
