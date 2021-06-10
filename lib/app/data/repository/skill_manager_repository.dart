@@ -8,25 +8,25 @@ class SkillManagerRepository {
     id: 1,
     name: "Flutter",
     category: Category(id: 1, name: "Code", icon: Icons.code),
-    staff: [1],
+    staff: [1, 2],
   );
 
   final skillTwo = ManagerStaffSkill(
-    id: 1,
+    id: 2,
     name: "Organisation",
     category: Category(id: 5, name: "People", icon: Icons.people),
-    staff: [1],
+    staff: [1, 2],
   );
 
   List<ManagerStaffSkill> get _skills => [skillOne, skillTwo];
 
-  Future<ManagerStaffSkill?> getManagerStaffSkillById(int id) async {
+  Future<ManagerStaffSkill> getManagerStaffSkillById(int id) async {
     try {
-      await Future.delayed(Duration(seconds: 1), () {
+      return await Future.delayed(Duration(seconds: 1), () {
         return _skills.firstWhere((element) => element.id == id);
       });
     } catch (StateError) {
-      return null;
+      return Future.error(Exception("That item wasn't found."));
     }
   }
 

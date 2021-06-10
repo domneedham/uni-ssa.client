@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
+import 'package:ssa_app/app/ui/global_widgets/skill_category_title.dart';
 
 import 'home_page_grid.dart';
-import 'home_page_grid_title.dart';
 
 class HomePageSkillList extends StatelessWidget {
   const HomePageSkillList({
@@ -28,7 +28,7 @@ class HomePageSkillList extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomePageGridTitle(entry: entry),
+            SkillCategoryTitle(category: entry.key),
             HomePageGrid(
               childAspectRatio: gridChildAspectRatio,
               entry: entry,

@@ -10,8 +10,7 @@ class HomePageFutureStateText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Center(
       child: Text(text),
     );
   }
