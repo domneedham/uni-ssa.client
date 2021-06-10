@@ -6,10 +6,12 @@ import 'package:ssa_app/app/controllers/home_manager_controller.dart';
 import 'package:ssa_app/app/controllers/home_staff_controller.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
+import 'package:ssa_app/app/ui/pages/home_page/manager/manager_home.dart';
+import 'package:ssa_app/app/ui/pages/home_page/staff/staff_home.dart';
 
 import '../mocks/mocks.dart';
-import '../testable_widget.dart';
 import 'manager/manager_home_test_data.dart';
 import 'staff/staff_home_test_data.dart';
 
@@ -19,11 +21,31 @@ void main() {
 
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
+  });
+
+  final staffBinding = BindingsBuilder(() {
     Get.lazyPut<HomeStaffController>(() => HomeStaffController());
+  });
+
+  final managerBinding = BindingsBuilder(() {
     Get.lazyPut<HomeManagerController>(() => HomeManagerController());
   });
 
+  final routes = [
+    GetPage(
+      name: Routes.STAFF_HOME,
+      page: () => StaffHomePage(),
+      binding: staffBinding,
+    ),
+    GetPage(
+      name: Routes.MANAGER_HOME,
+      page: () => ManagerHomePage(),
+      binding: managerBinding,
+    ),
+  ];
+
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 
@@ -39,8 +61,15 @@ void main() {
     when(mockRepo.user).thenReturn(mockUserStaff);
     when(mockRepo.staff).thenReturn(mockStaffOneSkill);
 
+    final _ = Get.find<HomeController>();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: HomePage()));
+    await tester.pumpWidget(GetMaterialApp(
+      home: HomePage(),
+      getPages: routes,
+    ));
+
+    await tester.pumpAndSettle();
 
     expect(find.text(mockUserStaff.userDebugInfo), findsOneWidget);
     expect(find.text(mockUserManager.userDebugInfo), findsNothing);
@@ -54,8 +83,15 @@ void main() {
     when(mockRepo.user).thenReturn(mockUserManager);
     when(mockRepo.manager).thenReturn(mockManager);
 
+    final _ = Get.find<HomeController>();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: HomePage()));
+    await tester.pumpWidget(GetMaterialApp(
+      home: HomePage(),
+      getPages: routes,
+    ));
+
+    await tester.pumpAndSettle();
 
     expect(find.text(mockUserManager.userDebugInfo), findsOneWidget);
     expect(find.text(mockUserStaff.userDebugInfo), findsNothing);
