@@ -12,7 +12,15 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Skills")),
+      appBar: AppBar(
+        title: Text("Skills"),
+        actions: [
+          IconButton(
+            onPressed: controller.createNewSkill,
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
       body: FutureBuilder(
         future: controller.skills,
         builder: (BuildContext ctx,

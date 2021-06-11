@@ -67,4 +67,8 @@ class ManagerSkillTabController extends GetxController {
     var parameters = <String, String>{"id": id.toString(), "name": name};
     Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW, parameters: parameters);
   }
+
+  void createNewSkill() {
+    Get.snackbar("Add new skill", "Button clicked");
+  }
 }
