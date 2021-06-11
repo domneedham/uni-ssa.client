@@ -8,11 +8,13 @@ import '../../../controllers/manager_skill_overview_controller.dart';
 import 'manager_skill_overview_user_list.dart';
 
 class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
+  final id = Get.parameters["id"]!;
+  final name = Get.parameters["name"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Skill Overview'),
+        title: Text(name ?? 'Skill Overview'),
         actions: [
           IconButton(
             onPressed: controller.editSkill,
@@ -21,14 +23,15 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
         ],
       ),
       body: FutureBuilder(
-        future: controller.getSkill(Get.parameters["id"]!),
+        future: controller.getSkill(id),
         builder: (BuildContext ctx, AsyncSnapshot<ManagerStaffSkill> snapshot) {
           if (snapshot.hasData) {
             final skill = snapshot.data!;
             return ListView(
               physics: ClampingScrollPhysics(),
               children: [
-                PageTitle(text: skill.name),
+                if (name == null) PageTitle(text: skill.name),
+                if (name != null) SizedBox(height: 16),
                 SkillCategoryTitle(category: skill.category),
                 SizedBox(height: 24),
                 Padding(

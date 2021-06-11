@@ -23,18 +23,6 @@ void main() {
     Get.reset();
   });
 
-  testWidgets('User debug information is shown', (WidgetTester tester) async {
-    TestMocks.skillManagerRepository;
-    final mockUserRepo = TestMocks.userRepository;
-
-    when(mockUserRepo.manager).thenReturn(mockManager);
-
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
-
-    expect(find.text(mockManager.userDebugInfo), findsOneWidget);
-  });
-
   testWidgets('All needed skill data is shown', (WidgetTester tester) async {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;

@@ -13,21 +13,27 @@ class StaffHomePage extends StatelessWidget {
           index: controller.selectedTab,
           children: [
             StaffSkillTab(),
-            Center(
-              child: Text("Profile"),
+            Scaffold(
+              appBar: AppBar(
+                title: Text("Profile"),
+              ),
+              body: Center(
+                child: Text("Profile"),
+              ),
             ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.selectedTab,
           onTap: controller.setSelectedTab,
           items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.star),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.star),
               label: "Skills",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.person),
               label: "Profile",
             ),
           ],
