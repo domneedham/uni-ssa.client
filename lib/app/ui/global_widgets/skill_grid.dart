@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 
-class HomePageGrid extends StatelessWidget {
-  HomePageGrid({
+class SkillGrid extends StatelessWidget {
+  SkillGrid({
     Key? key,
     this.childAspectRatio = 2.5,
     required this.entry,

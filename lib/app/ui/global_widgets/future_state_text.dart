@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomePageFutureStateText extends StatelessWidget {
-  const HomePageFutureStateText({
+class FutureStateText extends StatelessWidget {
+  const FutureStateText({
     Key? key,
     required this.text,
   }) : super(key: key);

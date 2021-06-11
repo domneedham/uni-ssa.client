@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 
-class SkillListTile extends StatelessWidget {
-  const SkillListTile({
+class StaffSkillListTile extends StatelessWidget {
+  const StaffSkillListTile({
     Key? key,
     required this.skill,
   }) : super(key: key);

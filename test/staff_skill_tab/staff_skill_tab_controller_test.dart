@@ -2,16 +2,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
-import 'package:ssa_app/app/controllers/home_staff_controller.dart';
+import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 
-import '../../mocks/mocks.dart';
-import 'staff_home_test_data.dart';
+import '../mocks/mocks.dart';
+import 'staff_skill_tab_test_data.dart';
 
 void main() {
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
-    Get.lazyPut<HomeStaffController>(() => HomeStaffController());
+    Get.lazyPut<StaffSkillTabController>(() => StaffSkillTabController());
   });
 
   setUp(() async {
@@ -34,7 +34,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
 
     // recover your controller
-    final controller = Get.find<HomeStaffController>();
+    final controller = Get.find<StaffSkillTabController>();
 
     final sortedMap = {
       mockStaffSkillTwo.category: List<StaffSkill>.filled(1, mockStaffSkillTwo),
@@ -55,7 +55,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
 
     // recover your controller
-    final controller = Get.find<HomeStaffController>();
+    final controller = Get.find<StaffSkillTabController>();
 
     final controllerMap = await controller.skills;
 

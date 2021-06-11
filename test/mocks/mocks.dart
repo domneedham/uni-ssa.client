@@ -10,8 +10,7 @@ class TestMocks {
   /// Calls Get.put() to solve dependency injection for the test.
   static MockUserRepository get userRepository {
     final mockRepo = MockUserRepository();
-    // ignore: unnecessary_cast
-    Get.put(mockRepo as UserRepository);
+    Get.lazyPut<UserRepository>(() => mockRepo, fenix: true);
     return mockRepo;
   }
 

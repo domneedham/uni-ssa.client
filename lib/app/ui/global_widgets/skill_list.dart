@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
-import 'package:ssa_app/app/ui/global_widgets/skill_category_title.dart';
 
-import 'home_page_grid.dart';
+import './skill_category_title.dart';
+import 'skill_grid.dart';
 
-class HomePageSkillList extends StatelessWidget {
-  const HomePageSkillList({
+class SkillList extends StatelessWidget {
+  const SkillList({
     Key? key,
     required this.skills,
     required this.cardBuilder,
@@ -29,7 +29,7 @@ class HomePageSkillList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SkillCategoryTitle(category: entry.key),
-            HomePageGrid(
+            SkillGrid(
               childAspectRatio: gridChildAspectRatio,
               entry: entry,
               cardBuilder: cardBuilder,

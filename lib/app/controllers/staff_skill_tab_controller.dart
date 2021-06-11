@@ -5,7 +5,7 @@ import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
-class HomeStaffController extends GetxController {
+class StaffSkillTabController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
   final SkillStaffRepository skillRepo = Get.find<SkillStaffRepository>();
 
