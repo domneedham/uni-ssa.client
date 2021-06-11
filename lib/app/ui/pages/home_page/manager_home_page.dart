@@ -21,19 +21,44 @@ class ManagerHomePage extends StatelessWidget {
                 child: Text("Categories"),
               ),
             ),
+            Scaffold(
+              appBar: AppBar(
+                title: Text("Staff"),
+              ),
+              body: Center(
+                child: Text("Staff"),
+              ),
+            ),
+            Scaffold(
+              appBar: AppBar(
+                title: Text("Profile"),
+              ),
+              body: Center(
+                child: Text("Profile"),
+              ),
+            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.selectedTab,
           onTap: controller.setSelectedTab,
           items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.star),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.star),
               label: "Skills",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.category),
               label: "Categories",
+            ),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.people),
+              label: "Staff",
+            ),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.person),
+              label: "Profile",
             ),
           ],
         ),

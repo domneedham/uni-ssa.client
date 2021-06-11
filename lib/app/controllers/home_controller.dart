@@ -9,9 +9,14 @@ class HomeController extends GetxController {
 
   User get user => repo.user;
 
+  final RxDouble size = 96.0.obs;
+
   @override
   void onReady() {
     super.onReady();
+
+    size.value = 192;
+
     // simulate loading the user
     Future.delayed(Duration(seconds: 2), () {
       if (user.userRole == UserRole.MANAGER) {

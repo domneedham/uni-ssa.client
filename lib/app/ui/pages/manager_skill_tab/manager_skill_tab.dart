@@ -8,7 +8,6 @@ import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/global_widgets/page_title.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
-import 'package:ssa_app/app/ui/pages/home_page/user_debug.dart';
 
 class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
   @override
@@ -18,7 +17,6 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
       body: ListView(
         physics: ClampingScrollPhysics(),
         children: [
-          UserDebug(user: controller.user),
           PageTitle(text: "Skills"),
           FutureBuilder(
             future: controller.skills,
