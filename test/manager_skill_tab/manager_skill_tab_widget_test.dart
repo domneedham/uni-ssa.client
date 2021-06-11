@@ -6,9 +6,9 @@ import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
-import '../../mocks/mocks.dart';
-import '../../testable_widget.dart';
-import 'manager_home_test_data.dart';
+import '../mocks/mocks.dart';
+import '../testable_widget.dart';
+import 'manager_skill_tab_test_data.dart';
 
 void main() {
   final binding = BindingsBuilder(() {

@@ -5,8 +5,8 @@ import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 
-import '../../mocks/mocks.dart';
-import 'manager_home_test_data.dart';
+import '../mocks/mocks.dart';
+import 'manager_skill_tab_test_data.dart';
 
 void main() {
   final binding = BindingsBuilder(() {
