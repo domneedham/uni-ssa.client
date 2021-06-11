@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/manager_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_profile_tab/manager_profile_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
 class ManagerHomePage extends StatelessWidget {
@@ -29,14 +30,7 @@ class ManagerHomePage extends StatelessWidget {
                 child: Text("Staff"),
               ),
             ),
-            Scaffold(
-              appBar: AppBar(
-                title: Text("Profile"),
-              ),
-              body: Center(
-                child: Text("Profile"),
-              ),
-            ),
+            ManagerProfileTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
