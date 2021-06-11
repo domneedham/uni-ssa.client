@@ -7,7 +7,7 @@ import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 
-class HomeManagerController extends GetxController {
+class ManagerSkillTabController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
   final SkillManagerRepository skillRepo = Get.find<SkillManagerRepository>();
 

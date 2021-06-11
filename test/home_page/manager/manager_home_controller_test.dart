@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
-import 'package:ssa_app/app/controllers/home_manager_controller.dart';
+import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 
 import '../../mocks/mocks.dart';
@@ -11,7 +11,7 @@ import 'manager_home_test_data.dart';
 void main() {
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
-    Get.lazyPut<HomeManagerController>(() => HomeManagerController());
+    Get.lazyPut<ManagerSkillTabController>(() => ManagerSkillTabController());
   });
 
   setUp(() async {
@@ -34,7 +34,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // recover your controller
-    final controller = Get.find<HomeManagerController>();
+    final controller = Get.find<ManagerSkillTabController>();
 
     final sortedMap = {
       mockManagerStaffSkillTwo.category:
@@ -57,7 +57,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // recover your controller
-    final controller = Get.find<HomeManagerController>();
+    final controller = Get.find<ManagerSkillTabController>();
 
     final controllerMap = await controller.skills;
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/home_manager_controller.dart';
+import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 
-class ManagerSkillCard extends GetWidget<HomeManagerController> {
+class ManagerSkillCard extends GetWidget<ManagerSkillTabController> {
   const ManagerSkillCard({
     Key? key,
     required this.skill,
