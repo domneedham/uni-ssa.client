@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
-import 'package:ssa_app/app/controllers/home_staff_controller.dart';
+import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/ui/pages/home_page/staff/staff_home.dart';
-import 'package:ssa_app/app/ui/pages/home_page/staff/staff_skill_card.dart';
+import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_card.dart';
+import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_tab.dart';
 
-import '../../mocks/mocks.dart';
-import '../../testable_widget.dart';
-import 'staff_home_test_data.dart';
+import '../mocks/mocks.dart';
+import '../testable_widget.dart';
+import 'staff_skill_tab_test_data.dart';
 
 void main() {
   final binding = BindingsBuilder(() {
-    Get.lazyPut<HomeStaffController>(() => HomeStaffController());
+    Get.lazyPut<StaffSkillTabController>(() => StaffSkillTabController());
   });
 
   setUp(() async {
@@ -32,7 +32,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffOneSkill);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
+    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
     expect(find.text(mockStaffOneSkill.userDebugInfo), findsOneWidget);
   });
@@ -46,7 +46,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffOneSkill);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
+    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -66,7 +66,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
+    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -83,7 +83,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
+    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -100,7 +100,7 @@ void main() {
     when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffHomePage()));
+    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
     await tester.pumpAndSettle();
 
