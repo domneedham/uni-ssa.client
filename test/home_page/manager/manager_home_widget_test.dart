@@ -4,7 +4,8 @@ import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_manager_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/ui/pages/home_page/manager/manager_home.dart';
-import 'package:ssa_app/app/ui/pages/home_page/manager/manager_skill_card.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
 import '../../mocks/mocks.dart';
 import '../../testable_widget.dart';
@@ -30,7 +31,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerHomePage()));
+    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
 
     expect(find.text(mockManager.userDebugInfo), findsOneWidget);
   });
@@ -44,7 +45,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerHomePage()));
+    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -63,7 +64,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerHomePage()));
+    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -81,7 +82,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerHomePage()));
+    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
 
     await tester.pumpAndSettle();
 
@@ -98,7 +99,7 @@ void main() {
     when(mockUserRepo.manager).thenReturn(mockManager);
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: ManagerHomePage()));
+    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
 
     await tester.pumpAndSettle();
 

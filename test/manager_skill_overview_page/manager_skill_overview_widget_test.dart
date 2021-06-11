@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
+import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_overview_page/manager_skill_overview_page.dart';
 
 import '../mocks/mocks.dart';
@@ -23,7 +26,7 @@ void main() {
     Get.reset();
   });
 
-  testWidgets('Loading text is shown whilst the skill is loading',
+  testWidgets('Loading indicator is shown whilst the skill is loading',
       (WidgetTester tester) async {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
@@ -37,7 +40,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
 
-    expect(find.text("Loading"), findsOneWidget);
+    expect(find.byType(LoadingIndicator), findsOneWidget);
   });
 
   testWidgets('Skill name text is shown after loading',

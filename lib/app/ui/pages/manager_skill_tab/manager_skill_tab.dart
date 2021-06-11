@@ -3,10 +3,11 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/home_manager_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
+import 'package:ssa_app/app/ui/global_widgets/future_state_text.dart';
+import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/global_widgets/page_title.dart';
-import 'package:ssa_app/app/ui/pages/home_page/home_page_future_state_text.dart';
-import 'package:ssa_app/app/ui/pages/home_page/home_page_skill_list.dart';
-import 'package:ssa_app/app/ui/pages/home_page/manager/manager_skill_card.dart';
+import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
 import 'package:ssa_app/app/ui/pages/home_page/user_debug.dart';
 
 class ManagerSkillTab extends GetWidget<HomeManagerController> {
@@ -25,14 +26,14 @@ class ManagerSkillTab extends GetWidget<HomeManagerController> {
                 AsyncSnapshot<Map<Category, List<ManagerStaffSkill>>?>
                     snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return HomePageFutureStateText(text: "Loading");
+                return LoadingIndicator();
               }
               if (snapshot.hasData) {
                 final skills = snapshot.data!;
                 if (skills.isEmpty) {
-                  return HomePageFutureStateText(text: "No skills loaded.");
+                  return FutureStateText(text: "No skills loaded.");
                 }
-                return HomePageSkillList(
+                return SkillList(
                   gridChildAspectRatio: 2.5,
                   skills: skills,
                   cardBuilder: (skill) =>
@@ -40,11 +41,9 @@ class ManagerSkillTab extends GetWidget<HomeManagerController> {
                 );
               }
               if (snapshot.hasError) {
-                return HomePageFutureStateText(
-                    text: "Oh no, that didn't work.");
+                return FutureStateText(text: "Oh no, that didn't work.");
               }
-              return HomePageFutureStateText(
-                  text: "Looks like that didn't work.");
+              return FutureStateText(text: "Looks like that didn't work.");
             },
           ),
         ],

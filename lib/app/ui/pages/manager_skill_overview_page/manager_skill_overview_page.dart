@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
+import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/global_widgets/page_title.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_category_title.dart';
 import '../../../controllers/manager_skill_overview_controller.dart';
@@ -44,7 +45,7 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
           if (snapshot.hasError) {
             return Center(child: Text(snapshot.error.toString()));
           }
-          return Center(child: Text("Loading"));
+          return LoadingIndicator();
         },
       ),
     );
