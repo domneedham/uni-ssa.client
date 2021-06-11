@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:ssa_app/app/data/models/enums/user_role.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
@@ -19,9 +18,9 @@ class HomeController extends GetxController {
 
     // simulate loading the user
     Future.delayed(Duration(seconds: 2), () {
-      if (user.userRole == UserRole.MANAGER) {
+      if (user.isManager) {
         Get.offAllNamed(Routes.MANAGER_HOME);
-      } else {
+      } else if (user.isStaff) {
         Get.offAllNamed(Routes.STAFF_HOME);
       }
     });

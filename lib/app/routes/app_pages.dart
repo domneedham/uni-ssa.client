@@ -16,16 +16,20 @@ abstract class AppPages {
       page: () => HomePage(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: Routes.MANAGER_SKILL_OVERVIEW,
-      page: () => ManagerSkillOverviewPage(),
-      binding: ManagerSkillOverviewBinding(),
-    ),
+
+    // MANAGER PAGES
     GetPage(
       name: Routes.MANAGER_HOME,
       page: () => ManagerHomePage(),
       binding: ManagerBinding(),
     ),
+    GetPage(
+      name: Routes.MANAGER_SKILL_OVERVIEW,
+      page: () => ManagerSkillOverviewPage(),
+      binding: ManagerSkillOverviewBinding(),
+    ),
+
+    // STAFF PAGES
     GetPage(
       name: Routes.STAFF_HOME,
       page: () => StaffHomePage(),

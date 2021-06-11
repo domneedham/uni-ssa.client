@@ -9,6 +9,9 @@ class User {
 
   String get userDebugInfo => "$name, $userRole";
 
+  bool get isManager => this.userRole == UserRole.MANAGER;
+  bool get isStaff => this.userRole == UserRole.STAFF;
+
   @override
   String toString() {
     return "$name, $userRole";

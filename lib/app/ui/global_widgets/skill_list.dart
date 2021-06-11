@@ -11,7 +11,7 @@ class SkillList extends StatelessWidget {
     required this.skills,
     required this.cardBuilder,
     this.gridChildAspectRatio,
-    this.padding = 25,
+    this.padding = 16,
   }) : super(key: key);
 
   final Map<Category, List<Skill>> skills;
