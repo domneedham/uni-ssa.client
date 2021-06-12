@@ -21,31 +21,27 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: controller.skills,
-        builder: (BuildContext ctx,
-            AsyncSnapshot<Map<Category, List<ManagerStaffSkill>>?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingIndicator();
+      body: Obx(() {
+        if (controller.skills != null) {
+          final skills = controller.skills!;
+          if (skills.isEmpty) {
+            return FutureStateText(text: "No skills loaded.");
           }
-          if (snapshot.hasData) {
-            final skills = snapshot.data!;
-            if (skills.isEmpty) {
-              return FutureStateText(text: "No skills loaded.");
-            }
-            return SkillList(
-              gridChildAspectRatio: 2.5,
-              skills: skills,
-              cardBuilder: (skill) =>
-                  ManagerSkillCard(skill: skill as ManagerStaffSkill),
-            );
-          }
-          if (snapshot.hasError) {
-            return FutureStateText(text: "Oh no, that didn't work.");
-          }
-          return FutureStateText(text: "Looks like that didn't work.");
-        },
-      ),
+          return SkillList(
+            gridChildAspectRatio: 2.5,
+            skills: skills,
+            cardBuilder: (skill) =>
+                ManagerSkillCard(skill: skill as ManagerStaffSkill),
+          );
+        }
+        if (controller.isError.value) {
+          return FutureStateText(text: controller.error.value);
+        }
+        if (controller.isLoading.value) {
+          return LoadingIndicator();
+        }
+        return FutureStateText(text: "Unknown state");
+      }),
     );
   }
 }
