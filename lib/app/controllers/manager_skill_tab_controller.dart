@@ -13,7 +13,11 @@ class ManagerSkillTabController extends GetxController {
 
   Manager get user => userRepo.manager;
 
-  final loading = false.obs;
+  final isLoading = true.obs;
+  final isError = false.obs;
+  final error = "".obs;
+
+  RxMap<Category, List<ManagerStaffSkill>>? skills;
 
   final Map<Category, List<ManagerStaffSkill>> list = {
     Category(id: 1, name: "Code", icon: Icons.code): List.filled(
@@ -25,15 +29,21 @@ class ManagerSkillTabController extends GetxController {
             staff: [1])))
   };
 
-  Future<Map<Category, List<ManagerStaffSkill>>?> get skills async {
-    try {
-      loading.value = true;
+  @override
+  onInit() async {
+    super.onInit();
+    await getSkills();
+  }
 
-      final skills = await skillRepo.skills;
+  Future<void> getSkills() async {
+    try {
+      isLoading.value = true;
+
+      final repoSkills = await skillRepo.skills;
 
       // get unique categories from skills
       List<Category> cats = [];
-      skills.forEach((element) {
+      repoSkills.forEach((element) {
         final index =
             cats.indexWhere((cat) => cat.name == element.category.name);
         if (index == -1) {
@@ -49,7 +59,7 @@ class ManagerSkillTabController extends GetxController {
       // for each category, get the skills and insert into the map
       Map<Category, List<ManagerStaffSkill>> list = {};
       cats.forEach((cat) {
-        final items = skills
+        final items = repoSkills
             .where((element) => element.category.name == cat.name)
             .toList();
         if (items.isNotEmpty) {
@@ -57,9 +67,13 @@ class ManagerSkillTabController extends GetxController {
           list.addAll(item);
         }
       });
-      return list;
-    } catch (any) {} finally {
-      loading.value = false;
+
+      skills = list.obs;
+    } catch (e) {
+      isError.value = true;
+      error.value = e.toString();
+    } finally {
+      isLoading.value = false;
     }
   }
 

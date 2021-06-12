@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
-import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/ui/global_widgets/future_state_text.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
@@ -16,31 +15,27 @@ class StaffSkillTab extends GetWidget<StaffSkillTabController> {
       appBar: AppBar(
         title: Text('Your Skills'),
       ),
-      body: FutureBuilder(
-        future: controller.skills,
-        builder: (BuildContext ctx,
-            AsyncSnapshot<Map<Category, List<StaffSkill>>?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingIndicator();
+      body: Obx(() {
+        if (controller.skills != null) {
+          final skills = controller.skills!;
+          if (skills.isEmpty) {
+            return FutureStateText(text: "You have no registered skills");
           }
-          if (snapshot.hasData) {
-            final skills = snapshot.data!;
-            if (skills.isEmpty) {
-              return FutureStateText(text: "You have no registered skills");
-            }
-            return SkillList(
-              gridChildAspectRatio: 2,
-              skills: skills,
-              cardBuilder: (skill) =>
-                  StaffSkillCard(skill: skill as StaffSkill),
-            );
-          }
-          if (snapshot.hasError) {
-            return FutureStateText(text: "Oh no, that didn't work.");
-          }
-          return FutureStateText(text: "You have no registered skills");
-        },
-      ),
+          return SkillList(
+            gridChildAspectRatio: 2,
+            skills: skills,
+            cardBuilder: (skill) => StaffSkillCard(skill: skill as StaffSkill),
+          );
+        }
+        if (controller.isError.value) {
+          return FutureStateText(text: controller.error.value.toString());
+        }
+        if (controller.isLoading.value) {
+          return LoadingIndicator();
+        }
+
+        return FutureStateText(text: "Unknown state");
+      }),
     );
   }
 }
