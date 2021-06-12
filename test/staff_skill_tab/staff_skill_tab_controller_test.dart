@@ -15,6 +15,7 @@ void main() {
   });
 
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 
@@ -41,7 +42,9 @@ void main() {
       mockStaffSkillOne.category: List<StaffSkill>.filled(1, mockStaffSkillOne)
     };
 
-    final controllerMap = await controller.skills;
+    await controller.getSkills();
+
+    final controllerMap = controller.skills!;
 
     expect(controllerMap.keys.first.name, sortedMap.keys.first.name);
   });
@@ -57,7 +60,9 @@ void main() {
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();
 
-    final controllerMap = await controller.skills;
+    await controller.getSkills();
+
+    final controllerMap = controller.skills!;
 
     // get the map item with the category from mockSkillOne
     final mapItem = controllerMap.entries

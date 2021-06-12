@@ -17,6 +17,7 @@ void main() {
   });
 
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 
@@ -91,6 +92,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.textContaining("You have no registered skills"), findsWidgets);
+    expect(
+        find.textContaining("You have no registered skills"), findsOneWidget);
   });
 }

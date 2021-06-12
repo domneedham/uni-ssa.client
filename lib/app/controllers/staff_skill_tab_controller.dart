@@ -11,40 +11,65 @@ class StaffSkillTabController extends GetxController {
 
   Staff get user => userRepo.staff;
 
-  Future<Map<Category, List<StaffSkill>>> get skills async {
-    // get a list of all of the users skills
-    final tempList = await skillRepo.getSkillsByIds(user.skills);
+  final isLoading = true.obs;
+  final isError = false.obs;
+  final error = "".obs;
 
-    if (tempList.isEmpty) {
-      return {};
-    }
+  RxMap<Category, List<StaffSkill>>? skills;
 
-    // get unique categories from skills
-    List<Category> cats = [];
-    tempList.forEach((element) {
-      final index = cats.indexWhere((cat) => cat.name == element.category.name);
-      if (index == -1) {
-        cats.add(element.category);
+  @override
+  void onInit() async {
+    super.onInit();
+    await getSkills();
+  }
+
+  Future<void> getSkills() async {
+    try {
+      isLoading.value = true;
+
+      // get a list of all of the users skills
+      final tempList = await skillRepo.getSkillsByIds(user.skills);
+
+      if (tempList.isEmpty) {
+        Map<Category, List<StaffSkill>> emptyMap = {};
+        skills = emptyMap.obs;
+        isLoading.value = false;
+        return;
       }
-    });
 
-    if (cats.isNotEmpty) {
-      // sort alphabetically on the categories
-      cats.sort((a, b) => a.name[0].compareTo(b.name[0]));
-    }
+      // get unique categories from skills
+      List<Category> cats = [];
+      tempList.forEach((element) {
+        final index =
+            cats.indexWhere((cat) => cat.name == element.category.name);
+        if (index == -1) {
+          cats.add(element.category);
+        }
+      });
 
-    // for each category, get the skills and insert into the map
-    Map<Category, List<StaffSkill>> list = {};
-    cats.forEach((cat) {
-      final items = tempList
-          .where((element) => element.category.name == cat.name)
-          .toList();
-      if (items.isNotEmpty) {
-        Map<Category, List<StaffSkill>> item = {cat: items};
-        list.addAll(item);
+      if (cats.isNotEmpty) {
+        // sort alphabetically on the categories
+        cats.sort((a, b) => a.name[0].compareTo(b.name[0]));
       }
-    });
 
-    return list;
+      // for each category, get the skills and insert into the map
+      Map<Category, List<StaffSkill>> list = {};
+      cats.forEach((cat) {
+        final items = tempList
+            .where((element) => element.category.name == cat.name)
+            .toList();
+        if (items.isNotEmpty) {
+          Map<Category, List<StaffSkill>> item = {cat: items};
+          list.addAll(item);
+        }
+      });
+
+      skills = list.obs;
+    } catch (e) {
+      isError.value = true;
+      error.value = e.toString();
+    } finally {
+      isLoading.value = false;
+    }
   }
 }
