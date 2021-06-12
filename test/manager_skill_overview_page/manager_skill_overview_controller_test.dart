@@ -13,6 +13,7 @@ void main() {
   });
 
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 
@@ -20,9 +21,11 @@ void main() {
     Get.reset();
   });
 
-  test('Get skill returns the right skill', () async {
+  test('Get skill sets the right skill', () async {
     final userRepo = TestMocks.userRepository;
     final skillRepo = TestMocks.skillManagerRepository;
+
+    Get.parameters = {"id": "1"};
 
     final controller = Get.find<ManagerSkillOverviewController>();
 
@@ -30,24 +33,33 @@ void main() {
         .thenAnswer((_) async => skillOne);
     when(userRepo.manager).thenReturn(managerOne);
 
+    await controller.getSkill("1");
+
     final testSkill = skillOne;
 
-    final controllerSkill = await controller.getSkill("1");
+    final controllerSkill = controller.skill!.value;
 
     expect(testSkill, controllerSkill);
   });
 
-  test('Get skill returns an error if the id can not be found', () async {
+  test('Get skill sets an error if the id can not be found', () async {
     final userRepo = TestMocks.userRepository;
     final skillRepo = TestMocks.skillManagerRepository;
 
+    Get.parameters = {"id": "1"};
+
     final controller = Get.find<ManagerSkillOverviewController>();
 
+    final exception = Exception("Some error");
+
     when(skillRepo.getManagerStaffSkillById(1))
-        .thenAnswer((_) async => Future.error(Exception("Some error")));
+        .thenAnswer((_) async => Future.error(exception));
     when(userRepo.manager).thenReturn(managerOne);
 
-    expect(() => controller.getSkill("1"), throwsException);
+    await controller.getSkill("1");
+
+    expect(controller.isError.value, true);
+    expect(controller.error.value, exception.toString());
   });
 
   test('Get staff by id returns the right staff member', () async {

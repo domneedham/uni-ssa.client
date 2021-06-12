@@ -8,17 +8,31 @@ class ManagerSkillOverviewController extends GetxController {
   final skillRepo = Get.find<SkillManagerRepository>();
   final userRepo = Get.find<UserRepository>();
 
-  late Rx<ManagerStaffSkill>? skill;
+  final isLoading = true.obs;
+  final isError = false.obs;
+  final error = "".obs;
+  Rx<ManagerStaffSkill>? skill;
 
-  Future<ManagerStaffSkill> getSkill(String id) async {
+  final parameters = Get.parameters;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await getSkill(parameters["id"]!);
+  }
+
+  Future<void> getSkill(String id) async {
     try {
+      isLoading.value = true;
       int parsedId = int.parse(id);
       ManagerStaffSkill fetchedSkill =
           await skillRepo.getManagerStaffSkillById(parsedId);
       skill = fetchedSkill.obs;
-      return fetchedSkill;
-    } catch (error) {
-      return Future.error(error);
+    } catch (e) {
+      isError.value = true;
+      error.value = e.toString();
+    } finally {
+      isLoading.value = false;
     }
   }
 
