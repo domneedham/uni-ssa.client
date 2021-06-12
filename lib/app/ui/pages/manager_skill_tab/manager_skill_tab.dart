@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
-import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/ui/global_widgets/future_state_text.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
