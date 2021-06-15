@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/manager_controller.dart';
-import 'package:ssa_app/app/ui/pages/manager_profile_tab/manager_profile_tab.dart';
+import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
 class ManagerHomePage extends StatelessWidget {
@@ -30,7 +30,7 @@ class ManagerHomePage extends StatelessWidget {
                 child: Text("Staff"),
               ),
             ),
-            ManagerProfileTab(),
+            ManagerMoreTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -51,8 +51,8 @@ class ManagerHomePage extends StatelessWidget {
               label: "Staff",
             ),
             const BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
-              label: "Profile",
+              icon: const Icon(Icons.more_horiz),
+              label: "More",
             ),
           ],
         ),
