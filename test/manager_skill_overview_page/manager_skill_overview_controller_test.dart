@@ -64,7 +64,7 @@ void main() {
 
   test('Get staff by id returns the right staff member', () async {
     final userRepo = TestMocks.userRepository;
-    final _ = TestMocks.skillManagerRepository;
+    TestMocks.skillManagerRepository;
 
     final controller = Get.find<ManagerSkillOverviewController>();
 

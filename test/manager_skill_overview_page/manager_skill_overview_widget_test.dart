@@ -52,9 +52,7 @@ void main() {
 
     Get.parameters = {"id": "1"};
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
-
     await tester.pumpAndSettle();
 
     expect(find.text(skillOne.name), findsOneWidget);
@@ -71,9 +69,7 @@ void main() {
 
     Get.parameters = {"id": "1"};
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
-
     await tester.pumpAndSettle();
 
     expect(find.text(skillOne.category.name), findsOneWidget);
@@ -90,9 +86,7 @@ void main() {
 
     Get.parameters = {"id": "1"};
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
-
     await tester.pumpAndSettle();
 
     expect(find.byIcon(skillOne.category.icon), findsOneWidget);
@@ -110,9 +104,7 @@ void main() {
 
     Get.parameters = {"id": "1"};
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
-
     await tester.pumpAndSettle();
 
     expect(find.text(staffOne.name), findsOneWidget);

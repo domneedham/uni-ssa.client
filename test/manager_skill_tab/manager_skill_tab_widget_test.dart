@@ -16,6 +16,7 @@ void main() {
   });
 
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 
@@ -31,9 +32,7 @@ void main() {
         .thenAnswer((_) async => [mockManagerStaffSkillOne]);
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
-
     await tester.pumpAndSettle();
 
     expect(find.byIcon(mockManagerStaffSkillOne.category.icon), findsOneWidget);
@@ -50,9 +49,7 @@ void main() {
 
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
-
     await tester.pumpAndSettle();
 
     expect(find.byType(ManagerSkillCard), findsNWidgets(2));
@@ -68,9 +65,7 @@ void main() {
         .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
-
     await tester.pumpAndSettle();
 
     expect(find.byType(ManagerSkillCard), findsNothing);
@@ -85,9 +80,7 @@ void main() {
         .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // Build our app and trigger a frame.
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
-
     await tester.pumpAndSettle();
 
     expect(find.textContaining("No skills loaded."), findsWidgets);

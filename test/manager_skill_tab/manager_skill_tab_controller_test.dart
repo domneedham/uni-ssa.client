@@ -34,7 +34,6 @@ void main() {
 
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // recover your controller
     final controller = Get.find<ManagerSkillTabController>();
 
     final sortedMap = {
@@ -59,7 +58,6 @@ void main() {
         (_) async => [mockManagerStaffSkillOne, mockManagerStaffSkillTwo]);
     when(mockUserRepo.manager).thenReturn(mockManager);
 
-    // recover your controller
     final controller = Get.find<ManagerSkillTabController>();
 
     await controller.getSkills();

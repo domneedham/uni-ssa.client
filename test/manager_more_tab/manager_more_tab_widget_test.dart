@@ -32,9 +32,7 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(Divider), findsNWidgets(2));
@@ -46,9 +44,7 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerMoreTabProfileHeader), findsOneWidget);
@@ -60,9 +56,7 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerMoreTabSettings), findsOneWidget);
@@ -74,9 +68,7 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerMoreTabAppInformation), findsOneWidget);
@@ -90,10 +82,8 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabProfileHeader()));
-
       await tester.pumpAndSettle();
 
       expect(find.text(mockManager.name), findsOneWidget);
@@ -105,10 +95,8 @@ void main() {
 
       when(mockUserRepo.manager).thenReturn(mockManager);
 
-      // Build our app and trigger a frame.
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabProfileHeader()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(CircleAvatar), findsOneWidget);
@@ -119,9 +107,7 @@ void main() {
   group('Settings list', () {
     testWidgets('An switch to toggle dark mode is rendered',
         (WidgetTester tester) async {
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTabSettings()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(SwitchListTile), findsOneWidget);
@@ -129,9 +115,7 @@ void main() {
     });
 
     testWidgets('An option to logout is rendered', (WidgetTester tester) async {
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTabSettings()));
-
       await tester.pumpAndSettle();
 
       expect(find.text("Logout"), findsOneWidget);
@@ -141,10 +125,8 @@ void main() {
 
   group('App information', () {
     testWidgets('An about list tile is rendered', (WidgetTester tester) async {
-      // Build our app and trigger a frame.
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));
-
       await tester.pumpAndSettle();
 
       expect(find.byType(AboutListTile), findsOneWidget);
@@ -155,11 +137,9 @@ void main() {
         (WidgetTester tester) async {
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));
-
       await tester.pumpAndSettle();
 
       await tester.tap(find.byType(AboutListTile));
-
       await tester.pumpAndSettle();
 
       expect(find.textContaining("Dominic Needham"), findsOneWidget);
