@@ -31,8 +31,16 @@ class ManagerCategoriesTabController extends GetxController {
     }
   }
 
-  void navigateToCategoryOverview(int id, String name) {
-    final parameters = <String, String>{"id": id.toString(), "name": name};
-    Get.toNamed(Routes.MANAGER_CATEGORY_OVERVIEW, parameters: parameters);
+  void navigateToCategoryOverview(Category category) {
+    final parameters = <String, String>{
+      "id": category.id.toString(),
+      "name": category.name,
+    };
+    final arguments = {"category": category};
+    Get.toNamed(
+      Routes.MANAGER_CATEGORY_OVERVIEW,
+      parameters: parameters,
+      arguments: arguments,
+    );
   }
 }
