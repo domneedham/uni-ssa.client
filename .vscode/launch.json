@@ -5,15 +5,25 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ssa_app",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "ssa_app (profile mode)",
+      "name": "iOS (Debug)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "flutterMode": "debug",
+      "deviceId": "iphone",
+    },
+    {
+      "name": "macOS (Debug)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "deviceId": "iphone",
+    },
+    {
+      "name": "iOS (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "deviceId": "iphone",
     }
   ]
 }
