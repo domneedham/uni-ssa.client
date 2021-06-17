@@ -78,7 +78,7 @@ class ManagerSkillTabController extends GetxController {
   }
 
   void navigateToSkillOverview(int id, String name) {
-    var parameters = <String, String>{"id": id.toString(), "name": name};
+    final parameters = <String, String>{"id": id.toString(), "name": name};
     Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW, parameters: parameters);
   }
 

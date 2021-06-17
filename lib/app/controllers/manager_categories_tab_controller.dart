@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/repository/categories_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerCategoriesTabController extends GetxController {
   final catRepo = Get.find<CategoriesRepository>();
@@ -28,5 +29,10 @@ class ManagerCategoriesTabController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void navigateToCategoryOverview(int id, String name) {
+    final parameters = <String, String>{"id": id.toString(), "name": name};
+    Get.toNamed(Routes.MANAGER_CATEGORY_OVERVIEW, parameters: parameters);
   }
 }

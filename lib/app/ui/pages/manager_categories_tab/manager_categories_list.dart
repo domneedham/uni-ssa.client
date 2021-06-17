@@ -17,6 +17,8 @@ class ManagerCategoryList extends GetView<ManagerCategoriesTabController> {
           leading: Icon(item.icon),
           title: Text(item.name),
           trailing: Icon(Icons.chevron_right),
+          onTap: () =>
+              controller.navigateToCategoryOverview(item.id, item.name),
         );
       },
     );
