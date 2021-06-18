@@ -6,12 +6,15 @@ import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
+import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 
 class ManagerSkillTabController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
   final SkillManagerRepository skillRepo = Get.find<SkillManagerRepository>();
 
   Manager get user => userRepo.manager;
+
+  final viewType = SkillListViewType.LIST.obs;
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -75,6 +78,10 @@ class ManagerSkillTabController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void changeViewType(SkillListViewType type) {
+    viewType.value = type;
   }
 
   void navigateToSkillOverview(int id, String name) {
