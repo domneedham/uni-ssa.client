@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 
-class ManagerSkillCard extends GetWidget<ManagerSkillTabController> {
+class ManagerSkillCard extends GetView<ManagerSkillTabController> {
   const ManagerSkillCard({
     Key? key,
     required this.skill,

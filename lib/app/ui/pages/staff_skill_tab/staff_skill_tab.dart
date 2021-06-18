@@ -22,6 +22,7 @@ class StaffSkillTab extends GetWidget<StaffSkillTabController> {
             return FutureStateText(text: "You have no registered skills");
           }
           return SkillList(
+            viewType: SkillListViewType.GRID,
             gridChildAspectRatio: 2,
             skills: skills,
             cardBuilder: (skill) => StaffSkillCard(skill: skill as StaffSkill),

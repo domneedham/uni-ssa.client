@@ -7,6 +7,8 @@ import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
 
+import 'manager_skill_list_tile.dart';
+
 class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,23 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
       appBar: AppBar(
         title: Text("Skills"),
         actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.view_agenda_outlined),
+            onSelected: (SkillListViewType type) =>
+                controller.changeViewType(type),
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  child: Text("List"),
+                  value: SkillListViewType.LIST,
+                ),
+                const PopupMenuItem(
+                  child: Text("Grid"),
+                  value: SkillListViewType.GRID,
+                ),
+              ];
+            },
+          ),
           IconButton(
             onPressed: controller.createNewSkill,
             icon: Icon(Icons.add),
@@ -28,9 +47,15 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
           }
           return SkillList(
             gridChildAspectRatio: 2.5,
+            viewType: controller.viewType.value,
             skills: skills,
-            cardBuilder: (skill) =>
-                ManagerSkillCard(skill: skill as ManagerStaffSkill),
+            cardBuilder: (skill) {
+              if (controller.viewType.value == SkillListViewType.LIST) {
+                return ManagerSkillListTile(skill: skill as ManagerStaffSkill);
+              } else {
+                return ManagerSkillCard(skill: skill as ManagerStaffSkill);
+              }
+            },
           );
         }
         if (controller.isError.value) {
