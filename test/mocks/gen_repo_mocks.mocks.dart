@@ -2,18 +2,21 @@
 // in ssa_app/test/mocks/gen_repo_mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i8;
+import 'dart:async' as _i9;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:ssa_app/app/data/models/skill/category.dart' as _i7;
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i6;
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i5;
 import 'package:ssa_app/app/data/models/user/manager.dart' as _i4;
 import 'package:ssa_app/app/data/models/user/staff.dart' as _i3;
 import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
+import 'package:ssa_app/app/data/repository/category_repository.dart' as _i12;
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart'
+    as _i11;
+import 'package:ssa_app/app/data/repository/skill_staff_repository.dart'
     as _i10;
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart' as _i9;
-import 'package:ssa_app/app/data/repository/user_repository.dart' as _i7;
+import 'package:ssa_app/app/data/repository/user_repository.dart' as _i8;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -32,10 +35,12 @@ class _FakeStaffSkill extends _i1.Fake implements _i5.StaffSkill {}
 class _FakeManagerStaffSkill extends _i1.Fake implements _i6.ManagerStaffSkill {
 }
 
+class _FakeCategory extends _i1.Fake implements _i7.Category {}
+
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -56,17 +61,17 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
   _i4.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
       returnValue: _FakeManager()) as _i4.Manager);
   @override
-  _i8.Future<_i3.Staff> getStaffById(int? id) =>
+  _i9.Future<_i3.Staff> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
               returnValue: Future<_i3.Staff>.value(_FakeStaff()))
-          as _i8.Future<_i3.Staff>);
+          as _i9.Future<_i3.Staff>);
 }
 
 /// A class which mocks [SkillStaffRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSkillStaffRepository extends _i1.Mock
-    implements _i9.SkillStaffRepository {
+    implements _i10.SkillStaffRepository {
   MockSkillStaffRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -92,27 +97,27 @@ class MockSkillStaffRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#skillFive),
           returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
   @override
-  _i8.Future<List<_i5.StaffSkill>> get skills => (super.noSuchMethod(
+  _i9.Future<List<_i5.StaffSkill>> get skills => (super.noSuchMethod(
           Invocation.getter(#skills),
           returnValue: Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-      as _i8.Future<List<_i5.StaffSkill>>);
+      as _i9.Future<List<_i5.StaffSkill>>);
   @override
   _i5.StaffSkill? getStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffSkillById, [id]))
           as _i5.StaffSkill?);
   @override
-  _i8.Future<List<_i5.StaffSkill>> getSkillsByIds(List<int>? ids) =>
+  _i9.Future<List<_i5.StaffSkill>> getSkillsByIds(List<int>? ids) =>
       (super.noSuchMethod(Invocation.method(#getSkillsByIds, [ids]),
               returnValue:
                   Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-          as _i8.Future<List<_i5.StaffSkill>>);
+          as _i9.Future<List<_i5.StaffSkill>>);
 }
 
 /// A class which mocks [SkillManagerRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSkillManagerRepository extends _i1.Mock
-    implements _i10.SkillManagerRepository {
+    implements _i11.SkillManagerRepository {
   MockSkillManagerRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -126,15 +131,44 @@ class MockSkillManagerRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#skillTwo),
           returnValue: _FakeManagerStaffSkill()) as _i6.ManagerStaffSkill);
   @override
-  _i8.Future<List<_i6.ManagerStaffSkill>> get skills =>
+  _i9.Future<List<_i6.ManagerStaffSkill>> get skills =>
       (super.noSuchMethod(Invocation.getter(#skills),
               returnValue: Future<List<_i6.ManagerStaffSkill>>.value(
                   <_i6.ManagerStaffSkill>[]))
-          as _i8.Future<List<_i6.ManagerStaffSkill>>);
+          as _i9.Future<List<_i6.ManagerStaffSkill>>);
   @override
-  _i8.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
+  _i9.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
               returnValue:
                   Future<_i6.ManagerStaffSkill>.value(_FakeManagerStaffSkill()))
-          as _i8.Future<_i6.ManagerStaffSkill>);
+          as _i9.Future<_i6.ManagerStaffSkill>);
+}
+
+/// A class which mocks [CategoryRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCategoryRepository extends _i1.Mock
+    implements _i12.CategoryRepository {
+  MockCategoryRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Category get categoryOne =>
+      (super.noSuchMethod(Invocation.getter(#categoryOne),
+          returnValue: _FakeCategory()) as _i7.Category);
+  @override
+  _i7.Category get categoryTwo =>
+      (super.noSuchMethod(Invocation.getter(#categoryTwo),
+          returnValue: _FakeCategory()) as _i7.Category);
+  @override
+  _i9.Future<List<_i7.Category>> get categories =>
+      (super.noSuchMethod(Invocation.getter(#categories),
+              returnValue: Future<List<_i7.Category>>.value(<_i7.Category>[]))
+          as _i9.Future<List<_i7.Category>>);
+  @override
+  _i9.Future<_i7.Category> getCategoryById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
+              returnValue: Future<_i7.Category>.value(_FakeCategory()))
+          as _i9.Future<_i7.Category>);
 }
