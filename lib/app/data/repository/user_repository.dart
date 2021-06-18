@@ -26,6 +26,7 @@ class UserRepository {
       Manager(id: 2, firstname: "Dom", surname: "Needham", staff: [1, 2]);
 
   List<Staff> get _staff => [staff, staff2];
+  List<Manager> get _manager => [manager];
 
   Future<Staff> getStaffById(int id) async {
     return Future.delayed(Duration(milliseconds: 500), () {
@@ -39,6 +40,20 @@ class UserRepository {
         return List.empty();
       }
       return _staff
+          .where(
+            (element) =>
+                element.name.toLowerCase().contains(searchText.toLowerCase()),
+          )
+          .toList();
+    });
+  }
+
+  Future<List<Manager>> searchManagerByName(String searchText) async {
+    return Future.delayed(Duration(milliseconds: 750), () {
+      if (searchText.isEmpty) {
+        return List.empty();
+      }
+      return _manager
           .where(
             (element) =>
                 element.name.toLowerCase().contains(searchText.toLowerCase()),
