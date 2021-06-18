@@ -18,6 +18,8 @@ final skillTwo = ManagerStaffSkill(
   staff: [1],
 );
 
-final staffOne = Staff(id: 1, name: "Staff One", skills: [1]);
+final staffOne =
+    Staff(id: 1, firstname: "Staff", surname: "One", skills: [1], managerId: 1);
 
-final managerOne = Manager(id: 1, name: "Manager One", staff: [1]);
+final managerOne =
+    Manager(id: 1, firstname: "Manager", surname: "One", staff: [1]);

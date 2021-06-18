@@ -18,10 +18,13 @@ final mockManagerStaffSkillTwo = ManagerStaffSkill(
   staff: [1],
 );
 
-final mockManager = Manager(id: 1, name: "DN", staff: [1]);
+final mockManager = Manager(id: 1, firstname: "D", surname: "N", staff: [1]);
 
-final mockUserNoSkills = Staff(id: 1, name: "DN", skills: []);
+final mockUserNoSkills =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [], managerId: 1);
 
-final mockUserOneSkill = Staff(id: 1, name: "DN", skills: [1]);
+final mockUserOneSkill =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [1], managerId: 1);
 
-final mockUserTwoSkills = Staff(id: 1, name: "DN", skills: [1, 2]);
+final mockUserTwoSkills =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [1, 2], managerId: 1);

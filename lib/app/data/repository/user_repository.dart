@@ -4,14 +4,26 @@ import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
 
 class UserRepository {
-  final User user =
-      User(id: 2, name: "Dom Needham", userRole: UserRole.MANAGER);
+  final User user = User(
+      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.MANAGER);
 
-  final Staff staff =
-      Staff(id: 1, name: "Dom Needham", skills: [1, 2, 3, 4, 5]);
-  final Staff staff2 = Staff(id: 2, name: "John Doe", skills: [1, 2, 3]);
+  final Staff staff = Staff(
+    id: 1,
+    firstname: "Dom",
+    surname: "Needham",
+    skills: [1, 2, 3, 4, 5],
+    managerId: 2,
+  );
+  final Staff staff2 = Staff(
+    id: 2,
+    firstname: "John",
+    surname: "Doe",
+    skills: [1, 2, 3],
+    managerId: 2,
+  );
 
-  final Manager manager = Manager(id: 2, name: "Dom Needham", staff: [1, 2]);
+  final Manager manager =
+      Manager(id: 2, firstname: "Dom", surname: "Needham", staff: [1, 2]);
 
   List<Staff> get _staff => [staff, staff2];
 
