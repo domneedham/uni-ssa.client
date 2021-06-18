@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_staff_tab_manager_controller.dart';
+import 'package:ssa_app/app/controllers/manager_staff_tab_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 
 import '../manager_staff_tab_search.dart';
 
-class ManagerStaffTabManager extends GetView<ManagerStaffTabManagerController> {
+class ManagerStaffTabManager extends GetView<ManagerStaffTabController> {
   const ManagerStaffTabManager({Key? key}) : super(key: key);
 
   @override
