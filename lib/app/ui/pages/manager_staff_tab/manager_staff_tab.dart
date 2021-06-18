@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_staff_tab_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_tab/manager_staff_tab_manager.dart';
+import 'package:ssa_app/app/ui/pages/manager_staff_tab/staff_tab/manager_staff_tab_staff.dart';
 
-class ManagerStaffTab extends GetView<ManagerStaffTabController> {
-  const ManagerStaffTab({Key? key}) : super(key: key);
+class ManagerStaffTab extends StatelessWidget {
+  ManagerStaffTab({Key? key}) : super(key: key);
+
+  final _widgets = [
+    ManagerStaffTabStaff(),
+    ManagerStaffTabManager(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Staff"),
-      ),
-      body: Center(
-        child: Text("Staff tab"),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Staff"),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "Staff"),
+              Tab(text: "Managers"),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: _widgets,
+        ),
       ),
     );
   }
