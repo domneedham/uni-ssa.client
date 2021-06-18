@@ -18,6 +18,7 @@ class ManagerStaffTab extends StatelessWidget {
         appBar: AppBar(
           title: Text("Staff"),
           bottom: TabBar(
+            indicator: UnderlineTabIndicator(),
             tabs: [
               Tab(text: "Staff"),
               Tab(text: "Managers"),
