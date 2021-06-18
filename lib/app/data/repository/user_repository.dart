@@ -32,4 +32,18 @@ class UserRepository {
       return _staff.firstWhere((element) => element.id == id);
     });
   }
+
+  Future<List<Staff>> searchStaffByName(String searchText) async {
+    return Future.delayed(Duration(milliseconds: 750), () {
+      if (searchText.isEmpty) {
+        return List.empty();
+      }
+      return _staff
+          .where(
+            (element) =>
+                element.name.toLowerCase().contains(searchText.toLowerCase()),
+          )
+          .toList();
+    });
+  }
 }

@@ -10,7 +10,7 @@ class ManagerStaffTabStaff extends GetView<ManagerStaffTabStaffController> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         ManagerStaffTabSearch(
           hintText: "Search for a staff member",
@@ -20,7 +20,25 @@ class ManagerStaffTabStaff extends GetView<ManagerStaffTabStaffController> {
           if (controller.isLoading.value) {
             return LoadingIndicator();
           }
-          return Center(child: Text("Not loading"));
+          if (controller.searchText.isEmpty) {
+            return Center(
+              child: Text("Waiting for a search"),
+            );
+          }
+          if (controller.staffList.isEmpty) {
+            return Center(child: Text("No staff found"));
+          }
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.staffList.length,
+            itemBuilder: (context, pos) {
+              final item = controller.staffList[pos];
+              return ListTile(
+                title: Text(item.name),
+                trailing: Icon(Icons.chevron_right),
+              );
+            },
+          );
         }),
       ],
     );

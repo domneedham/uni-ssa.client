@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
+import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class ManagerStaffTabStaffController extends GetxController {
+  final userRepo = Get.find<UserRepository>();
+
   final isLoading = false.obs;
   final staffList = RxList<Staff>();
 
@@ -26,15 +29,25 @@ class ManagerStaffTabStaffController extends GetxController {
     if (textController.text == searchText.value) {
       return;
     }
-
+    isLoading.value = true;
     searchText.value = textController.text;
   }
 
-  void _search() {
+  void _search() async {
     isLoading.value = true;
+
     searchText.value = textController.text;
-    Future.delayed(Duration(milliseconds: 500), () {
+
+    // don't search if empty
+    if (searchText.value.isEmpty) {
+      staffList.clear();
       isLoading.value = false;
-    });
+      return;
+    }
+
+    final tempList = await userRepo.searchStaffByName(searchText.value);
+    staffList.value = tempList;
+
+    isLoading.value = false;
   }
 }
