@@ -18,6 +18,7 @@ void main() {
   });
 
   setUp(() async {
+    Get.testMode = true;
     binding.builder();
   });
 

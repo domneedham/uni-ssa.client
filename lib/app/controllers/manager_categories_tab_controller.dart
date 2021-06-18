@@ -31,16 +31,17 @@ class ManagerCategoriesTabController extends GetxController {
     }
   }
 
-  void navigateToCategoryOverview(Category category) {
-    final parameters = <String, String>{
-      "id": category.id.toString(),
-      "name": category.name,
-    };
-    final arguments = {"category": category};
-    Get.toNamed(
-      Routes.MANAGER_CATEGORY_OVERVIEW,
-      parameters: parameters,
-      arguments: arguments,
-    );
+  void navigateToCategoryEdit(Category category) {
+    // final parameters = <String, String>{
+    //   "id": category.id.toString(),
+    //   "name": category.name,
+    // };
+    // final arguments = {"category": category};
+    // Get.toNamed(
+    //   Routes.MANAGER_CATEGORY_OVERVIEW,
+    //   parameters: parameters,
+    //   arguments: arguments,
+    // );
+    Get.snackbar("Snackbar", category.name);
   }
 }
