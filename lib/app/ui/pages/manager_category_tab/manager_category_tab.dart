@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:ssa_app/app/controllers/manager_categories_tab_controller.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/future_state_text.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 
-import 'manager_categories_list.dart';
+import 'manager_category_list.dart';
 
-class ManagerCategoriesTab extends GetWidget<ManagerCategoriesTabController> {
-  const ManagerCategoriesTab({Key? key}) : super(key: key);
+class ManagerCategoryTab extends GetWidget<ManagerCategoryTabController> {
+  const ManagerCategoryTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

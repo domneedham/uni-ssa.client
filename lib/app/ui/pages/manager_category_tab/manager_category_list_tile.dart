@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_categories_tab_controller.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 
-class ManagerCategoryListTile extends GetView<ManagerCategoriesTabController> {
+class ManagerCategoryListTile extends GetView<ManagerCategoryTabController> {
   const ManagerCategoryListTile({
     Key? key,
     required this.item,

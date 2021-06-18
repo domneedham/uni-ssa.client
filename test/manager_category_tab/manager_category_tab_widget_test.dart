@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
-import 'package:ssa_app/app/controllers/manager_categories_tab_controller.dart';
-import 'package:ssa_app/app/ui/pages/manager_categories_tab/manager_categories_list.dart';
-import 'package:ssa_app/app/ui/pages/manager_categories_tab/manager_categories_tab.dart';
-import 'package:ssa_app/app/ui/pages/manager_categories_tab/manager_category_list_tile.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_tab/manager_category_list.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_tab/manager_category_tab.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_tab/manager_category_list_tile.dart';
 
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
@@ -13,8 +13,8 @@ import 'manager_category_tab_test_data.dart';
 
 void main() {
   final binding = BindingsBuilder(() {
-    Get.lazyPut<ManagerCategoriesTabController>(
-        () => ManagerCategoriesTabController());
+    Get.lazyPut<ManagerCategoryTabController>(
+        () => ManagerCategoryTabController());
   });
 
   setUp(() async {
@@ -30,7 +30,7 @@ void main() {
     testWidgets('The appbar title shows the right title',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoriesTab()));
+      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
       expect(find.text("Categories"), findsOneWidget);
     });
@@ -38,7 +38,7 @@ void main() {
     testWidgets('An option to create a new category is present',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoriesTab()));
+      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
@@ -52,7 +52,7 @@ void main() {
       when(mockRepo.categories)
           .thenAnswer((_) async => [mockCategoryOne, mockCategoryTwo]);
 
-      final controller = Get.find<ManagerCategoriesTabController>();
+      final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryList()));
@@ -66,7 +66,7 @@ void main() {
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
-      final controller = Get.find<ManagerCategoriesTabController>();
+      final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
       await tester.pumpWidget(
@@ -85,7 +85,7 @@ void main() {
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
-      final controller = Get.find<ManagerCategoriesTabController>();
+      final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
       await tester.pumpWidget(
@@ -104,7 +104,7 @@ void main() {
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
-      final controller = Get.find<ManagerCategoriesTabController>();
+      final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
       await tester.pumpWidget(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_categories_tab_controller.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 
 import 'manager_category_list_tile.dart';
 
-class ManagerCategoryList extends GetView<ManagerCategoriesTabController> {
+class ManagerCategoryList extends GetView<ManagerCategoryTabController> {
   const ManagerCategoryList({
     Key? key,
   }) : super(key: key);

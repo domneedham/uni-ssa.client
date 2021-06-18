@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_categories_tab_controller.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 import 'package:ssa_app/app/controllers/manager_more_tab_controller.dart';
 import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/controllers/manager_controller.dart';
@@ -16,7 +16,7 @@ class ManagerBinding implements Bindings {
 
     Get.lazyPut<ManagerMoreTabController>(() => ManagerMoreTabController());
 
-    Get.lazyPut<ManagerCategoriesTabController>(
-        () => ManagerCategoriesTabController());
+    Get.lazyPut<ManagerCategoryTabController>(
+        () => ManagerCategoryTabController());
   }
 }

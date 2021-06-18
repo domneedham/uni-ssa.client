@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/manager_controller.dart';
-import 'package:ssa_app/app/ui/pages/manager_categories_tab/manager_categories_tab.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_tab/manager_category_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
 class ManagerHomePage extends StatelessWidget {
   final _widgets = [
     ManagerSkillTab(),
-    ManagerCategoriesTab(),
+    ManagerCategoryTab(),
     Scaffold(
       appBar: AppBar(
         title: Text("Staff"),

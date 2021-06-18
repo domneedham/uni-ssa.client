@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ssa_app/app/data/repository/categories_repository.dart';
+import 'package:ssa_app/app/data/repository/category_repository.dart';
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
@@ -33,12 +33,12 @@ class TestMocks {
     return mockRepo;
   }
 
-  /// Get an instance of [MockCategoriesRepository].
+  /// Get an instance of [MockCategoryRepository].
   /// Calls Get.put() to solve dependency injection for the test.
-  static MockCategoriesRepository get categoriesRepository {
-    final mockRepo = MockCategoriesRepository();
+  static MockCategoryRepository get categoriesRepository {
+    final mockRepo = MockCategoryRepository();
     // ignore: unnecessary_cast
-    Get.put(mockRepo as CategoriesRepository);
+    Get.put(mockRepo as CategoryRepository);
     return mockRepo;
   }
 }

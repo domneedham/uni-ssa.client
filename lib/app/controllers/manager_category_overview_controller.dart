@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
-import 'package:ssa_app/app/data/repository/categories_repository.dart';
+import 'package:ssa_app/app/data/repository/category_repository.dart';
 
 class ManagerCategoryOverviewController extends GetxController {
-  final catRepo = Get.find<CategoriesRepository>();
+  final catRepo = Get.find<CategoryRepository>();
 
   final isLoading = false.obs;
   final isError = false.obs;

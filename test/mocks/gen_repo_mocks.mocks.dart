@@ -11,7 +11,7 @@ import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i5;
 import 'package:ssa_app/app/data/models/user/manager.dart' as _i4;
 import 'package:ssa_app/app/data/models/user/staff.dart' as _i3;
 import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
-import 'package:ssa_app/app/data/repository/categories_repository.dart' as _i12;
+import 'package:ssa_app/app/data/repository/category_repository.dart' as _i12;
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart'
     as _i11;
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart'
@@ -144,12 +144,12 @@ class MockSkillManagerRepository extends _i1.Mock
           as _i9.Future<_i6.ManagerStaffSkill>);
 }
 
-/// A class which mocks [CategoriesRepository].
+/// A class which mocks [CategoryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCategoriesRepository extends _i1.Mock
-    implements _i12.CategoriesRepository {
-  MockCategoriesRepository() {
+class MockCategoryRepository extends _i1.Mock
+    implements _i12.CategoryRepository {
+  MockCategoryRepository() {
     _i1.throwOnMissingStub(this);
   }
 
