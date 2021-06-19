@@ -1,0 +1,38 @@
+name: $(Date:ddMMyyyy)$(Rev:r)
+
+trigger:
+  - main
+
+stages:
+  - stage: Build
+    displayName: Build
+    jobs:
+      - job: Build
+        displayName: Build job
+        pool:
+          vmImage: macOS-latest
+        steps:
+          - task: FlutterInstall@0
+            displayName: Install Flutter
+            inputs:
+              channel: stable
+              version: latest
+
+          - task: FlutterTest@0
+            displayName: Flutter Test
+            inputs:
+              projectDirectory: '.'
+
+          - task: FlutterBuild@0
+            displayName: 'Flutter Build iOS'
+            inputs:
+              target: 'ios'
+              projectDirectory: '.'
+              buildName: '$(Build.BuildNumber)'
+              iosCodesign: false
+          - task: FlutterBuild@0
+            displayName: 'Flutter Build Android'
+            inputs:
+              target: 'apk'
+              projectDirectory: '.'
+              buildName: '$(Build.BuildNumber)'
