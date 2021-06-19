@@ -65,6 +65,16 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
               returnValue: Future<_i3.Staff>.value(_FakeStaff()))
           as _i9.Future<_i3.Staff>);
+  @override
+  _i9.Future<List<_i3.Staff>> searchStaffByName(String? searchText) =>
+      (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
+              returnValue: Future<List<_i3.Staff>>.value(<_i3.Staff>[]))
+          as _i9.Future<List<_i3.Staff>>);
+  @override
+  _i9.Future<List<_i4.Manager>> searchManagerByName(String? searchText) =>
+      (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
+              returnValue: Future<List<_i4.Manager>>.value(<_i4.Manager>[]))
+          as _i9.Future<List<_i4.Manager>>);
 }
 
 /// A class which mocks [SkillStaffRepository].
