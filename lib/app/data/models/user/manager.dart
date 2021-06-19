@@ -6,7 +6,13 @@ class Manager extends User {
 
   Manager({
     required int id,
-    required String name,
+    required String firstname,
+    required String surname,
     required this.staff,
-  }) : super(id: id, name: name, userRole: UserRole.MANAGER);
+  }) : super(
+          id: id,
+          firstname: firstname,
+          surname: surname,
+          userRole: UserRole.MANAGER,
+        );
 }

@@ -19,8 +19,11 @@ final mockStaffSkillTwo = StaffSkill(
   category: Category(id: 2, name: "Test Category", icon: Icons.text_fields),
 );
 
-final mockStaffNoSkills = Staff(id: 1, name: "DN", skills: []);
+final mockStaffNoSkills =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [], managerId: 1);
 
-final mockStaffOneSkill = Staff(id: 1, name: "DN", skills: [1]);
+final mockStaffOneSkill =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [1], managerId: 1);
 
-final mockStaffTwoSkills = Staff(id: 1, name: "DN", skills: [1, 2]);
+final mockStaffTwoSkills =
+    Staff(id: 1, firstname: "D", surname: "N", skills: [1, 2], managerId: 1);

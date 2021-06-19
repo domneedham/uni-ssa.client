@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/manager_staff_tab_controller.dart';
+import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
+import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab_list.dart';
+
+import '../manager_staff_tab_search.dart';
+
+class ManagerStaffTabManager extends GetView<ManagerStaffTabController> {
+  const ManagerStaffTabManager({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ManagerStaffTabSearch(
+          hintText: "Search for a manager",
+          textController: controller.textController,
+        ),
+        Obx(() {
+          return ManagerStaffTabList(
+            isLoading: controller.isLoading.value,
+            searchText: controller.searchText.value,
+            managerList: controller.managerList,
+          );
+          // if (controller.isLoading.value) {
+          //   return LoadingIndicator();
+          // }
+          // if (controller.searchText.isEmpty) {
+          //   return Center(
+          //     child: Text("Waiting for a search"),
+          //   );
+          // }
+          // if (controller.managerList.isEmpty) {
+          //   return Center(child: Text("No staff found"));
+          // }
+          // return ListView.builder(
+          //   shrinkWrap: true,
+          //   itemCount: controller.managerList.length,
+          //   itemBuilder: (context, pos) {
+          //     final item = controller.managerList[pos];
+          //     return ListTile(
+          //       title: Text(item.name),
+          //       trailing: Icon(Icons.chevron_right),
+          //     );
+          //   },
+          // );
+        }),
+      ],
+    );
+  }
+}

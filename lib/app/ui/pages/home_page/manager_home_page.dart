@@ -5,19 +5,13 @@ import 'package:ssa_app/app/controllers/manager_controller.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_tab/manager_category_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
+import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab.dart';
 
 class ManagerHomePage extends StatelessWidget {
   final _widgets = [
     ManagerSkillTab(),
     ManagerCategoryTab(),
-    Scaffold(
-      appBar: AppBar(
-        title: Text("Staff"),
-      ),
-      body: Center(
-        child: Text("Staff"),
-      ),
-    ),
+    ManagerStaffTab(),
     ManagerMoreTab(),
   ];
   @override

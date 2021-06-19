@@ -4,10 +4,18 @@ import '../enums/user_role.dart';
 
 class Staff extends User {
   final List<int> skills;
+  final int managerId;
 
   Staff({
     required int id,
-    required String name,
+    required String firstname,
+    required String surname,
     required this.skills,
-  }) : super(id: id, name: name, userRole: UserRole.STAFF);
+    required this.managerId,
+  }) : super(
+          id: id,
+          firstname: firstname,
+          surname: surname,
+          userRole: UserRole.STAFF,
+        );
 }
