@@ -90,6 +90,6 @@ class ManagerSkillTabController extends GetxController {
   }
 
   void createNewSkill() {
-    Get.snackbar("Add new skill", "Button clicked");
+    Get.toNamed(Routes.MANAGER_SKILL_FORM);
   }
 }
