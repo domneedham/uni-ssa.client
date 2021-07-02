@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
 class ManagerSkillFormController extends GetxController {
   final categoryRepository = Get.find<CategoryRepository>();
@@ -31,19 +32,31 @@ class ManagerSkillFormController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    if (parameters["mode"] != null) {
-      if (parameters["mode"] == "edit") {
+    _getParameters();
+    await fetchCategories();
+  }
+
+  void _getParameters() {
+    if (parameters[ManagerSkillFormConstants.MODE] != null) {
+      if (parameters[ManagerSkillFormConstants.MODE] ==
+          ManagerSkillFormConstants.EDIT) {
         formMode = ManagerSkillFormMode.EDIT;
-        if (arguments["skill"] != null) {
-          final skill = arguments["skill"] as Skill;
-          editSkill = skill;
-          selectedCategoryId = skill.category.id;
-        }
+        _getEditArguments();
       } else {
         formMode = ManagerSkillFormMode.ADD;
       }
     }
-    await fetchCategories();
+  }
+
+  void _getEditArguments() {
+    if (arguments?[ManagerSkillFormConstants.EDIT_MODE_SKILL_ARGUMENT] !=
+        null) {
+      final skill =
+          arguments[ManagerSkillFormConstants.EDIT_MODE_SKILL_ARGUMENT]
+              as Skill;
+      editSkill = skill;
+      selectedCategoryId = skill.category.id;
+    }
   }
 
   Future<void> fetchCategories() async {
