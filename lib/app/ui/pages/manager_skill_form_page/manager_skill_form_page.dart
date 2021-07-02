@@ -12,7 +12,9 @@ class ManagerSkillFormPage extends GetWidget<ManagerSkillFormController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Skill"),
+        title: controller.formMode == ManagerSkillFormMode.ADD
+            ? Text("Add Skill")
+            : Text("Edit Skill"),
         actions: [
           IconButton(
             icon: Icon(Icons.save),

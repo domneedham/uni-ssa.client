@@ -15,8 +15,10 @@ class ManagerSkillForm extends GetView<ManagerSkillFormController> {
         child: Column(
           children: [
             TextFormField(
-                decoration: InputDecoration(labelText: "Name"),
-                validator: controller.validateName),
+              decoration: InputDecoration(labelText: "Name"),
+              validator: controller.validateName,
+              initialValue: controller.editSkill?.name,
+            ),
             const SizedBox(height: 8),
             DropdownButtonFormField<int>(
               items: controller.categories

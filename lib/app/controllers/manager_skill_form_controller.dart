@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
+import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
 
 class ManagerSkillFormController extends GetxController {
   final categoryRepository = Get.find<CategoryRepository>();
+
+  final parameters = Get.parameters;
+  final arguments = Get.arguments;
+
+  var formMode = ManagerSkillFormMode.ADD;
+  Skill? editSkill;
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -24,6 +31,18 @@ class ManagerSkillFormController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    if (parameters["mode"] != null) {
+      if (parameters["mode"] == "edit") {
+        formMode = ManagerSkillFormMode.EDIT;
+        if (arguments["skill"] != null) {
+          final skill = arguments["skill"] as Skill;
+          editSkill = skill;
+          selectedCategoryId = skill.category.id;
+        }
+      } else {
+        formMode = ManagerSkillFormMode.ADD;
+      }
+    }
     await fetchCategories();
   }
 
@@ -31,7 +50,7 @@ class ManagerSkillFormController extends GetxController {
     try {
       isLoading.value = true;
       final cats = await categoryRepository.categories;
-      if (cats.isNotEmpty) {
+      if (cats.isNotEmpty && editSkill == null) {
         selectedCategoryId = cats[0].id;
       }
       _categories.addAll(cats);
@@ -66,3 +85,5 @@ class ManagerSkillFormController extends GetxController {
     }
   }
 }
+
+enum ManagerSkillFormMode { ADD, EDIT }
