@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/bindings/home_binding.dart';
 import 'package:ssa_app/app/bindings/manager_binding.dart';
 import 'package:ssa_app/app/bindings/manager_category_overview_binding.dart';
+import 'package:ssa_app/app/bindings/manager_skill_form_binding.dart';
 import 'package:ssa_app/app/bindings/manager_skill_overview_binding.dart';
 import 'package:ssa_app/app/bindings/staff_binding.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/manager_home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/staff_home_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_overview_page/manager_category_overview_page.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_overview_page/manager_skill_overview_page.dart';
 part './app_routes.dart';
 
@@ -34,6 +36,11 @@ abstract class AppPages {
       name: Routes.MANAGER_CATEGORY_OVERVIEW,
       page: () => ManagerCategoryOverviewPage(),
       binding: ManagerCategoryOverviewBinding(),
+    ),
+    GetPage(
+      name: Routes.MANAGER_SKILL_FORM,
+      page: () => ManagerSkillFormPage(),
+      binding: ManagerSkillFormBinding(),
     ),
 
     // STAFF PAGES

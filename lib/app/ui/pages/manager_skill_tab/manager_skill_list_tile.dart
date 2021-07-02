@@ -17,25 +17,7 @@ class ManagerSkillListTile extends GetView<ManagerSkillTabController> {
       title: Text(skill.name),
       subtitle: Text("Staff: ${skill.staff.length}"),
       trailing: Icon(Icons.chevron_right),
+      onTap: () => controller.navigateToSkillOverview(skill.id, skill.name),
     );
-    // return GestureDetector(
-    //   onTap: () => controller.navigateToSkillOverview(skill.id, skill.name),
-    //   child: Card(
-    //     child: Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: Wrap(
-    //         direction: Axis.vertical,
-    //         spacing: 8,
-    //         children: [
-    //           Text(
-    //             skill.name,
-    //             style: Get.textTheme.headline6,
-    //           ),
-    //           Text("Staff: ${skill.staff.length}")
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

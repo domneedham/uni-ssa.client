@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
-import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerCategoryTabController extends GetxController {
   final catRepo = Get.find<CategoryRepository>();
@@ -32,16 +31,6 @@ class ManagerCategoryTabController extends GetxController {
   }
 
   void navigateToCategoryEdit(Category category) {
-    // final parameters = <String, String>{
-    //   "id": category.id.toString(),
-    //   "name": category.name,
-    // };
-    // final arguments = {"category": category};
-    // Get.toNamed(
-    //   Routes.MANAGER_CATEGORY_OVERVIEW,
-    //   parameters: parameters,
-    //   arguments: arguments,
-    // );
     Get.snackbar("Snackbar", category.name);
   }
 }
