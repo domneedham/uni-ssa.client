@@ -57,7 +57,7 @@ class ManagerCategoryFormController extends GetxController {
     }
   }
 
-  pickIcon() async {
+  void pickIcon() async {
     final icon = await FlutterIconPicker.showIconPicker(Get.context!,
         iconPackMode: IconPack.material);
 
