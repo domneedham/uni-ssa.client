@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
 class ManagerCategoryTabController extends GetxController {
   final catRepo = Get.find<CategoryRepository>();
@@ -31,6 +33,24 @@ class ManagerCategoryTabController extends GetxController {
   }
 
   void navigateToCategoryEdit(Category category) {
-    Get.snackbar("Snackbar", category.name);
+    final parameters = {
+      ManagerCategoryFormConstants.MODE: ManagerCategoryFormConstants.EDIT
+    };
+    final arguments = {
+      ManagerCategoryFormConstants.EDIT_MODE_CATEGORY_ARGUMENT: category
+    };
+
+    Get.toNamed(
+      Routes.MANAGER_CATEGORY_FORM,
+      parameters: parameters,
+      arguments: arguments,
+    );
+  }
+
+  void addNewCategory() {
+    final parameters = {
+      ManagerCategoryFormConstants.MODE: ManagerCategoryFormConstants.ADD
+    };
+    Get.toNamed(Routes.MANAGER_CATEGORY_FORM, parameters: parameters);
   }
 }

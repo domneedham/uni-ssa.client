@@ -15,7 +15,10 @@ class ManagerCategoryTab extends GetWidget<ManagerCategoryTabController> {
       appBar: AppBar(
         title: Text("Categories"),
         actions: [
-          IconButton(onPressed: null, icon: Icon(Icons.add)),
+          IconButton(
+            onPressed: controller.addNewCategory,
+            icon: Icon(Icons.add),
+          ),
         ],
       ),
       body: Obx(() {
