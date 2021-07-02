@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_staff_tab_controller.dart';
-import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 
 import '../manager_staff_tab_list.dart';
 import '../manager_staff_tab_search.dart';
