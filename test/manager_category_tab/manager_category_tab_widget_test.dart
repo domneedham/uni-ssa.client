@@ -26,8 +26,8 @@ void main() {
     Get.reset();
   });
 
-  group('Manager category tab', () {
-    testWidgets('The appbar title shows the right title',
+  group('tab', () {
+    testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
@@ -35,7 +35,7 @@ void main() {
       expect(find.text("Categories"), findsOneWidget);
     });
 
-    testWidgets('An option to create a new category is present',
+    testWidgets('create a new category icon is present',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
@@ -44,8 +44,8 @@ void main() {
     });
   });
 
-  group('Manager category tab list', () {
-    testWidgets('The widgets in the list are of ManagerCategoryListTile type',
+  group('category tab list', () {
+    testWidgets('widgets in the list are of ManagerCategoryListTile type',
         (WidgetTester tester) async {
       final mockRepo = TestMocks.categoriesRepository;
 
@@ -61,9 +61,8 @@ void main() {
     });
   });
 
-  group('Manager category tab list tile', () {
-    testWidgets('The list tile shows the name of the category',
-        (WidgetTester tester) async {
+  group('category tab listtile', () {
+    testWidgets('shows the name of the category', (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -82,8 +81,7 @@ void main() {
       expect(find.text(mockCategoryOne.name), findsOneWidget);
     });
 
-    testWidgets('The list tile shows the icon of the category',
-        (WidgetTester tester) async {
+    testWidgets('shows the icon of the category', (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -102,8 +100,7 @@ void main() {
       expect(find.byIcon(mockCategoryOne.icon), findsOneWidget);
     });
 
-    testWidgets('The list tile shows the edit icon',
-        (WidgetTester tester) async {
+    testWidgets('shows the edit icon', (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -122,8 +119,7 @@ void main() {
       expect(find.byIcon(Icons.edit), findsOneWidget);
     });
 
-    testWidgets('The list tile shows the delete icon',
-        (WidgetTester tester) async {
+    testWidgets('shows the delete icon', (WidgetTester tester) async {
       TestMocks.categoriesRepository;
 
       final controller = Get.find<ManagerCategoryTabController>();

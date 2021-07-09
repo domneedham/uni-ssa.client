@@ -25,7 +25,7 @@ void main() {
   });
 
   test(
-      'Getting the map of skills should return them alphabetically by category name',
+      'getting the map of skills should return them alphabetically by category name',
       () async {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
@@ -51,7 +51,7 @@ void main() {
     expect(controllerMap!.keys.first.name, sortedMap.keys.first.name);
   });
 
-  test('Skills are organised into the categories correctly', () async {
+  test('skills are organised into the categories correctly', () async {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
 
@@ -74,8 +74,9 @@ void main() {
     expect(mapItem.value[0], mockManagerStaffSkillOne);
   });
 
-  group('viewType functionality', () {
-    test('changeViewType assigns the new value to the viewType variable - grid',
+  group('view type functionality', () {
+    test(
+        'change view type assigns the new value to the view type variable - grid',
         () async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -95,7 +96,8 @@ void main() {
       expect(controller.viewType.value, SkillListViewType.GRID);
     });
 
-    test('changeViewType assigns the new value to the viewType variable - list',
+    test(
+        'change view type assigns the new value to the view type variable - list',
         () async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
