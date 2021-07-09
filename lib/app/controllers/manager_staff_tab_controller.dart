@@ -99,11 +99,13 @@ class ManagerStaffTabController extends GetxController
           "Error", "The user has not loaded correctly. Please try again");
       return;
     }
+
     final sid = id.toString();
+    final parameters = {"id": sid};
+
     if (tabControllerStatus == ManagerStaffTabControllerStatus.STAFF) {
-      Get.snackbar('Not implemented', "Not yet implemented");
+      Get.toNamed(Routes.STAFF_OVERVIEW, parameters: parameters);
     } else {
-      final parameters = {"id": sid};
       Get.toNamed(Routes.MANAGER_OVERVIEW, parameters: parameters);
     }
   }
