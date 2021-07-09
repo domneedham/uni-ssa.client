@@ -17,7 +17,8 @@ class ManagerCategoryList extends GetView<ManagerCategoryTabController> {
         final item = controller.categories![pos];
         return ManagerCategoryListTile(
           item: item,
-          onPressed: () => controller.navigateToCategoryEdit(item),
+          edit: () => controller.editCategory(item),
+          delete: () => controller.deleteCategory(item),
         );
       },
     );

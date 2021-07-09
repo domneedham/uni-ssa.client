@@ -32,7 +32,7 @@ class ManagerCategoryTabController extends GetxController {
     }
   }
 
-  void navigateToCategoryEdit(Category category) {
+  void editCategory(Category category) {
     final parameters = {
       ManagerCategoryFormConstants.MODE: ManagerCategoryFormConstants.EDIT
     };
@@ -45,6 +45,10 @@ class ManagerCategoryTabController extends GetxController {
       parameters: parameters,
       arguments: arguments,
     );
+  }
+
+  void deleteCategory(Category category) {
+    Get.snackbar("Delete!", "${category.name} would be deleted");
   }
 
   void addNewCategory() {

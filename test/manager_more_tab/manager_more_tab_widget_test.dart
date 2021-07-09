@@ -26,8 +26,8 @@ void main() {
     Get.reset();
   });
 
-  group('Manager more tab', () {
-    testWidgets('There should be dividers between major sections',
+  group('manager more tab', () {
+    testWidgets('shows dividers between major sections',
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
@@ -39,8 +39,7 @@ void main() {
       expect(find.byType(Divider), findsNWidgets(2));
     });
 
-    testWidgets('Profile header should be rendered',
-        (WidgetTester tester) async {
+    testWidgets('shows the profile header', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.manager).thenReturn(mockManager);
@@ -51,8 +50,7 @@ void main() {
       expect(find.byType(ManagerMoreTabProfileHeader), findsOneWidget);
     });
 
-    testWidgets('Settings list should be rendered',
-        (WidgetTester tester) async {
+    testWidgets('shows the settings list', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.manager).thenReturn(mockManager);
@@ -63,8 +61,7 @@ void main() {
       expect(find.byType(ManagerMoreTabSettings), findsOneWidget);
     });
 
-    testWidgets('App information should be rendered',
-        (WidgetTester tester) async {
+    testWidgets('shows the app information', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.manager).thenReturn(mockManager);
@@ -76,9 +73,8 @@ void main() {
     });
   });
 
-  group('Profile header', () {
-    testWidgets('The name is shown in the profile',
-        (WidgetTester tester) async {
+  group('profile header', () {
+    testWidgets('shows the name', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.manager).thenReturn(mockManager);
@@ -90,7 +86,7 @@ void main() {
       expect(find.text(mockManager.name), findsOneWidget);
     });
 
-    testWidgets('The avatar is shown with the user initials',
+    testWidgets('shows the avatar with the user initials',
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
@@ -105,8 +101,8 @@ void main() {
     });
   });
 
-  group('Settings list', () {
-    testWidgets('An switch to toggle dark mode is rendered',
+  group('settings list', () {
+    testWidgets('shows a switch to toggle dark mode',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTabSettings()));
       await tester.pumpAndSettle();
@@ -115,7 +111,7 @@ void main() {
       expect(find.text("Dark Mode"), findsOneWidget);
     });
 
-    testWidgets('An option to logout is rendered', (WidgetTester tester) async {
+    testWidgets('shows an option to logout', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTabSettings()));
       await tester.pumpAndSettle();
 
@@ -124,8 +120,8 @@ void main() {
     });
   });
 
-  group('App information', () {
-    testWidgets('An about list tile is rendered', (WidgetTester tester) async {
+  group('app information', () {
+    testWidgets('shows an about list tile', (WidgetTester tester) async {
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));
       await tester.pumpAndSettle();
@@ -134,7 +130,7 @@ void main() {
       expect(find.text("About"), findsOneWidget);
     });
 
-    testWidgets('The about popup shows information about the developer',
+    testWidgets('about popup shows information about the developer',
         (WidgetTester tester) async {
       await tester
           .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));

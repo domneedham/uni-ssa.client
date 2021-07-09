@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
@@ -42,7 +41,6 @@ void main() {
 
       controller.isLoading.value = true;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
@@ -77,7 +75,6 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
       await tester.pumpAndSettle();
 
@@ -95,7 +92,6 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
 
       expect(find.text("Add Category"), findsOneWidget);
@@ -112,7 +108,6 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
 
       expect(find.text("Edit Category"), findsOneWidget);
@@ -129,7 +124,6 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
 
       await tester.tap(find.text("Pick Icon"));
@@ -148,7 +142,6 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      // Build our app and trigger a frame.
       await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
 
       await tester.tap(find.text("Pick Icon"));
