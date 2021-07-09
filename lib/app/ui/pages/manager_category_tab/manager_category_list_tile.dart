@@ -7,20 +7,30 @@ class ManagerCategoryListTile extends GetView<ManagerCategoryTabController> {
   const ManagerCategoryListTile({
     Key? key,
     required this.item,
-    required this.onPressed,
+    required this.edit,
+    required this.delete,
   }) : super(key: key);
 
   final Category item;
-  final VoidCallback onPressed;
+  final VoidCallback edit;
+  final VoidCallback delete;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(item.icon),
       title: Text(item.name),
-      trailing: IconButton(
-        onPressed: onPressed,
-        icon: Icon(Icons.edit),
+      trailing: Wrap(
+        children: [
+          IconButton(
+            onPressed: edit,
+            icon: Icon(Icons.edit),
+          ),
+          IconButton(
+            onPressed: delete,
+            icon: Icon(Icons.delete),
+          ),
+        ],
       ),
     );
   }

@@ -73,7 +73,8 @@ void main() {
         TestableWidget(
           child: ManagerCategoryListTile(
             item: mockCategoryOne,
-            onPressed: () => controller.navigateToCategoryEdit(mockCategoryOne),
+            edit: () => controller.editCategory(mockCategoryOne),
+            delete: () => controller.deleteCategory(mockCategoryOne),
           ),
         ),
       );
@@ -92,7 +93,8 @@ void main() {
         TestableWidget(
           child: ManagerCategoryListTile(
             item: mockCategoryOne,
-            onPressed: () => controller.navigateToCategoryEdit(mockCategoryOne),
+            edit: () => controller.editCategory(mockCategoryOne),
+            delete: () => controller.deleteCategory(mockCategoryOne),
           ),
         ),
       );
@@ -111,12 +113,33 @@ void main() {
         TestableWidget(
           child: ManagerCategoryListTile(
             item: mockCategoryOne,
-            onPressed: () => controller.navigateToCategoryEdit(mockCategoryOne),
+            edit: () => controller.editCategory(mockCategoryOne),
+            delete: () => controller.deleteCategory(mockCategoryOne),
           ),
         ),
       );
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.edit), findsOneWidget);
+    });
+
+    testWidgets('The list tile shows the delete icon',
+        (WidgetTester tester) async {
+      TestMocks.categoriesRepository;
+
+      final controller = Get.find<ManagerCategoryTabController>();
+      await controller.getCategories();
+
+      await tester.pumpWidget(
+        TestableWidget(
+          child: ManagerCategoryListTile(
+            item: mockCategoryOne,
+            edit: () => controller.editCategory(mockCategoryOne),
+            delete: () => controller.deleteCategory(mockCategoryOne),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.delete), findsOneWidget);
     });
   });
 }
