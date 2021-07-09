@@ -51,4 +51,12 @@ class ManagerSkillOverviewController extends GetxController {
           parameters: parameters, arguments: arguments);
     }
   }
+
+  void deleteSkill() {
+    if (skill == null) {
+      Get.snackbar("Delete!", "Skill is empty");
+    } else {
+      Get.snackbar("Delete", "Skill would be deleted now");
+    }
+  }
 }
