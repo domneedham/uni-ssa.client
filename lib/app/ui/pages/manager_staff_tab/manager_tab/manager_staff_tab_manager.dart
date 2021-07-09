@@ -21,6 +21,7 @@ class ManagerStaffTabManager extends GetView<ManagerStaffTabController> {
             isLoading: controller.isLoading.value,
             searchText: controller.searchText.value,
             managerList: controller.managerList,
+            onPressed: (int? id) => controller.navigateToUserOverview(id),
           );
         }),
       ],
