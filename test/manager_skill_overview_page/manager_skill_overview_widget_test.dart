@@ -36,7 +36,6 @@ void main() {
 
       Get.parameters = {"id": "1"};
 
-      // Build our app and trigger a frame.
       await tester
           .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
 
@@ -79,7 +78,7 @@ void main() {
       expect(find.text(skillOne.category.name), findsOneWidget);
     });
 
-    testWidgets('Skill category icon is shown after loading',
+    testWidgets('shows the skill category icon after loading',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
