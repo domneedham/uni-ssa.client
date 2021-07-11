@@ -41,18 +41,15 @@ class StaffOverviewController extends GetxController {
   }
 
   Future<Manager>? getManagerById(int id) async {
-    Manager fetchedManager = await userRepo.getManagerById(id);
-    return fetchedManager;
+    return userRepo.getManagerById(id);
   }
 
   Future<StaffSkill>? getSkillById(int id) async {
-    StaffSkill fetchedSkill = await skillRepo.getSkillByIdAsync(id);
-    return fetchedSkill;
+    return skillRepo.getSkillByIdAsync(id);
   }
 
   Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {
-    List<StaffSkill> fetchedSkills = await skillRepo.getSkillsByIds(ids);
-    return fetchedSkills;
+    return skillRepo.getSkillsByIds(ids);
   }
 
   String expiryText(StaffSkill skill) {
