@@ -1,5 +1,3 @@
-name: $(Date:ddMMyyyy)$(Rev:r)
-
 trigger:
   - main
 
