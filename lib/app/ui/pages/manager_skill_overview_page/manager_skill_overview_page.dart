@@ -20,6 +20,10 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
             onPressed: controller.editSkill,
             icon: Icon(Icons.edit),
           ),
+          IconButton(
+            onPressed: controller.deleteSkill,
+            icon: Icon(Icons.delete),
+          ),
         ],
       ),
       body: Obx(() {

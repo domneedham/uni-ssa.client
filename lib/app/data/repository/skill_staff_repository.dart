@@ -34,6 +34,7 @@ class SkillStaffRepository {
     id: 4,
     name: "Tidyness",
     category: Category(id: 2, name: "Organisation", icon: Icons.sort),
+    expires: DateTime.utc(2021, 6, 23),
   );
 
   final skillFive = StaffSkill(
@@ -54,6 +55,12 @@ class SkillStaffRepository {
     } catch (StateError) {
       return null;
     }
+  }
+
+  Future<StaffSkill> getSkillByIdAsync(int id) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return _skills.firstWhere((element) => element.id == id);
+    });
   }
 
   Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {

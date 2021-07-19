@@ -1,0 +1,87 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:mockito/mockito.dart';
+import 'package:ssa_app/app/controllers/manager_overview_controller.dart';
+
+import '../../mocks/mocks.dart';
+import 'staff_overview_test_data.dart';
+
+void main() {
+  final binding = BindingsBuilder(() {
+    Get.lazyPut<ManagerOverviewController>(() => ManagerOverviewController());
+  });
+
+  setUp(() async {
+    Get.testMode = true;
+    binding.builder();
+  });
+
+  tearDown(() async {
+    Get.reset();
+  });
+
+  group('get user function', () {
+    test('sets the user correctly if found', () async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+
+      Get.parameters = {"id": "1"};
+
+      final controller = Get.find<ManagerOverviewController>();
+
+      await controller.getUser("1");
+
+      expect(controller.manager?.value, mockManager);
+    });
+
+    test('sets an error if the manager data was not loaded', () async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      final error = Exception("Some error");
+
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
+
+      Get.parameters = {"id": "1"};
+
+      final controller = Get.find<ManagerOverviewController>();
+
+      await controller.getUser("1");
+
+      expect(controller.isError.value, true);
+      expect(controller.error.value, error.toString());
+    });
+  });
+
+  group('get staff by id function', () {
+    test('calls the user repository get staff by id method', () async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => mockStaffOne);
+
+      Get.parameters = {"id": "1"};
+
+      final controller = Get.find<ManagerOverviewController>();
+
+      await controller.getStaffById(1);
+
+      verify(mockUserRepo.getStaffById(1)).called(1);
+    });
+
+    test('returns the right staff member', () async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => mockStaffOne);
+
+      Get.parameters = {"id": "1"};
+
+      final controller = Get.find<ManagerOverviewController>();
+
+      final value = await controller.getStaffById(1);
+
+      expect(value, mockStaffOne);
+    });
+  });
+}

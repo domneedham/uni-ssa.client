@@ -14,4 +14,18 @@ class StaffSkill extends Skill {
     required String name,
     required Category category,
   }) : super(id: id, name: name, category: category);
+
+  bool get hasExpiry => expires != null;
+
+  bool get isExpired {
+    if (expires == null) {
+      return false;
+    }
+
+    if (expires!.isAfter(DateTime.now())) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

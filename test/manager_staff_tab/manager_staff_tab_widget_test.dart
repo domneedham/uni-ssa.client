@@ -156,13 +156,14 @@ void main() {
 
   group('manager staff tab list', () {
     testWidgets(
-        'if the search box is empty a prompt to show the app is waiting for the user is shown',
+        'shows a prompt to show the app is waiting for the user if the search box is empty',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
       await tester.pumpAndSettle();
@@ -170,13 +171,14 @@ void main() {
       expect(find.text("Waiting for a search"), findsOneWidget);
     });
 
-    testWidgets('if searching is happening a loading indicator is shown',
+    testWidgets('shows happening a loading indicator if searching',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: true,
           searchText: "",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -190,58 +192,63 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
       expect(find.text("No staff found"), findsOneWidget);
     });
 
-    testWidgets('if no manager items are found a message is shown to the user',
+    testWidgets('shows a message to the user if no manager items are found',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
           managerList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
       expect(find.text("No managers found"), findsOneWidget);
     });
 
-    testWidgets('if items are found a list is shown',
+    testWidgets('shows a list of items if items are found',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
           staffList: [mockStaff],
+          onPressed: (int? _) {},
         ),
       ));
 
       expect(find.byType(ListView), findsOneWidget);
     });
 
-    testWidgets('if staff items are found the list is populated with the staff',
+    testWidgets('the list is populated if staff items are found',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
           staffList: [mockStaff],
+          onPressed: (int? _) {},
         ),
       ));
 
       expect(find.text(mockStaff.name), findsOneWidget);
     });
 
-    testWidgets('if staff items are found the list is populated with the staff',
+    testWidgets('the list is populated if manager items are found',
         (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
           managerList: [mockManager],
+          onPressed: (int? _) {},
         ),
       ));
 

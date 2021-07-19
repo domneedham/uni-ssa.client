@@ -3,6 +3,7 @@ import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerSkillOverviewController extends GetxController {
   final skillRepo = Get.find<SkillManagerRepository>();
@@ -44,7 +45,18 @@ class ManagerSkillOverviewController extends GetxController {
     if (skill == null) {
       Get.snackbar("Edit!", "Skill is empty");
     } else {
-      Get.snackbar("Edit!", "Skill is ${skill!.value.name}");
+      final parameters = {"mode": "edit"};
+      final arguments = {"skill": skill!.value};
+      Get.toNamed(Routes.MANAGER_SKILL_FORM,
+          parameters: parameters, arguments: arguments);
+    }
+  }
+
+  void deleteSkill() {
+    if (skill == null) {
+      Get.snackbar("Delete!", "Skill is empty");
+    } else {
+      Get.snackbar("Delete", "Skill would be deleted now");
     }
   }
 }

@@ -27,8 +27,8 @@ void main() {
     Get.reset();
   });
 
-  group('Manager skill tab', () {
-    testWidgets('The appbar title shows the right title',
+  group('manager skill tab', () {
+    testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -43,7 +43,7 @@ void main() {
       expect(find.text("Skills"), findsOneWidget);
     });
 
-    testWidgets('An option to create a new skill is present',
+    testWidgets('shows an option to create a new skill',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -57,8 +57,7 @@ void main() {
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
 
-    testWidgets(
-        'Text is shown informing the user skills failed to load if true',
+    testWidgets('shows text informing the user skills failed to load if true',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -74,8 +73,8 @@ void main() {
     });
   });
 
-  group('Manager skill tab list view type', () {
-    testWidgets('The appbar has a popup menu button to select the view type',
+  group('manager skill tab list view type', () {
+    testWidgets('appbar has a popup menu button to select the view type',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -90,7 +89,7 @@ void main() {
       expect(find.byIcon(Icons.view_agenda_outlined), findsOneWidget);
     });
 
-    testWidgets('The appbar popup menu button shows two options',
+    testWidgets('appbar popup menu button shows two options',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -110,7 +109,7 @@ void main() {
     });
 
     testWidgets(
-        'The appbar popup menu list option calls the controller function with the right enum value if list',
+        'appbar popup menu list option calls the controller function with the right enum value if list',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -135,7 +134,7 @@ void main() {
     });
 
     testWidgets(
-        'The appbar popup menu list option calls the controller function with the right enum value if grid',
+        'appbar popup menu list option calls the controller function with the right enum value if grid',
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
@@ -160,9 +159,8 @@ void main() {
     });
   });
 
-  group('Manager skill tab list tile', () {
-    testWidgets('The list tile shows the name of the skill',
-        (WidgetTester tester) async {
+  group('manager skill tab list tile', () {
+    testWidgets('shows the name of the skill', (WidgetTester tester) async {
       TestMocks.skillManagerRepository;
 
       await tester.pumpWidget(
@@ -177,8 +175,7 @@ void main() {
       expect(find.text(mockManagerStaffSkillOne.name), findsOneWidget);
     });
 
-    testWidgets(
-        'The list tile shows the number of staff allocated to the skill',
+    testWidgets('shows the number of staff allocated to the skill',
         (WidgetTester tester) async {
       TestMocks.skillManagerRepository;
 
@@ -196,8 +193,7 @@ void main() {
           findsOneWidget);
     });
 
-    testWidgets('The list tile shows the right chevron icon',
-        (WidgetTester tester) async {
+    testWidgets('shows the right chevron icon', (WidgetTester tester) async {
       TestMocks.skillManagerRepository;
 
       await tester.pumpWidget(
@@ -213,9 +209,8 @@ void main() {
     });
   });
 
-  group('Manager skill tab card', () {
-    testWidgets('The card shows the name of the skill',
-        (WidgetTester tester) async {
+  group('anager skill tab card', () {
+    testWidgets('shows the name of the skill', (WidgetTester tester) async {
       TestMocks.skillManagerRepository;
 
       await tester.pumpWidget(
@@ -230,7 +225,7 @@ void main() {
       expect(find.text(mockManagerStaffSkillOne.name), findsOneWidget);
     });
 
-    testWidgets('The card shows the number of staff allocated to the skill',
+    testWidgets('shows the number of staff allocated to the skill',
         (WidgetTester tester) async {
       TestMocks.skillManagerRepository;
 
@@ -249,7 +244,7 @@ void main() {
     });
   });
 
-  testWidgets('All needed skill data is shown', (WidgetTester tester) async {
+  testWidgets('all needed skill data is shown', (WidgetTester tester) async {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
 

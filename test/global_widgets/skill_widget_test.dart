@@ -24,8 +24,8 @@ void main() {
     Get.testMode = true;
   });
 
-  group('Skill list', () {
-    testWidgets('List shows each category title', (WidgetTester tester) async {
+  group('skill list', () {
+    testWidgets('shows each category title', (WidgetTester tester) async {
       await tester.pumpWidget(
         TestableWidget(
           child: SkillList(
@@ -44,7 +44,7 @@ void main() {
       expect(find.text(mockCategoryTwo.name), findsOneWidget);
     });
 
-    testWidgets('List shows list view if viewType is list',
+    testWidgets('shows list view if view type is list',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         TestableWidget(
@@ -64,7 +64,7 @@ void main() {
       expect(find.byType(SkillCategoryGrid), findsNothing);
     });
 
-    testWidgets('List shows grid view if viewType is grid',
+    testWidgets('shows grid view if view type is grid',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         TestableWidget(
@@ -84,7 +84,7 @@ void main() {
       expect(find.byType(SkillCategoryGrid), findsWidgets);
     });
 
-    testWidgets('No cardBuilder widgets are shown if the no skills are loaded',
+    testWidgets('shows no widgets if no skills are loaded',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         TestableWidget(
@@ -101,7 +101,7 @@ void main() {
     });
 
     testWidgets(
-        'More than one cardBuilder widget is shown if the more than one skill is loaded',
+        'shows more than one widget if the more than one skill is loaded',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         TestableWidget(
@@ -121,8 +121,8 @@ void main() {
     });
   });
 
-  group('Skill category title', () {
-    testWidgets('Title shows icon', (WidgetTester tester) async {
+  group('skill category title', () {
+    testWidgets('shows icon', (WidgetTester tester) async {
       await tester.pumpWidget(
           TestableWidget(child: SkillCategoryTitle(category: mockCategoryOne)));
       await tester.pumpAndSettle();
@@ -130,7 +130,7 @@ void main() {
       expect(find.byIcon(mockCategoryOne.icon), findsOneWidget);
     });
 
-    testWidgets('Title shows name', (WidgetTester tester) async {
+    testWidgets('shows name', (WidgetTester tester) async {
       await tester.pumpWidget(
           TestableWidget(child: SkillCategoryTitle(category: mockCategoryOne)));
       await tester.pumpAndSettle();
