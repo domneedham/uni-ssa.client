@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerStaffTabController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -90,6 +91,23 @@ class ManagerStaffTabController extends GetxController
   Future<void> _searchManager() async {
     final tempList = await userRepo.searchManagerByName(searchText.value);
     managerList.value = tempList;
+  }
+
+  void navigateToUserOverview(int? id) {
+    if (id == null) {
+      Get.snackbar(
+          "Error", "The user has not loaded correctly. Please try again");
+      return;
+    }
+
+    final sid = id.toString();
+    final parameters = {"id": sid};
+
+    if (tabControllerStatus == ManagerStaffTabControllerStatus.STAFF) {
+      Get.toNamed(Routes.STAFF_OVERVIEW, parameters: parameters);
+    } else {
+      Get.toNamed(Routes.MANAGER_OVERVIEW, parameters: parameters);
+    }
   }
 }
 

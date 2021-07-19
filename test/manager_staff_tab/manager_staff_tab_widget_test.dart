@@ -163,6 +163,7 @@ void main() {
           isLoading: false,
           searchText: "",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
       await tester.pumpAndSettle();
@@ -177,6 +178,7 @@ void main() {
           isLoading: true,
           searchText: "",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -190,6 +192,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           staffList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -203,6 +206,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           managerList: [],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -216,6 +220,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           staffList: [mockStaff],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -229,6 +234,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           staffList: [mockStaff],
+          onPressed: (int? _) {},
         ),
       ));
 
@@ -242,6 +248,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           managerList: [mockManager],
+          onPressed: (int? _) {},
         ),
       ));
 

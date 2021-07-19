@@ -3,6 +3,7 @@ import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
+import 'package:ssa_app/app/ui/utils/typedefs.dart';
 
 class ManagerStaffTabList extends StatelessWidget {
   ManagerStaffTabList({
@@ -11,6 +12,7 @@ class ManagerStaffTabList extends StatelessWidget {
     required this.searchText,
     this.managerList,
     this.staffList,
+    required this.onPressed,
   }) : assert(
           managerList != null || staffList != null,
           'The manager or staff list must be populated',
@@ -20,6 +22,7 @@ class ManagerStaffTabList extends StatelessWidget {
   final String searchText;
   final List<Manager>? managerList;
   final List<Staff>? staffList;
+  final NullableIntVoidCallback onPressed;
 
   int get itemCount {
     if (staffList != null) return staffList!.length;
@@ -53,6 +56,7 @@ class ManagerStaffTabList extends StatelessWidget {
         return ListTile(
           title: Text(user?.name ?? "Error"),
           trailing: Icon(Icons.chevron_right),
+          onTap: () => onPressed(user?.id),
         );
       },
     );

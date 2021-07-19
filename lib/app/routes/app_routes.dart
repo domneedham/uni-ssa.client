@@ -4,6 +4,10 @@ abstract class Routes {
   static const INITIAL = '/';
   static const HOME = '/home';
 
+  // USER OVERVIEW
+  static const STAFF_OVERVIEW = '/staff-overview';
+  static const MANAGER_OVERVIEW = '/manager-overview';
+
   // MANAGER ROUTES
   static const MANAGER_HOME = '/manager';
   static const MANAGER_SKILL_OVERVIEW = '/manager-skill-overview';

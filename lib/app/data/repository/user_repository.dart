@@ -34,6 +34,12 @@ class UserRepository {
     });
   }
 
+  Future<Manager> getManagerById(int id) async {
+    return Future.delayed(Duration(seconds: 1), () {
+      return _manager.firstWhere((element) => element.id == id);
+    });
+  }
+
   Future<List<Staff>> searchStaffByName(String searchText) async {
     return Future.delayed(Duration(milliseconds: 750), () {
       if (searchText.isEmpty) {
