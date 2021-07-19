@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 
 class UserListTile extends StatelessWidget {
-  // TODO add tests
   const UserListTile({
     Key? key,
     required this.user,
@@ -20,7 +19,6 @@ class UserListTile extends StatelessWidget {
 }
 
 class LoadingUserListTile extends StatelessWidget {
-  // TODO add tests
   const LoadingUserListTile({
     Key? key,
   }) : super(key: key);
@@ -35,7 +33,6 @@ class LoadingUserListTile extends StatelessWidget {
 }
 
 class LoadingFailedUserListTile extends StatelessWidget {
-  // TODO add tests
   const LoadingFailedUserListTile({
     Key? key,
   }) : super(key: key);
