@@ -4,6 +4,7 @@ import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillTabController extends GetxController {
@@ -80,5 +81,9 @@ class StaffSkillTabController extends GetxController {
     } else {
       return Dates.formatUI(date);
     }
+  }
+
+  void navigateToAssignSkill() {
+    Get.toNamed(Routes.STAFF_ASSIGN_SKILL);
   }
 }
