@@ -4,6 +4,7 @@ import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillTabController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
@@ -70,6 +71,14 @@ class StaffSkillTabController extends GetxController {
       error.value = e.toString();
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  String formatDate(DateTime? date) {
+    if (date == null) {
+      return "No Expiry";
+    } else {
+      return Dates.formatUI(date);
     }
   }
 }

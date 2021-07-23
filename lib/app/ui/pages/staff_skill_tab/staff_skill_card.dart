@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 
-class StaffSkillCard extends StatelessWidget {
+class StaffSkillCard extends GetView<StaffSkillTabController> {
   const StaffSkillCard({
     Key? key,
     required this.skill,
@@ -30,7 +31,7 @@ class StaffSkillCard extends StatelessWidget {
               ),
             ),
             Text(
-              skill.expires?.toString() ?? "No expiry",
+              controller.formatDate(skill.expires),
             ),
           ],
         ),

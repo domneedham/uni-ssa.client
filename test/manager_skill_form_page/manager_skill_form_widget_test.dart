@@ -41,7 +41,7 @@ void main() {
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
 
-    testWidgets('If no categories are loaded, a prompt is rendered',
+    testWidgets('shows a prompt if not categories are loaded',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;

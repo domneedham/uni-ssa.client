@@ -24,7 +24,7 @@ void main() {
   });
 
   test(
-      'Getting the map of skills should return them alphabetically by category name',
+      'getting the map of skills should return them alphabetically by category name',
       () async {
     final mockSkillRepo = TestMocks.skillStaffRepository;
     final mockUserRepo = TestMocks.userRepository;
@@ -49,7 +49,7 @@ void main() {
     expect(controllerMap.keys.first.name, sortedMap.keys.first.name);
   });
 
-  test('Skills are organised into the categories correctly', () async {
+  test('skills are organised into the categories correctly', () async {
     final mockSkillRepo = TestMocks.skillStaffRepository;
     final mockUserRepo = TestMocks.userRepository;
 
