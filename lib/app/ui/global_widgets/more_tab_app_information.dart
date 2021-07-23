@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ManagerMoreTabAppInformation extends StatelessWidget {
-  const ManagerMoreTabAppInformation({
+class MoreTabAppInformation extends StatelessWidget {
+  const MoreTabAppInformation({
     Key? key,
   }) : super(key: key);
 

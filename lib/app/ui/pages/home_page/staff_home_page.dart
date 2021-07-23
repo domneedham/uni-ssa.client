@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/staff_controller.dart';
+import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_tab.dart';
 
 class StaffHomePage extends StatelessWidget {
@@ -13,14 +14,7 @@ class StaffHomePage extends StatelessWidget {
           index: controller.selectedTab,
           children: [
             StaffSkillTab(),
-            Scaffold(
-              appBar: AppBar(
-                title: Text("Profile"),
-              ),
-              body: Center(
-                child: Text("Profile"),
-              ),
-            ),
+            StaffMoreTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -33,8 +27,8 @@ class StaffHomePage extends StatelessWidget {
               label: "Skills",
             ),
             const BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
-              label: "Profile",
+              icon: const Icon(Icons.more_horiz),
+              label: "More",
             ),
           ],
         ),
