@@ -18,4 +18,5 @@ abstract class Routes {
   // STAFF ROUTES
   static const STAFF_HOME = '/staff';
   static const STAFF_ASSIGN_SKILL = '/staff-assign-skill';
+  static const STAFF_SKILL_OVERVIEW = '/staff-skill-overview';
 }

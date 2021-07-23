@@ -13,27 +13,30 @@ class StaffSkillCard extends GetView<StaffSkillTabController> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          direction: Axis.vertical,
-          spacing: 8,
-          children: [
-            Text(
-              skill.name,
-              style: Get.textTheme.headline6,
-            ),
-            Wrap(
-              children: List.generate(
-                skill.rating.toInt(),
-                (index) => Icon(Icons.star, size: 16),
+    return GestureDetector(
+      onTap: () => controller.navigateToSkillOverview(skill),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Wrap(
+            direction: Axis.vertical,
+            spacing: 8,
+            children: [
+              Text(
+                skill.name,
+                style: Get.textTheme.headline6,
               ),
-            ),
-            Text(
-              controller.formatDate(skill.expires),
-            ),
-          ],
+              Wrap(
+                children: List.generate(
+                  skill.rating.toInt(),
+                  (index) => Icon(Icons.star, size: 16),
+                ),
+              ),
+              Text(
+                controller.formatDate(skill.expires),
+              ),
+            ],
+          ),
         ),
       ),
     );

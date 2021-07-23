@@ -17,6 +17,7 @@ import 'package:ssa_app/app/ui/pages/manager_category_overview_page/manager_cate
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_overview_page/manager_skill_overview_page.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_page.dart';
+import 'package:ssa_app/app/ui/pages/staff_skill_overview_page/staff_skill_overview_page.dart';
 import 'package:ssa_app/app/ui/pages/user_overview/manager_overview/manager_overview_page.dart';
 import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview_page.dart';
 part './app_routes.dart';
@@ -77,6 +78,11 @@ abstract class AppPages {
     GetPage(
       name: Routes.STAFF_ASSIGN_SKILL,
       page: () => StaffAssignSkillPage(),
+      binding: StaffAssignSkillBinding(),
+    ),
+    GetPage(
+      name: Routes.STAFF_SKILL_OVERVIEW,
+      page: () => StaffSkillOverviewPage(),
       binding: StaffAssignSkillBinding(),
     ),
   ];
