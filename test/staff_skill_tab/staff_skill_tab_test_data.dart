@@ -9,6 +9,7 @@ final mockStaffSkillOne = StaffSkill(
   id: 1,
   name: "Sleeping",
   category: Category(id: 1, name: "ZZZ", icon: Icons.bed),
+  expires: DateTime.now().add(Duration(days: 30)),
 );
 
 final mockStaffSkillTwo = StaffSkill(
@@ -17,6 +18,15 @@ final mockStaffSkillTwo = StaffSkill(
   id: 2,
   name: "Test",
   category: Category(id: 2, name: "Test Category", icon: Icons.text_fields),
+  expires: DateTime.now().add(Duration(days: 10)),
+);
+
+final mockStaffSkillNoExpiry = StaffSkill(
+  rating: 3,
+  lastUpdated: DateTime.now(),
+  id: 3,
+  name: "Other",
+  category: Category(id: 2, name: "Test Cat", icon: Icons.text_fields),
 );
 
 final mockStaffNoSkills =

@@ -6,6 +6,7 @@ import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffOverviewController extends GetxController {
   final userRepo = Get.find<UserRepository>();
@@ -66,7 +67,7 @@ class StaffOverviewController extends GetxController {
 
   Text expiryTextWidget(StaffSkill skill) {
     if (skill.hasExpiry) {
-      final date = DateFormat.yMMMd().format(skill.expires!);
+      final date = Dates.formatUI(skill.expires!);
       if (skill.isExpired) {
         return Text(
           "Expired on: $date",
