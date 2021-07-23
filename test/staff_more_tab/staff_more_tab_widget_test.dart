@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:mockito/mockito.dart';
+import 'package:ssa_app/app/controllers/staff_more_tab_controller.dart';
+import 'package:ssa_app/app/ui/global_widgets/more_tab_app_information.dart';
+import 'package:ssa_app/app/ui/global_widgets/more_tab_settings.dart';
+import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
+import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab.dart';
+
+import '../mocks/mocks.dart';
+import '../testable_widget.dart';
+import 'staff_more_tab_test_data.dart';
+
+void main() {
+  final binding = BindingsBuilder(() {
+    Get.lazyPut<StaffMoreTabController>(() => StaffMoreTabController());
+  });
+
+  setUp(() async {
+    Get.testMode = true;
+    binding.builder();
+  });
+
+  tearDown(() async {
+    Get.reset();
+  });
+
+  group('staff more tab', () {
+    testWidgets('shows dividers between major sections',
+        (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.staff).thenReturn(mockStaff);
+
+      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Divider), findsNWidgets(2));
+    });
+
+    testWidgets('shows the profile header', (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.staff).thenReturn(mockStaff);
+
+      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(UserProfileHeader), findsOneWidget);
+    });
+
+    testWidgets('shows the settings list', (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.staff).thenReturn(mockStaff);
+
+      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MoreTabSettings), findsOneWidget);
+    });
+
+    testWidgets('shows the app information', (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockUserRepo.staff).thenReturn(mockStaff);
+
+      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MoreTabAppInformation), findsOneWidget);
+    });
+  });
+}
