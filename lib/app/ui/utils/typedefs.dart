@@ -3,6 +3,7 @@ import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 
+typedef IntVoidCallback = void Function(int);
 typedef NullableIntVoidCallback = void Function(int?);
 
 typedef NullableFutureStaffCallback = Future<Staff>? Function(int);

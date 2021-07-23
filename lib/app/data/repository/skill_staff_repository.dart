@@ -78,4 +78,18 @@ class SkillStaffRepository {
       return _skills;
     });
   }
+
+  Future<List<StaffSkill>> searchSkillByName(String searchText) async {
+    return Future.delayed(Duration(milliseconds: 750), () {
+      if (searchText.isEmpty) {
+        return List.empty();
+      }
+      return _skills
+          .where(
+            (element) =>
+                element.name.toLowerCase().contains(searchText.toLowerCase()),
+          )
+          .toList();
+    });
+  }
 }
