@@ -15,10 +15,10 @@ class StaffHomePage extends StatelessWidget {
             StaffSkillTab(),
             Scaffold(
               appBar: AppBar(
-                title: Text("Profile"),
+                title: Text("More"),
               ),
               body: Center(
-                child: Text("Profile"),
+                child: Text("More"),
               ),
             ),
           ],
@@ -33,8 +33,8 @@ class StaffHomePage extends StatelessWidget {
               label: "Skills",
             ),
             const BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
-              label: "Profile",
+              icon: const Icon(Icons.more_horiz),
+              label: "More",
             ),
           ],
         ),
