@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_more_tab_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/more_tab_app_information.dart';
+import 'package:ssa_app/app/ui/global_widgets/more_tab_settings.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
-
-import 'manager_more_tab_settings.dart';
 
 class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
   @override
@@ -18,7 +17,7 @@ class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
         children: [
           UserProfileHeader(user: controller.user),
           Divider(),
-          ManagerMoreTabSettings(),
+          MoreTabSettings(),
           Divider(),
           MoreTabAppInformation(),
         ],

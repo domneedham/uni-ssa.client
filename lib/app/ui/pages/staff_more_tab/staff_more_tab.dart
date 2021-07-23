@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/staff_more_tab_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/more_tab_app_information.dart';
+import 'package:ssa_app/app/ui/global_widgets/more_tab_settings.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 
 class StaffMoreTab extends GetWidget<StaffMoreTabController> {
@@ -15,6 +16,8 @@ class StaffMoreTab extends GetWidget<StaffMoreTabController> {
         physics: ClampingScrollPhysics(),
         children: [
           UserProfileHeader(user: controller.user),
+          Divider(),
+          MoreTabSettings(),
           Divider(),
           MoreTabAppInformation(),
         ],
