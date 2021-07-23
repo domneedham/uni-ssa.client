@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ssa_app/app/controllers/staff_controller.dart';
+import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_tab.dart';
 
 class StaffHomePage extends StatelessWidget {
@@ -13,14 +14,7 @@ class StaffHomePage extends StatelessWidget {
           index: controller.selectedTab,
           children: [
             StaffSkillTab(),
-            Scaffold(
-              appBar: AppBar(
-                title: Text("More"),
-              ),
-              body: Center(
-                child: Text("More"),
-              ),
-            ),
+            StaffMoreTab(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
