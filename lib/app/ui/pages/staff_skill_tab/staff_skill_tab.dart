@@ -14,6 +14,12 @@ class StaffSkillTab extends GetWidget<StaffSkillTabController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Skills'),
+        actions: [
+          IconButton(
+            onPressed: controller.navigateToAssignSkill,
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
       body: Obx(() {
         if (controller.skills != null) {
