@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_more_tab_controller.dart';
+import 'package:ssa_app/app/ui/global_widgets/more_tab_app_information.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab.dart';
-import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab_app_information.dart';
 import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab_settings.dart';
 
 import '../mocks/mocks.dart';
@@ -69,7 +69,7 @@ void main() {
       await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
       await tester.pumpAndSettle();
 
-      expect(find.byType(ManagerMoreTabAppInformation), findsOneWidget);
+      expect(find.byType(MoreTabAppInformation), findsOneWidget);
     });
   });
 
@@ -89,29 +89,6 @@ void main() {
 
       expect(find.text("Logout"), findsOneWidget);
       expect(find.byIcon(Icons.logout), findsOneWidget);
-    });
-  });
-
-  group('app information', () {
-    testWidgets('shows an about list tile', (WidgetTester tester) async {
-      await tester
-          .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(AboutListTile), findsOneWidget);
-      expect(find.text("About"), findsOneWidget);
-    });
-
-    testWidgets('about popup shows information about the developer',
-        (WidgetTester tester) async {
-      await tester
-          .pumpWidget(TestableWidget(child: ManagerMoreTabAppInformation()));
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byType(AboutListTile));
-      await tester.pumpAndSettle();
-
-      expect(find.textContaining("Dominic Needham"), findsOneWidget);
     });
   });
 }
