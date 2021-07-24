@@ -57,6 +57,12 @@ class SkillStaffRepository {
     }
   }
 
+  Future<StaffSkill> getSkillById(int id) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return _skills.firstWhere((element) => element.id == id);
+    });
+  }
+
   Future<StaffSkill> getSkillByIdAsync(int id) {
     return Future.delayed(Duration(seconds: 1), () {
       return _skills.firstWhere((element) => element.id == id);

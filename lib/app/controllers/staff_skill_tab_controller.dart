@@ -83,6 +83,11 @@ class StaffSkillTabController extends GetxController {
     }
   }
 
+  void navigateToSkillOverview(StaffSkill skill) {
+    final parameters = {"id": skill.id.toString(), "name": skill.name};
+    Get.toNamed(Routes.STAFF_SKILL_OVERVIEW, parameters: parameters);
+  }
+
   void navigateToAssignSkill() {
     Get.toNamed(Routes.STAFF_ASSIGN_SKILL);
   }
