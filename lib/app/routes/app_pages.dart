@@ -9,6 +9,7 @@ import 'package:ssa_app/app/bindings/manager_skill_overview_binding.dart';
 import 'package:ssa_app/app/bindings/staff_assign_skill_binding.dart';
 import 'package:ssa_app/app/bindings/staff_binding.dart';
 import 'package:ssa_app/app/bindings/staff_overview_binding.dart';
+import 'package:ssa_app/app/bindings/staff_skill_overview_binding.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/manager_home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/staff_home_page.dart';
@@ -83,7 +84,7 @@ abstract class AppPages {
     GetPage(
       name: Routes.STAFF_SKILL_OVERVIEW,
       page: () => StaffSkillOverviewPage(),
-      binding: StaffAssignSkillBinding(),
+      binding: StaffSkillOverviewBinding(),
     ),
   ];
 }
