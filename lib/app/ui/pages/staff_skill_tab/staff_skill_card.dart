@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 
-class StaffSkillCard extends StatelessWidget {
+class StaffSkillCard extends GetView<StaffSkillTabController> {
   const StaffSkillCard({
     Key? key,
     required this.skill,
@@ -12,27 +13,30 @@ class StaffSkillCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          direction: Axis.vertical,
-          spacing: 8,
-          children: [
-            Text(
-              skill.name,
-              style: Get.textTheme.headline6,
-            ),
-            Wrap(
-              children: List.generate(
-                skill.rating.toInt(),
-                (index) => Icon(Icons.star, size: 16),
+    return GestureDetector(
+      onTap: () => controller.navigateToSkillOverview(skill),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Wrap(
+            direction: Axis.vertical,
+            spacing: 8,
+            children: [
+              Text(
+                skill.name,
+                style: Get.textTheme.headline6,
               ),
-            ),
-            Text(
-              skill.expires?.toString() ?? "No expiry",
-            ),
-          ],
+              Wrap(
+                children: List.generate(
+                  skill.rating.toInt(),
+                  (index) => Icon(Icons.star, size: 16),
+                ),
+              ),
+              Text(
+                controller.formatDate(skill.expires),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
+import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_card.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_tab.dart';
+import 'package:ssa_app/app/ui/utils/dates.dart';
 
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
@@ -25,74 +27,182 @@ void main() {
     Get.reset();
   });
 
-  testWidgets('All needed skill data is shown', (WidgetTester tester) async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+  group('staff skill tab', () {
+    testWidgets('appbar title shows the right title',
+        (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillRepo = TestMocks.skillStaffRepository;
 
-    when(mockSkillRepo.getSkillsByIds([1]))
-        .thenAnswer((_) async => [mockStaffSkillOne]);
-    when(mockUserRepo.staff).thenReturn(mockStaffOneSkill);
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      expect(find.text('Your Skills'), findsOneWidget);
+    });
 
-    await tester.pumpAndSettle();
+    testWidgets('loading indicator is shown whilst loading',
+        (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillRepo = TestMocks.skillStaffRepository;
 
-    expect(find.byIcon(mockStaffSkillOne.category.icon), findsOneWidget);
-    expect(find.text(mockStaffSkillOne.name), findsOneWidget);
-    expect(find.byIcon(Icons.star), findsWidgets);
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+
+      expect(find.byType(LoadingIndicator), findsOneWidget);
+    });
+
+    testWidgets('shows error if one occurs', (WidgetTester tester) async {
+      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+
+      final error = Exception("Some error");
+
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => throw error);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.text(error.toString()), findsOneWidget);
+    });
   });
 
-  testWidgets('More than one skill is shown if the user has more than one',
-      (WidgetTester tester) async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+  group('staff skill tab grid', () {
+    testWidgets(
+        'shows more than one skill category name if the user has more than one category in skills',
+        (WidgetTester tester) async {
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.getSkillsByIds([1, 2]))
-        .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
 
-    when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      expect(find.text(mockStaffSkillOne.category.name), findsOneWidget);
+      expect(find.text(mockStaffSkillTwo.category.name), findsOneWidget);
+    });
 
-    await tester.pumpAndSettle();
+    testWidgets(
+        'shows more than one skill category icon if the user has more than one category in skills',
+        (WidgetTester tester) async {
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserRepo = TestMocks.userRepository;
 
-    expect(find.byType(StaffSkillCard), findsNWidgets(2));
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byIcon(mockStaffSkillOne.category.icon), findsOneWidget);
+      expect(find.byIcon(mockStaffSkillTwo.category.icon), findsOneWidget);
+    });
+
+    testWidgets('shows more than one skill if the user has more than one',
+        (WidgetTester tester) async {
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockSkillRepo.getSkillsByIds([1, 2]))
+          .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
+      when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(StaffSkillCard), findsNWidgets(2));
+    });
+
+    testWidgets('shows no card widgets if the user has no skills',
+        (WidgetTester tester) async {
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockSkillRepo.getSkillsByIds([]))
+          .thenAnswer((_) async => List<StaffSkill>.empty());
+      when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
+
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(StaffSkillCard), findsNothing);
+    });
+
+    testWidgets('shows text informing the user they have no skills if true',
+        (WidgetTester tester) async {
+      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserRepo = TestMocks.userRepository;
+
+      when(mockSkillRepo.getSkillsByIds([]))
+          .thenAnswer((_) async => List<StaffSkill>.empty());
+      when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
+
+      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpAndSettle();
+
+      expect(
+          find.textContaining("You have no registered skills"), findsOneWidget);
+    });
   });
 
-  testWidgets('No StaffSkillCard widgets are shown if the user has no skills',
-      (WidgetTester tester) async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+  group('staff skill card', () {
+    setUp(() {
+      TestMocks.userRepository;
+      TestMocks.skillStaffRepository;
+    });
 
-    when(mockSkillRepo.getSkillsByIds([]))
-        .thenAnswer((_) async => List<StaffSkill>.empty());
-    when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
+    testWidgets('shows the skill name', (WidgetTester tester) async {
+      await tester.pumpWidget(TestableWidget(
+        child: StaffSkillCard(
+          skill: mockStaffSkillOne,
+        ),
+      ));
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      expect(find.text(mockStaffSkillOne.name), findsOneWidget);
+    });
 
-    await tester.pumpAndSettle();
+    testWidgets('shows the skill rating', (WidgetTester tester) async {
+      await tester.pumpWidget(TestableWidget(
+        child: StaffSkillCard(
+          skill: mockStaffSkillOne,
+        ),
+      ));
 
-    expect(find.byType(StaffSkillCard), findsNothing);
-  });
+      final lengthOfStars = mockStaffSkillOne.rating.toInt();
 
-  testWidgets('Text is shown informing the user they have no skills if true',
-      (WidgetTester tester) async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+      expect(find.byIcon(Icons.star), findsNWidgets(lengthOfStars));
+    });
 
-    when(mockSkillRepo.getSkillsByIds([]))
-        .thenAnswer((_) async => List<StaffSkill>.empty());
-    when(mockUserRepo.staff).thenReturn(mockStaffNoSkills);
+    testWidgets('shows the skill expiry if it has one',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(TestableWidget(
+        child: StaffSkillCard(
+          skill: mockStaffSkillOne,
+        ),
+      ));
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      final formattedDate = Dates.formatUI(mockStaffSkillOne.expires!);
 
-    await tester.pumpAndSettle();
+      expect(find.text(formattedDate), findsOneWidget);
+    });
 
-    expect(
-        find.textContaining("You have no registered skills"), findsOneWidget);
+    testWidgets('shows the no expiry if no skill expiry',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(TestableWidget(
+        child: StaffSkillCard(
+          skill: mockStaffSkillNoExpiry,
+        ),
+      ));
+
+      expect(find.text("No Expiry"), findsOneWidget);
+    });
   });
 }

@@ -57,6 +57,12 @@ class SkillStaffRepository {
     }
   }
 
+  Future<StaffSkill> getSkillById(int id) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return _skills.firstWhere((element) => element.id == id);
+    });
+  }
+
   Future<StaffSkill> getSkillByIdAsync(int id) {
     return Future.delayed(Duration(seconds: 1), () {
       return _skills.firstWhere((element) => element.id == id);
@@ -76,6 +82,20 @@ class SkillStaffRepository {
   Future<List<StaffSkill>> get skills async {
     return Future.delayed(Duration(seconds: 2), () {
       return _skills;
+    });
+  }
+
+  Future<List<StaffSkill>> searchSkillByName(String searchText) async {
+    return Future.delayed(Duration(milliseconds: 750), () {
+      if (searchText.isEmpty) {
+        return List.empty();
+      }
+      return _skills
+          .where(
+            (element) =>
+                element.name.toLowerCase().contains(searchText.toLowerCase()),
+          )
+          .toList();
     });
   }
 }

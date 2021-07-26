@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/controllers/manager_more_tab_controller.dart';
+import 'package:ssa_app/app/controllers/staff_more_tab_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/more_tab_app_information.dart';
 import 'package:ssa_app/app/ui/global_widgets/more_tab_settings.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
+import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab_user_details.dart';
 
-class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
+class StaffMoreTab extends GetWidget<StaffMoreTabController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +17,8 @@ class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
         physics: ClampingScrollPhysics(),
         children: [
           UserProfileHeader(user: controller.user),
+          Divider(),
+          StaffMoreTabUserDetails(),
           Divider(),
           MoreTabSettings(),
           Divider(),

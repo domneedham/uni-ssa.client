@@ -5,7 +5,7 @@ import 'package:ssa_app/app/data/models/enums/user_role.dart';
 
 class UserRepository {
   final User user = User(
-      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.MANAGER);
+      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.STAFF);
 
   final Staff staff = Staff(
     id: 1,
