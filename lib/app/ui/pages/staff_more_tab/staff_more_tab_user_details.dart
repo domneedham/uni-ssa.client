@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/staff_more_tab_controller.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
+import 'package:ssa_app/app/ui/global_widgets/user_list_tile.dart';
 
 class StaffMoreTabUserDetails extends GetView<StaffMoreTabController> {
   const StaffMoreTabUserDetails({Key? key}) : super(key: key);
@@ -33,21 +34,12 @@ class StaffMoreTabUserDetails extends GetView<StaffMoreTabController> {
           builder: (BuildContext ctx, AsyncSnapshot<Manager> snapshot) {
             if (snapshot.hasData) {
               final user = snapshot.data!;
-              return ListTile(
-                leading: Icon(Icons.person),
-                title: Text(user.name),
-              );
+              return UserListTile(user: user);
             }
             if (snapshot.hasError) {
-              return ListTile(
-                leading: Icon(Icons.person_off),
-                title: Text("User failed to load"),
-              );
+              return LoadingFailedUserListTile();
             }
-            return ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Loading user..."),
-            );
+            return LoadingUserListTile();
           },
         ),
       ],
