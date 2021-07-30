@@ -20,19 +20,13 @@ class UserRepository {
     skills: [],
     manager: Manager(id: 2, firstname: "Dom", surname: "Needham", staff: []),
   );
-  final Staff staff2 = Staff(
+
+  final Manager manager = Manager(
     id: 2,
-    firstname: "John",
-    surname: "Doe",
-    skills: [],
-    manager: Manager(id: 2, firstname: "Dom", surname: "Needham", staff: []),
+    firstname: "Dom",
+    surname: "Needham",
+    staff: [],
   );
-
-  final Manager manager =
-      Manager(id: 2, firstname: "Dom", surname: "Needham", staff: []);
-
-  List<Staff> get _staff => [staff, staff2];
-  List<Manager> get _manager => [manager];
 
   Future<Staff> getStaffById(int id) async {
     final res = await staffProvider.getStaffById(id);
