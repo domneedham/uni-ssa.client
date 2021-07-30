@@ -1,4 +1,3 @@
-import 'package:get/get_connect.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
@@ -36,7 +35,7 @@ class UserRepository {
   List<Manager> get _manager => [manager];
 
   Future<Staff> getStaffById(int id) async {
-    final res = await staffProvider.getStaffById(id) as Response<Staff>;
+    final res = await staffProvider.getStaffById(id);
 
     return res.body!;
   }
@@ -48,17 +47,11 @@ class UserRepository {
   }
 
   Future<List<Staff>> searchStaffByName(String searchText) async {
-    return Future.delayed(Duration(milliseconds: 750), () {
-      if (searchText.isEmpty) {
-        return List.empty();
-      }
-      return _staff
-          .where(
-            (element) =>
-                element.name.toLowerCase().contains(searchText.toLowerCase()),
-          )
-          .toList();
-    });
+    if (searchText.isEmpty) {
+      return List.empty();
+    }
+    final res = await staffProvider.searchStaffByName(searchText);
+    return res.body!;
   }
 
   Future<List<Manager>> searchManagerByName(String searchText) async {

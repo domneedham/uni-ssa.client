@@ -2,7 +2,8 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 
 abstract class IStaffProvider {
-  Future<Response> getStaffById(int id);
+  Future<Response<Staff>> getStaffById(int id);
+  Future<Response<List<Staff>>> searchStaffByName(String name);
 }
 
 class StaffProvider extends GetConnect implements IStaffProvider {
@@ -19,8 +20,24 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     );
   }
 
+  List<Staff> _decodeStaffList(List<dynamic> val) {
+    return List<Staff>.from(
+      (val).map(
+        (x) => Staff.fromJson(
+            userDetails: x["userDetails"],
+            managerDetails: x["managerDetails"],
+            skills: x["skills"]),
+      ),
+    );
+  }
+
   @override
   Future<Response<Staff>> getStaffById(int id) {
     return get('/$id', decoder: (val) => _decodeStaff(val));
+  }
+
+  @override
+  Future<Response<List<Staff>>> searchStaffByName(String name) {
+    return get('/search/$name', decoder: (val) => _decodeStaffList(val));
   }
 }
