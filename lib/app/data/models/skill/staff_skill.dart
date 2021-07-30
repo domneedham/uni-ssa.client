@@ -2,7 +2,7 @@ import 'skill.dart';
 import 'category.dart';
 
 class StaffSkill extends Skill {
-  final double rating;
+  final int rating;
   final DateTime lastUpdated;
   final DateTime? expires;
 
@@ -27,5 +27,18 @@ class StaffSkill extends Skill {
     } else {
       return true;
     }
+  }
+
+  factory StaffSkill.fromJson(Map<String, dynamic> json) {
+    return StaffSkill(
+      rating: json["rating"] as int,
+      lastUpdated: DateTime.parse(json["lastUpdated"]),
+      id: json["id"] as int,
+      name: json["skill"]["name"] as String,
+      // expires can be null, so tryParse with date or "" to keep null
+      expires: DateTime.tryParse(json["expires"] ?? ""),
+      category:
+          Category.fromJson(json["skill"]["category"] as Map<String, dynamic>),
+    );
   }
 }

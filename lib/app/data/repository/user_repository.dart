@@ -1,25 +1,32 @@
+import 'package:get/get_connect.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/data/models/enums/user_role.dart';
+import 'package:ssa_app/app/data/providers/staff_provider.dart';
 
 class UserRepository {
+  UserRepository({required this.staffProvider});
+  final IStaffProvider staffProvider;
+
   final User user = User(
-      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.STAFF);
+      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.MANAGER);
 
   final Staff staff = Staff(
     id: 1,
     firstname: "Dom",
     surname: "Needham",
-    skills: [1, 2, 3, 4, 5],
-    managerId: 2,
+    skills: [],
+    manager:
+        Manager(id: 2, firstname: "Dom", surname: "Needham", staff: [1, 2]),
   );
   final Staff staff2 = Staff(
     id: 2,
     firstname: "John",
     surname: "Doe",
-    skills: [1, 2, 3],
-    managerId: 2,
+    skills: [],
+    manager:
+        Manager(id: 2, firstname: "Dom", surname: "Needham", staff: [1, 2]),
   );
 
   final Manager manager =
@@ -29,9 +36,9 @@ class UserRepository {
   List<Manager> get _manager => [manager];
 
   Future<Staff> getStaffById(int id) async {
-    return Future.delayed(Duration(milliseconds: 500), () {
-      return _staff.firstWhere((element) => element.id == id);
-    });
+    final res = await staffProvider.getStaffById(id) as Response<Staff>;
+
+    return res.body!;
   }
 
   Future<Manager> getManagerById(int id) async {
