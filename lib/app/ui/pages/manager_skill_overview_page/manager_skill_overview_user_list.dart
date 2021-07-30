@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
-import 'package:ssa_app/app/data/models/user/staff.dart';
+import 'package:ssa_app/app/ui/global_widgets/user_list_tile.dart';
 
 class ManagerSkillOverviewUserList
     extends GetWidget<ManagerSkillOverviewController> {
@@ -20,29 +20,8 @@ class ManagerSkillOverviewUserList
       shrinkWrap: true,
       itemCount: skill.staff.length,
       itemBuilder: (c, pos) {
-        final staffId = skill.staff[pos];
-        return FutureBuilder(
-          future: controller.getStaffById(staffId),
-          builder: (BuildContext ctx, AsyncSnapshot<Staff> snapshot) {
-            if (snapshot.hasData) {
-              final user = snapshot.data!;
-              return ListTile(
-                leading: Icon(Icons.person),
-                title: Text(user.name),
-              );
-            }
-            if (snapshot.hasError) {
-              return ListTile(
-                leading: Icon(Icons.person_off),
-                title: Text("User failed to load"),
-              );
-            }
-            return ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Loading user..."),
-            );
-          },
-        );
+        final staff = skill.staff[pos];
+        return UserListTile(user: staff);
       },
     );
   }

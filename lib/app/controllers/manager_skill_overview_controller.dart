@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
-import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
+import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerSkillOverviewController extends GetxController {
-  final skillRepo = Get.find<SkillManagerRepository>();
+  final skillRepo = Get.find<ManagerStaffSkillRepository>();
   final userRepo = Get.find<UserRepository>();
 
   final isLoading = true.obs;
