@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 import './gen_repo_mocks.mocks.dart';

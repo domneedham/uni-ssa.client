@@ -14,7 +14,7 @@ import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
 import 'package:ssa_app/app/data/repository/category_repository.dart' as _i12;
 import 'package:ssa_app/app/data/repository/skill_manager_repository.dart'
     as _i11;
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart'
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart'
     as _i10;
 import 'package:ssa_app/app/data/repository/user_repository.dart' as _i8;
 

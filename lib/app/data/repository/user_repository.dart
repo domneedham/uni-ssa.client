@@ -10,22 +10,40 @@ class UserRepository {
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;
 
-  final User user = User(
-      id: 2, firstname: "Dom", surname: "Needham", userRole: UserRole.MANAGER);
+  final User user =
+      User(id: 1, firstname: "Test", surname: "User", userRole: UserRole.STAFF);
 
   final Staff staff = Staff(
     id: 1,
-    firstname: "Dom",
-    surname: "Needham",
+    firstname: "Test",
+    surname: "Staff",
     skills: [],
-    manager: Manager(id: 2, firstname: "Dom", surname: "Needham", staff: []),
+    manager: User(
+      id: 2,
+      firstname: "Test",
+      surname: "Manager",
+      userRole: UserRole.MANAGER,
+    ),
   );
 
   final Manager manager = Manager(
     id: 2,
-    firstname: "Dom",
-    surname: "Needham",
-    staff: [],
+    firstname: "Test",
+    surname: "Manager",
+    staff: [
+      Staff(
+        id: 1,
+        firstname: "Dom",
+        surname: "Needham",
+        skills: [],
+        manager: User(
+          id: 2,
+          firstname: "Test",
+          surname: "Manager",
+          userRole: UserRole.MANAGER,
+        ),
+      ),
+    ],
   );
 
   Future<Staff> getStaffById(int id) async {

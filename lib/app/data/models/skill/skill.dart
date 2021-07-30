@@ -10,4 +10,12 @@ class Skill {
     required this.name,
     required this.category,
   });
+
+  factory Skill.fromJson(Map<String, dynamic> json) {
+    return Skill(
+      id: json["id"] as int,
+      name: json["name"] as String,
+      category: Category.fromJson(json["category"]),
+    );
+  }
 }

@@ -7,12 +7,10 @@ class StaffOverviewSkillList extends StatelessWidget {
   const StaffOverviewSkillList({
     Key? key,
     required this.staff,
-    required this.future,
     required this.subtitleFunction,
   }) : super(key: key);
 
   final Staff staff;
-  final NullableFutureStaffSkillListCallback future;
   final WidgetCallbackStaffSkill subtitleFunction;
 
   @override

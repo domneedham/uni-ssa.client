@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillOverviewController extends GetxController {
-  final skillRepo = Get.find<SkillStaffRepository>();
+  final skillRepo = Get.find<StaffSkillRepository>();
   final userRepo = Get.find<UserRepository>();
 
   final isLoading = true.obs;

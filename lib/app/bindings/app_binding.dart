@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/providers/category_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart';
+import 'package:ssa_app/app/data/providers/skill_provider.dart';
 import 'package:ssa_app/app/data/providers/staff_provider.dart';
+import 'package:ssa_app/app/data/providers/staff_skill_provider.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
 import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class AppBinding implements Bindings {
@@ -27,6 +30,14 @@ class AppBinding implements Bindings {
       () => ManagerStaffSkillProvider(),
       fenix: true,
     );
+    Get.lazyPut<IStaffSkillProvider>(
+      () => StaffSkillProvider(),
+      fenix: true,
+    );
+    Get.lazyPut<ISkillProvider>(
+      () => SkillProvider(),
+      fenix: true,
+    );
 
     Get.lazyPut<UserRepository>(
       () => UserRepository(
@@ -35,8 +46,10 @@ class AppBinding implements Bindings {
       ),
       fenix: true,
     );
-    Get.lazyPut<SkillStaffRepository>(
-      () => SkillStaffRepository(),
+    Get.lazyPut<StaffSkillRepository>(
+      () => StaffSkillRepository(
+        staffSkillProvider: Get.find(),
+      ),
       fenix: true,
     );
     Get.lazyPut<ManagerStaffSkillRepository>(
@@ -49,6 +62,10 @@ class AppBinding implements Bindings {
       () => CategoryRepository(
         categoryProvider: Get.find(),
       ),
+      fenix: true,
+    );
+    Get.lazyPut<SkillRepository>(
+      () => SkillRepository(skillProvider: Get.find()),
       fenix: true,
     );
   }
