@@ -1,22 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
+import 'package:ssa_app/app/data/providers/category_provider.dart';
 
 class CategoryRepository {
-  final categoryOne = Category(id: 1, name: "Code", icon: Icons.code);
-  final categoryTwo = Category(id: 5, name: "People", icon: Icons.people);
-
-  List<Category> get _categories => [categoryOne, categoryTwo];
+  CategoryRepository({required this.categoryProvider});
+  final ICategoryProvider categoryProvider;
 
   Future<Category> getCategoryById(int id) async {
-    return await Future.delayed(Duration(seconds: 1), () {
-      return _categories.firstWhere((element) => element.id == id);
-    });
+    final res = await categoryProvider.getCategoryById(id);
+    return res.body!;
   }
 
   Future<List<Category>> get categories async {
-    return await Future.delayed(Duration(seconds: 2), () {
-      // throw NoDataReturned("No data returned from the server");
-      return _categories;
-    });
+    final res = await categoryProvider.getAllCategories();
+    return res.body!;
   }
 }

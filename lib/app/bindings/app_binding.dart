@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ssa_app/app/data/providers/category_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/staff_provider.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
@@ -15,6 +16,10 @@ class AppBinding implements Bindings {
     );
     Get.lazyPut<IManagerProvider>(
       () => ManagerProvider(),
+      fenix: true,
+    );
+    Get.lazyPut<ICategoryProvider>(
+      () => CategoryProvider(),
       fenix: true,
     );
 
@@ -34,7 +39,9 @@ class AppBinding implements Bindings {
       fenix: true,
     );
     Get.lazyPut<CategoryRepository>(
-      () => CategoryRepository(),
+      () => CategoryRepository(
+        categoryProvider: Get.find(),
+      ),
       fenix: true,
     );
   }
