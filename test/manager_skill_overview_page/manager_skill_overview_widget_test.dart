@@ -5,11 +5,14 @@ import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_overview_page/manager_skill_overview_page.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import './manager_skill_overview_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+  final skillOne = TestData.mockManagerStaffSkillOne;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerSkillOverviewController>(
         () => ManagerSkillOverviewController());
@@ -102,7 +105,6 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
-      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -112,7 +114,7 @@ void main() {
           .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text(staffOne.name), findsOneWidget);
+      expect(find.text(skillOne.staff.first.name), findsOneWidget);
     });
   });
 }

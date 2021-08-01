@@ -8,11 +8,14 @@ import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_page.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_search.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'staff_assign_skill_test_data.dart';
 
 void main() {
+  final skillOne = TestData.mockSkillOne;
+  final skillTwo = TestData.mockSkillTwo;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffAssignSkillController>(() => StaffAssignSkillController());
   });
@@ -30,6 +33,7 @@ void main() {
     testWidgets('appbar shows the right title', (WidgetTester tester) async {
       TestMocks.userRepository;
       TestMocks.skillStaffRepository;
+      TestMocks.skillRepository;
 
       await tester.pumpWidget(TestableWidget(child: StaffAssignSkillPage()));
 
@@ -112,7 +116,7 @@ void main() {
         child: StaffAssignSkillList(
           isLoading: false,
           searchText: "Not empty",
-          skillList: [mockSkillOne],
+          skillList: [skillOne],
           onPressed: (int _) {},
         ),
       ));
@@ -126,7 +130,7 @@ void main() {
         child: StaffAssignSkillList(
           isLoading: false,
           searchText: "Not empty",
-          skillList: [mockSkillOne, mockSkillTwo],
+          skillList: [skillOne, skillTwo],
           onPressed: (int _) {},
         ),
       ));
@@ -141,12 +145,12 @@ void main() {
         child: StaffAssignSkillList(
           isLoading: false,
           searchText: "Not empty",
-          skillList: [mockSkillOne],
+          skillList: [skillOne],
           onPressed: (int _) {},
         ),
       ));
 
-      expect(find.text(mockSkillOne.name), findsOneWidget);
+      expect(find.text(skillOne.name), findsOneWidget);
     });
 
     testWidgets('shows the category name', (WidgetTester tester) async {
@@ -154,12 +158,12 @@ void main() {
         child: StaffAssignSkillList(
           isLoading: false,
           searchText: "Not empty",
-          skillList: [mockSkillOne],
+          skillList: [skillOne],
           onPressed: (int _) {},
         ),
       ));
 
-      expect(find.text(mockSkillOne.category.name), findsOneWidget);
+      expect(find.text(skillOne.category.name), findsOneWidget);
     });
 
     testWidgets('shows add icon', (WidgetTester tester) async {
@@ -167,7 +171,7 @@ void main() {
         child: StaffAssignSkillList(
           isLoading: false,
           searchText: "Not empty",
-          skillList: [mockSkillOne],
+          skillList: [skillOne],
           onPressed: (int _) {},
         ),
       ));

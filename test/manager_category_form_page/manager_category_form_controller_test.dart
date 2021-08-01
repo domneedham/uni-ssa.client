@@ -4,10 +4,14 @@ import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_category_form_controller.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'manager_category_form_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerNoStaff;
+  final categoryOne = TestData.mockCategoryOne;
+  final categoryTwo = TestData.mockCategoryTwo;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerCategoryFormController>(
         () => ManagerCategoryFormController());

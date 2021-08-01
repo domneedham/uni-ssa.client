@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
-import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
@@ -35,10 +34,6 @@ class ManagerSkillOverviewController extends GetxController {
     } finally {
       isLoading.value = false;
     }
-  }
-
-  Future<Staff> getStaffById(int id) async {
-    return userRepo.getStaffById(id);
   }
 
   void editSkill() {

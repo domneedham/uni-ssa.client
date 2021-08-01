@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
-import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
+import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
+
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
@@ -17,19 +19,19 @@ class TestMocks {
 
   /// Get an instance of [MockSkillStaffRepository].
   /// Calls Get.put() to solve dependency injection for the test.
-  static MockSkillStaffRepository get skillStaffRepository {
-    final mockRepo = MockSkillStaffRepository();
+  static MockStaffSkillRepository get skillStaffRepository {
+    final mockRepo = MockStaffSkillRepository();
     // ignore: unnecessary_cast
-    Get.put(mockRepo as SkillStaffRepository);
+    Get.put(mockRepo as StaffSkillRepository);
     return mockRepo;
   }
 
   /// Get an instance of [MockSkillManagerRepository].
   /// Calls Get.put() to solve dependency injection for the test.
-  static MockSkillManagerRepository get skillManagerRepository {
-    final mockRepo = MockSkillManagerRepository();
+  static MockManagerStaffSkillRepository get skillManagerRepository {
+    final mockRepo = MockManagerStaffSkillRepository();
     // ignore: unnecessary_cast
-    Get.put(mockRepo as SkillManagerRepository);
+    Get.put(mockRepo as ManagerStaffSkillRepository);
     return mockRepo;
   }
 
@@ -39,6 +41,15 @@ class TestMocks {
     final mockRepo = MockCategoryRepository();
     // ignore: unnecessary_cast
     Get.put(mockRepo as CategoryRepository);
+    return mockRepo;
+  }
+
+  /// Get an instance of [MockSkillRepository].
+  /// Calls Get.put() to solve dependency injection for the test.
+  static MockSkillRepository get skillRepository {
+    final mockRepo = MockSkillRepository();
+    // ignore: unnecessary_cast
+    Get.put(mockRepo as SkillRepository);
     return mockRepo;
   }
 }

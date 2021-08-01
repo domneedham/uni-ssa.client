@@ -8,11 +8,14 @@ import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_category_form_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerNoStaff;
+  final categoryOne = TestData.mockCategoryOne;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerCategoryFormController>(
         () => ManagerCategoryFormController());
@@ -151,7 +154,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsNothing);
-      expect(find.byIcon(Icons.ac_unit), findsOneWidget);
+      expect(find.byIcon(categoryOne.icon), findsOneWidget);
     });
   });
 }

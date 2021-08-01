@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/staff_edit_details_controller.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'staff_edit_details_test_data.dart';
 
 void main() {
+  final staffOne = TestData.mockStaffWithExpirySkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffEditDetailsController>(() => StaffEditDetailsController());
   });
@@ -25,7 +27,7 @@ void main() {
       test('should return null if the name is not null', () async {
         final userRepo = TestMocks.userRepository;
 
-        when(userRepo.user).thenReturn(mockStaff);
+        when(userRepo.user).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 
@@ -36,7 +38,7 @@ void main() {
       test('should return a string if the name is not null', () async {
         final userRepo = TestMocks.userRepository;
 
-        when(userRepo.user).thenReturn(mockStaff);
+        when(userRepo.user).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 

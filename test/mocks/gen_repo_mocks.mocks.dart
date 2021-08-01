@@ -2,21 +2,31 @@
 // in ssa_app/test/mocks/gen_repo_mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i9;
+import 'dart:async' as _i16;
 
+import 'package:get/get.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:ssa_app/app/data/models/skill/category.dart' as _i7;
-import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i6;
-import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i5;
-import 'package:ssa_app/app/data/models/user/manager.dart' as _i4;
-import 'package:ssa_app/app/data/models/user/staff.dart' as _i3;
-import 'package:ssa_app/app/data/models/user/user.dart' as _i2;
-import 'package:ssa_app/app/data/repository/category_repository.dart' as _i12;
-import 'package:ssa_app/app/data/repository/skill_manager_repository.dart'
-    as _i11;
+import 'package:ssa_app/app/data/models/skill/category.dart' as _i12;
+import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i10;
+import 'package:ssa_app/app/data/models/skill/skill.dart' as _i21;
+import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i8;
+import 'package:ssa_app/app/data/models/user/manager.dart' as _i6;
+import 'package:ssa_app/app/data/models/user/staff.dart' as _i5;
+import 'package:ssa_app/app/data/models/user/user.dart' as _i4;
+import 'package:ssa_app/app/data/providers/category_provider.dart' as _i11;
+import 'package:ssa_app/app/data/providers/manager_provider.dart' as _i3;
+import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart'
+    as _i9;
+import 'package:ssa_app/app/data/providers/skill_provider.dart' as _i13;
+import 'package:ssa_app/app/data/providers/staff_provider.dart' as _i2;
+import 'package:ssa_app/app/data/providers/staff_skill_provider.dart' as _i7;
+import 'package:ssa_app/app/data/repository/category_repository.dart' as _i19;
+import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart'
+    as _i18;
+import 'package:ssa_app/app/data/repository/skill_repository.dart' as _i20;
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart'
-    as _i10;
-import 'package:ssa_app/app/data/repository/user_repository.dart' as _i8;
+    as _i17;
+import 'package:ssa_app/app/data/repository/user_repository.dart' as _i15;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -26,182 +36,2012 @@ import 'package:ssa_app/app/data/repository/user_repository.dart' as _i8;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeUser extends _i1.Fake implements _i2.User {}
+class _FakeIStaffProvider extends _i1.Fake implements _i2.IStaffProvider {}
 
-class _FakeStaff extends _i1.Fake implements _i3.Staff {}
+class _FakeIManagerProvider extends _i1.Fake implements _i3.IManagerProvider {}
 
-class _FakeManager extends _i1.Fake implements _i4.Manager {}
+class _FakeUser extends _i1.Fake implements _i4.User {}
 
-class _FakeStaffSkill extends _i1.Fake implements _i5.StaffSkill {}
+class _FakeStaff extends _i1.Fake implements _i5.Staff {}
 
-class _FakeManagerStaffSkill extends _i1.Fake implements _i6.ManagerStaffSkill {
-}
+class _FakeManager extends _i1.Fake implements _i6.Manager {}
 
-class _FakeCategory extends _i1.Fake implements _i7.Category {}
+class _FakeIStaffSkillProvider extends _i1.Fake
+    implements _i7.IStaffSkillProvider {}
+
+class _FakeStaffSkill extends _i1.Fake implements _i8.StaffSkill {}
+
+class _FakeIManagerStaffSkillProvider extends _i1.Fake
+    implements _i9.IManagerStaffSkillProvider {}
+
+class _FakeManagerStaffSkill extends _i1.Fake
+    implements _i10.ManagerStaffSkill {}
+
+class _FakeICategoryProvider extends _i1.Fake
+    implements _i11.ICategoryProvider {}
+
+class _FakeCategory extends _i1.Fake implements _i12.Category {}
+
+class _FakeISkillProvider extends _i1.Fake implements _i13.ISkillProvider {}
+
+class _FakeDuration extends _i1.Fake implements Duration {}
+
+class _FakeGetHttpClient extends _i1.Fake implements _i14.GetHttpClient {}
+
+class _FakeInternalFinalCallback<T> extends _i1.Fake
+    implements _i14.InternalFinalCallback<T> {}
+
+class _FakeResponse<T> extends _i1.Fake implements _i14.Response<T> {}
+
+class _FakeGetSocket extends _i1.Fake implements _i14.GetSocket {}
+
+class _FakeGraphQLResponse<T> extends _i1.Fake
+    implements _i14.GraphQLResponse<T> {}
 
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i15.UserRepository {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.User get user =>
+  _i2.IStaffProvider get staffProvider =>
+      (super.noSuchMethod(Invocation.getter(#staffProvider),
+          returnValue: _FakeIStaffProvider()) as _i2.IStaffProvider);
+  @override
+  _i3.IManagerProvider get managerProvider =>
+      (super.noSuchMethod(Invocation.getter(#managerProvider),
+          returnValue: _FakeIManagerProvider()) as _i3.IManagerProvider);
+  @override
+  _i4.User get user =>
       (super.noSuchMethod(Invocation.getter(#user), returnValue: _FakeUser())
-          as _i2.User);
+          as _i4.User);
   @override
-  _i3.Staff get staff =>
+  _i5.Staff get staff =>
       (super.noSuchMethod(Invocation.getter(#staff), returnValue: _FakeStaff())
-          as _i3.Staff);
+          as _i5.Staff);
   @override
-  _i3.Staff get staff2 =>
-      (super.noSuchMethod(Invocation.getter(#staff2), returnValue: _FakeStaff())
-          as _i3.Staff);
+  _i6.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
+      returnValue: _FakeManager()) as _i6.Manager);
   @override
-  _i4.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
-      returnValue: _FakeManager()) as _i4.Manager);
-  @override
-  _i9.Future<_i3.Staff> getStaffById(int? id) =>
+  _i16.Future<_i5.Staff> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
-              returnValue: Future<_i3.Staff>.value(_FakeStaff()))
-          as _i9.Future<_i3.Staff>);
+              returnValue: Future<_i5.Staff>.value(_FakeStaff()))
+          as _i16.Future<_i5.Staff>);
   @override
-  _i9.Future<_i4.Manager> getManagerById(int? id) =>
+  _i16.Future<_i6.Manager> getManagerById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
-              returnValue: Future<_i4.Manager>.value(_FakeManager()))
-          as _i9.Future<_i4.Manager>);
+              returnValue: Future<_i6.Manager>.value(_FakeManager()))
+          as _i16.Future<_i6.Manager>);
   @override
-  _i9.Future<List<_i3.Staff>> searchStaffByName(String? searchText) =>
+  _i16.Future<List<_i5.Staff>> searchStaffByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
-              returnValue: Future<List<_i3.Staff>>.value(<_i3.Staff>[]))
-          as _i9.Future<List<_i3.Staff>>);
+              returnValue: Future<List<_i5.Staff>>.value(<_i5.Staff>[]))
+          as _i16.Future<List<_i5.Staff>>);
   @override
-  _i9.Future<List<_i4.Manager>> searchManagerByName(String? searchText) =>
+  _i16.Future<List<_i6.Manager>> searchManagerByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
-              returnValue: Future<List<_i4.Manager>>.value(<_i4.Manager>[]))
-          as _i9.Future<List<_i4.Manager>>);
+              returnValue: Future<List<_i6.Manager>>.value(<_i6.Manager>[]))
+          as _i16.Future<List<_i6.Manager>>);
 }
 
-/// A class which mocks [SkillStaffRepository].
+/// A class which mocks [StaffSkillRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSkillStaffRepository extends _i1.Mock
-    implements _i10.SkillStaffRepository {
-  MockSkillStaffRepository() {
+class MockStaffSkillRepository extends _i1.Mock
+    implements _i17.StaffSkillRepository {
+  MockStaffSkillRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.StaffSkill get skillOne =>
-      (super.noSuchMethod(Invocation.getter(#skillOne),
-          returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
+  _i7.IStaffSkillProvider get staffSkillProvider =>
+      (super.noSuchMethod(Invocation.getter(#staffSkillProvider),
+          returnValue: _FakeIStaffSkillProvider()) as _i7.IStaffSkillProvider);
   @override
-  _i5.StaffSkill get skillTwo =>
-      (super.noSuchMethod(Invocation.getter(#skillTwo),
-          returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
-  @override
-  _i5.StaffSkill get skillThree =>
-      (super.noSuchMethod(Invocation.getter(#skillThree),
-          returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
-  @override
-  _i5.StaffSkill get skillFour =>
-      (super.noSuchMethod(Invocation.getter(#skillFour),
-          returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
-  @override
-  _i5.StaffSkill get skillFive =>
-      (super.noSuchMethod(Invocation.getter(#skillFive),
-          returnValue: _FakeStaffSkill()) as _i5.StaffSkill);
-  @override
-  _i9.Future<List<_i5.StaffSkill>> get skills => (super.noSuchMethod(
+  _i16.Future<List<_i8.StaffSkill>> get skills => (super.noSuchMethod(
           Invocation.getter(#skills),
-          returnValue: Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-      as _i9.Future<List<_i5.StaffSkill>>);
+          returnValue: Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
+      as _i16.Future<List<_i8.StaffSkill>>);
   @override
-  _i5.StaffSkill? getStaffSkillById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getStaffSkillById, [id]))
-          as _i5.StaffSkill?);
-  @override
-  _i9.Future<_i5.StaffSkill> getSkillById(int? id) =>
+  _i16.Future<_i8.StaffSkill> getSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getSkillById, [id]),
-              returnValue: Future<_i5.StaffSkill>.value(_FakeStaffSkill()))
-          as _i9.Future<_i5.StaffSkill>);
+              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
+          as _i16.Future<_i8.StaffSkill>);
   @override
-  _i9.Future<_i5.StaffSkill> getSkillByIdAsync(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getSkillByIdAsync, [id]),
-              returnValue: Future<_i5.StaffSkill>.value(_FakeStaffSkill()))
-          as _i9.Future<_i5.StaffSkill>);
-  @override
-  _i9.Future<List<_i5.StaffSkill>> getSkillsByIds(List<int>? ids) =>
-      (super.noSuchMethod(Invocation.method(#getSkillsByIds, [ids]),
+  _i16.Future<List<_i8.StaffSkill>> getSkillsForUser(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getSkillsForUser, [id]),
               returnValue:
-                  Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-          as _i9.Future<List<_i5.StaffSkill>>);
-  @override
-  _i9.Future<List<_i5.StaffSkill>> searchSkillByName(String? searchText) =>
-      (super.noSuchMethod(Invocation.method(#searchSkillByName, [searchText]),
-              returnValue:
-                  Future<List<_i5.StaffSkill>>.value(<_i5.StaffSkill>[]))
-          as _i9.Future<List<_i5.StaffSkill>>);
+                  Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
+          as _i16.Future<List<_i8.StaffSkill>>);
 }
 
-/// A class which mocks [SkillManagerRepository].
+/// A class which mocks [ManagerStaffSkillRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSkillManagerRepository extends _i1.Mock
-    implements _i11.SkillManagerRepository {
-  MockSkillManagerRepository() {
+class MockManagerStaffSkillRepository extends _i1.Mock
+    implements _i18.ManagerStaffSkillRepository {
+  MockManagerStaffSkillRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.ManagerStaffSkill get skillOne =>
-      (super.noSuchMethod(Invocation.getter(#skillOne),
-          returnValue: _FakeManagerStaffSkill()) as _i6.ManagerStaffSkill);
+  _i9.IManagerStaffSkillProvider get managerStaffSkillProvider =>
+      (super.noSuchMethod(Invocation.getter(#managerStaffSkillProvider),
+              returnValue: _FakeIManagerStaffSkillProvider())
+          as _i9.IManagerStaffSkillProvider);
   @override
-  _i6.ManagerStaffSkill get skillTwo =>
-      (super.noSuchMethod(Invocation.getter(#skillTwo),
-          returnValue: _FakeManagerStaffSkill()) as _i6.ManagerStaffSkill);
-  @override
-  _i9.Future<List<_i6.ManagerStaffSkill>> get skills =>
+  _i16.Future<List<_i10.ManagerStaffSkill>> get skills =>
       (super.noSuchMethod(Invocation.getter(#skills),
-              returnValue: Future<List<_i6.ManagerStaffSkill>>.value(
-                  <_i6.ManagerStaffSkill>[]))
-          as _i9.Future<List<_i6.ManagerStaffSkill>>);
+              returnValue: Future<List<_i10.ManagerStaffSkill>>.value(
+                  <_i10.ManagerStaffSkill>[]))
+          as _i16.Future<List<_i10.ManagerStaffSkill>>);
   @override
-  _i9.Future<_i6.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
+  _i16.Future<_i10.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue:
-                  Future<_i6.ManagerStaffSkill>.value(_FakeManagerStaffSkill()))
-          as _i9.Future<_i6.ManagerStaffSkill>);
+              returnValue: Future<_i10.ManagerStaffSkill>.value(
+                  _FakeManagerStaffSkill()))
+          as _i16.Future<_i10.ManagerStaffSkill>);
 }
 
 /// A class which mocks [CategoryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCategoryRepository extends _i1.Mock
-    implements _i12.CategoryRepository {
+    implements _i19.CategoryRepository {
   MockCategoryRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Category get categoryOne =>
-      (super.noSuchMethod(Invocation.getter(#categoryOne),
-          returnValue: _FakeCategory()) as _i7.Category);
+  _i11.ICategoryProvider get categoryProvider =>
+      (super.noSuchMethod(Invocation.getter(#categoryProvider),
+          returnValue: _FakeICategoryProvider()) as _i11.ICategoryProvider);
   @override
-  _i7.Category get categoryTwo =>
-      (super.noSuchMethod(Invocation.getter(#categoryTwo),
-          returnValue: _FakeCategory()) as _i7.Category);
-  @override
-  _i9.Future<List<_i7.Category>> get categories =>
+  _i16.Future<List<_i12.Category>> get categories =>
       (super.noSuchMethod(Invocation.getter(#categories),
-              returnValue: Future<List<_i7.Category>>.value(<_i7.Category>[]))
-          as _i9.Future<List<_i7.Category>>);
+              returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
+          as _i16.Future<List<_i12.Category>>);
   @override
-  _i9.Future<_i7.Category> getCategoryById(int? id) =>
+  _i16.Future<_i12.Category> getCategoryById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
-              returnValue: Future<_i7.Category>.value(_FakeCategory()))
-          as _i9.Future<_i7.Category>);
+              returnValue: Future<_i12.Category>.value(_FakeCategory()))
+          as _i16.Future<_i12.Category>);
+}
+
+/// A class which mocks [SkillRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSkillRepository extends _i1.Mock implements _i20.SkillRepository {
+  MockSkillRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i13.ISkillProvider get skillProvider =>
+      (super.noSuchMethod(Invocation.getter(#skillProvider),
+          returnValue: _FakeISkillProvider()) as _i13.ISkillProvider);
+  @override
+  _i16.Future<List<_i21.Skill>> searchByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchByName, [name]),
+              returnValue: Future<List<_i21.Skill>>.value(<_i21.Skill>[]))
+          as _i16.Future<List<_i21.Skill>>);
+}
+
+/// A class which mocks [CategoryProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
+  MockCategoryProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<List<_i12.Category>>> getAllCategories() =>
+      (super.noSuchMethod(Invocation.method(#getAllCategories, []),
+              returnValue: Future<_i14.Response<List<_i12.Category>>>.value(
+                  _FakeResponse<List<_i12.Category>>()))
+          as _i16.Future<_i14.Response<List<_i12.Category>>>);
+  @override
+  _i16.Future<_i14.Response<_i12.Category>> getCategoryById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
+              returnValue: Future<_i14.Response<_i12.Category>>.value(
+                  _FakeResponse<_i12.Category>()))
+          as _i16.Future<_i14.Response<_i12.Category>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [ManagerProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
+  MockManagerProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<_i6.Manager>> getManagerById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
+              returnValue: Future<_i14.Response<_i6.Manager>>.value(
+                  _FakeResponse<_i6.Manager>()))
+          as _i16.Future<_i14.Response<_i6.Manager>>);
+  @override
+  _i16.Future<_i14.Response<List<_i6.Manager>>> searchManagerByName(
+          String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchManagerByName, [name]),
+              returnValue: Future<_i14.Response<List<_i6.Manager>>>.value(
+                  _FakeResponse<List<_i6.Manager>>()))
+          as _i16.Future<_i14.Response<List<_i6.Manager>>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [ManagerStaffSkillProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockManagerStaffSkillProvider extends _i1.Mock
+    implements _i9.ManagerStaffSkillProvider {
+  MockManagerStaffSkillProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<List<_i10.ManagerStaffSkill>>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
+              returnValue:
+                  Future<_i14.Response<List<_i10.ManagerStaffSkill>>>.value(
+                      _FakeResponse<List<_i10.ManagerStaffSkill>>()))
+          as _i16.Future<_i14.Response<List<_i10.ManagerStaffSkill>>>);
+  @override
+  _i16.Future<_i14.Response<_i10.ManagerStaffSkill>> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
+              returnValue: Future<_i14.Response<_i10.ManagerStaffSkill>>.value(
+                  _FakeResponse<_i10.ManagerStaffSkill>()))
+          as _i16.Future<_i14.Response<_i10.ManagerStaffSkill>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [SkillProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
+  MockSkillProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<List<_i21.Skill>>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
+              returnValue: Future<_i14.Response<List<_i21.Skill>>>.value(
+                  _FakeResponse<List<_i21.Skill>>()))
+          as _i16.Future<_i14.Response<List<_i21.Skill>>>);
+  @override
+  _i16.Future<_i14.Response<_i21.Skill>> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
+              returnValue: Future<_i14.Response<_i21.Skill>>.value(
+                  _FakeResponse<_i21.Skill>()))
+          as _i16.Future<_i14.Response<_i21.Skill>>);
+  @override
+  _i16.Future<_i14.Response<List<_i21.Skill>>> searchByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchByName, [name]),
+              returnValue: Future<_i14.Response<List<_i21.Skill>>>.value(
+                  _FakeResponse<List<_i21.Skill>>()))
+          as _i16.Future<_i14.Response<List<_i21.Skill>>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [StaffProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
+  MockStaffProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<_i5.Staff>> getStaffById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
+              returnValue: Future<_i14.Response<_i5.Staff>>.value(
+                  _FakeResponse<_i5.Staff>()))
+          as _i16.Future<_i14.Response<_i5.Staff>>);
+  @override
+  _i16.Future<_i14.Response<List<_i5.Staff>>> searchStaffByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchStaffByName, [name]),
+              returnValue: Future<_i14.Response<List<_i5.Staff>>>.value(
+                  _FakeResponse<List<_i5.Staff>>()))
+          as _i16.Future<_i14.Response<List<_i5.Staff>>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [StaffSkillProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStaffSkillProvider extends _i1.Mock
+    implements _i7.StaffSkillProvider {
+  MockStaffSkillProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get allowAutoSignedCert =>
+      (super.noSuchMethod(Invocation.getter(#allowAutoSignedCert),
+          returnValue: false) as bool);
+  @override
+  set allowAutoSignedCert(bool? _allowAutoSignedCert) => super.noSuchMethod(
+      Invocation.setter(#allowAutoSignedCert, _allowAutoSignedCert),
+      returnValueForMissingStub: null);
+  @override
+  String get userAgent =>
+      (super.noSuchMethod(Invocation.getter(#userAgent), returnValue: '')
+          as String);
+  @override
+  set userAgent(String? _userAgent) =>
+      super.noSuchMethod(Invocation.setter(#userAgent, _userAgent),
+          returnValueForMissingStub: null);
+  @override
+  bool get sendUserAgent =>
+      (super.noSuchMethod(Invocation.getter(#sendUserAgent), returnValue: false)
+          as bool);
+  @override
+  set sendUserAgent(bool? _sendUserAgent) =>
+      super.noSuchMethod(Invocation.setter(#sendUserAgent, _sendUserAgent),
+          returnValueForMissingStub: null);
+  @override
+  set baseUrl(String? _baseUrl) =>
+      super.noSuchMethod(Invocation.setter(#baseUrl, _baseUrl),
+          returnValueForMissingStub: null);
+  @override
+  String get defaultContentType => (super
+          .noSuchMethod(Invocation.getter(#defaultContentType), returnValue: '')
+      as String);
+  @override
+  set defaultContentType(String? _defaultContentType) => super.noSuchMethod(
+      Invocation.setter(#defaultContentType, _defaultContentType),
+      returnValueForMissingStub: null);
+  @override
+  bool get followRedirects => (super
+          .noSuchMethod(Invocation.getter(#followRedirects), returnValue: false)
+      as bool);
+  @override
+  set followRedirects(bool? _followRedirects) =>
+      super.noSuchMethod(Invocation.setter(#followRedirects, _followRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxRedirects =>
+      (super.noSuchMethod(Invocation.getter(#maxRedirects), returnValue: 0)
+          as int);
+  @override
+  set maxRedirects(int? _maxRedirects) =>
+      super.noSuchMethod(Invocation.setter(#maxRedirects, _maxRedirects),
+          returnValueForMissingStub: null);
+  @override
+  int get maxAuthRetries =>
+      (super.noSuchMethod(Invocation.getter(#maxAuthRetries), returnValue: 0)
+          as int);
+  @override
+  set maxAuthRetries(int? _maxAuthRetries) =>
+      super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
+          returnValueForMissingStub: null);
+  @override
+  set defaultDecoder(_i14.Decoder<dynamic>? _defaultDecoder) =>
+      super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
+          returnValueForMissingStub: null);
+  @override
+  Duration get timeout => (super.noSuchMethod(Invocation.getter(#timeout),
+      returnValue: _FakeDuration()) as Duration);
+  @override
+  set timeout(Duration? _timeout) =>
+      super.noSuchMethod(Invocation.setter(#timeout, _timeout),
+          returnValueForMissingStub: null);
+  @override
+  set trustedCertificates(
+          List<_i14.TrustedCertificate>? _trustedCertificates) =>
+      super.noSuchMethod(
+          Invocation.setter(#trustedCertificates, _trustedCertificates),
+          returnValueForMissingStub: null);
+  @override
+  bool get withCredentials => (super
+          .noSuchMethod(Invocation.getter(#withCredentials), returnValue: false)
+      as bool);
+  @override
+  set withCredentials(bool? _withCredentials) =>
+      super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
+          returnValueForMissingStub: null);
+  @override
+  List<_i14.GetSocket> get sockets =>
+      (super.noSuchMethod(Invocation.getter(#sockets),
+          returnValue: <_i14.GetSocket>[]) as List<_i14.GetSocket>);
+  @override
+  _i14.GetHttpClient get httpClient =>
+      (super.noSuchMethod(Invocation.getter(#httpClient),
+          returnValue: _FakeGetHttpClient()) as _i14.GetHttpClient);
+  @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
+  set sockets(List<_i14.GetSocket>? _sockets) =>
+      super.noSuchMethod(Invocation.setter(#sockets, _sockets),
+          returnValueForMissingStub: null);
+  @override
+  bool get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized), returnValue: false)
+          as bool);
+  @override
+  bool get isClosed =>
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
+          as bool);
+  @override
+  _i14.InternalFinalCallback<void> get onStart =>
+      (super.noSuchMethod(Invocation.getter(#onStart),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  _i14.InternalFinalCallback<void> get onDelete =>
+      (super.noSuchMethod(Invocation.getter(#onDelete),
+              returnValue: _FakeInternalFinalCallback<void>())
+          as _i14.InternalFinalCallback<void>);
+  @override
+  void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
+      returnValueForMissingStub: null);
+  @override
+  _i16.Future<_i14.Response<List<_i8.StaffSkill>>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
+              returnValue: Future<_i14.Response<List<_i8.StaffSkill>>>.value(
+                  _FakeResponse<List<_i8.StaffSkill>>()))
+          as _i16.Future<_i14.Response<List<_i8.StaffSkill>>>);
+  @override
+  _i16.Future<_i14.Response<_i8.StaffSkill>> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
+              returnValue: Future<_i14.Response<_i8.StaffSkill>>.value(
+                  _FakeResponse<_i8.StaffSkill>()))
+          as _i16.Future<_i14.Response<_i8.StaffSkill>>);
+  @override
+  _i16.Future<_i14.Response<List<_i8.StaffSkill>>> getAllForUser(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getAllForUser, [id]),
+              returnValue: Future<_i14.Response<List<_i8.StaffSkill>>>.value(
+                  _FakeResponse<List<_i8.StaffSkill>>()))
+          as _i16.Future<_i14.Response<List<_i8.StaffSkill>>>);
+  @override
+  _i16.Future<_i14.Response<T>> get<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> post<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#post, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> put<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#put, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> patch<T>(String? url, dynamic body,
+          {String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#patch, [
+                url,
+                body
+              ], {
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> request<T>(String? url, String? method,
+          {dynamic body,
+          String? contentType,
+          Map<String, String>? headers,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder,
+          _i14.Progress? uploadProgress}) =>
+      (super.noSuchMethod(
+              Invocation.method(#request, [
+                url,
+                method
+              ], {
+                #body: body,
+                #contentType: contentType,
+                #headers: headers,
+                #query: query,
+                #decoder: decoder,
+                #uploadProgress: uploadProgress
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i16.Future<_i14.Response<T>> delete<T>(String? url,
+          {Map<String, String>? headers,
+          String? contentType,
+          Map<String, dynamic>? query,
+          _i14.Decoder<T>? decoder}) =>
+      (super.noSuchMethod(
+              Invocation.method(#delete, [
+                url
+              ], {
+                #headers: headers,
+                #contentType: contentType,
+                #query: query,
+                #decoder: decoder
+              }),
+              returnValue: Future<_i14.Response<T>>.value(_FakeResponse<T>()))
+          as _i16.Future<_i14.Response<T>>);
+  @override
+  _i14.GetSocket socket(String? url,
+          {Duration? ping = const Duration(seconds: 5)}) =>
+      (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
+          returnValue: _FakeGetSocket()) as _i14.GetSocket);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> query<T>(String? query,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [query],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  _i16.Future<_i14.GraphQLResponse<T>> mutation<T>(String? mutation,
+          {String? url,
+          Map<String, dynamic>? variables,
+          Map<String, String>? headers}) =>
+      (super.noSuchMethod(
+              Invocation.method(#mutation, [mutation],
+                  {#url: url, #variables: variables, #headers: headers}),
+              returnValue: Future<_i14.GraphQLResponse<T>>.value(
+                  _FakeGraphQLResponse<T>()))
+          as _i16.Future<_i14.GraphQLResponse<T>>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void onReady() => super.noSuchMethod(Invocation.method(#onReady, []),
+      returnValueForMissingStub: null);
+  @override
+  void onClose() => super.noSuchMethod(Invocation.method(#onClose, []),
+      returnValueForMissingStub: null);
+  @override
+  void $configureLifeCycle() =>
+      super.noSuchMethod(Invocation.method(#$configureLifeCycle, []),
+          returnValueForMissingStub: null);
 }

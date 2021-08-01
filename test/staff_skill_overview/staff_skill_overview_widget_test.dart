@@ -11,11 +11,15 @@ import 'package:ssa_app/app/ui/pages/staff_skill_overview_page/staff_skill_overv
 import 'package:ssa_app/app/ui/pages/staff_skill_overview_page/staff_skill_overview_rating.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_overview_page/staff_skill_overview_save_button.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'staff_skill_overview_test_data.dart';
 
 void main() {
+  final staffOne = TestData.mockStaffWithNonExpirySkills;
+  final skillWithExpiry = TestData.mockStaffSkillOneWithExpiry;
+  final skillWithNoExpiry = TestData.mockStaffSkillOneWithNoExpiry;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffSkillOverviewController>(
         () => StaffSkillOverviewController());
@@ -39,8 +43,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
 
@@ -55,8 +59,8 @@ void main() {
       Get.parameters = {"id": "1"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
 
@@ -71,8 +75,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
 
@@ -87,7 +91,7 @@ void main() {
       final error = Exception("Some error");
 
       when(mockSkillRepo.getSkillById(1)).thenAnswer((_) async => throw error);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
@@ -104,8 +108,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -123,8 +127,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -142,8 +146,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -161,8 +165,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -182,8 +186,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -202,8 +206,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -223,8 +227,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -245,8 +249,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -267,8 +271,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -297,8 +301,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -318,8 +322,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -328,7 +332,7 @@ void main() {
       await tester
           .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
 
-      expect(find.text(controller.formatDate(mockSkillWithExpiry.expires)),
+      expect(find.text(controller.formatDate(skillWithExpiry.expires)),
           findsOneWidget);
     });
 
@@ -340,8 +344,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -364,8 +368,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillNoExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithNoExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -375,7 +379,7 @@ void main() {
           .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
 
       // should find skill with no expiry - showing 'No Expiry'
-      expect(find.text(controller.formatDate(mockSkillNoExpiry.expires)),
+      expect(find.text(controller.formatDate(skillWithNoExpiry.expires)),
           findsOneWidget);
 
       // change expires in controller to tomorrow
@@ -397,8 +401,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();

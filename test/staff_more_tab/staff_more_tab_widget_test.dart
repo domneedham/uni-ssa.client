@@ -10,11 +10,13 @@ import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab_user_details.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'staff_more_tab_test_data.dart';
 
 void main() {
+  final staffOne = TestData.mockStaffWithExpirySkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffMoreTabController>(() => StaffMoreTabController());
   });
@@ -33,7 +35,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -44,7 +46,7 @@ void main() {
     testWidgets('shows the user details section', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -55,7 +57,7 @@ void main() {
     testWidgets('shows the profile header', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -66,7 +68,7 @@ void main() {
     testWidgets('shows the settings list', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -77,7 +79,7 @@ void main() {
     testWidgets('shows the app information', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -91,9 +93,7 @@ void main() {
       testWidgets('shows edit your details text', (WidgetTester tester) async {
         final mockUserRepo = TestMocks.userRepository;
 
-        when(mockUserRepo.staff).thenReturn(mockStaff);
-        when(mockUserRepo.getManagerById(mockStaff.managerId))
-            .thenAnswer((_) async => mockManager);
+        when(mockUserRepo.staff).thenReturn(staffOne);
 
         await tester
             .pumpWidget(TestableWidget(child: StaffMoreTabUserDetails()));
@@ -105,9 +105,7 @@ void main() {
       testWidgets('shows an edit button', (WidgetTester tester) async {
         final mockUserRepo = TestMocks.userRepository;
 
-        when(mockUserRepo.staff).thenReturn(mockStaff);
-        when(mockUserRepo.getManagerById(mockStaff.managerId))
-            .thenAnswer((_) async => mockManager);
+        when(mockUserRepo.staff).thenReturn(staffOne);
 
         await tester
             .pumpWidget(TestableWidget(child: StaffMoreTabUserDetails()));
@@ -122,9 +120,7 @@ void main() {
           (WidgetTester tester) async {
         final mockUserRepo = TestMocks.userRepository;
 
-        when(mockUserRepo.staff).thenReturn(mockStaff);
-        when(mockUserRepo.getManagerById(mockStaff.managerId))
-            .thenAnswer((_) async => mockManager);
+        when(mockUserRepo.staff).thenReturn(staffOne);
 
         await tester.pumpWidget(
           TestableWidget(child: StaffMoreTabUserDetails()),
@@ -132,39 +128,6 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(UserListTile), findsOneWidget);
-      });
-
-      testWidgets('shows a loading user list tile whilst loading',
-          (WidgetTester tester) async {
-        final mockUserRepo = TestMocks.userRepository;
-
-        when(mockUserRepo.staff).thenReturn(mockStaff);
-        when(mockUserRepo.getManagerById(mockStaff.managerId))
-            .thenAnswer((_) async => mockManager);
-
-        await tester.pumpWidget(
-          TestableWidget(child: StaffMoreTabUserDetails()),
-        );
-
-        expect(find.byType(LoadingUserListTile), findsOneWidget);
-      });
-
-      testWidgets('shows a loading failed user list tile if an error occurs',
-          (WidgetTester tester) async {
-        final mockUserRepo = TestMocks.userRepository;
-
-        final error = Exception("Some error");
-
-        when(mockUserRepo.staff).thenReturn(mockStaff);
-        when(mockUserRepo.getManagerById(mockStaff.managerId))
-            .thenAnswer((_) async => throw error);
-
-        await tester.pumpWidget(
-          TestableWidget(child: StaffMoreTabUserDetails()),
-        );
-        await tester.pumpAndSettle();
-
-        expect(find.byType(LoadingFailedUserListTile), findsOneWidget);
       });
     });
   });

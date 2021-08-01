@@ -10,11 +10,18 @@ import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview
 import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview_skill_list.dart';
 import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview_skill_list_tile.dart';
 
+import '../../mocks/data.dart';
 import '../../testable_widget.dart';
-import 'staff_overview_test_data.dart';
 import '../../mocks/mocks.dart';
 
 void main() {
+  final skillWithNoExpiry = TestData.mockStaffSkillOneWithNoExpiry;
+  final skillWithExpiry = TestData.mockStaffSkillOneWithExpiry;
+  final skillWithExpiryExpired = TestData.mockStaffSkillOneWithExpiryExpired;
+  final managerOne = TestData.mockManagerWithStaff;
+  final staffOne = TestData.mockStaffWithExpirySkills;
+  final mockError = Exception("Exception");
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffOverviewController>(() => StaffOverviewController());
   });
@@ -34,8 +41,8 @@ void main() {
     final mockUserRepo = TestMocks.userRepository;
     final _ = TestMocks.skillStaffRepository;
 
-    when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => mockStaffOne);
-    when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+    when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
+    when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
     when(mockUserRepo.getStaffById(-1))
         .thenAnswer((_) async => throw mockError);
     when(mockUserRepo.getManagerById(-1))
@@ -79,13 +86,11 @@ void main() {
     testWidgets('shows text to inform the user what the section is about',
         (WidgetTester tester) async {
       setUpSuccess();
-      final controller = Get.find<StaffOverviewController>();
 
       await tester.pumpWidget(
         TestableWidget(
           child: StaffOverviewManagerSection(
-            staff: mockStaffOne,
-            future: (_) => controller.getManagerById(mockStaffOne.id),
+            staff: staffOne,
           ),
         ),
       );
@@ -99,55 +104,16 @@ void main() {
           (WidgetTester tester) async {
         setUpSuccess();
 
-        final controller = Get.find<StaffOverviewController>();
-
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewManagerSection(
-              staff: mockStaffOne,
-              future: (_) => controller.getManagerById(mockStaffOne.id),
+              staff: staffOne,
             ),
           ),
         );
         await tester.pumpAndSettle();
 
         expect(find.byType(UserListTile), findsOneWidget);
-      });
-
-      testWidgets('shows a loading user list tile whilst loading',
-          (WidgetTester tester) async {
-        setUpSuccess();
-        final controller = Get.find<StaffOverviewController>();
-
-        await tester.pumpWidget(
-          TestableWidget(
-            child: StaffOverviewManagerSection(
-              staff: mockStaffOne,
-              future: (_) => controller.getManagerById(mockStaffOne.id),
-            ),
-          ),
-        );
-
-        expect(find.byType(LoadingUserListTile), findsOneWidget);
-      });
-
-      testWidgets('shows a loading failed user list tile if an error occurs',
-          (WidgetTester tester) async {
-        setUpSuccess();
-
-        final controller = Get.find<StaffOverviewController>();
-
-        await tester.pumpWidget(
-          TestableWidget(
-            child: StaffOverviewManagerSection(
-              staff: mockStaffBadManager,
-              future: (_) => controller.getManagerById(-1),
-            ),
-          ),
-        );
-        await tester.pumpAndSettle();
-
-        expect(find.byType(LoadingFailedUserListTile), findsOneWidget);
       });
     });
   });
@@ -162,10 +128,9 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: StaffOverviewSkillList(
-            staff: mockStaffOne,
-            future: (ids) => controller.getSkillsByIds(ids),
+            staff: staffOne,
             subtitleFunction: (_) =>
-                controller.expiryTextWidget(mockSkillNoExpiry),
+                controller.expiryTextWidget(skillWithNoExpiry),
           ),
         ),
       );
@@ -182,14 +147,14 @@ void main() {
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewSkillListTile(
-              skill: mockSkillNoExpiry,
-              subtitle: controller.expiryTextWidget(mockSkillNoExpiry),
+              skill: skillWithNoExpiry,
+              subtitle: controller.expiryTextWidget(skillWithNoExpiry),
             ),
           ),
         );
         await tester.pumpAndSettle();
 
-        expect(find.text(mockSkillNoExpiry.name), findsOneWidget);
+        expect(find.text(skillWithNoExpiry.name), findsOneWidget);
       });
 
       testWidgets('shows the category icon', (WidgetTester tester) async {
@@ -199,14 +164,14 @@ void main() {
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewSkillListTile(
-              skill: mockSkillNoExpiry,
-              subtitle: controller.expiryTextWidget(mockSkillNoExpiry),
+              skill: skillWithNoExpiry,
+              subtitle: controller.expiryTextWidget(skillWithNoExpiry),
             ),
           ),
         );
         await tester.pumpAndSettle();
 
-        expect(find.byIcon(mockSkillNoExpiry.category.icon), findsOneWidget);
+        expect(find.byIcon(skillWithNoExpiry.category.icon), findsOneWidget);
       });
 
       testWidgets('shows no expiry if the skill has no expiry for the staff',
@@ -217,8 +182,8 @@ void main() {
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewSkillListTile(
-              skill: mockSkillNoExpiry,
-              subtitle: controller.expiryTextWidget(mockSkillNoExpiry),
+              skill: skillWithNoExpiry,
+              subtitle: controller.expiryTextWidget(skillWithNoExpiry),
             ),
           ),
         );
@@ -236,14 +201,14 @@ void main() {
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewSkillListTile(
-              skill: mockSkillNoExpiry,
-              subtitle: controller.expiryTextWidget(mockSkillExpiryInTime),
+              skill: skillWithExpiry,
+              subtitle: controller.expiryTextWidget(skillWithExpiry),
             ),
           ),
         );
         await tester.pumpAndSettle();
 
-        final text = controller.expiryTextWidget(mockSkillExpiryInTime).data;
+        final text = controller.expiryTextWidget(skillWithExpiry).data;
 
         expect(find.text(text!), findsOneWidget);
       });
@@ -256,14 +221,14 @@ void main() {
         await tester.pumpWidget(
           TestableWidget(
             child: StaffOverviewSkillListTile(
-              skill: mockSkillNoExpiry,
-              subtitle: controller.expiryTextWidget(mockSkillExpiryExpired),
+              skill: skillWithExpiryExpired,
+              subtitle: controller.expiryTextWidget(skillWithExpiryExpired),
             ),
           ),
         );
         await tester.pumpAndSettle();
 
-        final text = controller.expiryTextWidget(mockSkillExpiryExpired).data;
+        final text = controller.expiryTextWidget(skillWithExpiryExpired).data;
 
         expect(find.text(text!), findsOneWidget);
       });

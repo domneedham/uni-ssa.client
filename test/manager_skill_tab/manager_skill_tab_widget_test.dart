@@ -9,11 +9,14 @@ import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_list_tile.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_skill_tab_test_data.dart';
 
 void main() {
+  final managerStaffSkillOne = TestData.mockManagerStaffSkillOne;
+  final managerOne = TestData.mockManagerWithStaff;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerSkillTabController>(() => ManagerSkillTabController());
   });
@@ -34,8 +37,8 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockSkillRepo.skills)
-          .thenAnswer((_) async => [mockManagerStaffSkillOne]);
-      when(mockUserRepo.manager).thenReturn(mockManager);
+          .thenAnswer((_) async => [managerStaffSkillOne]);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -49,8 +52,8 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockSkillRepo.skills)
-          .thenAnswer((_) async => [mockManagerStaffSkillOne]);
-      when(mockUserRepo.manager).thenReturn(mockManager);
+          .thenAnswer((_) async => [managerStaffSkillOne]);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -64,7 +67,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -81,7 +84,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -96,7 +99,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -116,7 +119,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -141,7 +144,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -166,13 +169,13 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: ManagerSkillListTile(
-            skill: mockManagerStaffSkillOne,
+            skill: managerStaffSkillOne,
           ),
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(find.text(mockManagerStaffSkillOne.name), findsOneWidget);
+      expect(find.text(managerStaffSkillOne.name), findsOneWidget);
     });
 
     testWidgets('shows the number of staff allocated to the skill',
@@ -182,14 +185,13 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: ManagerSkillListTile(
-            skill: mockManagerStaffSkillOne,
+            skill: managerStaffSkillOne,
           ),
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(
-          find.textContaining(mockManagerStaffSkillOne.staff.length.toString()),
+      expect(find.textContaining(managerStaffSkillOne.staff.length.toString()),
           findsOneWidget);
     });
 
@@ -199,7 +201,7 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: ManagerSkillListTile(
-            skill: mockManagerStaffSkillOne,
+            skill: managerStaffSkillOne,
           ),
         ),
       );
@@ -216,13 +218,13 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: ManagerSkillCard(
-            skill: mockManagerStaffSkillOne,
+            skill: managerStaffSkillOne,
           ),
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(find.text(mockManagerStaffSkillOne.name), findsOneWidget);
+      expect(find.text(managerStaffSkillOne.name), findsOneWidget);
     });
 
     testWidgets('shows the number of staff allocated to the skill',
@@ -232,14 +234,13 @@ void main() {
       await tester.pumpWidget(
         TestableWidget(
           child: ManagerSkillCard(
-            skill: mockManagerStaffSkillOne,
+            skill: managerStaffSkillOne,
           ),
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(
-          find.textContaining(mockManagerStaffSkillOne.staff.length.toString()),
+      expect(find.textContaining(managerStaffSkillOne.staff.length.toString()),
           findsOneWidget);
     });
   });
@@ -248,14 +249,13 @@ void main() {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.skills)
-        .thenAnswer((_) async => [mockManagerStaffSkillOne]);
-    when(mockUserRepo.manager).thenReturn(mockManager);
+    when(mockSkillRepo.skills).thenAnswer((_) async => [managerStaffSkillOne]);
+    when(mockUserRepo.manager).thenReturn(managerOne);
 
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
     await tester.pumpAndSettle();
 
-    expect(find.byIcon(mockManagerStaffSkillOne.category.icon), findsOneWidget);
-    expect(find.text(mockManagerStaffSkillOne.name), findsOneWidget);
+    expect(find.byIcon(managerStaffSkillOne.category.icon), findsOneWidget);
+    expect(find.text(managerStaffSkillOne.name), findsOneWidget);
   });
 }
