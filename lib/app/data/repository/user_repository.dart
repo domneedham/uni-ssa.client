@@ -13,10 +13,9 @@ class UserRepository {
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;
 
-  final User user =
-      User(id: 1, firstname: "Test", surname: "User", userRole: UserRole.STAFF);
+  User get user => staff;
 
-  final Staff staff = Staff(
+  final staff = Staff(
     id: 1,
     firstname: "Test",
     surname: "Staff",
@@ -75,5 +74,14 @@ class UserRepository {
     }
     final res = await managerProvider.searchManagerByName(searchText);
     return res.body!;
+  }
+
+  Future<Staff> updateStaffDetails(Staff s) async {
+    try {
+      await staffProvider.updateDetails(s);
+      return s;
+    } catch (e) {
+      throw e;
+    }
   }
 }
