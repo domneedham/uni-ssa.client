@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/staff_assign_skill_controller.dart';
+import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_list.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_page.dart';
@@ -74,7 +75,7 @@ void main() {
           isLoading: false,
           searchText: "",
           skillList: [],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
       await tester.pumpAndSettle();
@@ -89,7 +90,7 @@ void main() {
           isLoading: true,
           searchText: "",
           skillList: [],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -103,7 +104,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -117,7 +118,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [skillOne],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -131,7 +132,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [skillOne, skillTwo],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -146,7 +147,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [skillOne],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -159,7 +160,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [skillOne],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -172,7 +173,7 @@ void main() {
           isLoading: false,
           searchText: "Not empty",
           skillList: [skillOne],
-          onPressed: (int _) {},
+          onPressed: (Skill _) {},
         ),
       ));
 

@@ -33,7 +33,7 @@ class StaffSkill extends Skill {
     return StaffSkill(
       rating: json["rating"] as int,
       lastUpdated: DateTime.parse(json["lastUpdated"]),
-      id: json["id"] as int,
+      id: json["skill"]["id"] as int,
       name: json["skill"]["name"] as String,
       // expires can be null, so tryParse with date or "" to keep null
       expires: DateTime.tryParse(json["expires"] ?? ""),

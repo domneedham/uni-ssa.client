@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
+import 'package:ssa_app/app/routes/app_route_parameters.dart';
 
 class StaffAssignSkillController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -72,5 +74,13 @@ class StaffAssignSkillController extends GetxController
     isLoading.value = false;
   }
 
-  assignSkill(int id) {}
+  assignSkill(Skill skill) {
+    final parameters = StaffSkillOverviewParameters(
+      id: skill.id.toString(),
+      name: skill.name,
+      assign: AppRouteParameterValues.TRUE,
+    );
+
+    Get.toNamed(Routes.STAFF_SKILL_OVERVIEW, parameters: parameters.toMap);
+  }
 }

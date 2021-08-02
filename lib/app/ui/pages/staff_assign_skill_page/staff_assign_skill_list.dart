@@ -15,7 +15,7 @@ class StaffAssignSkillList extends StatelessWidget {
   final bool isLoading;
   final String searchText;
   final List<Skill> skillList;
-  final IntVoidCallback onPressed;
+  final SkillVoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class StaffAssignSkillList extends StatelessWidget {
           title: Text(skill.name),
           subtitle: Text(skill.category.name),
           trailing: IconButton(
-            onPressed: () => onPressed(skill.id),
+            onPressed: () => onPressed(skill),
             icon: Icon(Icons.add),
           ),
         );
