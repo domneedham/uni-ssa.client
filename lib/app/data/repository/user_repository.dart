@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
@@ -6,6 +7,8 @@ import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/staff_provider.dart';
 
 class UserRepository {
+  static UserRepository get to => Get.find<UserRepository>();
+
   UserRepository({required this.staffProvider, required this.managerProvider});
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;

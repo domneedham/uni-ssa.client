@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
+import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/routes/app_route_parameters.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillOverviewController extends GetxController {
-  final skillRepo = Get.find<StaffSkillRepository>();
+  final skillRepo = Get.find<SkillRepository>();
+  final staffSkillRepo = Get.find<StaffSkillRepository>();
   final userRepo = Get.find<UserRepository>();
 
   final isLoading = true.obs;
@@ -18,22 +23,47 @@ class StaffSkillOverviewController extends GetxController {
   final expires = Rx<DateTime?>(null);
   final isEdited = false.obs;
 
-  final parameters = Get.parameters;
+  final parameters = StaffSkillOverviewParameters.fromMap(Get.parameters);
 
   @override
   void onInit() async {
     super.onInit();
-    await getSkill(parameters["id"]!);
+    if (parameters.edit != AppRouteParameterValues.FALSE) {
+      await getStaffSkill(parameters.id);
+    }
+    if (parameters.assign != AppRouteParameterValues.FALSE) {
+      await getSkill(parameters.id);
+    }
+  }
+
+  Future<void> getStaffSkill(String id) async {
+    try {
+      isLoading.value = true;
+      int parsedId = int.parse(id);
+      StaffSkill fetchedSkill = await staffSkillRepo.getSkillById(parsedId);
+      skill = fetchedSkill.obs;
+      rating.value = fetchedSkill.rating;
+      expires.value = fetchedSkill.expires;
+    } catch (e) {
+      isError.value = true;
+      error.value = e.toString();
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> getSkill(String id) async {
     try {
       isLoading.value = true;
       int parsedId = int.parse(id);
-      StaffSkill fetchedSkill = await skillRepo.getSkillById(parsedId);
-      skill = fetchedSkill.obs;
-      rating.value = fetchedSkill.rating;
-      expires.value = fetchedSkill.expires;
+      Skill fetchedSkill = await skillRepo.findById(parsedId);
+      skill = StaffSkill(
+        rating: 0,
+        lastUpdated: DateTime.now(),
+        id: fetchedSkill.id,
+        name: fetchedSkill.name,
+        category: fetchedSkill.category,
+      ).obs;
     } catch (e) {
       isError.value = true;
       error.value = e.toString();
@@ -104,5 +134,35 @@ class StaffSkillOverviewController extends GetxController {
 
   Future<void> saveEditedSkill() async {
     if (!isEdited.value) return;
+
+    try {
+      final editedSkill = StaffSkill(
+        rating: rating.value,
+        expires: expires.value,
+        lastUpdated: DateTime.now(),
+        id: skill!.value.id,
+        name: skill!.value.name,
+        category: skill!.value.category,
+      );
+
+      if (parameters.edit != AppRouteParameterValues.FALSE) {
+        await staffSkillRepo.saveEdited(editedSkill);
+      }
+
+      if (parameters.assign != AppRouteParameterValues.FALSE) {
+        await staffSkillRepo.saveNew(editedSkill);
+      }
+    } catch (e) {
+      Get.snackbar("Failed to save", e.toString());
+    }
+  }
+
+  @override
+  void onClose() async {
+    // TODO
+    // temp fix to deal with UI update on navigating to skill tab
+    final skillTabController = Get.find<StaffSkillTabController>();
+    await skillTabController.getSkills();
+    super.onClose();
   }
 }

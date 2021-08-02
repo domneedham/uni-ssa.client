@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
 
 abstract class ISkillProvider {
-  Future<Response<Skill>> getById(int id);
+  Future<Skill> getById(int id);
   Future<Response<List<Skill>>> getAll();
   Future<Response<List<Skill>>> searchByName(String name);
 }
@@ -31,8 +32,12 @@ class SkillProvider extends GetConnect implements ISkillProvider {
   }
 
   @override
-  Future<Response<Skill>> getById(int id) {
-    return get('/$id', decoder: (val) => _decodeSkill(val));
+  Future<Skill> getById(int id) async {
+    final res = await get('/$id');
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("No skill found");
+    }
+    return _decodeSkill(res.body);
   }
 
   @override

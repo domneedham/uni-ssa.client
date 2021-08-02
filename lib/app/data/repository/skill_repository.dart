@@ -9,4 +9,8 @@ class SkillRepository {
     final res = await skillProvider.searchByName(name);
     return res.body!;
   }
+
+  Future<Skill> findById(int id) async {
+    return skillProvider.getById(id);
+  }
 }
