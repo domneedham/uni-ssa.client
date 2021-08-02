@@ -28,7 +28,6 @@ class ManagerOverviewPage extends GetWidget<ManagerOverviewController> {
               ),
               StaffList(
                 staffList: manager.staff,
-                future: (int id) => controller.getStaffById(id),
               )
             ],
           );

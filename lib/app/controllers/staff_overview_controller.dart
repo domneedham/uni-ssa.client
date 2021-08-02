@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffOverviewController extends GetxController {
   final userRepo = Get.find<UserRepository>();
-  final skillRepo = Get.find<SkillStaffRepository>();
+  final skillRepo = Get.find<StaffSkillRepository>();
 
   final parameters = Get.parameters;
   final arguments = Get.arguments;
@@ -40,16 +39,8 @@ class StaffOverviewController extends GetxController {
     }
   }
 
-  Future<Manager>? getManagerById(int id) async {
-    return userRepo.getManagerById(id);
-  }
-
   Future<StaffSkill>? getSkillById(int id) async {
-    return skillRepo.getSkillByIdAsync(id);
-  }
-
-  Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {
-    return skillRepo.getSkillsByIds(ids);
+    return skillRepo.getSkillById(id);
   }
 
   String expiryText(StaffSkill skill) {

@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
-import 'package:ssa_app/app/data/repository/skill_manager_repository.dart';
+import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 
 class ManagerSkillTabController extends GetxController {
   final UserRepository userRepo = Get.find<UserRepository>();
-  final SkillManagerRepository skillRepo = Get.find<SkillManagerRepository>();
+  final ManagerStaffSkillRepository skillRepo =
+      Get.find<ManagerStaffSkillRepository>();
 
   Manager get user => userRepo.manager;
 
@@ -21,16 +21,6 @@ class ManagerSkillTabController extends GetxController {
   final error = "".obs;
 
   RxMap<Category, List<ManagerStaffSkill>>? skills;
-
-  final Map<Category, List<ManagerStaffSkill>> list = {
-    Category(id: 1, name: "Code", icon: Icons.code): List.filled(
-        1,
-        (ManagerStaffSkill(
-            id: 1,
-            name: "Skill",
-            category: Category(id: 1, name: "Code", icon: Icons.code),
-            staff: [1])))
-  };
 
   @override
   onInit() async {

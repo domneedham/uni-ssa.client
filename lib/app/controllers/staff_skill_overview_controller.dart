@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillOverviewController extends GetxController {
-  final skillRepo = Get.find<SkillStaffRepository>();
+  final skillRepo = Get.find<StaffSkillRepository>();
   final userRepo = Get.find<UserRepository>();
 
   final isLoading = true.obs;
@@ -14,7 +14,7 @@ class StaffSkillOverviewController extends GetxController {
   final error = "".obs;
 
   Rx<StaffSkill>? skill;
-  final rating = 0.0.obs;
+  final rating = 0.obs;
   final expires = Rx<DateTime?>(null);
   final isEdited = false.obs;
 
@@ -68,7 +68,7 @@ class StaffSkillOverviewController extends GetxController {
   }
 
   void incrementRating() {
-    double newRating = rating.value + 1;
+    int newRating = rating.value + 1;
     if (newRating > 5) newRating = 5;
 
     rating.value = newRating;
@@ -76,14 +76,14 @@ class StaffSkillOverviewController extends GetxController {
   }
 
   void decrementRating() {
-    double newRating = rating.value - 1;
+    int newRating = rating.value - 1;
     if (newRating < 0) newRating = 0;
 
     rating.value = newRating;
     setIsEdited(newRating: newRating);
   }
 
-  void setIsEdited({double? newRating, DateTime? newExpiry}) {
+  void setIsEdited({int? newRating, DateTime? newExpiry}) {
     final initialRating = skill!.value.rating;
     final initialExpiry = skill!.value.expires;
     final currentRating = rating.value;

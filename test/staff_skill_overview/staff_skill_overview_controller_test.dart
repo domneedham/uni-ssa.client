@@ -5,10 +5,13 @@ import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/controllers/staff_skill_overview_controller.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'staff_skill_overview_test_data.dart';
 
 void main() {
+  final staffOne = TestData.mockStaffWithNonExpirySkills;
+  final skillWithExpiry = TestData.mockStaffSkillOneWithExpiry;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<StaffSkillOverviewController>(
@@ -31,8 +34,8 @@ void main() {
     Get.parameters = {"id": "1", "name": "Test Skill"};
 
     when(mockSkillRepo.getSkillById(1))
-        .thenAnswer((_) async => mockSkillWithExpiry);
-    when(mockUserRepo.staff).thenReturn(mockStaff);
+        .thenAnswer((_) async => skillWithExpiry);
+    when(mockUserRepo.staff).thenReturn(staffOne);
 
     // this inits the controller
     Get.find<StaffSkillOverviewController>();
@@ -48,8 +51,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -66,8 +69,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -86,8 +89,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -107,8 +110,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -130,8 +133,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -150,8 +153,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -173,8 +176,8 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -194,18 +197,18 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       await controller.getSkill("1");
-      controller.rating.value = mockSkillWithExpiry.rating;
+      controller.rating.value = skillWithExpiry.rating;
 
       expect(controller.isEdited.value, false);
-      expect(controller.rating.value, mockSkillWithExpiry.rating);
+      expect(controller.rating.value, skillWithExpiry.rating);
 
-      controller.setIsEdited(newRating: mockSkillWithExpiry.rating + 1);
+      controller.setIsEdited(newRating: skillWithExpiry.rating + 1);
       expect(controller.isEdited.value, true);
     });
 
@@ -218,21 +221,21 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       await controller.getSkill("1");
-      controller.rating.value = mockSkillWithExpiry.rating;
+      controller.rating.value = skillWithExpiry.rating;
 
       expect(controller.isEdited.value, false);
-      expect(controller.rating.value, mockSkillWithExpiry.rating);
+      expect(controller.rating.value, skillWithExpiry.rating);
 
-      controller.setIsEdited(newRating: mockSkillWithExpiry.rating + 1);
+      controller.setIsEdited(newRating: skillWithExpiry.rating + 1);
       expect(controller.isEdited.value, true);
 
-      controller.setIsEdited(newRating: mockSkillWithExpiry.rating);
+      controller.setIsEdited(newRating: skillWithExpiry.rating);
       expect(controller.isEdited.value, false);
     });
 
@@ -243,13 +246,13 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       await controller.getSkill("1");
-      final dateNow = mockSkillWithExpiry.expires;
+      final dateNow = skillWithExpiry.expires;
       controller.expires.value = dateNow;
 
       expect(controller.isEdited.value, false);
@@ -269,22 +272,22 @@ void main() {
       Get.parameters = {"id": "1", "name": "Test Skill"};
 
       when(mockSkillRepo.getSkillById(1))
-          .thenAnswer((_) async => mockSkillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(mockStaff);
+          .thenAnswer((_) async => skillWithExpiry);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       await controller.getSkill("1");
-      controller.expires.value = mockSkillWithExpiry.expires;
+      controller.expires.value = skillWithExpiry.expires;
 
       expect(controller.isEdited.value, false);
-      expect(controller.expires.value, mockSkillWithExpiry.expires);
+      expect(controller.expires.value, skillWithExpiry.expires);
 
       controller.setIsEdited(
-          newExpiry: mockSkillWithExpiry.expires!.add(Duration(days: 1)));
+          newExpiry: skillWithExpiry.expires!.add(Duration(days: 1)));
       expect(controller.isEdited.value, true);
 
-      controller.setIsEdited(newExpiry: mockSkillWithExpiry.expires);
+      controller.setIsEdited(newExpiry: skillWithExpiry.expires);
       expect(controller.isEdited.value, false);
     });
   });

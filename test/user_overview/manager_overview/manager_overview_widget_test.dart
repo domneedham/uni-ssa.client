@@ -7,11 +7,13 @@ import 'package:ssa_app/app/ui/global_widgets/staff_list.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 import 'package:ssa_app/app/ui/pages/user_overview/manager_overview/manager_overview_page.dart';
 
+import '../../mocks/data.dart';
 import '../../testable_widget.dart';
-import './manager_overview_test_data.dart';
 import '../../mocks/mocks.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerOverviewController>(() => ManagerOverviewController());
   });
@@ -30,7 +32,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
       Get.parameters = {"id": "1"};
 
@@ -59,7 +61,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
       Get.parameters = {"id": "1"};
 
@@ -73,7 +75,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
       Get.parameters = {"id": "1"};
 

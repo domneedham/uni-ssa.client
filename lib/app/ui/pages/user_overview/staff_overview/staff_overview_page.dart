@@ -26,11 +26,9 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
               const Divider(),
               StaffOverviewManagerSection(
                 staff: staff,
-                future: (id) => controller.getManagerById(id),
               ),
               const Divider(),
               StaffOverviewSkillList(
-                future: (List<int> ids) => controller.getSkillsByIds(ids),
                 subtitleFunction: (StaffSkill skill) =>
                     controller.expiryTextWidget(skill),
                 staff: staff,

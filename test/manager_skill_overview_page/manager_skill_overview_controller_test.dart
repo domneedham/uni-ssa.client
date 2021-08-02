@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'manager_skill_overview_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+  final skillOne = TestData.mockManagerStaffSkillOne;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerSkillOverviewController>(
         () => ManagerSkillOverviewController());
@@ -61,22 +64,6 @@ void main() {
 
       expect(controller.isError.value, true);
       expect(controller.error.value, exception.toString());
-    });
-  });
-
-  group('get staff by id', () {
-    test('returns the right staff member', () async {
-      final userRepo = TestMocks.userRepository;
-      TestMocks.skillManagerRepository;
-
-      final controller = Get.find<ManagerSkillOverviewController>();
-
-      when(userRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
-      when(userRepo.manager).thenReturn(managerOne);
-
-      final controllerStaff = await controller.getStaffById(1);
-
-      expect(controllerStaff, staffOne);
     });
   });
 }

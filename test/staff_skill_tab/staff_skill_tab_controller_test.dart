@@ -5,10 +5,14 @@ import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'staff_skill_tab_test_data.dart';
 
 void main() {
+  final staffSkillOne = TestData.mockStaffSkillOneWithExpiry;
+  final staffSkillTwo = TestData.mockStaffSkillTwoWithExpiry;
+  final staffWithSkills = TestData.mockStaffWithExpirySkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<StaffSkillTabController>(() => StaffSkillTabController());
@@ -29,17 +33,16 @@ void main() {
     final mockSkillRepo = TestMocks.skillStaffRepository;
     final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.getSkillsByIds([1, 2]))
-        .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
-
-    when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+    when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+        .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
+    when(mockUserRepo.staff).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();
 
     final sortedMap = {
-      mockStaffSkillTwo.category: List<StaffSkill>.filled(1, mockStaffSkillTwo),
-      mockStaffSkillOne.category: List<StaffSkill>.filled(1, mockStaffSkillOne)
+      staffSkillOne.category: List<StaffSkill>.filled(1, staffSkillOne),
+      staffSkillTwo.category: List<StaffSkill>.filled(1, staffSkillTwo)
     };
 
     await controller.getSkills();
@@ -53,9 +56,9 @@ void main() {
     final mockSkillRepo = TestMocks.skillStaffRepository;
     final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.getSkillsByIds([1, 2]))
-        .thenAnswer((_) async => [mockStaffSkillOne, mockStaffSkillTwo]);
-    when(mockUserRepo.staff).thenReturn(mockStaffTwoSkills);
+    when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+        .thenAnswer((_) async => [staffSkillOne]);
+    when(mockUserRepo.staff).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();
@@ -64,12 +67,12 @@ void main() {
 
     final controllerMap = controller.skills!;
 
-    // get the map item with the category from mockSkillOne
+    // get the map item with the category from skillOne
     final mapItem = controllerMap.entries
-        .where((element) => element.key == mockStaffSkillOne.category)
+        .where((element) => element.key == staffSkillOne.category)
         .first;
 
     // expect that the mapItem value (only one item in the list) is mockSkillOne
-    expect(mapItem.value[0], mockStaffSkillOne);
+    expect(mapItem.value[0], staffSkillOne);
   });
 }

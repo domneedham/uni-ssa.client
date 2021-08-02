@@ -11,11 +11,14 @@ import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab_search.
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_tab/manager_staff_tab_manager.dart';
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/staff_tab/manager_staff_tab_staff.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_staff_tab_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+  final staffOne = TestData.mockStaffNoSkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerStaffTabController>(() => ManagerStaffTabController());
   });
@@ -34,7 +37,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -50,7 +53,7 @@ void main() {
     testWidgets('the tabbar has two tabs', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -70,7 +73,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -86,7 +89,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -105,7 +108,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTabStaff()));
       await tester.pumpAndSettle();
@@ -121,7 +124,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.manager).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTabManager()));
       await tester.pumpAndSettle();
@@ -219,7 +222,7 @@ void main() {
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
-          staffList: [mockStaff],
+          staffList: [staffOne],
           onPressed: (int? _) {},
         ),
       ));
@@ -233,12 +236,12 @@ void main() {
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
-          staffList: [mockStaff],
+          staffList: [staffOne],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text(mockStaff.name), findsOneWidget);
+      expect(find.text(staffOne.name), findsOneWidget);
     });
 
     testWidgets('the list is populated if manager items are found',
@@ -247,12 +250,12 @@ void main() {
         child: ManagerStaffTabList(
           isLoading: false,
           searchText: "Not empty",
-          managerList: [mockManager],
+          managerList: [managerOne],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text(mockManager.name), findsOneWidget);
+      expect(find.text(managerOne.name), findsOneWidget);
     });
   });
 }
