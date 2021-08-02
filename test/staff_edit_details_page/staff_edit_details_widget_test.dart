@@ -31,6 +31,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
 
@@ -41,6 +42,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
 
@@ -53,6 +55,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
 
@@ -63,6 +66,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
 
@@ -74,6 +78,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
@@ -86,6 +91,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserRepo.staff).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();

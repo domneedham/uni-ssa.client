@@ -10,9 +10,9 @@ import 'package:ssa_app/app/data/models/skill/category.dart' as _i12;
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i10;
 import 'package:ssa_app/app/data/models/skill/skill.dart' as _i14;
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i8;
-import 'package:ssa_app/app/data/models/user/manager.dart' as _i6;
-import 'package:ssa_app/app/data/models/user/staff.dart' as _i5;
-import 'package:ssa_app/app/data/models/user/user.dart' as _i4;
+import 'package:ssa_app/app/data/models/user/manager.dart' as _i5;
+import 'package:ssa_app/app/data/models/user/staff.dart' as _i4;
+import 'package:ssa_app/app/data/models/user/user.dart' as _i6;
 import 'package:ssa_app/app/data/providers/category_provider.dart' as _i11;
 import 'package:ssa_app/app/data/providers/manager_provider.dart' as _i3;
 import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart'
@@ -40,11 +40,11 @@ class _FakeIStaffProvider extends _i1.Fake implements _i2.IStaffProvider {}
 
 class _FakeIManagerProvider extends _i1.Fake implements _i3.IManagerProvider {}
 
-class _FakeUser extends _i1.Fake implements _i4.User {}
+class _FakeStaff extends _i1.Fake implements _i4.Staff {}
 
-class _FakeStaff extends _i1.Fake implements _i5.Staff {}
+class _FakeManager extends _i1.Fake implements _i5.Manager {}
 
-class _FakeManager extends _i1.Fake implements _i6.Manager {}
+class _FakeUser extends _i1.Fake implements _i6.User {}
 
 class _FakeIStaffSkillProvider extends _i1.Fake
     implements _i7.IStaffSkillProvider {}
@@ -97,36 +97,41 @@ class MockUserRepository extends _i1.Mock implements _i16.UserRepository {
       (super.noSuchMethod(Invocation.getter(#managerProvider),
           returnValue: _FakeIManagerProvider()) as _i3.IManagerProvider);
   @override
-  _i4.User get user =>
-      (super.noSuchMethod(Invocation.getter(#user), returnValue: _FakeUser())
-          as _i4.User);
-  @override
-  _i5.Staff get staff =>
+  _i4.Staff get staff =>
       (super.noSuchMethod(Invocation.getter(#staff), returnValue: _FakeStaff())
-          as _i5.Staff);
+          as _i4.Staff);
   @override
-  _i6.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
-      returnValue: _FakeManager()) as _i6.Manager);
+  _i5.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
+      returnValue: _FakeManager()) as _i5.Manager);
   @override
-  _i17.Future<_i5.Staff> getStaffById(int? id) =>
+  _i6.User get user =>
+      (super.noSuchMethod(Invocation.getter(#user), returnValue: _FakeUser())
+          as _i6.User);
+  @override
+  _i17.Future<_i4.Staff> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
-              returnValue: Future<_i5.Staff>.value(_FakeStaff()))
-          as _i17.Future<_i5.Staff>);
+              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
+          as _i17.Future<_i4.Staff>);
   @override
-  _i17.Future<_i6.Manager> getManagerById(int? id) =>
+  _i17.Future<_i5.Manager> getManagerById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
-              returnValue: Future<_i6.Manager>.value(_FakeManager()))
-          as _i17.Future<_i6.Manager>);
+              returnValue: Future<_i5.Manager>.value(_FakeManager()))
+          as _i17.Future<_i5.Manager>);
   @override
-  _i17.Future<List<_i5.Staff>> searchStaffByName(String? searchText) =>
+  _i17.Future<List<_i4.Staff>> searchStaffByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
-              returnValue: Future<List<_i5.Staff>>.value(<_i5.Staff>[]))
-          as _i17.Future<List<_i5.Staff>>);
+              returnValue: Future<List<_i4.Staff>>.value(<_i4.Staff>[]))
+          as _i17.Future<List<_i4.Staff>>);
   @override
-  _i17.Future<List<_i6.Manager>> searchManagerByName(String? searchText) =>
+  _i17.Future<List<_i5.Manager>> searchManagerByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
-              returnValue: Future<List<_i6.Manager>>.value(<_i6.Manager>[]))
-          as _i17.Future<List<_i6.Manager>>);
+              returnValue: Future<List<_i5.Manager>>.value(<_i5.Manager>[]))
+          as _i17.Future<List<_i5.Manager>>);
+  @override
+  _i17.Future<_i4.Staff> updateStaffDetails(_i4.Staff? s) =>
+      (super.noSuchMethod(Invocation.method(#updateStaffDetails, [s]),
+              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
+          as _i17.Future<_i4.Staff>);
 }
 
 /// A class which mocks [StaffSkillRepository].
@@ -678,18 +683,18 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<_i6.Manager>> getManagerById(int? id) =>
+  _i17.Future<_i15.Response<_i5.Manager>> getManagerById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
-              returnValue: Future<_i15.Response<_i6.Manager>>.value(
-                  _FakeResponse<_i6.Manager>()))
-          as _i17.Future<_i15.Response<_i6.Manager>>);
+              returnValue: Future<_i15.Response<_i5.Manager>>.value(
+                  _FakeResponse<_i5.Manager>()))
+          as _i17.Future<_i15.Response<_i5.Manager>>);
   @override
-  _i17.Future<_i15.Response<List<_i6.Manager>>> searchManagerByName(
+  _i17.Future<_i15.Response<List<_i5.Manager>>> searchManagerByName(
           String? name) =>
       (super.noSuchMethod(Invocation.method(#searchManagerByName, [name]),
-              returnValue: Future<_i15.Response<List<_i6.Manager>>>.value(
-                  _FakeResponse<List<_i6.Manager>>()))
-          as _i17.Future<_i15.Response<List<_i6.Manager>>>);
+              returnValue: Future<_i15.Response<List<_i5.Manager>>>.value(
+                  _FakeResponse<List<_i5.Manager>>()))
+          as _i17.Future<_i15.Response<List<_i5.Manager>>>);
   @override
   _i17.Future<_i15.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
@@ -1586,17 +1591,22 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<_i5.Staff>> getStaffById(int? id) =>
+  _i17.Future<_i15.Response<_i4.Staff>> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
-              returnValue: Future<_i15.Response<_i5.Staff>>.value(
-                  _FakeResponse<_i5.Staff>()))
-          as _i17.Future<_i15.Response<_i5.Staff>>);
+              returnValue: Future<_i15.Response<_i4.Staff>>.value(
+                  _FakeResponse<_i4.Staff>()))
+          as _i17.Future<_i15.Response<_i4.Staff>>);
   @override
-  _i17.Future<_i15.Response<List<_i5.Staff>>> searchStaffByName(String? name) =>
+  _i17.Future<_i15.Response<List<_i4.Staff>>> searchStaffByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchStaffByName, [name]),
-              returnValue: Future<_i15.Response<List<_i5.Staff>>>.value(
-                  _FakeResponse<List<_i5.Staff>>()))
-          as _i17.Future<_i15.Response<List<_i5.Staff>>>);
+              returnValue: Future<_i15.Response<List<_i4.Staff>>>.value(
+                  _FakeResponse<List<_i4.Staff>>()))
+          as _i17.Future<_i15.Response<List<_i4.Staff>>>);
+  @override
+  _i17.Future<_i4.Staff> updateDetails(_i4.Staff? staff) =>
+      (super.noSuchMethod(Invocation.method(#updateDetails, [staff]),
+              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
+          as _i17.Future<_i4.Staff>);
   @override
   _i17.Future<_i15.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,

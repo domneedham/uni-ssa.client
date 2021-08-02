@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
+import 'package:ssa_app/app/exceptions/failed_to_update.dart';
 
 abstract class IStaffProvider {
   Future<Response<Staff>> getStaffById(int id);
   Future<Response<List<Staff>>> searchStaffByName(String name);
+
+  Future<Staff> updateDetails(Staff staff);
 }
 
 class StaffProvider extends GetConnect implements IStaffProvider {
@@ -31,6 +36,13 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     );
   }
 
+  String _encodeStaff(Staff staff) {
+    return jsonEncode({
+      "id": staff.id,
+      "userDetails": {"firstname": staff.firstname, "surname": staff.surname}
+    });
+  }
+
   @override
   Future<Response<Staff>> getStaffById(int id) {
     return get('/$id', decoder: (val) => _decodeStaff(val));
@@ -39,5 +51,17 @@ class StaffProvider extends GetConnect implements IStaffProvider {
   @override
   Future<Response<List<Staff>>> searchStaffByName(String name) {
     return get('/search/$name', decoder: (val) => _decodeStaffList(val));
+  }
+
+  @override
+  Future<Staff> updateDetails(Staff staff) async {
+    final encodedStaff = _encodeStaff(staff);
+    final res = await put('/update', encodedStaff);
+
+    if (res.hasError) {
+      throw FailedToUpdateUserException("Unable to update user");
+    }
+
+    return staff;
   }
 }
