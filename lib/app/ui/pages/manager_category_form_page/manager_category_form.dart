@@ -17,7 +17,7 @@ class ManagerCategoryForm extends GetView<ManagerCategoryFormController> {
             TextFormField(
               decoration: InputDecoration(labelText: "Name"),
               validator: controller.validateName,
-              initialValue: controller.editCategory?.name,
+              controller: controller.nameController,
             ),
             const SizedBox(height: 8),
             Row(

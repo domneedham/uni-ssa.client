@@ -2,10 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_category_form_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
 import '../mocks/data.dart';
 import '../mocks/mocks.dart';
+import '../testable_widget.dart';
 
 void main() {
   final managerOne = TestData.mockManagerNoStaff;
@@ -91,6 +93,56 @@ void main() {
         final response = controller.validateName(null);
         expect(response, isNotNull);
       });
+    });
+  });
+
+  group('save', () {
+    testWidgets('should call save if form is valid', (tester) async {
+      final categoryRepo = TestMocks.categoriesRepository;
+
+      Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
+
+      when(categoryRepo.getCategoryById(1))
+          .thenAnswer((_) async => categoryOne);
+      when(categoryRepo.createCategory(any))
+          .thenAnswer((_) async => categoryOne);
+
+      // need to pump for snackbar
+      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester.pumpAndSettle();
+
+      final controller = Get.find<ManagerCategoryFormController>();
+      controller.nameController.text = "Hello";
+
+      await controller.save();
+      // let the snackbar run
+      await tester.pump(Duration(seconds: 5));
+
+      verify(categoryRepo.createCategory(any)).called(1);
+    });
+
+    testWidgets('should not call save if name is not valid', (tester) async {
+      final categoryRepo = TestMocks.categoriesRepository;
+
+      Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
+
+      when(categoryRepo.getCategoryById(1))
+          .thenAnswer((_) async => categoryOne);
+      when(categoryRepo.createCategory(any))
+          .thenAnswer((_) async => categoryOne);
+
+      // need to pump for snackbar
+      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester.pumpAndSettle();
+
+      final controller = Get.find<ManagerCategoryFormController>();
+      controller.nameController.text = "";
+
+      await controller.save();
+      // let the snackbar run
+      await tester.pump(Duration(seconds: 5));
+
+      verifyNever(categoryRepo.createCategory(any));
     });
   });
 }
