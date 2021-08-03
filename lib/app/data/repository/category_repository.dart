@@ -14,4 +14,12 @@ class CategoryRepository {
     final res = await categoryProvider.getAllCategories();
     return res.body!;
   }
+
+  Future<Category> createCategory(Category category) {
+    return categoryProvider.createCategory(category);
+  }
+
+  Future<Category> updateCategory(Category category) {
+    return categoryProvider.updateCategory(category);
+  }
 }

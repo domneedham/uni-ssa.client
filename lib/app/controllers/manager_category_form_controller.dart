@@ -15,6 +15,8 @@ class ManagerCategoryFormController extends GetxController {
   var formMode = ManagerCategoryFormMode.ADD;
   Category? editCategory;
 
+  final nameController = TextEditingController();
+
   final isLoading = false.obs;
   final isError = false.obs;
   final error = "".obs;
@@ -32,6 +34,8 @@ class ManagerCategoryFormController extends GetxController {
   void onInit() async {
     super.onInit();
     _getParameters();
+
+    nameController.value = TextEditingValue(text: editCategory?.name ?? "");
   }
 
   void _getParameters() {
@@ -71,10 +75,30 @@ class ManagerCategoryFormController extends GetxController {
     return null;
   }
 
-  void save() {
+  Future<void> save() async {
     final status = _formKey.currentState?.validate();
     if (status ?? false) {
-      Get.snackbar("Excellent", "Forms looking good");
+      try {
+        if (formMode == ManagerCategoryFormMode.EDIT) {
+          final category = Category(
+            id: editCategory!.id,
+            name: nameController.text,
+            icon: selectedIcon,
+          );
+          await categoryRepository.updateCategory(category);
+          Get.snackbar("Success", "Category updated");
+        } else {
+          final category = Category(
+            id: -1,
+            name: nameController.text,
+            icon: selectedIcon,
+          );
+          await categoryRepository.createCategory(category);
+          Get.snackbar("Success", "Category created");
+        }
+      } catch (e) {
+        Get.snackbar("Update failed", e.toString());
+      }
     } else {
       Get.snackbar("Terrible", "Forms looking not so good");
     }
