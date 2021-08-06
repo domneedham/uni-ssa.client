@@ -2,15 +2,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_skill_form_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
 import '../mocks/data.dart';
 import '../mocks/mocks.dart';
+import '../testable_widget.dart';
 
 void main() {
-  final managerOne = TestData.mockManagerNoStaff;
   final categoryOne = TestData.mockCategoryOne;
   final categoryTwo = TestData.mockCategoryTwo;
+  final skillOne = TestData.mockSkillOne;
 
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerSkillFormController>(() => ManagerSkillFormController());
@@ -27,14 +29,13 @@ void main() {
 
   group('fetch categories method', () {
     test('fetches all the categories', () async {
-      final userRepo = TestMocks.userRepository;
       final mockCatRepo = TestMocks.categoriesRepository;
+      TestMocks.skillRepository;
 
       final controller = Get.find<ManagerSkillFormController>();
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
 
       await controller.fetchCategories();
 
@@ -42,8 +43,8 @@ void main() {
     });
 
     test('sets the error if one occurs', () async {
-      final userRepo = TestMocks.userRepository;
       final mockCatRepo = TestMocks.categoriesRepository;
+      TestMocks.skillRepository;
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -52,7 +53,6 @@ void main() {
       final exception = Exception("Error");
 
       when(mockCatRepo.categories).thenAnswer((_) async => throw exception);
-      when(userRepo.manager).thenReturn(managerOne);
 
       await controller.fetchCategories();
 
@@ -61,15 +61,14 @@ void main() {
     });
 
     test('sets loading to false when the method finishes', () async {
-      final userRepo = TestMocks.userRepository;
       final mockCatRepo = TestMocks.categoriesRepository;
+      TestMocks.skillRepository;
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
       final controller = Get.find<ManagerSkillFormController>();
 
       when(mockCatRepo.categories).thenAnswer((_) async => []);
-      when(userRepo.manager).thenReturn(managerOne);
 
       await controller.fetchCategories();
 
@@ -79,8 +78,8 @@ void main() {
 
   group('form mode', () {
     test('is set to add if the parameters are for add', () async {
-      final userRepo = TestMocks.userRepository;
       final mockCatRepo = TestMocks.categoriesRepository;
+      TestMocks.skillRepository;
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -88,14 +87,13 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerSkillFormMode.ADD);
     });
 
     test('is set to edit if the parameters are for edit', () async {
-      final userRepo = TestMocks.userRepository;
       final mockCatRepo = TestMocks.categoriesRepository;
+      TestMocks.skillRepository;
 
       Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 
@@ -103,7 +101,6 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerSkillFormMode.EDIT);
     });
@@ -112,8 +109,8 @@ void main() {
   group('validate', () {
     group('name', () {
       test('should return null if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
         final mockCatRepo = TestMocks.categoriesRepository;
+        TestMocks.skillRepository;
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -121,15 +118,14 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
 
         final response = controller.validateName("Name");
         expect(response, null);
       });
 
       test('should return a string if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
         final mockCatRepo = TestMocks.categoriesRepository;
+        TestMocks.skillRepository;
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -137,7 +133,6 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
 
         final response = controller.validateName(null);
         expect(response, isNotNull);
@@ -146,8 +141,8 @@ void main() {
 
     group('category', () {
       test('should return null if the category is not null', () async {
-        final userRepo = TestMocks.userRepository;
         final mockCatRepo = TestMocks.categoriesRepository;
+        TestMocks.skillRepository;
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -155,15 +150,14 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
 
         final response = controller.validateCategory(categoryOne.id);
         expect(response, null);
       });
 
       test('should return a string if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
         final mockCatRepo = TestMocks.categoriesRepository;
+        TestMocks.skillRepository;
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -171,10 +165,116 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
 
         final response = controller.validateCategory(null);
         expect(response, isNotNull);
+      });
+    });
+  });
+
+  group('save method', () {
+    group('add mode', () {
+      testWidgets('should call save if form is valid', (tester) async {
+        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockSkillRepo = TestMocks.skillRepository;
+
+        Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
+
+        when(mockCatRepo.categories)
+            .thenAnswer((_) async => [categoryOne, categoryTwo]);
+        when(mockSkillRepo.create(any)).thenAnswer((_) async => skillOne);
+
+        // need to pump for snackbar
+        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester.pumpAndSettle();
+
+        final controller = Get.find<ManagerSkillFormController>();
+        controller.nameController.text = "Hello";
+        controller.selectedCategoryId = categoryOne.id;
+
+        await controller.save();
+        // let the snackbar run
+        await tester.pump(Duration(seconds: 5));
+
+        verify(mockSkillRepo.create(any)).called(1);
+      });
+
+      testWidgets('should not call save if form is not valid', (tester) async {
+        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockSkillRepo = TestMocks.skillRepository;
+
+        Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
+
+        when(mockCatRepo.categories)
+            .thenAnswer((_) async => [categoryOne, categoryTwo]);
+        when(mockSkillRepo.create(any)).thenAnswer((_) async => skillOne);
+
+        // need to pump for snackbar
+        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester.pumpAndSettle();
+
+        final controller = Get.find<ManagerSkillFormController>();
+        controller.nameController.text = "";
+        controller.selectedCategoryId = categoryOne.id;
+
+        await controller.save();
+        // let the snackbar run
+        await tester.pump(Duration(seconds: 5));
+
+        verifyNever(mockSkillRepo.create(any));
+      });
+    });
+
+    group('edit mode', () {
+      testWidgets('should call save if form is valid', (tester) async {
+        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockSkillRepo = TestMocks.skillRepository;
+
+        Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
+
+        when(mockCatRepo.categories)
+            .thenAnswer((_) async => [categoryOne, categoryTwo]);
+        when(mockSkillRepo.update(any)).thenAnswer((_) async => skillOne);
+
+        // need to pump for snackbar
+        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester.pumpAndSettle();
+
+        final controller = Get.find<ManagerSkillFormController>();
+        controller.editSkill = skillOne;
+        controller.nameController.text = "Hello";
+        controller.selectedCategoryId = categoryOne.id;
+
+        await controller.save();
+        // let the snackbar run
+        await tester.pump(Duration(seconds: 5));
+
+        verify(mockSkillRepo.update(any)).called(1);
+      });
+
+      testWidgets('should not call save if form is not valid', (tester) async {
+        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockSkillRepo = TestMocks.skillRepository;
+
+        Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
+
+        when(mockCatRepo.categories)
+            .thenAnswer((_) async => [categoryOne, categoryTwo]);
+        when(mockSkillRepo.update(any)).thenAnswer((_) async => skillOne);
+
+        // need to pump for snackbar
+        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester.pumpAndSettle();
+
+        final controller = Get.find<ManagerSkillFormController>();
+        controller.nameController.text = "";
+        controller.selectedCategoryId = categoryOne.id;
+
+        await controller.save();
+        // let the snackbar run
+        await tester.pump(Duration(seconds: 5));
+
+        verifyNever(mockSkillRepo.update(any));
       });
     });
   });

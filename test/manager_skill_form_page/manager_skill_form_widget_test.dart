@@ -12,7 +12,6 @@ import '../mocks/mocks.dart';
 import '../testable_widget.dart';
 
 void main() {
-  final managerOne = TestData.mockManagerNoStaff;
   final categoryOne = TestData.mockCategoryOne;
 
   final binding = BindingsBuilder(() {
@@ -32,9 +31,8 @@ void main() {
     testWidgets('shows a loading indicator whilst the page is loading',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
@@ -47,9 +45,8 @@ void main() {
     testWidgets('shows a prompt if not categories are loaded',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => []);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
@@ -63,9 +60,8 @@ void main() {
     testWidgets('shows the form if categories are loaded',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
@@ -79,11 +75,10 @@ void main() {
     testWidgets('shows error text if an error occurs',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       final exception = Exception("Issue");
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => throw exception);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
@@ -98,9 +93,8 @@ void main() {
   group('add form', () {
     testWidgets('page title shows add', (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
@@ -114,9 +108,8 @@ void main() {
   group('edit form', () {
     testWidgets('Page title shows edit', (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
