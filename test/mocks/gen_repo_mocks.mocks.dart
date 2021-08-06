@@ -236,6 +236,11 @@ class MockCategoryRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory()))
           as _i17.Future<_i12.Category>);
+  @override
+  _i17.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
+      Invocation.method(#deleteCategory, [id]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
 }
 
 /// A class which mocks [SkillRepository].
@@ -429,6 +434,11 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
       (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory()))
           as _i17.Future<_i12.Category>);
+  @override
+  _i17.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
+      Invocation.method(#deleteCategory, [id]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
   @override
   _i17.Future<_i15.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,

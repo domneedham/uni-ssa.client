@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
+import 'package:ssa_app/app/exceptions/failed_to_delete.dart';
 import 'package:ssa_app/app/exceptions/failed_to_update.dart';
 
 abstract class ICategoryProvider {
@@ -9,6 +10,7 @@ abstract class ICategoryProvider {
   Future<Response<Category>> getCategoryById(int id);
   Future<Category> createCategory(Category category);
   Future<Category> updateCategory(Category category);
+  Future<void> deleteCategory(int id);
 }
 
 class CategoryProvider extends GetConnect implements ICategoryProvider {
@@ -76,5 +78,14 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     }
 
     return category;
+  }
+
+  @override
+  Future<void> deleteCategory(int id) async {
+    final res = await delete('/delete/$id');
+
+    if (res.hasError) {
+      throw FailedToDeleteCategoryException("Failed to delete category");
+    }
   }
 }

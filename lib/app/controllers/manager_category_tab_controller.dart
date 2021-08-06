@@ -47,8 +47,13 @@ class ManagerCategoryTabController extends GetxController {
     );
   }
 
-  void deleteCategory(Category category) {
-    Get.snackbar("Delete!", "${category.name} would be deleted");
+  Future<void> deleteCategory(Category category) async {
+    try {
+      await catRepo.deleteCategory(category.id);
+      categories!.removeWhere((element) => element.id == category.id);
+    } catch (e) {
+      Get.snackbar("Failed to delete", e.toString());
+    }
   }
 
   void addNewCategory() {
