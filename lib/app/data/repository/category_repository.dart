@@ -22,4 +22,8 @@ class CategoryRepository {
   Future<Category> updateCategory(Category category) {
     return categoryProvider.updateCategory(category);
   }
+
+  Future<void> deleteCategory(int id) {
+    return categoryProvider.deleteCategory(id);
+  }
 }

@@ -25,7 +25,7 @@ class ManagerCategoryTab extends GetWidget<ManagerCategoryTabController> {
         if (controller.categories != null) {
           final skills = controller.categories!;
           if (skills.isEmpty) {
-            return FutureStateText(text: "No skills loaded.");
+            return FutureStateText(text: "No categories loaded.");
           }
           return ManagerCategoryList();
         }
