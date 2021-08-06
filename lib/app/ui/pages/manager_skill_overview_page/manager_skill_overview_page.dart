@@ -18,7 +18,28 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
             icon: Icon(Icons.edit),
           ),
           IconButton(
-            onPressed: controller.deleteSkill,
+            onPressed: () {
+              Get.dialog(AlertDialog(
+                title: Text("Are you sure you want to delete?"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      // pop the dialog
+                      Get.back();
+                    },
+                    child: Text("No"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // pop the dialog
+                      Get.back();
+                      controller.deleteSkill();
+                    },
+                    child: Text("Yes"),
+                  ),
+                ],
+              ));
+            },
             icon: Icon(Icons.delete),
           ),
         ],

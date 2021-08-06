@@ -270,6 +270,11 @@ class MockSkillRepository extends _i1.Mock implements _i21.SkillRepository {
       (super.noSuchMethod(Invocation.method(#update, [skill]),
               returnValue: Future<_i14.Skill>.value(_FakeSkill()))
           as _i17.Future<_i14.Skill>);
+  @override
+  _i17.Future<void> delete(int? id) => (super.noSuchMethod(
+      Invocation.method(#delete, [id]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
 }
 
 /// A class which mocks [CategoryProvider].
@@ -1342,6 +1347,11 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
       (super.noSuchMethod(Invocation.method(#update, [skill]),
               returnValue: Future<_i14.Skill>.value(_FakeSkill()))
           as _i17.Future<_i14.Skill>);
+  @override
+  _i17.Future<void> deleteSkill(int? id) => (super.noSuchMethod(
+      Invocation.method(#deleteSkill, [id]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
   @override
   _i17.Future<_i15.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,

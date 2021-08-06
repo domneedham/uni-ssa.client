@@ -10,6 +10,7 @@ abstract class ISkillProvider {
   Future<Response<List<Skill>>> searchByName(String name);
   Future<Skill> create(Skill skill);
   Future<Skill> update(Skill skill);
+  Future<void> deleteSkill(int id);
 }
 
 class SkillProvider extends GetConnect implements ISkillProvider {
@@ -84,5 +85,11 @@ class SkillProvider extends GetConnect implements ISkillProvider {
     final encodedSkill = _encodeEditSkill(skill);
     final res = await put('/update', encodedSkill);
     return _decodeSkill(res.body);
+  }
+
+  @override
+  Future<void> deleteSkill(int id) async {
+    final res = await delete('/delete/$id');
+    return res.body;
   }
 }
