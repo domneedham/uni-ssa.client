@@ -21,4 +21,8 @@ class SkillRepository {
   Future<Skill> update(Skill skill) async {
     return skillProvider.update(skill);
   }
+
+  Future<void> delete(int id) async {
+    return skillProvider.deleteSkill(id);
+  }
 }

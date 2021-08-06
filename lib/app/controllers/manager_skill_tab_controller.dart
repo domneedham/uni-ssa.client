@@ -8,6 +8,8 @@ import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 
 class ManagerSkillTabController extends GetxController {
+  static ManagerSkillTabController get to => Get.find();
+
   final UserRepository userRepo = Get.find<UserRepository>();
   final ManagerStaffSkillRepository skillRepo =
       Get.find<ManagerStaffSkillRepository>();
@@ -82,5 +84,9 @@ class ManagerSkillTabController extends GetxController {
   void createNewSkill() {
     final parameters = {"mode": "add"};
     Get.toNamed(Routes.MANAGER_SKILL_FORM, parameters: parameters);
+  }
+
+  void refresh() async {
+    await getSkills();
   }
 }

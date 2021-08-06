@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
@@ -32,6 +33,7 @@ void main() {
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
@@ -49,6 +51,7 @@ void main() {
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
@@ -67,6 +70,7 @@ void main() {
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
@@ -85,6 +89,7 @@ void main() {
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
@@ -103,6 +108,7 @@ void main() {
         (WidgetTester tester) async {
       final mockSkillRepo = TestMocks.skillManagerRepository;
       final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
       when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
@@ -115,6 +121,135 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(skillOne.staff.first.name), findsOneWidget);
+    });
+  });
+
+  group('delete', () {
+    testWidgets('should popup an alert dialog', (tester) async {
+      final skillManagerRepo = TestMocks.skillManagerRepository;
+      final userRepo = TestMocks.userRepository;
+      final skillRepo = TestMocks.skillRepository;
+
+      Get.parameters = {"id": "1"};
+
+      when(userRepo.manager).thenReturn(managerOne);
+      when(skillManagerRepo.getManagerStaffSkillById(1))
+          .thenAnswer((_) async => skillOne);
+      when(skillRepo.delete(1)).thenAnswer((_) async => null);
+
+      await tester
+          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(Icons.delete));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AlertDialog), findsOneWidget);
+    });
+
+    group('alert dialog', () {
+      testWidgets('should give a yes and no option', (tester) async {
+        final skillManagerRepo = TestMocks.skillManagerRepository;
+        final userRepo = TestMocks.userRepository;
+        final skillRepo = TestMocks.skillRepository;
+
+        Get.parameters = {"id": "1"};
+
+        when(userRepo.manager).thenReturn(managerOne);
+        when(skillManagerRepo.getManagerStaffSkillById(1))
+            .thenAnswer((_) async => skillOne);
+        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+
+        await tester
+            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byIcon(Icons.delete));
+        await tester.pumpAndSettle();
+
+        expect(find.text("Yes"), findsOneWidget);
+        expect(find.text("No"), findsOneWidget);
+      });
+    });
+
+    group('no option', () {
+      testWidgets('should dismiss the dialog', (tester) async {
+        final skillManagerRepo = TestMocks.skillManagerRepository;
+        final userRepo = TestMocks.userRepository;
+        final skillRepo = TestMocks.skillRepository;
+
+        Get.parameters = {"id": "1"};
+
+        when(userRepo.manager).thenReturn(managerOne);
+        when(skillManagerRepo.getManagerStaffSkillById(1))
+            .thenAnswer((_) async => skillOne);
+        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+
+        await tester
+            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byIcon(Icons.delete));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text("No"));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(AlertDialog), findsNothing);
+      });
+    });
+
+    group('yes option', () {
+      testWidgets('should dismiss the dialog', (tester) async {
+        final skillManagerRepo = TestMocks.skillManagerRepository;
+        final userRepo = TestMocks.userRepository;
+        final skillRepo = TestMocks.skillRepository;
+
+        Get.parameters = {"id": "1"};
+
+        when(userRepo.manager).thenReturn(managerOne);
+        when(skillManagerRepo.getManagerStaffSkillById(1))
+            .thenAnswer((_) async => skillOne);
+        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+
+        await tester
+            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byIcon(Icons.delete));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text("Yes"));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(AlertDialog), findsNothing);
+      });
+
+      testWidgets('should call delete method on the controller',
+          (tester) async {
+        final skillManagerRepo = TestMocks.skillManagerRepository;
+        final userRepo = TestMocks.userRepository;
+        final skillRepo = TestMocks.skillRepository;
+
+        Get.parameters = {"id": "1"};
+
+        when(userRepo.manager).thenReturn(managerOne);
+        when(skillManagerRepo.getManagerStaffSkillById(1))
+            .thenAnswer((_) async => skillOne);
+        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+
+        await tester
+            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byIcon(Icons.delete));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text("Yes"));
+        await tester.pumpAndSettle();
+
+        verify(skillRepo.delete(1)).called(1);
+      });
     });
   });
 }
