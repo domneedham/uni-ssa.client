@@ -13,4 +13,12 @@ class SkillRepository {
   Future<Skill> findById(int id) async {
     return skillProvider.getById(id);
   }
+
+  Future<Skill> create(Skill skill) async {
+    return skillProvider.create(skill);
+  }
+
+  Future<Skill> update(Skill skill) async {
+    return skillProvider.update(skill);
+  }
 }

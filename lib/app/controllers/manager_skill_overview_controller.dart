@@ -5,6 +5,8 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerSkillOverviewController extends GetxController {
+  static ManagerSkillOverviewController get to => Get.find();
+
   final skillRepo = Get.find<ManagerStaffSkillRepository>();
   final userRepo = Get.find<UserRepository>();
 
@@ -13,11 +15,17 @@ class ManagerSkillOverviewController extends GetxController {
   final error = "".obs;
   Rx<ManagerStaffSkill>? skill;
 
+  final _skillName = "Skill Overview".obs;
+  String get skillName => _skillName.value;
+
   final parameters = Get.parameters;
 
   @override
   void onInit() async {
     super.onInit();
+    if (parameters["name"] != null) {
+      _skillName.value = parameters["name"]!;
+    }
     await getSkill(parameters["id"]!);
   }
 
@@ -53,5 +61,10 @@ class ManagerSkillOverviewController extends GetxController {
     } else {
       Get.snackbar("Delete", "Skill would be deleted now");
     }
+  }
+
+  Future<void> refresh() async {
+    await getSkill(skill!.value.id.toString());
+    _skillName.value = skill!.value.name;
   }
 }

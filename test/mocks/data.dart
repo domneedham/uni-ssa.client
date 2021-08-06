@@ -12,7 +12,7 @@ class TestData {
   static Category get mockCategoryOne =>
       Category(id: 1, name: "Test Category One", icon: Icons.ac_unit);
   static Category get mockCategoryTwo =>
-      Category(id: 1, name: "Test Category Two", icon: Icons.access_alarm);
+      Category(id: 2, name: "Test Category Two", icon: Icons.access_alarm);
 
   /// [Skill] class
   static Skill get mockSkillOne =>

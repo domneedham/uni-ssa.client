@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/ui/global_widgets/future_state_text.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
-import 'package:ssa_app/app/ui/global_widgets/page_title.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_category_title.dart';
 import '../../../controllers/manager_skill_overview_controller.dart';
 import 'manager_skill_overview_user_list.dart';
 
 class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
-  final id = Get.parameters["id"]!;
-  final name = Get.parameters["name"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name ?? 'Skill Overview'),
+        title: Obx(() => Text(controller.skillName)),
         actions: [
           IconButton(
             onPressed: controller.editSkill,
@@ -32,8 +29,7 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
           return ListView(
             physics: ClampingScrollPhysics(),
             children: [
-              if (name == null) PageTitle(text: skill.name),
-              if (name != null) SizedBox(height: 16),
+              SizedBox(height: 16),
               SkillCategoryTitle(category: skill.category),
               SizedBox(height: 24),
               Padding(

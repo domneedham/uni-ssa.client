@@ -54,7 +54,7 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {"id": "1", "name": skillOne.name};
 
       await tester
           .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
