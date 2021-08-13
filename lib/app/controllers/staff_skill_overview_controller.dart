@@ -152,6 +152,7 @@ class StaffSkillOverviewController extends GetxController {
       if (parameters.assign != AppRouteParameterValues.FALSE) {
         await staffSkillRepo.saveNew(editedSkill);
       }
+      Get.snackbar("Success", "Skill saved");
     } catch (e) {
       Get.snackbar("Failed to save", e.toString());
     }

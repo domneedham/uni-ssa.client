@@ -13,7 +13,7 @@ class UserRepository {
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;
 
-  User get user => manager;
+  User get user => staff;
 
   final staff = Staff(
     id: 1,

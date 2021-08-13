@@ -4,10 +4,12 @@ import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/home_controller.dart';
 import 'package:ssa_app/app/controllers/staff_skill_overview_controller.dart';
 import 'package:ssa_app/app/routes/app_route_parameters.dart';
+import 'package:ssa_app/app/ui/pages/staff_skill_overview_page/staff_skill_overview_page.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 import '../mocks/data.dart';
 import '../mocks/mocks.dart';
+import '../testable_widget.dart';
 
 void main() {
   final staffOne = TestData.mockStaffWithNonExpirySkills;
@@ -355,7 +357,7 @@ void main() {
   });
 
   group('save method', () {
-    test('does nothing if not edited skill', () async {
+    testWidgets('does nothing if not edited skill', (tester) async {
       final mockUserRepo = TestMocks.userRepository;
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
@@ -370,16 +372,22 @@ void main() {
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserRepo.staff).thenReturn(staffOne);
 
+      // need to pump for snackbar
+      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester.pumpAndSettle();
+
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
 
       await controller.saveEditedSkill();
+      // let the snackbar run
+      await tester.pump(Duration(seconds: 5));
 
       verifyNever(mockStaffSkillRepo.saveEdited(any));
       verifyNever(mockStaffSkillRepo.saveNew(any));
     });
 
-    test('calls save edited if edit parameter is true', () async {
+    testWidgets('calls save edited if edit parameter is true', (tester) async {
       final mockUserRepo = TestMocks.userRepository;
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
@@ -397,6 +405,10 @@ void main() {
       when(mockStaffSkillRepo.saveEdited(any))
           .thenAnswer((_) async => skillWithExpiry);
 
+      // need to pump for snackbar
+      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester.pumpAndSettle();
+
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       controller.skill = skillWithExpiry.obs;
@@ -405,12 +417,14 @@ void main() {
       controller.isEdited.value = true;
 
       await controller.saveEditedSkill();
+      // let the snackbar run
+      await tester.pump(Duration(seconds: 5));
 
       verify(mockStaffSkillRepo.saveEdited(any)).called(1);
       verifyNever(mockStaffSkillRepo.saveNew(any));
     });
 
-    test('calls save new if assign parameter is true', () async {
+    testWidgets('calls save new if assign parameter is true', (tester) async {
       final mockUserRepo = TestMocks.userRepository;
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final mockSkillRepo = TestMocks.skillRepository;
@@ -429,6 +443,10 @@ void main() {
       when(mockStaffSkillRepo.saveNew(any))
           .thenAnswer((_) async => skillWithExpiry);
 
+      // need to pump for snackbar
+      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester.pumpAndSettle();
+
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
       controller.skill = skillWithExpiry.obs;
@@ -437,6 +455,8 @@ void main() {
       controller.isEdited.value = true;
 
       await controller.saveEditedSkill();
+      // let the snackbar run
+      await tester.pump(Duration(seconds: 5));
 
       verifyNever(mockStaffSkillRepo.saveEdited(any));
       verify(mockStaffSkillRepo.saveNew(any)).called(1);
