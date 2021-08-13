@@ -14,7 +14,7 @@ class ManagerSkillTabController extends GetxController {
   final ManagerStaffSkillRepository skillRepo =
       Get.find<ManagerStaffSkillRepository>();
 
-  Manager get user => userRepo.manager;
+  Manager get user => userRepo.user as Manager;
 
   final viewType = SkillListViewType.LIST.obs;
 

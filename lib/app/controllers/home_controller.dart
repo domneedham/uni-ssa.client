@@ -6,23 +6,31 @@ import 'package:ssa_app/app/routes/app_pages.dart';
 class HomeController extends GetxController {
   final UserRepository repo = Get.find<UserRepository>();
 
-  User get user => repo.user;
+  User? get user => repo.user;
+  RxBool get loggedIn => repo.loggedIn;
 
   final RxDouble size = 96.0.obs;
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
 
     size.value = 192;
 
-    // simulate loading the user
-    Future.delayed(Duration(seconds: 2), () {
-      if (user.isManager) {
-        Get.offAllNamed(Routes.MANAGER_HOME);
-      } else if (user.isStaff) {
-        Get.offAllNamed(Routes.STAFF_HOME);
-      }
+    navigate(user);
+
+    ever(loggedIn, (bool value) {
+      navigate(user);
     });
+  }
+
+  void navigate(User? user) {
+    if (user == null) {
+      Get.toNamed(Routes.LOGIN);
+    } else if (user.isManager) {
+      Get.toNamed(Routes.MANAGER_HOME);
+    } else if (user.isStaff) {
+      Get.toNamed(Routes.STAFF_HOME);
+    }
   }
 }

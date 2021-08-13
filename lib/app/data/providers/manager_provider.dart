@@ -4,6 +4,8 @@ import 'package:ssa_app/app/data/models/user/manager.dart';
 abstract class IManagerProvider {
   Future<Response<Manager>> getManagerById(int id);
   Future<Response<List<Manager>>> searchManagerByName(String name);
+
+  Future<Response<Manager>> getManagerByEmail(String email);
 }
 
 class ManagerProvider extends GetConnect implements IManagerProvider {
@@ -36,5 +38,10 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
   @override
   Future<Response<List<Manager>>> searchManagerByName(String name) {
     return get('/search/$name', decoder: (val) => _decodeManagerList(val));
+  }
+
+  @override
+  Future<Response<Manager>> getManagerByEmail(String email) {
+    return get('/email/$email', decoder: (val) => _decodeManager(val));
   }
 }

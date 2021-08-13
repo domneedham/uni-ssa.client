@@ -5,5 +5,5 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 class ManagerMoreTabController extends GetxController {
   final userRepo = Get.find<UserRepository>();
 
-  Manager get user => userRepo.manager;
+  Manager get user => userRepo.user as Manager;
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/exceptions/failed_to_update.dart';
 
@@ -9,9 +10,16 @@ abstract class IStaffProvider {
   Future<Response<List<Staff>>> searchStaffByName(String name);
 
   Future<Staff> updateDetails(Staff staff);
+
+  Future<Response<Staff>> getStaffByEmail(String email);
 }
 
 class StaffProvider extends GetConnect implements IStaffProvider {
+  Map<String, String> get headers {
+    final token = GetStorage().read('access_token');
+    return {'Authorization': "Bearer $token"};
+  }
+
   @override
   void onInit() {
     httpClient.baseUrl = "http://localhost:8080/api/staff";
@@ -63,5 +71,14 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     }
 
     return staff;
+  }
+
+  @override
+  Future<Response<Staff>> getStaffByEmail(String email) async {
+    return get(
+      '/email/$email',
+      decoder: (val) => _decodeStaff(val),
+      headers: headers,
+    );
   }
 }

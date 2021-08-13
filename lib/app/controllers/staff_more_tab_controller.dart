@@ -6,7 +6,7 @@ import 'package:ssa_app/app/routes/app_pages.dart';
 class StaffMoreTabController extends GetxController {
   final userRepo = Get.find<UserRepository>();
 
-  Staff get user => userRepo.staff;
+  Staff get user => userRepo.user as Staff;
 
   void navigateToEditDetails() {
     Get.toNamed(Routes.STAFF_EDIT_DETAILS);
