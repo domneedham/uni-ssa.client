@@ -2,31 +2,32 @@
 // in ssa_app/test/mocks/gen_repo_mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i17;
+import 'dart:async' as _i18;
 
-import 'package:get/get.dart' as _i15;
+import 'package:get/get.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:ssa_app/app/data/models/skill/category.dart' as _i12;
-import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i10;
-import 'package:ssa_app/app/data/models/skill/skill.dart' as _i14;
-import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i8;
-import 'package:ssa_app/app/data/models/user/manager.dart' as _i5;
-import 'package:ssa_app/app/data/models/user/staff.dart' as _i4;
+import 'package:ssa_app/app/data/models/skill/category.dart' as _i14;
+import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart' as _i12;
+import 'package:ssa_app/app/data/models/skill/skill.dart' as _i16;
+import 'package:ssa_app/app/data/models/skill/staff_skill.dart' as _i10;
+import 'package:ssa_app/app/data/models/user/manager.dart' as _i8;
+import 'package:ssa_app/app/data/models/user/staff.dart' as _i7;
 import 'package:ssa_app/app/data/models/user/user.dart' as _i6;
-import 'package:ssa_app/app/data/providers/category_provider.dart' as _i11;
+import 'package:ssa_app/app/data/providers/auth_provider.dart' as _i4;
+import 'package:ssa_app/app/data/providers/category_provider.dart' as _i13;
 import 'package:ssa_app/app/data/providers/manager_provider.dart' as _i3;
 import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart'
-    as _i9;
-import 'package:ssa_app/app/data/providers/skill_provider.dart' as _i13;
+    as _i11;
+import 'package:ssa_app/app/data/providers/skill_provider.dart' as _i15;
 import 'package:ssa_app/app/data/providers/staff_provider.dart' as _i2;
-import 'package:ssa_app/app/data/providers/staff_skill_provider.dart' as _i7;
-import 'package:ssa_app/app/data/repository/category_repository.dart' as _i20;
+import 'package:ssa_app/app/data/providers/staff_skill_provider.dart' as _i9;
+import 'package:ssa_app/app/data/repository/category_repository.dart' as _i21;
 import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart'
-    as _i19;
-import 'package:ssa_app/app/data/repository/skill_repository.dart' as _i21;
+    as _i20;
+import 'package:ssa_app/app/data/repository/skill_repository.dart' as _i22;
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart'
-    as _i18;
-import 'package:ssa_app/app/data/repository/user_repository.dart' as _i16;
+    as _i19;
+import 'package:ssa_app/app/data/repository/user_repository.dart' as _i17;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -40,50 +41,54 @@ class _FakeIStaffProvider extends _i1.Fake implements _i2.IStaffProvider {}
 
 class _FakeIManagerProvider extends _i1.Fake implements _i3.IManagerProvider {}
 
-class _FakeStaff extends _i1.Fake implements _i4.Staff {}
+class _FakeIAuthProvider extends _i1.Fake implements _i4.IAuthProvider {}
 
-class _FakeManager extends _i1.Fake implements _i5.Manager {}
+class _FakeRxBool extends _i1.Fake implements _i5.RxBool {}
 
 class _FakeUser extends _i1.Fake implements _i6.User {}
 
-class _FakeIStaffSkillProvider extends _i1.Fake
-    implements _i7.IStaffSkillProvider {}
+class _FakeStaff extends _i1.Fake implements _i7.Staff {}
 
-class _FakeStaffSkill extends _i1.Fake implements _i8.StaffSkill {}
+class _FakeManager extends _i1.Fake implements _i8.Manager {}
+
+class _FakeIStaffSkillProvider extends _i1.Fake
+    implements _i9.IStaffSkillProvider {}
+
+class _FakeStaffSkill extends _i1.Fake implements _i10.StaffSkill {}
 
 class _FakeIManagerStaffSkillProvider extends _i1.Fake
-    implements _i9.IManagerStaffSkillProvider {}
+    implements _i11.IManagerStaffSkillProvider {}
 
 class _FakeManagerStaffSkill extends _i1.Fake
-    implements _i10.ManagerStaffSkill {}
+    implements _i12.ManagerStaffSkill {}
 
 class _FakeICategoryProvider extends _i1.Fake
-    implements _i11.ICategoryProvider {}
+    implements _i13.ICategoryProvider {}
 
-class _FakeCategory extends _i1.Fake implements _i12.Category {}
+class _FakeCategory extends _i1.Fake implements _i14.Category {}
 
-class _FakeISkillProvider extends _i1.Fake implements _i13.ISkillProvider {}
+class _FakeISkillProvider extends _i1.Fake implements _i15.ISkillProvider {}
 
-class _FakeSkill extends _i1.Fake implements _i14.Skill {}
+class _FakeSkill extends _i1.Fake implements _i16.Skill {}
 
 class _FakeDuration extends _i1.Fake implements Duration {}
 
-class _FakeGetHttpClient extends _i1.Fake implements _i15.GetHttpClient {}
+class _FakeGetHttpClient extends _i1.Fake implements _i5.GetHttpClient {}
 
 class _FakeInternalFinalCallback<T> extends _i1.Fake
-    implements _i15.InternalFinalCallback<T> {}
+    implements _i5.InternalFinalCallback<T> {}
 
-class _FakeResponse<T> extends _i1.Fake implements _i15.Response<T> {}
+class _FakeResponse<T> extends _i1.Fake implements _i5.Response<T> {}
 
-class _FakeGetSocket extends _i1.Fake implements _i15.GetSocket {}
+class _FakeGetSocket extends _i1.Fake implements _i5.GetSocket {}
 
 class _FakeGraphQLResponse<T> extends _i1.Fake
-    implements _i15.GraphQLResponse<T> {}
+    implements _i5.GraphQLResponse<T> {}
 
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i16.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i17.UserRepository {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -97,195 +102,196 @@ class MockUserRepository extends _i1.Mock implements _i16.UserRepository {
       (super.noSuchMethod(Invocation.getter(#managerProvider),
           returnValue: _FakeIManagerProvider()) as _i3.IManagerProvider);
   @override
-  _i4.Staff get staff =>
-      (super.noSuchMethod(Invocation.getter(#staff), returnValue: _FakeStaff())
-          as _i4.Staff);
+  _i4.IAuthProvider get authProvider =>
+      (super.noSuchMethod(Invocation.getter(#authProvider),
+          returnValue: _FakeIAuthProvider()) as _i4.IAuthProvider);
   @override
-  _i5.Manager get manager => (super.noSuchMethod(Invocation.getter(#manager),
-      returnValue: _FakeManager()) as _i5.Manager);
+  _i5.RxBool get loggedIn => (super.noSuchMethod(Invocation.getter(#loggedIn),
+      returnValue: _FakeRxBool()) as _i5.RxBool);
   @override
-  _i6.User get user =>
-      (super.noSuchMethod(Invocation.getter(#user), returnValue: _FakeUser())
-          as _i6.User);
+  _i18.Future<_i6.User> login(String? email, String? password) =>
+      (super.noSuchMethod(Invocation.method(#login, [email, password]),
+              returnValue: Future<_i6.User>.value(_FakeUser()))
+          as _i18.Future<_i6.User>);
   @override
-  _i17.Future<_i4.Staff> getStaffById(int? id) =>
+  _i18.Future<_i7.Staff> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
-              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
-          as _i17.Future<_i4.Staff>);
+              returnValue: Future<_i7.Staff>.value(_FakeStaff()))
+          as _i18.Future<_i7.Staff>);
   @override
-  _i17.Future<_i5.Manager> getManagerById(int? id) =>
+  _i18.Future<_i8.Manager> getManagerById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
-              returnValue: Future<_i5.Manager>.value(_FakeManager()))
-          as _i17.Future<_i5.Manager>);
+              returnValue: Future<_i8.Manager>.value(_FakeManager()))
+          as _i18.Future<_i8.Manager>);
   @override
-  _i17.Future<List<_i4.Staff>> searchStaffByName(String? searchText) =>
+  _i18.Future<List<_i7.Staff>> searchStaffByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
-              returnValue: Future<List<_i4.Staff>>.value(<_i4.Staff>[]))
-          as _i17.Future<List<_i4.Staff>>);
+              returnValue: Future<List<_i7.Staff>>.value(<_i7.Staff>[]))
+          as _i18.Future<List<_i7.Staff>>);
   @override
-  _i17.Future<List<_i5.Manager>> searchManagerByName(String? searchText) =>
+  _i18.Future<List<_i8.Manager>> searchManagerByName(String? searchText) =>
       (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
-              returnValue: Future<List<_i5.Manager>>.value(<_i5.Manager>[]))
-          as _i17.Future<List<_i5.Manager>>);
+              returnValue: Future<List<_i8.Manager>>.value(<_i8.Manager>[]))
+          as _i18.Future<List<_i8.Manager>>);
   @override
-  _i17.Future<_i4.Staff> updateStaffDetails(_i4.Staff? s) =>
+  _i18.Future<_i7.Staff> updateStaffDetails(_i7.Staff? s) =>
       (super.noSuchMethod(Invocation.method(#updateStaffDetails, [s]),
-              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
-          as _i17.Future<_i4.Staff>);
+              returnValue: Future<_i7.Staff>.value(_FakeStaff()))
+          as _i18.Future<_i7.Staff>);
 }
 
 /// A class which mocks [StaffSkillRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockStaffSkillRepository extends _i1.Mock
-    implements _i18.StaffSkillRepository {
+    implements _i19.StaffSkillRepository {
   MockStaffSkillRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.IStaffSkillProvider get staffSkillProvider =>
+  _i9.IStaffSkillProvider get staffSkillProvider =>
       (super.noSuchMethod(Invocation.getter(#staffSkillProvider),
-          returnValue: _FakeIStaffSkillProvider()) as _i7.IStaffSkillProvider);
+          returnValue: _FakeIStaffSkillProvider()) as _i9.IStaffSkillProvider);
   @override
-  _i17.Future<List<_i8.StaffSkill>> get skills => (super.noSuchMethod(
+  _i18.Future<List<_i10.StaffSkill>> get skills => (super.noSuchMethod(
           Invocation.getter(#skills),
-          returnValue: Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
-      as _i17.Future<List<_i8.StaffSkill>>);
+          returnValue: Future<List<_i10.StaffSkill>>.value(<_i10.StaffSkill>[]))
+      as _i18.Future<List<_i10.StaffSkill>>);
   @override
-  _i17.Future<_i8.StaffSkill> getSkillById(int? id) =>
+  _i18.Future<_i10.StaffSkill> getSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getSkillById, [id]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<List<_i8.StaffSkill>> getSkillsForUser(int? id) =>
+  _i18.Future<List<_i10.StaffSkill>> getSkillsForUser(int? id) =>
       (super.noSuchMethod(Invocation.method(#getSkillsForUser, [id]),
               returnValue:
-                  Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
-          as _i17.Future<List<_i8.StaffSkill>>);
+                  Future<List<_i10.StaffSkill>>.value(<_i10.StaffSkill>[]))
+          as _i18.Future<List<_i10.StaffSkill>>);
   @override
-  _i17.Future<_i8.StaffSkill> saveEdited(_i8.StaffSkill? skill) =>
+  _i18.Future<_i10.StaffSkill> saveEdited(_i10.StaffSkill? skill) =>
       (super.noSuchMethod(Invocation.method(#saveEdited, [skill]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<_i8.StaffSkill> saveNew(_i8.StaffSkill? skill) =>
+  _i18.Future<_i10.StaffSkill> saveNew(_i10.StaffSkill? skill) =>
       (super.noSuchMethod(Invocation.method(#saveNew, [skill]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
 }
 
 /// A class which mocks [ManagerStaffSkillRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockManagerStaffSkillRepository extends _i1.Mock
-    implements _i19.ManagerStaffSkillRepository {
+    implements _i20.ManagerStaffSkillRepository {
   MockManagerStaffSkillRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.IManagerStaffSkillProvider get managerStaffSkillProvider =>
+  _i11.IManagerStaffSkillProvider get managerStaffSkillProvider =>
       (super.noSuchMethod(Invocation.getter(#managerStaffSkillProvider),
               returnValue: _FakeIManagerStaffSkillProvider())
-          as _i9.IManagerStaffSkillProvider);
+          as _i11.IManagerStaffSkillProvider);
   @override
-  _i17.Future<List<_i10.ManagerStaffSkill>> get skills =>
+  _i18.Future<List<_i12.ManagerStaffSkill>> get skills =>
       (super.noSuchMethod(Invocation.getter(#skills),
-              returnValue: Future<List<_i10.ManagerStaffSkill>>.value(
-                  <_i10.ManagerStaffSkill>[]))
-          as _i17.Future<List<_i10.ManagerStaffSkill>>);
+              returnValue: Future<List<_i12.ManagerStaffSkill>>.value(
+                  <_i12.ManagerStaffSkill>[]))
+          as _i18.Future<List<_i12.ManagerStaffSkill>>);
   @override
-  _i17.Future<_i10.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
+  _i18.Future<_i12.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue: Future<_i10.ManagerStaffSkill>.value(
+              returnValue: Future<_i12.ManagerStaffSkill>.value(
                   _FakeManagerStaffSkill()))
-          as _i17.Future<_i10.ManagerStaffSkill>);
+          as _i18.Future<_i12.ManagerStaffSkill>);
 }
 
 /// A class which mocks [CategoryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCategoryRepository extends _i1.Mock
-    implements _i20.CategoryRepository {
+    implements _i21.CategoryRepository {
   MockCategoryRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i11.ICategoryProvider get categoryProvider =>
+  _i13.ICategoryProvider get categoryProvider =>
       (super.noSuchMethod(Invocation.getter(#categoryProvider),
-          returnValue: _FakeICategoryProvider()) as _i11.ICategoryProvider);
+          returnValue: _FakeICategoryProvider()) as _i13.ICategoryProvider);
   @override
-  _i17.Future<List<_i12.Category>> get categories =>
+  _i18.Future<List<_i14.Category>> get categories =>
       (super.noSuchMethod(Invocation.getter(#categories),
-              returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
-          as _i17.Future<List<_i12.Category>>);
+              returnValue: Future<List<_i14.Category>>.value(<_i14.Category>[]))
+          as _i18.Future<List<_i14.Category>>);
   @override
-  _i17.Future<_i12.Category> getCategoryById(int? id) =>
+  _i18.Future<_i14.Category> getCategoryById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory()))
-          as _i17.Future<_i12.Category>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<_i12.Category> createCategory(_i12.Category? category) =>
+  _i18.Future<_i14.Category> createCategory(_i14.Category? category) =>
       (super.noSuchMethod(Invocation.method(#createCategory, [category]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory()))
-          as _i17.Future<_i12.Category>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<_i12.Category> updateCategory(_i12.Category? category) =>
+  _i18.Future<_i14.Category> updateCategory(_i14.Category? category) =>
       (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory()))
-          as _i17.Future<_i12.Category>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
+  _i18.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
       Invocation.method(#deleteCategory, [id]),
       returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
+      returnValueForMissingStub: Future<void>.value()) as _i18.Future<void>);
 }
 
 /// A class which mocks [SkillRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSkillRepository extends _i1.Mock implements _i21.SkillRepository {
+class MockSkillRepository extends _i1.Mock implements _i22.SkillRepository {
   MockSkillRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i13.ISkillProvider get skillProvider =>
+  _i15.ISkillProvider get skillProvider =>
       (super.noSuchMethod(Invocation.getter(#skillProvider),
-          returnValue: _FakeISkillProvider()) as _i13.ISkillProvider);
+          returnValue: _FakeISkillProvider()) as _i15.ISkillProvider);
   @override
-  _i17.Future<List<_i14.Skill>> searchByName(String? name) =>
+  _i18.Future<List<_i16.Skill>> searchByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchByName, [name]),
-              returnValue: Future<List<_i14.Skill>>.value(<_i14.Skill>[]))
-          as _i17.Future<List<_i14.Skill>>);
+              returnValue: Future<List<_i16.Skill>>.value(<_i16.Skill>[]))
+          as _i18.Future<List<_i16.Skill>>);
   @override
-  _i17.Future<_i14.Skill> findById(int? id) =>
+  _i18.Future<_i16.Skill> findById(int? id) =>
       (super.noSuchMethod(Invocation.method(#findById, [id]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<_i14.Skill> create(_i14.Skill? skill) =>
+  _i18.Future<_i16.Skill> create(_i16.Skill? skill) =>
       (super.noSuchMethod(Invocation.method(#create, [skill]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<_i14.Skill> update(_i14.Skill? skill) =>
+  _i18.Future<_i16.Skill> update(_i16.Skill? skill) =>
       (super.noSuchMethod(Invocation.method(#update, [skill]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<void> delete(int? id) => (super.noSuchMethod(
+  _i18.Future<void> delete(int? id) => (super.noSuchMethod(
       Invocation.method(#delete, [id]),
       returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
+      returnValueForMissingStub: Future<void>.value()) as _i18.Future<void>);
 }
 
 /// A class which mocks [CategoryProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
+class MockCategoryProvider extends _i1.Mock implements _i13.CategoryProvider {
   MockCategoryProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -351,7 +357,7 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -362,8 +368,7 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -376,19 +381,19 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -400,51 +405,49 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<List<_i12.Category>>> getAllCategories() =>
+  _i18.Future<List<_i14.Category>> getAllCategories() =>
       (super.noSuchMethod(Invocation.method(#getAllCategories, []),
-              returnValue: Future<_i15.Response<List<_i12.Category>>>.value(
-                  _FakeResponse<List<_i12.Category>>()))
-          as _i17.Future<_i15.Response<List<_i12.Category>>>);
+              returnValue: Future<List<_i14.Category>>.value(<_i14.Category>[]))
+          as _i18.Future<List<_i14.Category>>);
   @override
-  _i17.Future<_i15.Response<_i12.Category>> getCategoryById(int? id) =>
+  _i18.Future<_i14.Category> getCategoryById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
-              returnValue: Future<_i15.Response<_i12.Category>>.value(
-                  _FakeResponse<_i12.Category>()))
-          as _i17.Future<_i15.Response<_i12.Category>>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<_i12.Category> createCategory(_i12.Category? category) =>
+  _i18.Future<_i14.Category> createCategory(_i14.Category? category) =>
       (super.noSuchMethod(Invocation.method(#createCategory, [category]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory()))
-          as _i17.Future<_i12.Category>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<_i12.Category> updateCategory(_i12.Category? category) =>
+  _i18.Future<_i14.Category> updateCategory(_i14.Category? category) =>
       (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory()))
-          as _i17.Future<_i12.Category>);
+              returnValue: Future<_i14.Category>.value(_FakeCategory()))
+          as _i18.Future<_i14.Category>);
   @override
-  _i17.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
+  _i18.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
       Invocation.method(#deleteCategory, [id]),
       returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
+      returnValueForMissingStub: Future<void>.value()) as _i18.Future<void>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -454,15 +457,15 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -474,15 +477,15 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -494,15 +497,15 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -514,16 +517,16 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -536,14 +539,14 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -553,35 +556,35 @@ class MockCategoryProvider extends _i1.Mock implements _i11.CategoryProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -666,7 +669,7 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -677,8 +680,7 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -691,19 +693,19 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -715,37 +717,39 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<_i5.Manager>> getManagerById(int? id) =>
+  _i18.Future<_i8.Manager> getManagerById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getManagerById, [id]),
-              returnValue: Future<_i15.Response<_i5.Manager>>.value(
-                  _FakeResponse<_i5.Manager>()))
-          as _i17.Future<_i15.Response<_i5.Manager>>);
+              returnValue: Future<_i8.Manager>.value(_FakeManager()))
+          as _i18.Future<_i8.Manager>);
   @override
-  _i17.Future<_i15.Response<List<_i5.Manager>>> searchManagerByName(
-          String? name) =>
+  _i18.Future<List<_i8.Manager>> searchManagerByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchManagerByName, [name]),
-              returnValue: Future<_i15.Response<List<_i5.Manager>>>.value(
-                  _FakeResponse<List<_i5.Manager>>()))
-          as _i17.Future<_i15.Response<List<_i5.Manager>>>);
+              returnValue: Future<List<_i8.Manager>>.value(<_i8.Manager>[]))
+          as _i18.Future<List<_i8.Manager>>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i8.Manager> getManagerByEmail(String? email) =>
+      (super.noSuchMethod(Invocation.method(#getManagerByEmail, [email]),
+              returnValue: Future<_i8.Manager>.value(_FakeManager()))
+          as _i18.Future<_i8.Manager>);
+  @override
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -755,15 +759,15 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -775,15 +779,15 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -795,15 +799,15 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -815,16 +819,16 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -837,14 +841,14 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -854,35 +858,35 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -902,7 +906,7 @@ class MockManagerProvider extends _i1.Mock implements _i3.ManagerProvider {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockManagerStaffSkillProvider extends _i1.Mock
-    implements _i9.ManagerStaffSkillProvider {
+    implements _i11.ManagerStaffSkillProvider {
   MockManagerStaffSkillProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -968,7 +972,7 @@ class MockManagerStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -979,8 +983,7 @@ class MockManagerStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -993,19 +996,19 @@ class MockManagerStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -1017,37 +1020,36 @@ class MockManagerStaffSkillProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<List<_i10.ManagerStaffSkill>>> getAll() =>
+  _i18.Future<List<_i12.ManagerStaffSkill>> getAll() =>
       (super.noSuchMethod(Invocation.method(#getAll, []),
-              returnValue:
-                  Future<_i15.Response<List<_i10.ManagerStaffSkill>>>.value(
-                      _FakeResponse<List<_i10.ManagerStaffSkill>>()))
-          as _i17.Future<_i15.Response<List<_i10.ManagerStaffSkill>>>);
+              returnValue: Future<List<_i12.ManagerStaffSkill>>.value(
+                  <_i12.ManagerStaffSkill>[]))
+          as _i18.Future<List<_i12.ManagerStaffSkill>>);
   @override
-  _i17.Future<_i15.Response<_i10.ManagerStaffSkill>> getById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getById, [id]),
-              returnValue: Future<_i15.Response<_i10.ManagerStaffSkill>>.value(
-                  _FakeResponse<_i10.ManagerStaffSkill>()))
-          as _i17.Future<_i15.Response<_i10.ManagerStaffSkill>>);
+  _i18.Future<_i12.ManagerStaffSkill> getById(int? id) => (super.noSuchMethod(
+          Invocation.method(#getById, [id]),
+          returnValue:
+              Future<_i12.ManagerStaffSkill>.value(_FakeManagerStaffSkill()))
+      as _i18.Future<_i12.ManagerStaffSkill>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -1057,15 +1059,15 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -1077,15 +1079,15 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -1097,15 +1099,15 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -1117,16 +1119,16 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -1139,14 +1141,14 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -1156,35 +1158,35 @@ class MockManagerStaffSkillProvider extends _i1.Mock
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -1203,7 +1205,7 @@ class MockManagerStaffSkillProvider extends _i1.Mock
 /// A class which mocks [SkillProvider].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
+class MockSkillProvider extends _i1.Mock implements _i15.SkillProvider {
   MockSkillProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -1269,7 +1271,7 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -1280,8 +1282,7 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -1294,19 +1295,19 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -1318,56 +1319,54 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<List<_i14.Skill>>> getAll() =>
+  _i18.Future<List<_i16.Skill>> getAll() =>
       (super.noSuchMethod(Invocation.method(#getAll, []),
-              returnValue: Future<_i15.Response<List<_i14.Skill>>>.value(
-                  _FakeResponse<List<_i14.Skill>>()))
-          as _i17.Future<_i15.Response<List<_i14.Skill>>>);
+              returnValue: Future<List<_i16.Skill>>.value(<_i16.Skill>[]))
+          as _i18.Future<List<_i16.Skill>>);
   @override
-  _i17.Future<_i14.Skill> getById(int? id) =>
+  _i18.Future<_i16.Skill> getById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getById, [id]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<_i15.Response<List<_i14.Skill>>> searchByName(String? name) =>
+  _i18.Future<List<_i16.Skill>> searchByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchByName, [name]),
-              returnValue: Future<_i15.Response<List<_i14.Skill>>>.value(
-                  _FakeResponse<List<_i14.Skill>>()))
-          as _i17.Future<_i15.Response<List<_i14.Skill>>>);
+              returnValue: Future<List<_i16.Skill>>.value(<_i16.Skill>[]))
+          as _i18.Future<List<_i16.Skill>>);
   @override
-  _i17.Future<_i14.Skill> create(_i14.Skill? skill) =>
+  _i18.Future<_i16.Skill> create(_i16.Skill? skill) =>
       (super.noSuchMethod(Invocation.method(#create, [skill]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<_i14.Skill> update(_i14.Skill? skill) =>
+  _i18.Future<_i16.Skill> update(_i16.Skill? skill) =>
       (super.noSuchMethod(Invocation.method(#update, [skill]),
-              returnValue: Future<_i14.Skill>.value(_FakeSkill()))
-          as _i17.Future<_i14.Skill>);
+              returnValue: Future<_i16.Skill>.value(_FakeSkill()))
+          as _i18.Future<_i16.Skill>);
   @override
-  _i17.Future<void> deleteSkill(int? id) => (super.noSuchMethod(
+  _i18.Future<void> deleteSkill(int? id) => (super.noSuchMethod(
       Invocation.method(#deleteSkill, [id]),
       returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value()) as _i17.Future<void>);
+      returnValueForMissingStub: Future<void>.value()) as _i18.Future<void>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -1377,15 +1376,15 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -1397,15 +1396,15 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -1417,15 +1416,15 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -1437,16 +1436,16 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -1459,14 +1458,14 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -1476,35 +1475,35 @@ class MockSkillProvider extends _i1.Mock implements _i13.SkillProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -1589,7 +1588,7 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -1600,8 +1599,7 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -1614,19 +1612,19 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -1638,41 +1636,44 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<_i4.Staff>> getStaffById(int? id) =>
+  _i18.Future<_i7.Staff> getStaffById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getStaffById, [id]),
-              returnValue: Future<_i15.Response<_i4.Staff>>.value(
-                  _FakeResponse<_i4.Staff>()))
-          as _i17.Future<_i15.Response<_i4.Staff>>);
+              returnValue: Future<_i7.Staff>.value(_FakeStaff()))
+          as _i18.Future<_i7.Staff>);
   @override
-  _i17.Future<_i15.Response<List<_i4.Staff>>> searchStaffByName(String? name) =>
+  _i18.Future<List<_i7.Staff>> searchStaffByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchStaffByName, [name]),
-              returnValue: Future<_i15.Response<List<_i4.Staff>>>.value(
-                  _FakeResponse<List<_i4.Staff>>()))
-          as _i17.Future<_i15.Response<List<_i4.Staff>>>);
+              returnValue: Future<List<_i7.Staff>>.value(<_i7.Staff>[]))
+          as _i18.Future<List<_i7.Staff>>);
   @override
-  _i17.Future<_i4.Staff> updateDetails(_i4.Staff? staff) =>
+  _i18.Future<_i7.Staff> updateDetails(_i7.Staff? staff) =>
       (super.noSuchMethod(Invocation.method(#updateDetails, [staff]),
-              returnValue: Future<_i4.Staff>.value(_FakeStaff()))
-          as _i17.Future<_i4.Staff>);
+              returnValue: Future<_i7.Staff>.value(_FakeStaff()))
+          as _i18.Future<_i7.Staff>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i7.Staff> getStaffByEmail(String? email) =>
+      (super.noSuchMethod(Invocation.method(#getStaffByEmail, [email]),
+              returnValue: Future<_i7.Staff>.value(_FakeStaff()))
+          as _i18.Future<_i7.Staff>);
+  @override
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -1682,15 +1683,15 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -1702,15 +1703,15 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -1722,15 +1723,15 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -1742,16 +1743,16 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -1764,14 +1765,14 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -1781,35 +1782,35 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -1829,7 +1830,7 @@ class MockStaffProvider extends _i1.Mock implements _i2.StaffProvider {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockStaffSkillProvider extends _i1.Mock
-    implements _i7.StaffSkillProvider {
+    implements _i9.StaffSkillProvider {
   MockStaffSkillProvider() {
     _i1.throwOnMissingStub(this);
   }
@@ -1895,7 +1896,7 @@ class MockStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#maxAuthRetries, _maxAuthRetries),
           returnValueForMissingStub: null);
   @override
-  set defaultDecoder(_i15.Decoder<dynamic>? _defaultDecoder) =>
+  set defaultDecoder(_i5.Decoder<dynamic>? _defaultDecoder) =>
       super.noSuchMethod(Invocation.setter(#defaultDecoder, _defaultDecoder),
           returnValueForMissingStub: null);
   @override
@@ -1906,8 +1907,7 @@ class MockStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#timeout, _timeout),
           returnValueForMissingStub: null);
   @override
-  set trustedCertificates(
-          List<_i15.TrustedCertificate>? _trustedCertificates) =>
+  set trustedCertificates(List<_i5.TrustedCertificate>? _trustedCertificates) =>
       super.noSuchMethod(
           Invocation.setter(#trustedCertificates, _trustedCertificates),
           returnValueForMissingStub: null);
@@ -1920,19 +1920,19 @@ class MockStaffSkillProvider extends _i1.Mock
       super.noSuchMethod(Invocation.setter(#withCredentials, _withCredentials),
           returnValueForMissingStub: null);
   @override
-  List<_i15.GetSocket> get sockets =>
+  List<_i5.GetSocket> get sockets =>
       (super.noSuchMethod(Invocation.getter(#sockets),
-          returnValue: <_i15.GetSocket>[]) as List<_i15.GetSocket>);
+          returnValue: <_i5.GetSocket>[]) as List<_i5.GetSocket>);
   @override
-  _i15.GetHttpClient get httpClient =>
+  _i5.GetHttpClient get httpClient =>
       (super.noSuchMethod(Invocation.getter(#httpClient),
-          returnValue: _FakeGetHttpClient()) as _i15.GetHttpClient);
+          returnValue: _FakeGetHttpClient()) as _i5.GetHttpClient);
   @override
   bool get isDisposed =>
       (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
           as bool);
   @override
-  set sockets(List<_i15.GetSocket>? _sockets) =>
+  set sockets(List<_i5.GetSocket>? _sockets) =>
       super.noSuchMethod(Invocation.setter(#sockets, _sockets),
           returnValueForMissingStub: null);
   @override
@@ -1944,57 +1944,55 @@ class MockStaffSkillProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
           as bool);
   @override
-  _i15.InternalFinalCallback<void> get onStart =>
+  _i5.InternalFinalCallback<void> get onStart =>
       (super.noSuchMethod(Invocation.getter(#onStart),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
-  _i15.InternalFinalCallback<void> get onDelete =>
+  _i5.InternalFinalCallback<void> get onDelete =>
       (super.noSuchMethod(Invocation.getter(#onDelete),
               returnValue: _FakeInternalFinalCallback<void>())
-          as _i15.InternalFinalCallback<void>);
+          as _i5.InternalFinalCallback<void>);
   @override
   void onInit() => super.noSuchMethod(Invocation.method(#onInit, []),
       returnValueForMissingStub: null);
   @override
-  _i17.Future<_i15.Response<List<_i8.StaffSkill>>> getAll() =>
-      (super.noSuchMethod(Invocation.method(#getAll, []),
-              returnValue: Future<_i15.Response<List<_i8.StaffSkill>>>.value(
-                  _FakeResponse<List<_i8.StaffSkill>>()))
-          as _i17.Future<_i15.Response<List<_i8.StaffSkill>>>);
+  _i18.Future<List<_i10.StaffSkill>> getAll() => (super.noSuchMethod(
+          Invocation.method(#getAll, []),
+          returnValue: Future<List<_i10.StaffSkill>>.value(<_i10.StaffSkill>[]))
+      as _i18.Future<List<_i10.StaffSkill>>);
   @override
-  _i17.Future<_i15.Response<_i8.StaffSkill>> getById(int? id, int? sid) =>
+  _i18.Future<_i10.StaffSkill> getById(int? id, int? sid) =>
       (super.noSuchMethod(Invocation.method(#getById, [id, sid]),
-              returnValue: Future<_i15.Response<_i8.StaffSkill>>.value(
-                  _FakeResponse<_i8.StaffSkill>()))
-          as _i17.Future<_i15.Response<_i8.StaffSkill>>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<_i15.Response<List<_i8.StaffSkill>>> getAllForUser(int? id) =>
+  _i18.Future<List<_i10.StaffSkill>> getAllForUser(int? id) =>
       (super.noSuchMethod(Invocation.method(#getAllForUser, [id]),
-              returnValue: Future<_i15.Response<List<_i8.StaffSkill>>>.value(
-                  _FakeResponse<List<_i8.StaffSkill>>()))
-          as _i17.Future<_i15.Response<List<_i8.StaffSkill>>>);
+              returnValue:
+                  Future<List<_i10.StaffSkill>>.value(<_i10.StaffSkill>[]))
+          as _i18.Future<List<_i10.StaffSkill>>);
   @override
-  _i17.Future<_i8.StaffSkill> getByIdDecoded(int? id, int? sid) =>
+  _i18.Future<_i10.StaffSkill> getByIdDecoded(int? id, int? sid) =>
       (super.noSuchMethod(Invocation.method(#getByIdDecoded, [id, sid]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<_i8.StaffSkill> saveEdited(_i8.StaffSkill? skill, int? sid) =>
+  _i18.Future<_i10.StaffSkill> saveEdited(_i10.StaffSkill? skill, int? sid) =>
       (super.noSuchMethod(Invocation.method(#saveEdited, [skill, sid]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<_i8.StaffSkill> saveNew(_i8.StaffSkill? skill, int? sid) =>
+  _i18.Future<_i10.StaffSkill> saveNew(_i10.StaffSkill? skill, int? sid) =>
       (super.noSuchMethod(Invocation.method(#saveNew, [skill, sid]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill()))
-          as _i17.Future<_i8.StaffSkill>);
+              returnValue: Future<_i10.StaffSkill>.value(_FakeStaffSkill()))
+          as _i18.Future<_i10.StaffSkill>);
   @override
-  _i17.Future<_i15.Response<T>> get<T>(String? url,
+  _i18.Future<_i5.Response<T>> get<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 url
@@ -2004,15 +2002,15 @@ class MockStaffSkillProvider extends _i1.Mock
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> post<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> post<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [
                 url,
@@ -2024,15 +2022,15 @@ class MockStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> put<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> put<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [
                 url,
@@ -2044,15 +2042,15 @@ class MockStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> patch<T>(String? url, dynamic body,
+  _i18.Future<_i5.Response<T>> patch<T>(String? url, dynamic body,
           {String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
                 url,
@@ -2064,16 +2062,16 @@ class MockStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> request<T>(String? url, String? method,
+  _i18.Future<_i5.Response<T>> request<T>(String? url, String? method,
           {dynamic body,
           String? contentType,
           Map<String, String>? headers,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder,
-          _i15.Progress? uploadProgress}) =>
+          _i5.Decoder<T>? decoder,
+          _i5.Progress? uploadProgress}) =>
       (super.noSuchMethod(
               Invocation.method(#request, [
                 url,
@@ -2086,14 +2084,14 @@ class MockStaffSkillProvider extends _i1.Mock
                 #decoder: decoder,
                 #uploadProgress: uploadProgress
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i17.Future<_i15.Response<T>> delete<T>(String? url,
+  _i18.Future<_i5.Response<T>> delete<T>(String? url,
           {Map<String, String>? headers,
           String? contentType,
           Map<String, dynamic>? query,
-          _i15.Decoder<T>? decoder}) =>
+          _i5.Decoder<T>? decoder}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [
                 url
@@ -2103,35 +2101,35 @@ class MockStaffSkillProvider extends _i1.Mock
                 #query: query,
                 #decoder: decoder
               }),
-              returnValue: Future<_i15.Response<T>>.value(_FakeResponse<T>()))
-          as _i17.Future<_i15.Response<T>>);
+              returnValue: Future<_i5.Response<T>>.value(_FakeResponse<T>()))
+          as _i18.Future<_i5.Response<T>>);
   @override
-  _i15.GetSocket socket(String? url,
+  _i5.GetSocket socket(String? url,
           {Duration? ping = const Duration(seconds: 5)}) =>
       (super.noSuchMethod(Invocation.method(#socket, [url], {#ping: ping}),
-          returnValue: _FakeGetSocket()) as _i15.GetSocket);
+          returnValue: _FakeGetSocket()) as _i5.GetSocket);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> query<T>(String? query,
+  _i18.Future<_i5.GraphQLResponse<T>> query<T>(String? query,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#query, [query],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
-  _i17.Future<_i15.GraphQLResponse<T>> mutation<T>(String? mutation,
+  _i18.Future<_i5.GraphQLResponse<T>> mutation<T>(String? mutation,
           {String? url,
           Map<String, dynamic>? variables,
           Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#mutation, [mutation],
                   {#url: url, #variables: variables, #headers: headers}),
-              returnValue: Future<_i15.GraphQLResponse<T>>.value(
+              returnValue: Future<_i5.GraphQLResponse<T>>.value(
                   _FakeGraphQLResponse<T>()))
-          as _i17.Future<_i15.GraphQLResponse<T>>);
+          as _i18.Future<_i5.GraphQLResponse<T>>);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);

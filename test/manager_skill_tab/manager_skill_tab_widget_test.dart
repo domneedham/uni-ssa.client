@@ -38,7 +38,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => [managerStaffSkillOne]);
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -53,7 +53,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => [managerStaffSkillOne]);
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -67,7 +67,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -84,7 +84,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -99,7 +99,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -119,7 +119,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -144,7 +144,7 @@ void main() {
 
       when(mockSkillRepo.skills)
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -250,7 +250,7 @@ void main() {
     final mockUserRepo = TestMocks.userRepository;
 
     when(mockSkillRepo.skills).thenAnswer((_) async => [managerStaffSkillOne]);
-    when(mockUserRepo.manager).thenReturn(managerOne);
+    when(mockUserRepo.user).thenReturn(managerOne);
 
     await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
     await tester.pumpAndSettle();

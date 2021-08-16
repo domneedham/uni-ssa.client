@@ -36,7 +36,7 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -54,7 +54,7 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerCategoryFormController>();
       controller.isError.value = true;
@@ -74,7 +74,7 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -90,7 +90,7 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
@@ -106,7 +106,7 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
@@ -122,7 +122,7 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
@@ -140,7 +140,7 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;

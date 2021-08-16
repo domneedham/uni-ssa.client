@@ -37,7 +37,7 @@ void main() {
     when(mockSkillRepo.skills)
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
 
-    when(mockUserRepo.manager).thenReturn(managerOne);
+    when(mockUserRepo.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
@@ -61,7 +61,7 @@ void main() {
 
     when(mockSkillRepo.skills)
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-    when(mockUserRepo.manager).thenReturn(managerOne);
+    when(mockUserRepo.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
@@ -87,7 +87,7 @@ void main() {
 
       when(mockSkillRepo.skills).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 
@@ -108,7 +108,7 @@ void main() {
 
       when(mockSkillRepo.skills).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 

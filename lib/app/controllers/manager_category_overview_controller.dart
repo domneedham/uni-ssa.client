@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
 
@@ -18,6 +19,12 @@ class ManagerCategoryOverviewController extends GetxController {
     if (category == null) {
       await getCategory(parameters["id"]!);
     }
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    ManagerCategoryTabController.to.refresh();
   }
 
   Future<void> getCategory(String id) async {

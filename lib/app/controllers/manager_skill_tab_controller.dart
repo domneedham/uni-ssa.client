@@ -14,7 +14,7 @@ class ManagerSkillTabController extends GetxController {
   final ManagerStaffSkillRepository skillRepo =
       Get.find<ManagerStaffSkillRepository>();
 
-  Manager get user => userRepo.manager;
+  Manager get user => userRepo.user as Manager;
 
   final viewType = SkillListViewType.LIST.obs;
 
@@ -63,7 +63,11 @@ class ManagerSkillTabController extends GetxController {
         }
       });
 
-      skills = list.obs;
+      if (skills != null) {
+        skills!.value = list.obs;
+      } else {
+        skills = list.obs;
+      }
     } catch (e) {
       isError.value = true;
       error.value = e.toString();

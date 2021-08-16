@@ -16,33 +16,35 @@ class ManagerHomePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ManagerController>(builder: (controller) {
-      return Scaffold(
-        body: _widgets[controller.selectedTab],
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: controller.selectedTab,
-          onTap: controller.setSelectedTab,
-          items: [
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.star),
-              label: "Skills",
-            ),
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.category),
-              label: "Categories",
-            ),
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.people),
-              label: "Staff",
-            ),
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.more_horiz),
-              label: "More",
-            ),
-          ],
-        ),
-      );
-    });
+    return GetBuilder<ManagerController>(
+      builder: (controller) {
+        return Scaffold(
+          body: _widgets[controller.selectedTab],
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: controller.selectedTab,
+            onTap: controller.setSelectedTab,
+            items: [
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.star),
+                label: "Skills",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.category),
+                label: "Categories",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.people),
+                label: "Staff",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.more_horiz),
+                label: "More",
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -9,7 +9,7 @@ class StaffEditDetailsController extends GetxController {
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
 
-  Staff get user => userRepo.staff;
+  Staff get user => userRepo.user as Staff;
 
   final firstnameController = TextEditingController();
   final surnameController = TextEditingController();

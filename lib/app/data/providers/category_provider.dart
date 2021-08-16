@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/exceptions/failed_to_delete.dart';
 import 'package:ssa_app/app/exceptions/failed_to_update.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class ICategoryProvider {
-  Future<Response<List<Category>>> getAllCategories();
-  Future<Response<Category>> getCategoryById(int id);
+  Future<List<Category>> getAllCategories();
+  Future<Category> getCategoryById(int id);
   Future<Category> createCategory(Category category);
   Future<Category> updateCategory(Category category);
   Future<void> deleteCategory(int id);
@@ -16,7 +18,10 @@ abstract class ICategoryProvider {
 class CategoryProvider extends GetConnect implements ICategoryProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/category";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/category";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   Category _decodeCategory(Map<String, dynamic> val) {
@@ -47,13 +52,25 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
   }
 
   @override
-  Future<Response<List<Category>>> getAllCategories() {
-    return get('/', decoder: (val) => _decodeCategoryList(val));
+  Future<List<Category>> getAllCategories() async {
+    final res = await get('/');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Not categories found");
+    }
+
+    return _decodeCategoryList(res.body!);
   }
 
   @override
-  Future<Response<Category>> getCategoryById(int id) {
-    return get('/$id', decoder: (val) => _decodeCategory(val));
+  Future<Category> getCategoryById(int id) async {
+    final res = await get('/$id');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Category not found");
+    }
+
+    return _decodeCategory(res.body!);
   }
 
   @override

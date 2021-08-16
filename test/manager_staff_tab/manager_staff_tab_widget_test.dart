@@ -37,7 +37,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -53,7 +53,7 @@ void main() {
     testWidgets('the tabbar has two tabs', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -73,7 +73,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -89,7 +89,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -108,7 +108,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTabStaff()));
       await tester.pumpAndSettle();
@@ -124,7 +124,7 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       await tester.pumpWidget(TestableWidget(child: ManagerStaffTabManager()));
       await tester.pumpAndSettle();

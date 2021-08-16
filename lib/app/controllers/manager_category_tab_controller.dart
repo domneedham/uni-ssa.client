@@ -5,6 +5,8 @@ import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
 class ManagerCategoryTabController extends GetxController {
+  static ManagerCategoryTabController get to => Get.find();
+
   final catRepo = Get.find<CategoryRepository>();
 
   final isLoading = true.obs;
@@ -19,11 +21,16 @@ class ManagerCategoryTabController extends GetxController {
     await getCategories();
   }
 
+  void refresh() async {
+    await getCategories();
+  }
+
   Future<void> getCategories() async {
     try {
+      print("GET CATEGORIES");
       isLoading.value = true;
-      final repoSkills = await catRepo.categories;
-      categories = repoSkills.obs;
+      final repoCategories = await catRepo.categories;
+      categories = repoCategories.obs;
     } catch (e) {
       isError.value = true;
       error.value = e.toString();

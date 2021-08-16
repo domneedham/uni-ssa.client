@@ -7,7 +7,11 @@ import '../testable_widget.dart';
 void main() {
   testWidgets('shows a switch to toggle dark mode',
       (WidgetTester tester) async {
-    await tester.pumpWidget(TestableWidget(child: MoreTabSettings()));
+    await tester.pumpWidget(TestableWidget(
+      child: MoreTabSettings(
+        logout: () {},
+      ),
+    ));
     await tester.pumpAndSettle();
 
     expect(find.byType(SwitchListTile), findsOneWidget);
@@ -15,7 +19,11 @@ void main() {
   });
 
   testWidgets('shows an option to logout', (WidgetTester tester) async {
-    await tester.pumpWidget(TestableWidget(child: MoreTabSettings()));
+    await tester.pumpWidget(TestableWidget(
+      child: MoreTabSettings(
+        logout: () {},
+      ),
+    ));
     await tester.pumpAndSettle();
 
     expect(find.text("Logout"), findsOneWidget);

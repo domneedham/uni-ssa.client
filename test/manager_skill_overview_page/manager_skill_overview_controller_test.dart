@@ -38,7 +38,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillOverviewController>();
 
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -62,7 +62,7 @@ void main() {
 
       final exception = Exception("Some error");
 
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => Future.error(exception));
 
@@ -81,7 +81,7 @@ void main() {
 
       Get.parameters = {"id": "1"};
 
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
       when(skillRepo.delete(1)).thenAnswer((_) async => null);

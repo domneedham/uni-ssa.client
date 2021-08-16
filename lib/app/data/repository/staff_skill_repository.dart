@@ -9,25 +9,23 @@ class StaffSkillRepository {
   Future<StaffSkill> getSkillById(int id) async {
     return await staffSkillProvider.getByIdDecoded(
       id,
-      UserRepository.to.user.id,
+      UserRepository.to.user!.id,
     );
   }
 
   Future<List<StaffSkill>> getSkillsForUser(int id) async {
-    final res = await staffSkillProvider.getAllForUser(id);
-    return res.body!;
+    return staffSkillProvider.getAllForUser(id);
   }
 
-  Future<List<StaffSkill>> get skills async {
-    final res = await staffSkillProvider.getAll();
-    return res.body!;
+  Future<List<StaffSkill>> get skills {
+    return staffSkillProvider.getAll();
   }
 
   Future<StaffSkill> saveEdited(StaffSkill skill) {
-    return staffSkillProvider.saveEdited(skill, UserRepository.to.user.id);
+    return staffSkillProvider.saveEdited(skill, UserRepository.to.user!.id);
   }
 
   Future<StaffSkill> saveNew(StaffSkill skill) {
-    return staffSkillProvider.saveNew(skill, UserRepository.to.user.id);
+    return staffSkillProvider.saveNew(skill, UserRepository.to.user!.id);
   }
 }

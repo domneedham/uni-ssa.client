@@ -5,14 +5,12 @@ class CategoryRepository {
   CategoryRepository({required this.categoryProvider});
   final ICategoryProvider categoryProvider;
 
-  Future<Category> getCategoryById(int id) async {
-    final res = await categoryProvider.getCategoryById(id);
-    return res.body!;
+  Future<Category> getCategoryById(int id) {
+    return categoryProvider.getCategoryById(id);
   }
 
-  Future<List<Category>> get categories async {
-    final res = await categoryProvider.getAllCategories();
-    return res.body!;
+  Future<List<Category>> get categories {
+    return categoryProvider.getAllCategories();
   }
 
   Future<Category> createCategory(Category category) {

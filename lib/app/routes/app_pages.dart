@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/bindings/home_binding.dart';
+import 'package:ssa_app/app/bindings/login_binding.dart';
 import 'package:ssa_app/app/bindings/manager_binding.dart';
 import 'package:ssa_app/app/bindings/manager_category_form_binding.dart';
 import 'package:ssa_app/app/bindings/manager_category_overview_binding.dart';
@@ -14,6 +15,7 @@ import 'package:ssa_app/app/bindings/staff_skill_overview_binding.dart';
 import 'package:ssa_app/app/ui/pages/home_page/home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/manager_home_page.dart';
 import 'package:ssa_app/app/ui/pages/home_page/staff_home_page.dart';
+import 'package:ssa_app/app/ui/pages/login/login_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_overview_page/manager_category_overview_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form_page.dart';
@@ -31,6 +33,11 @@ abstract class AppPages {
       name: Routes.HOME,
       page: () => HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.LOGIN,
+      page: () => LoginPage(),
+      binding: LoginBinding(),
     ),
 
     // USER OVERVIEW PAGES

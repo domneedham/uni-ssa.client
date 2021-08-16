@@ -1,15 +1,22 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IManagerProvider {
-  Future<Response<Manager>> getManagerById(int id);
-  Future<Response<List<Manager>>> searchManagerByName(String name);
+  Future<Manager> getManagerById(int id);
+  Future<List<Manager>> searchManagerByName(String name);
+
+  Future<Manager> getManagerByEmail(String email);
 }
 
 class ManagerProvider extends GetConnect implements IManagerProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/manager";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/manager";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   Manager _decodeManager(Map<String, dynamic> val) {
@@ -29,12 +36,35 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
   }
 
   @override
-  Future<Response<Manager>> getManagerById(int id) {
-    return get('/$id', decoder: (val) => _decodeManager(val));
+  Future<Manager> getManagerById(int id) async {
+    final res = await get('/$id');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Manager not found");
+    }
+
+    return _decodeManager(res.body);
   }
 
   @override
-  Future<Response<List<Manager>>> searchManagerByName(String name) {
-    return get('/search/$name', decoder: (val) => _decodeManagerList(val));
+  Future<List<Manager>> searchManagerByName(String name) async {
+    final res = await get('/search/$name');
+
+    if (res.hasError || res.body != null) {
+      throw NoDataReturned("No mangers found");
+    }
+
+    return _decodeManagerList(res.body);
+  }
+
+  @override
+  Future<Manager> getManagerByEmail(String email) async {
+    final res = await get('/email/$email');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Manager not found");
+    }
+
+    return _decodeManager(res.body);
   }
 }

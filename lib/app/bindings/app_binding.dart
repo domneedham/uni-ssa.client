@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ssa_app/app/data/providers/auth_provider.dart';
 import 'package:ssa_app/app/data/providers/category_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart';
@@ -14,6 +15,10 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 class AppBinding implements Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<IAuthProvider>(
+      () => AuthProvider(),
+      fenix: true,
+    );
     Get.lazyPut<IStaffProvider>(
       () => StaffProvider(),
       fenix: true,
@@ -39,12 +44,13 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
-    Get.lazyPut<UserRepository>(
-      () => UserRepository(
+    Get.put<UserRepository>(
+      UserRepository(
         staffProvider: Get.find(),
         managerProvider: Get.find(),
+        authProvider: Get.find(),
       ),
-      fenix: true,
+      permanent: true,
     );
     Get.lazyPut<StaffSkillRepository>(
       () => StaffSkillRepository(

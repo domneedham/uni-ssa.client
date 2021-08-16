@@ -40,7 +40,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
@@ -54,7 +54,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
@@ -68,7 +68,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => throw error);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -86,7 +86,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -103,7 +103,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -119,7 +119,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.staff).thenReturn(staffWithSkills);
+      when(mockUserRepo.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -134,7 +134,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
-      when(mockUserRepo.staff).thenReturn(staffWithNoSkills);
+      when(mockUserRepo.user).thenReturn(staffWithNoSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -149,7 +149,7 @@ void main() {
 
       when(mockSkillRepo.getSkillsForUser(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
-      when(mockUserRepo.staff).thenReturn(staffWithNoSkills);
+      when(mockUserRepo.user).thenReturn(staffWithNoSkills);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();

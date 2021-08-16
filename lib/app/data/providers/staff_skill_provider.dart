@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
 import 'package:ssa_app/app/exceptions/failed_to_save.dart';
 import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IStaffSkillProvider {
-  Future<Response<StaffSkill>> getById(int id, int sid);
-  Future<Response<List<StaffSkill>>> getAll();
-  Future<Response<List<StaffSkill>>> getAllForUser(int id);
+  Future<StaffSkill> getById(int id, int sid);
+  Future<List<StaffSkill>> getAll();
+  Future<List<StaffSkill>> getAllForUser(int id);
   Future<StaffSkill> getByIdDecoded(int id, int sid);
 
   Future<StaffSkill> saveEdited(StaffSkill skill, int sid);
@@ -18,7 +19,10 @@ abstract class IStaffSkillProvider {
 class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/skill/staff";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill/staff";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   StaffSkill _decodeSkill(Map<String, dynamic>? val) {
@@ -47,18 +51,35 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   }
 
   @override
-  Future<Response<List<StaffSkill>>> getAll() {
-    return get('/', decoder: (val) => _decodeSkillList(val));
+  Future<List<StaffSkill>> getAll() async {
+    final res = await get('/');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("No skill found");
+    }
+
+    return _decodeSkillList(res.body);
   }
 
   @override
-  Future<Response<StaffSkill>> getById(int id, int sid) {
-    return get('/$id/sid/$sid', decoder: (val) => _decodeSkill(val));
+  Future<StaffSkill> getById(int id, int sid) async {
+    final res = await get('/$id/sid/$sid');
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("No skill found");
+    }
+
+    return _decodeSkill(res.body);
   }
 
   @override
-  Future<Response<List<StaffSkill>>> getAllForUser(int id) {
-    return get('/sid/$id', decoder: (val) => _decodeSkillList(val));
+  Future<List<StaffSkill>> getAllForUser(int id) async {
+    final res = await get('/sid/$id');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Skills not found");
+    }
+
+    return _decodeSkillList(res.body);
   }
 
   @override

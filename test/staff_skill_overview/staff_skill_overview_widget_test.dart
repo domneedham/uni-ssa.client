@@ -51,7 +51,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
 
@@ -72,7 +72,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
 
@@ -93,7 +93,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => throw error);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
@@ -116,7 +116,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -139,7 +139,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -163,7 +163,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -186,7 +186,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -211,7 +211,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -235,7 +235,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -260,7 +260,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -288,7 +288,7 @@ void main() {
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -313,7 +313,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -340,7 +340,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -375,7 +375,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -400,7 +400,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -426,7 +426,7 @@ void main() {
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -451,7 +451,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -479,7 +479,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithNoExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -516,7 +516,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
