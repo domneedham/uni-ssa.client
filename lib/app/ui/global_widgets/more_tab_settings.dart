@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class MoreTabSettings extends StatelessWidget {
   const MoreTabSettings({
     Key? key,
+    required this.logout,
   }) : super(key: key);
+
+  final VoidCallback logout;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class MoreTabSettings extends StatelessWidget {
         ListTile(
           title: Text("Logout"),
           trailing: Icon(Icons.logout),
+          onTap: logout,
         )
       ],
     );

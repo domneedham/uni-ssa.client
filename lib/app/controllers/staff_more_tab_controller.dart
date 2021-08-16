@@ -11,4 +11,8 @@ class StaffMoreTabController extends GetxController {
   void navigateToEditDetails() {
     Get.toNamed(Routes.STAFF_EDIT_DETAILS);
   }
+
+  void logout() {
+    userRepo.logout();
+  }
 }

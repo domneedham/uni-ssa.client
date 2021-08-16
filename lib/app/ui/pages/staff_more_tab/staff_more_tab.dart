@@ -20,7 +20,7 @@ class StaffMoreTab extends GetWidget<StaffMoreTabController> {
           Divider(),
           StaffMoreTabUserDetails(),
           Divider(),
-          MoreTabSettings(),
+          MoreTabSettings(logout: controller.logout),
           Divider(),
           MoreTabAppInformation(),
         ],

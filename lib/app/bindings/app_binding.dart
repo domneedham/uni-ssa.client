@@ -44,13 +44,13 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
-    Get.lazyPut<UserRepository>(
-      () => UserRepository(
+    Get.put<UserRepository>(
+      UserRepository(
         staffProvider: Get.find(),
         managerProvider: Get.find(),
         authProvider: Get.find(),
       ),
-      fenix: true,
+      permanent: true,
     );
     Get.lazyPut<StaffSkillRepository>(
       () => StaffSkillRepository(

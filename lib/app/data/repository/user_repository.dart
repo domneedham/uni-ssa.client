@@ -9,7 +9,7 @@ import 'package:ssa_app/app/data/providers/staff_provider.dart';
 import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 
 class UserRepository {
-  static UserRepository get to => Get.find<UserRepository>();
+  static UserRepository get to => Get.find();
 
   UserRepository({
     required this.staffProvider,
@@ -22,7 +22,10 @@ class UserRepository {
 
   Staff? _staff;
   Manager? _manager;
+
+  final firstLaunch = false.obs;
   final loggedIn = false.obs;
+
   User? get user {
     if (_staff != null) {
       return _staff;
@@ -40,15 +43,24 @@ class UserRepository {
       final staffRes = await staffProvider.getStaffByEmail(email);
       _staff = staffRes;
       loggedIn.value = true;
+      firstLaunch.value = true;
       return staffRes;
     } else if (res.body == UserRole.MANAGER) {
       final managerRes = await managerProvider.getManagerByEmail(email);
       _manager = managerRes;
       loggedIn.value = true;
+      firstLaunch.value = true;
       return managerRes;
     } else {
       throw FailedToLoginException("No role for user");
     }
+  }
+
+  void logout() {
+    _staff = null;
+    _manager = null;
+
+    loggedIn.value = false;
   }
 
   Future<Staff> getStaffById(int id) {

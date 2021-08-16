@@ -17,7 +17,7 @@ class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
         children: [
           UserProfileHeader(user: controller.user),
           Divider(),
-          MoreTabSettings(),
+          MoreTabSettings(logout: controller.logout),
           Divider(),
           MoreTabAppInformation(),
         ],
