@@ -63,7 +63,11 @@ class ManagerSkillTabController extends GetxController {
         }
       });
 
-      skills = list.obs;
+      if (skills != null) {
+        skills!.value = list.obs;
+      } else {
+        skills = list.obs;
+      }
     } catch (e) {
       isError.value = true;
       error.value = e.toString();

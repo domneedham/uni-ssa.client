@@ -7,7 +7,7 @@ import 'package:ssa_app/app/ui/pages/manager_more_tab/manager_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab.dart';
 
-class ManagerHomePage extends GetView<ManagerController> {
+class ManagerHomePage extends StatelessWidget {
   final _widgets = [
     ManagerSkillTab(),
     ManagerCategoryTab(),
@@ -16,31 +16,35 @@ class ManagerHomePage extends GetView<ManagerController> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgets[controller.selectedTab],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: controller.selectedTab,
-        onTap: controller.setSelectedTab,
-        items: [
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.star),
-            label: "Skills",
+    return GetBuilder<ManagerController>(
+      builder: (controller) {
+        return Scaffold(
+          body: _widgets[controller.selectedTab],
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: controller.selectedTab,
+            onTap: controller.setSelectedTab,
+            items: [
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.star),
+                label: "Skills",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.category),
+                label: "Categories",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.people),
+                label: "Staff",
+              ),
+              const BottomNavigationBarItem(
+                icon: const Icon(Icons.more_horiz),
+                label: "More",
+              ),
+            ],
           ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.category),
-            label: "Categories",
-          ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.people),
-            label: "Staff",
-          ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.more_horiz),
-            label: "More",
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
