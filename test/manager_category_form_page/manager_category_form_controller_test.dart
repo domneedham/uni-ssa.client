@@ -39,7 +39,7 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.ADD);
     });
@@ -54,7 +54,7 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.EDIT);
     });
@@ -72,7 +72,7 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
 
         final response = controller.validateName("Name");
         expect(response, null);
@@ -88,7 +88,7 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
 
         final response = controller.validateName(null);
         expect(response, isNotNull);

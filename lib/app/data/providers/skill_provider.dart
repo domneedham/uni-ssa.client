@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class ISkillProvider {
   Future<Skill> getById(int id);
-  Future<Response<List<Skill>>> getAll();
-  Future<Response<List<Skill>>> searchByName(String name);
+  Future<List<Skill>> getAll();
+  Future<List<Skill>> searchByName(String name);
   Future<Skill> create(Skill skill);
   Future<Skill> update(Skill skill);
   Future<void> deleteSkill(int id);
@@ -16,7 +17,10 @@ abstract class ISkillProvider {
 class SkillProvider extends GetConnect implements ISkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/skill";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   Skill _decodeSkill(Map<String, dynamic> val) {
@@ -55,8 +59,14 @@ class SkillProvider extends GetConnect implements ISkillProvider {
   }
 
   @override
-  Future<Response<List<Skill>>> getAll() {
-    return get('/', decoder: (val) => _decodeSkillList(val));
+  Future<List<Skill>> getAll() async {
+    final res = await get('/');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Not skills found");
+    }
+
+    return _decodeSkillList(res.body);
   }
 
   @override
@@ -69,8 +79,14 @@ class SkillProvider extends GetConnect implements ISkillProvider {
   }
 
   @override
-  Future<Response<List<Skill>>> searchByName(String name) {
-    return get('/search/$name', decoder: (val) => _decodeSkillList(val));
+  Future<List<Skill>> searchByName(String name) async {
+    final res = await get('/search/$name');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Not skills found");
+    }
+
+    return _decodeSkillList(res.body);
   }
 
   @override

@@ -1,28 +1,25 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/exceptions/failed_to_update.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IStaffProvider {
-  Future<Response<Staff>> getStaffById(int id);
-  Future<Response<List<Staff>>> searchStaffByName(String name);
-
+  Future<Staff> getStaffById(int id);
+  Future<List<Staff>> searchStaffByName(String name);
   Future<Staff> updateDetails(Staff staff);
-
-  Future<Response<Staff>> getStaffByEmail(String email);
+  Future<Staff> getStaffByEmail(String email);
 }
 
 class StaffProvider extends GetConnect implements IStaffProvider {
-  Map<String, String> get headers {
-    final token = GetStorage().read('access_token');
-    return {'Authorization': "Bearer $token"};
-  }
-
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/staff";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/staff";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   Staff _decodeStaff(Map<String, dynamic> val) {
@@ -52,13 +49,25 @@ class StaffProvider extends GetConnect implements IStaffProvider {
   }
 
   @override
-  Future<Response<Staff>> getStaffById(int id) {
-    return get('/$id', decoder: (val) => _decodeStaff(val));
+  Future<Staff> getStaffById(int id) async {
+    final res = await get('/$id');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Staff not found with that id");
+    }
+
+    return _decodeStaff(res.body);
   }
 
   @override
-  Future<Response<List<Staff>>> searchStaffByName(String name) {
-    return get('/search/$name', decoder: (val) => _decodeStaffList(val));
+  Future<List<Staff>> searchStaffByName(String name) async {
+    final res = await get('/search/$name');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Staff not found with that id");
+    }
+
+    return _decodeStaffList(res.body);
   }
 
   @override
@@ -74,11 +83,13 @@ class StaffProvider extends GetConnect implements IStaffProvider {
   }
 
   @override
-  Future<Response<Staff>> getStaffByEmail(String email) async {
-    return get(
-      '/email/$email',
-      decoder: (val) => _decodeStaff(val),
-      headers: headers,
-    );
+  Future<Staff> getStaffByEmail(String email) async {
+    final res = await get('/email/$email');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Staff not found with that id");
+    }
+
+    return _decodeStaff(res.body);
   }
 }

@@ -14,13 +14,11 @@ class StaffSkillRepository {
   }
 
   Future<List<StaffSkill>> getSkillsForUser(int id) async {
-    final res = await staffSkillProvider.getAllForUser(id);
-    return res.body!;
+    return staffSkillProvider.getAllForUser(id);
   }
 
-  Future<List<StaffSkill>> get skills async {
-    final res = await staffSkillProvider.getAll();
-    return res.body!;
+  Future<List<StaffSkill>> get skills {
+    return staffSkillProvider.getAll();
   }
 
   Future<StaffSkill> saveEdited(StaffSkill skill) {

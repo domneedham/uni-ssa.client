@@ -38,37 +38,34 @@ class UserRepository {
 
     if (res.body == UserRole.STAFF) {
       final staffRes = await staffProvider.getStaffByEmail(email);
-      _staff = staffRes.body!;
+      _staff = staffRes;
       loggedIn.value = true;
-      return staffRes.body!;
+      return staffRes;
     } else if (res.body == UserRole.MANAGER) {
       final managerRes = await managerProvider.getManagerByEmail(email);
-      _manager = managerRes.body!;
+      _manager = managerRes;
       loggedIn.value = true;
-      return managerRes.body!;
+      return managerRes;
     } else {
       throw FailedToLoginException("No role for user");
     }
   }
 
-  Future<Staff> getStaffById(int id) async {
-    final res = await staffProvider.getStaffById(id);
-
-    return res.body!;
+  Future<Staff> getStaffById(int id) {
+    return staffProvider.getStaffById(id);
   }
 
   Future<Manager> getManagerById(int id) async {
     final res = await managerProvider.getManagerById(id);
 
-    return res.body!;
+    return res;
   }
 
   Future<List<Staff>> searchStaffByName(String searchText) async {
     if (searchText.isEmpty) {
       return List.empty();
     }
-    final res = await staffProvider.searchStaffByName(searchText);
-    return res.body!;
+    return staffProvider.searchStaffByName(searchText);
   }
 
   Future<List<Manager>> searchManagerByName(String searchText) async {
@@ -76,7 +73,7 @@ class UserRepository {
       return List.empty();
     }
     final res = await managerProvider.searchManagerByName(searchText);
-    return res.body!;
+    return res;
   }
 
   Future<Staff> updateStaffDetails(Staff s) async {

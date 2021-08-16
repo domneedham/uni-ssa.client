@@ -44,7 +44,7 @@ void main() {
 
     when(mockStaffSkillRepo.getSkillById(1))
         .thenAnswer((_) async => skillWithExpiry);
-    when(mockUserRepo.staff).thenReturn(staffOne);
+    when(mockUserRepo.user).thenReturn(staffOne);
 
     // this inits the controller
     Get.find<StaffSkillOverviewController>();
@@ -66,7 +66,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -89,7 +89,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -114,7 +114,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -140,7 +140,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -168,7 +168,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -193,7 +193,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -221,7 +221,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -247,7 +247,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -276,7 +276,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -306,7 +306,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -337,7 +337,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -370,7 +370,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       // need to pump for snackbar
       await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
@@ -400,7 +400,7 @@ void main() {
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       when(mockStaffSkillRepo.saveEdited(any))
           .thenAnswer((_) async => skillWithExpiry);
@@ -438,7 +438,7 @@ void main() {
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.staff).thenReturn(staffOne);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
       when(mockStaffSkillRepo.saveNew(any))
           .thenAnswer((_) async => skillWithExpiry);

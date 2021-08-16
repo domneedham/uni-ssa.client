@@ -6,8 +6,7 @@ class SkillRepository {
   final ISkillProvider skillProvider;
 
   Future<List<Skill>> searchByName(String name) async {
-    final res = await skillProvider.searchByName(name);
-    return res.body!;
+    return skillProvider.searchByName(name);
   }
 
   Future<Skill> findById(int id) async {

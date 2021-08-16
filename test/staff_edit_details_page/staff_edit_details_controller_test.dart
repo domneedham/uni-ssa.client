@@ -30,7 +30,6 @@ void main() {
         final userRepo = TestMocks.userRepository;
 
         when(userRepo.user).thenReturn(staffOne);
-        when(userRepo.staff).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 
@@ -42,7 +41,6 @@ void main() {
         final userRepo = TestMocks.userRepository;
 
         when(userRepo.user).thenReturn(staffOne);
-        when(userRepo.staff).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 
@@ -57,7 +55,6 @@ void main() {
       final userRepo = TestMocks.userRepository;
 
       when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.staff).thenReturn(staffOne);
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
@@ -80,7 +77,6 @@ void main() {
       final userRepo = TestMocks.userRepository;
 
       when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.staff).thenReturn(staffOne);
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
@@ -103,7 +99,6 @@ void main() {
       final userRepo = TestMocks.userRepository;
 
       when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.staff).thenReturn(staffOne);
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar

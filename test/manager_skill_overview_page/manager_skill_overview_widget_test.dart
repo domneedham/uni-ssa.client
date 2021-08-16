@@ -35,7 +35,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -53,7 +53,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -72,7 +72,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -91,7 +91,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -110,7 +110,7 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
@@ -132,7 +132,7 @@ void main() {
 
       Get.parameters = {"id": "1"};
 
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
       when(skillRepo.delete(1)).thenAnswer((_) async => null);
@@ -155,7 +155,7 @@ void main() {
 
         Get.parameters = {"id": "1"};
 
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
@@ -180,7 +180,7 @@ void main() {
 
         Get.parameters = {"id": "1"};
 
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
@@ -207,7 +207,7 @@ void main() {
 
         Get.parameters = {"id": "1"};
 
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
@@ -233,7 +233,7 @@ void main() {
 
         Get.parameters = {"id": "1"};
 
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
         when(skillRepo.delete(1)).thenAnswer((_) async => null);

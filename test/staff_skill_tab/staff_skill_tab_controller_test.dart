@@ -35,7 +35,7 @@ void main() {
 
     when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-    when(mockUserRepo.staff).thenReturn(staffWithSkills);
+    when(mockUserRepo.user).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();
@@ -58,7 +58,7 @@ void main() {
 
     when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne]);
-    when(mockUserRepo.staff).thenReturn(staffWithSkills);
+    when(mockUserRepo.user).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();

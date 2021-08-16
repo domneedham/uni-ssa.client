@@ -1,16 +1,21 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
+import 'package:ssa_app/app/exceptions/no_data_found.dart';
+import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IManagerStaffSkillProvider {
-  Future<Response<ManagerStaffSkill>> getById(int id);
-  Future<Response<List<ManagerStaffSkill>>> getAll();
+  Future<ManagerStaffSkill> getById(int id);
+  Future<List<ManagerStaffSkill>> getAll();
 }
 
 class ManagerStaffSkillProvider extends GetConnect
     implements IManagerStaffSkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "http://localhost:8080/api/skill/manager";
+    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill/manager";
+    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
+    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.maxAuthRetries = 3;
   }
 
   ManagerStaffSkill _decodeSkillManager(Map<String, dynamic> val) {
@@ -32,12 +37,24 @@ class ManagerStaffSkillProvider extends GetConnect
   }
 
   @override
-  Future<Response<List<ManagerStaffSkill>>> getAll() {
-    return get('/', decoder: (val) => _decodeSkillManagerList(val));
+  Future<List<ManagerStaffSkill>> getAll() async {
+    final res = await get('/');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("No skills not found");
+    }
+
+    return _decodeSkillManagerList(res.body);
   }
 
   @override
-  Future<Response<ManagerStaffSkill>> getById(int id) {
-    return get('/$id', decoder: (val) => _decodeSkillManager(val));
+  Future<ManagerStaffSkill> getById(int id) async {
+    final res = await get('/$id');
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Skill not found");
+    }
+
+    return _decodeSkillManager(res.body);
   }
 }
