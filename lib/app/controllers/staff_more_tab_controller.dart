@@ -8,8 +8,9 @@ class StaffMoreTabController extends GetxController {
 
   Staff get user => userRepo.user as Staff;
 
-  void navigateToEditDetails() {
-    Get.toNamed(Routes.STAFF_EDIT_DETAILS);
+  void navigateToEditDetails() async {
+    await Get.toNamed(Routes.STAFF_EDIT_DETAILS);
+    update();
   }
 
   void logout() {

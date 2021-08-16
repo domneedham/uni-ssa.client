@@ -91,6 +91,7 @@ class UserRepository {
   Future<Staff> updateStaffDetails(Staff s) async {
     try {
       await staffProvider.updateDetails(s);
+      _staff = s;
       return s;
     } catch (e) {
       throw e;
