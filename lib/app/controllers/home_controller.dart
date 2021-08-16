@@ -26,7 +26,7 @@ class HomeController extends GetxController {
     size.value = 192;
 
     if (repo.firstLaunch.isFalse) {
-      Future.delayed(Duration(seconds: 1, milliseconds: 500), () {
+      Future.delayed(Duration(seconds: 1), () {
         navigate(repo.user);
       });
     }
