@@ -39,13 +39,14 @@ class UserRepository {
   Future<User> login(String email, String password) async {
     final res = await authProvider.login(email, password);
 
-    if (res.body == UserRole.STAFF) {
+    if (res == UserRole.STAFF) {
       final staffRes = await staffProvider.getStaffByEmail(email);
       _staff = staffRes;
+      print(_staff);
       loggedIn.value = true;
       firstLaunch.value = true;
       return staffRes;
-    } else if (res.body == UserRole.MANAGER) {
+    } else if (res == UserRole.MANAGER) {
       final managerRes = await managerProvider.getManagerByEmail(email);
       _manager = managerRes;
       loggedIn.value = true;

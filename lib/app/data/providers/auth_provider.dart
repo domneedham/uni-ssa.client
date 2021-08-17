@@ -5,7 +5,7 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IAuthProvider {
-  Future<Response<UserRole>> login(String email, String password);
+  Future<UserRole> login(String email, String password);
   Future<dynamic> refreshToken();
 }
 
@@ -49,16 +49,22 @@ class AuthProvider extends GetConnect implements IAuthProvider {
   }
 
   @override
-  Future<Response<UserRole>> login(String email, String password) async {
+  Future<UserRole> login(String email, String password) async {
     final encodedValue = "username=$email&password=$password";
 
-    return post(
+    final res = await post(
       '/login',
       encodedValue,
       contentType: "application/x-www-form-urlencoded",
       headers: {"Accept": "application/json"},
-      decoder: (val) => _decodeLogin(val),
     );
+
+    if (res.hasError || res.body == null) {
+      throw NoDataReturned("Unable to login");
+    }
+
+    print(res.body);
+    return _decodeLogin(res.body);
   }
 
   @override
