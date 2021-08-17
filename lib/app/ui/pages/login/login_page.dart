@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -11,37 +11,47 @@ class LoginPage extends GetView<LoginController> {
       appBar: AppBar(
         title: Text("Login"),
       ),
-      body: Center(
-        child: Form(
-          key: controller.formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Email"),
-                  controller: controller.emailController,
-                  validator: controller.validateEmail,
-                  autocorrect: false,
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Password"),
-                  controller: controller.passwordController,
-                  validator: controller.validatePassword,
-                  autocorrect: false,
-                  obscureText: true,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextButton(
-                  onPressed: controller.login,
-                  child: Text("Login"),
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "Staff Skill Auditor",
+              style: Get.textTheme.headline4,
             ),
-          ),
+            Form(
+              key: controller.formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(labelText: "Email"),
+                    controller: controller.emailController,
+                    validator: controller.validateEmail,
+                    autocorrect: false,
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: "Password"),
+                    controller: controller.passwordController,
+                    validator: controller.validatePassword,
+                    autocorrect: false,
+                    obscureText: true,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextButton(
+                    onPressed: controller.login,
+                    child: Text("Login"),
+                  ),
+                  SizedBox(height: Get.height / 4),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

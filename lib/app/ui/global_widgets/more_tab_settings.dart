@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MoreTabSettings extends StatelessWidget {
   const MoreTabSettings({
@@ -31,7 +32,28 @@ class MoreTabSettings extends StatelessWidget {
         ListTile(
           title: Text("Logout"),
           trailing: Icon(Icons.logout),
-          onTap: logout,
+          onTap: () {
+            Get.dialog(AlertDialog(
+              title: Text("Are you sure you want to logout?"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    // pop the dialog
+                    Get.back();
+                  },
+                  child: Text("No"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // pop the dialog
+                    Get.back();
+                    logout();
+                  },
+                  child: Text("Yes"),
+                ),
+              ],
+            ));
+          },
         )
       ],
     );
