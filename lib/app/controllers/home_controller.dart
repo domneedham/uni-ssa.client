@@ -14,7 +14,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    ever(repo.loggedIn, (value) {
+    ever(repo.loggedIn, (_) {
       navigate(user);
     });
 
@@ -26,8 +26,15 @@ class HomeController extends GetxController {
     size.value = 192;
 
     if (repo.firstLaunch.isFalse) {
-      Future.delayed(Duration(seconds: 1), () {
-        navigate(repo.user);
+      // let animation run
+      Future.delayed(Duration(seconds: 1), () async {
+        final user = await repo.initLogin();
+
+        // if user is null, must manually call navigate as the ever function
+        // will not be called
+        if (user == null) {
+          navigate(user);
+        }
       });
     }
 

@@ -1,55 +1,41 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:ssa_app/app/data/models/enums/user_role.dart';
+import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IAuthProvider {
-  Future<UserRole> login(String email, String password);
+  Future<Map<String, String>> login(String email, String password);
   Future<dynamic> refreshToken();
 }
 
 class AuthProvider extends GetConnect implements IAuthProvider {
   static IAuthProvider get to => Get.find();
 
-  final box = GetStorage();
-
   @override
   void onInit() {
     httpClient.baseUrl = "${SsaHttp.baseUrl}/auth";
   }
 
-  void _writeTokens(String? accessToken, String? refreshToken) {
-    if (accessToken != null) {
-      box.remove("access_token");
-      box.write("access_token", accessToken);
-    }
-
-    if (refreshToken != null) {
-      box.remove("refresh_token");
-      box.write("refresh_token", refreshToken);
-    }
-  }
-
-  UserRole _decodeLogin(dynamic val) {
+  Map<String, String> _decodeLogin(dynamic val) {
     if (val == null) {
       throw NoDataReturned("Login failed");
     }
 
-    if (val["access_token"] != null && val["refresh_token"] != null) {
-      _writeTokens(val["access_token"], val["refresh_token"]);
+    if (val["access_token"] != null &&
+        val["refresh_token"] != null &&
+        val["role"] != null) {
+      return {
+        "access_token": val["access_token"],
+        "refresh_token": val["refresh_token"],
+        "role": val["role"],
+      };
+    } else {
+      throw FailedToLoginException("Not all required data returned");
     }
-
-    if (val["role"] == "STAFF")
-      return UserRole.STAFF;
-    else if (val["role"] == "MANAGER")
-      return UserRole.MANAGER;
-    else
-      throw NoDataReturned("Unable to login successfully");
   }
 
   @override
-  Future<UserRole> login(String email, String password) async {
+  Future<Map<String, String>> login(String email, String password) async {
     final encodedValue = "username=$email&password=$password";
 
     final res = await post(
@@ -63,14 +49,12 @@ class AuthProvider extends GetConnect implements IAuthProvider {
       throw NoDataReturned("Unable to login");
     }
 
-    print(res.body);
     return _decodeLogin(res.body);
   }
 
   @override
   Future<dynamic> refreshToken() async {
     final res = await get('/token/refresh', headers: SsaHttp.refreshHeaders);
-    _writeTokens(res.body["access_token"], res.body["refresh_token"]);
     return res.body;
   }
 }
