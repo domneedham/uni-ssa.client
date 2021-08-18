@@ -9,7 +9,7 @@ class LoginPage extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -18,7 +18,7 @@ class LoginPage extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              "Staff Skill Auditor",
+              'Staff Skill Auditor',
               style: Get.textTheme.headline4,
             ),
             Form(
@@ -27,10 +27,10 @@ class LoginPage extends GetView<LoginController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
-                    key: Key("email"),
-                    decoration: InputDecoration(
+                    key: const Key('email'),
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "Email",
+                      labelText: 'Email',
                     ),
                     controller: controller.emailController,
                     validator: controller.validateEmail,
@@ -38,8 +38,8 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    key: Key("password"),
-                    decoration: InputDecoration(
+                    key: const Key('password'),
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                     ),
@@ -53,7 +53,7 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   TextButton(
                     onPressed: controller.login,
-                    child: Text("Login"),
+                    child: const Text('Login'),
                   ),
                   SizedBox(height: Get.height / 4),
                 ],

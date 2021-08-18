@@ -20,7 +20,7 @@ class ManagerCategoryFormController extends GetxController {
 
   final isLoading = false.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
@@ -28,7 +28,9 @@ class ManagerCategoryFormController extends GetxController {
   final _selectedIcon = Rx(Icons.code);
   IconData get selectedIcon => _selectedIcon.value;
   set selectedIcon(IconData? value) {
-    if (value != null) _selectedIcon.value = value;
+    if (value != null) {
+      _selectedIcon.value = value;
+    }
   }
 
   @override
@@ -36,7 +38,7 @@ class ManagerCategoryFormController extends GetxController {
     super.onInit();
     _getParameters();
 
-    nameController.value = TextEditingValue(text: editCategory?.name ?? "");
+    nameController.value = TextEditingValue(text: editCategory?.name ?? '');
   }
 
   @override
@@ -93,7 +95,7 @@ class ManagerCategoryFormController extends GetxController {
             icon: selectedIcon,
           );
           await categoryRepository.updateCategory(category);
-          Get.snackbar("Success", "Category updated");
+          Get.snackbar('Success', 'Category updated');
         } else {
           final category = Category(
             id: -1,
@@ -101,13 +103,13 @@ class ManagerCategoryFormController extends GetxController {
             icon: selectedIcon,
           );
           await categoryRepository.createCategory(category);
-          Get.snackbar("Success", "Category created");
+          Get.snackbar('Success', 'Category created');
         }
       } catch (e) {
-        Get.snackbar("Update failed", e.toString());
+        Get.snackbar('Update failed', e.toString());
       }
     } else {
-      Get.snackbar("Terrible", "Forms looking not so good");
+      Get.snackbar('Terrible', 'Forms looking not so good');
     }
   }
 }

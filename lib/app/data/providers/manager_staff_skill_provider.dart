@@ -12,25 +12,25 @@ class ManagerStaffSkillProvider extends GetConnect
     implements IManagerStaffSkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill/manager";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/skill/manager';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
   ManagerStaffSkill _decodeSkillManager(Map<String, dynamic> val) {
     return ManagerStaffSkill.fromJson(
-      skill: val["skill"] as Map<String, dynamic>,
-      staff: val["staffDetails"] as List<dynamic>,
+      skill: val['skill'] as Map<String, dynamic>,
+      staff: val['staffDetails'] as List<dynamic>,
     );
   }
 
   List<ManagerStaffSkill> _decodeSkillManagerList(List<dynamic> val) {
     return List<ManagerStaffSkill>.from(
-      (val).map(
+      val.map(
         (x) => ManagerStaffSkill.fromJson(
-          skill: x["skill"] as Map<String, dynamic>,
-          staff: x["staffDetails"] as List<dynamic>,
+          skill: x['skill'] as Map<String, dynamic>,
+          staff: x['staffDetails'] as List<dynamic>,
         ),
       ),
     );
@@ -41,7 +41,7 @@ class ManagerStaffSkillProvider extends GetConnect
     final res = await get('/');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("No skills not found");
+      throw NoDataReturned('No skills not found');
     }
 
     return _decodeSkillManagerList(res.body);
@@ -52,7 +52,7 @@ class ManagerStaffSkillProvider extends GetConnect
     final res = await get('/$id');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Skill not found");
+      throw NoDataReturned('Skill not found');
     }
 
     return _decodeSkillManager(res.body);

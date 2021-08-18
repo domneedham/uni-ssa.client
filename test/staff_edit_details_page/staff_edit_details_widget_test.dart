@@ -32,7 +32,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Edit Details'), findsOneWidget);
     });
@@ -42,7 +43,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.byIcon(Icons.save), findsOneWidget);
     });
@@ -54,7 +56,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Firstname'), findsOneWidget);
     });
@@ -64,7 +67,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Surname'), findsOneWidget);
     });
@@ -75,7 +79,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(staffOne.firstname), findsOneWidget);
@@ -87,7 +92,8 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(staffOne.surname), findsOneWidget);

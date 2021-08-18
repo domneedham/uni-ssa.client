@@ -29,11 +29,11 @@ void main() {
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
-      await controller.getUser("1");
+      await controller.getUser('1');
 
       expect(controller.manager?.value, managerOne);
     });
@@ -41,15 +41,15 @@ void main() {
     test('sets an error if the manager data was not loaded', () async {
       final mockUserRepo = TestMocks.userRepository;
 
-      final error = Exception("Some error");
+      final error = Exception('Some error');
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
-      await controller.getUser("1");
+      await controller.getUser('1');
 
       expect(controller.isError.value, true);
       expect(controller.error.value, error.toString());
@@ -63,7 +63,7 @@ void main() {
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
       when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
@@ -78,7 +78,7 @@ void main() {
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
       when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 

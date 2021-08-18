@@ -27,7 +27,7 @@ class SkillList extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: padding),
       child: ListView.builder(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         itemCount: skills.length,
         itemBuilder: (c, p) {
           final entry = skills.entries.elementAt(p);
@@ -35,16 +35,17 @@ class SkillList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SkillCategoryTitle(category: entry.key),
-              viewType == SkillListViewType.LIST
-                  ? SkillCategoryList(
-                      entry: entry,
-                      cardBuilder: cardBuilder,
-                    )
-                  : SkillCategoryGrid(
-                      childAspectRatio: gridChildAspectRatio,
-                      entry: entry,
-                      cardBuilder: cardBuilder,
-                    ),
+              if (viewType == SkillListViewType.LIST)
+                SkillCategoryList(
+                  entry: entry,
+                  cardBuilder: cardBuilder,
+                )
+              else
+                SkillCategoryGrid(
+                  childAspectRatio: gridChildAspectRatio,
+                  entry: entry,
+                  cardBuilder: cardBuilder,
+                ),
               SizedBox(
                 height: padding,
               ),

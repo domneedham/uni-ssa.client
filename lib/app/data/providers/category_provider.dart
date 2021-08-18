@@ -18,9 +18,9 @@ abstract class ICategoryProvider {
 class CategoryProvider extends GetConnect implements ICategoryProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/category";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/category';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
@@ -30,7 +30,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
 
   List<Category> _decodeCategoryList(List<dynamic> val) {
     return List<Category>.from(
-      (val).map(
+      val.map(
         (x) => Category.fromJson(x),
       ),
     );
@@ -38,16 +38,16 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
 
   String _encodeNewCategory(Category category) {
     return jsonEncode({
-      "name": category.name,
-      "icon": category.icon.codePoint,
+      'name': category.name,
+      'icon': category.icon.codePoint,
     });
   }
 
   String _encodeEditCategory(Category category) {
     return jsonEncode({
-      "id": category.id,
-      "name": category.name,
-      "icon": category.icon.codePoint,
+      'id': category.id,
+      'name': category.name,
+      'icon': category.icon.codePoint,
     });
   }
 
@@ -56,7 +56,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     final res = await get('/');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Not categories found");
+      throw NoDataReturned('Not categories found');
     }
 
     return _decodeCategoryList(res.body!);
@@ -67,7 +67,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     final res = await get('/$id');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Category not found");
+      throw NoDataReturned('Category not found');
     }
 
     return _decodeCategory(res.body!);
@@ -79,7 +79,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     final res = await post('/create', encodedCategory);
 
     if (res.hasError) {
-      throw FailedToUpdateCategoryException("Failed to update category");
+      throw FailedToUpdateCategoryException('Failed to update category');
     }
 
     return _decodeCategory(res.body);
@@ -91,7 +91,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     final res = await put('/update', encodedCategory);
 
     if (res.hasError) {
-      throw FailedToUpdateCategoryException("Failed to update category");
+      throw FailedToUpdateCategoryException('Failed to update category');
     }
 
     return category;
@@ -102,7 +102,7 @@ class CategoryProvider extends GetConnect implements ICategoryProvider {
     final res = await delete('/delete/$id');
 
     if (res.hasError) {
-      throw FailedToDeleteCategoryException("Failed to delete category");
+      throw FailedToDeleteCategoryException('Failed to delete category');
     }
   }
 }

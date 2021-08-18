@@ -12,7 +12,7 @@ class StaffSkillOverviewSaveButton
       return TextButton(
         onPressed:
             controller.isEdited.value ? controller.saveEditedSkill : null,
-        child: Text("Save"),
+        child: const Text('Save'),
       );
     });
   }

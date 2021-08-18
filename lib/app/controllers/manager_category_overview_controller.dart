@@ -8,8 +8,8 @@ class ManagerCategoryOverviewController extends GetxController {
 
   final isLoading = false.obs;
   final isError = false.obs;
-  final error = "".obs;
-  Rx<Category>? category = Rx(Get.arguments["category"]);
+  final error = ''.obs;
+  Rx<Category>? category = Rx(Get.arguments['category']);
 
   final parameters = Get.parameters;
 
@@ -17,7 +17,7 @@ class ManagerCategoryOverviewController extends GetxController {
   void onInit() async {
     super.onInit();
     if (category == null) {
-      await getCategory(parameters["id"]!);
+      await getCategory(parameters['id']!);
     }
   }
 
@@ -30,8 +30,8 @@ class ManagerCategoryOverviewController extends GetxController {
   Future<void> getCategory(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      Category fetchedCategory = await catRepo.getCategoryById(parsedId);
+      final int parsedId = int.parse(id);
+      final Category fetchedCategory = await catRepo.getCategoryById(parsedId);
       category = fetchedCategory.obs;
     } catch (e) {
       isError.value = true;

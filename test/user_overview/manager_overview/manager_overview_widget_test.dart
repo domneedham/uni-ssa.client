@@ -8,8 +8,8 @@ import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 import 'package:ssa_app/app/ui/pages/user_overview/manager_overview/manager_overview_page.dart';
 
 import '../../mocks/data.dart';
-import '../../testable_widget.dart';
 import '../../mocks/mocks.dart';
+import '../../testable_widget.dart';
 
 void main() {
   final managerOne = TestData.mockManagerWithStaff;
@@ -34,9 +34,10 @@ void main() {
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
-      await tester.pumpWidget(TestableWidget(child: ManagerOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerOverviewPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -45,13 +46,14 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      final error = Exception("Some error");
+      final error = Exception('Some error');
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
-      await tester.pumpWidget(TestableWidget(child: ManagerOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(error.toString()), findsOneWidget);
@@ -63,9 +65,10 @@ void main() {
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
-      await tester.pumpWidget(TestableWidget(child: ManagerOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(UserProfileHeader), findsOneWidget);
@@ -77,9 +80,10 @@ void main() {
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
-      await tester.pumpWidget(TestableWidget(child: ManagerOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(StaffList), findsOneWidget);

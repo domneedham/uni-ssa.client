@@ -14,11 +14,11 @@ class ManagerCategoryFormPage extends GetWidget<ManagerCategoryFormController> {
     return Scaffold(
       appBar: AppBar(
         title: controller.formMode == ManagerCategoryFormMode.ADD
-            ? Text("Add Category")
-            : Text("Edit Category"),
+            ? const Text('Add Category')
+            : const Text('Edit Category'),
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: controller.save,
           )
         ],
@@ -28,10 +28,10 @@ class ManagerCategoryFormPage extends GetWidget<ManagerCategoryFormController> {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
 
-        return ManagerCategoryForm();
+        return const ManagerCategoryForm();
       }),
     );
   }

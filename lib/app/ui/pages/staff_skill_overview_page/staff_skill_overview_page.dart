@@ -10,23 +10,23 @@ class StaffSkillOverviewPage extends GetView<StaffSkillOverviewController> {
 
   @override
   Widget build(BuildContext context) {
-    final name = Get.parameters["name"];
+    final name = Get.parameters['name'];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(name ?? "Skill Overview"),
+        title: Text(name ?? 'Skill Overview'),
       ),
       body: Obx(() {
         if (controller.skill != null) {
-          return StaffSkillOverviewBody();
+          return const StaffSkillOverviewBody();
         }
         if (controller.isError.value) {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

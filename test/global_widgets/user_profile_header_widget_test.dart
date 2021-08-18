@@ -22,7 +22,7 @@ void main() {
           TestableWidget(child: UserProfileHeader(user: managerOne)));
 
       expect(find.byType(CircleAvatar), findsOneWidget);
-      expect(find.text("${managerOne.firstname[0]}${managerOne.surname[0]}"),
+      expect(find.text('${managerOne.firstname[0]}${managerOne.surname[0]}'),
           findsOneWidget);
     });
   });

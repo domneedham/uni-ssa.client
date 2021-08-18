@@ -4,9 +4,6 @@ import 'package:ssa_app/app/data/models/user/user.dart';
 import '../enums/user_role.dart';
 
 class Staff extends User {
-  final List<StaffSkill> skills;
-  final User manager;
-
   Staff({
     required int id,
     required String firstname,
@@ -26,13 +23,16 @@ class Staff extends User {
     required List<dynamic> skills,
   }) {
     return Staff(
-      id: userDetails["id"] as int,
-      firstname: userDetails["firstname"] as String,
-      surname: userDetails["surname"] as String,
-      skills: List<StaffSkill>.from((skills).map(
+      id: userDetails['id'] as int,
+      firstname: userDetails['firstname'] as String,
+      surname: userDetails['surname'] as String,
+      skills: List<StaffSkill>.from(skills.map(
         (x) => StaffSkill.fromJson(x as Map<String, dynamic>),
       )),
       manager: User.fromJson(managerDetails, UserRole.MANAGER),
     );
   }
+
+  final List<StaffSkill> skills;
+  final User manager;
 }

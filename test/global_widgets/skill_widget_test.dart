@@ -12,13 +12,13 @@ import '../testable_widget.dart';
 
 void main() {
   final mockCategoryOne =
-      Category(id: 1, name: "Test Category", icon: Icons.code);
-  final mockCategoryTwo = Category(id: 2, name: "Other", icon: Icons.code_off);
+      Category(id: 1, name: 'Test Category', icon: Icons.code);
+  final mockCategoryTwo = Category(id: 2, name: 'Other', icon: Icons.code_off);
 
   final mockSkillOne =
-      Skill(id: 1, name: "Skill One", category: mockCategoryOne);
+      Skill(id: 1, name: 'Skill One', category: mockCategoryOne);
   final mockSkillTwo =
-      Skill(id: 2, name: "Skill Two", category: mockCategoryTwo);
+      Skill(id: 2, name: 'Skill Two', category: mockCategoryTwo);
 
   setUp(() {
     Get.testMode = true;
@@ -91,7 +91,7 @@ void main() {
           child: SkillList(
             viewType: SkillListViewType.LIST,
             cardBuilder: (skill) => ListTile(title: Text(skill.name)),
-            skills: {},
+            skills: const {},
           ),
         ),
       );

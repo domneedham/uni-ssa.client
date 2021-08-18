@@ -15,7 +15,7 @@ class ManagerSkillForm extends GetView<ManagerSkillFormController> {
         child: Column(
           children: [
             TextFormField(
-              decoration: InputDecoration(labelText: "Name"),
+              decoration: const InputDecoration(labelText: 'Name'),
               validator: controller.validateName,
               controller: controller.nameController,
             ),
@@ -31,7 +31,7 @@ class ManagerSkillForm extends GetView<ManagerSkillFormController> {
                   .toList(),
               value: controller.selectedCategoryId,
               onChanged: (int? value) => controller.selectedCategoryId = value,
-              decoration: InputDecoration(labelText: "Category"),
+              decoration: const InputDecoration(labelText: 'Category'),
               validator: controller.validateCategory,
             ),
           ],

@@ -1,4 +1,5 @@
 class FailedToSaveException implements Exception {
-  final String cause;
   FailedToSaveException(this.cause);
+
+  final String cause;
 }

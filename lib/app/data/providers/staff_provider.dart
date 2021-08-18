@@ -16,35 +16,35 @@ abstract class IStaffProvider {
 class StaffProvider extends GetConnect implements IStaffProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/staff";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/staff';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
   Staff _decodeStaff(Map<String, dynamic> val) {
     return Staff.fromJson(
-      userDetails: val["userDetails"] as Map<String, dynamic>,
-      managerDetails: val["managerDetails"] as Map<String, dynamic>,
-      skills: val["skills"] as List<dynamic>,
+      userDetails: val['userDetails'] as Map<String, dynamic>,
+      managerDetails: val['managerDetails'] as Map<String, dynamic>,
+      skills: val['skills'] as List<dynamic>,
     );
   }
 
   List<Staff> _decodeStaffList(List<dynamic> val) {
     return List<Staff>.from(
-      (val).map(
+      val.map(
         (x) => Staff.fromJson(
-            userDetails: x["userDetails"],
-            managerDetails: x["managerDetails"],
-            skills: x["skills"]),
+            userDetails: x['userDetails'],
+            managerDetails: x['managerDetails'],
+            skills: x['skills']),
       ),
     );
   }
 
   String _encodeStaff(Staff staff) {
     return jsonEncode({
-      "id": staff.id,
-      "userDetails": {"firstname": staff.firstname, "surname": staff.surname}
+      'id': staff.id,
+      'userDetails': {'firstname': staff.firstname, 'surname': staff.surname}
     });
   }
 
@@ -53,7 +53,7 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     final res = await get('/$id');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Staff not found with that id");
+      throw NoDataReturned('Staff not found with that id');
     }
 
     return _decodeStaff(res.body);
@@ -64,7 +64,7 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     final res = await get('/search/$name');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Staff not found with that id");
+      throw NoDataReturned('Staff not found with that id');
     }
 
     return _decodeStaffList(res.body);
@@ -76,7 +76,7 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     final res = await put('/update', encodedStaff);
 
     if (res.hasError) {
-      throw FailedToUpdateUserException("Unable to update user");
+      throw FailedToUpdateUserException('Unable to update user');
     }
 
     return staff;
@@ -87,7 +87,7 @@ class StaffProvider extends GetConnect implements IStaffProvider {
     final res = await get('/email/$email');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Staff not found with that id");
+      throw NoDataReturned('Staff not found with that id');
     }
 
     return _decodeStaff(res.body);

@@ -11,10 +11,10 @@ class StaffMoreTabUserDetails extends GetView<StaffMoreTabController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
-            "User Details",
+            'User Details',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -22,10 +22,10 @@ class StaffMoreTabUserDetails extends GetView<StaffMoreTabController> {
           ),
         ),
         ListTile(
-          title: Text('Edit Your Details'),
+          title: const Text('Edit Your Details'),
           trailing: IconButton(
             onPressed: controller.navigateToEditDetails,
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
           ),
         ),
         UserListTile(user: controller.user.manager),

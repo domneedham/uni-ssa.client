@@ -17,9 +17,9 @@ abstract class ISkillProvider {
 class SkillProvider extends GetConnect implements ISkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/skill';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
@@ -29,7 +29,7 @@ class SkillProvider extends GetConnect implements ISkillProvider {
 
   List<Skill> _decodeSkillList(List<dynamic> val) {
     return List<Skill>.from(
-      (val).map(
+      val.map(
         (x) => Skill.fromJson(x),
       ),
     );
@@ -37,23 +37,23 @@ class SkillProvider extends GetConnect implements ISkillProvider {
 
   String _encodeNewSkill(Skill val) {
     return jsonEncode({
-      "name": val.name,
-      "category": {
-        "id": val.category.id,
-        "name": val.category.name,
-        "icon": val.category.icon.codePoint,
+      'name': val.name,
+      'category': {
+        'id': val.category.id,
+        'name': val.category.name,
+        'icon': val.category.icon.codePoint,
       }
     });
   }
 
   String _encodeEditSkill(Skill val) {
     return jsonEncode({
-      "id": val.id,
-      "name": val.name,
-      "category": {
-        "id": val.category.id,
-        "name": val.category.name,
-        "icon": val.category.icon.codePoint,
+      'id': val.id,
+      'name': val.name,
+      'category': {
+        'id': val.category.id,
+        'name': val.category.name,
+        'icon': val.category.icon.codePoint,
       }
     });
   }
@@ -63,7 +63,7 @@ class SkillProvider extends GetConnect implements ISkillProvider {
     final res = await get('/');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Not skills found");
+      throw NoDataReturned('Not skills found');
     }
 
     return _decodeSkillList(res.body);
@@ -73,7 +73,7 @@ class SkillProvider extends GetConnect implements ISkillProvider {
   Future<Skill> getById(int id) async {
     final res = await get('/$id');
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("No skill found");
+      throw NoDataReturned('No skill found');
     }
     return _decodeSkill(res.body);
   }
@@ -83,7 +83,7 @@ class SkillProvider extends GetConnect implements ISkillProvider {
     final res = await get('/search/$name');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Not skills found");
+      throw NoDataReturned('Not skills found');
     }
 
     return _decodeSkillList(res.body);

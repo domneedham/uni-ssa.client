@@ -6,6 +6,8 @@ import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_tab.dart';
 
 class StaffHomePage extends StatelessWidget {
+  const StaffHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<StaffController>(
@@ -13,7 +15,7 @@ class StaffHomePage extends StatelessWidget {
         return Scaffold(
           body: IndexedStack(
             index: controller.selectedTab,
-            children: [
+            children: const [
               StaffSkillTab(),
               StaffMoreTab(),
             ],
@@ -22,14 +24,14 @@ class StaffHomePage extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             currentIndex: controller.selectedTab,
             onTap: controller.setSelectedTab,
-            items: [
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.star),
-                label: "Skills",
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.star),
+                label: 'Skills',
               ),
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.more_horiz),
-                label: "More",
+              BottomNavigationBarItem(
+                icon: Icon(Icons.more_horiz),
+                label: 'More',
               ),
             ],
           ),

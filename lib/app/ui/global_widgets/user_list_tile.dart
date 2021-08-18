@@ -12,7 +12,7 @@ class UserListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.person),
+      leading: const Icon(Icons.person),
       title: Text(user.name),
     );
   }
@@ -25,9 +25,9 @@ class LoadingUserListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return const ListTile(
       leading: Icon(Icons.person),
-      title: Text("Loading user..."),
+      title: Text('Loading user...'),
     );
   }
 }
@@ -39,9 +39,9 @@ class LoadingFailedUserListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return const ListTile(
       leading: Icon(Icons.person_off),
-      title: Text("User failed to load"),
+      title: Text('User failed to load'),
     );
   }
 }

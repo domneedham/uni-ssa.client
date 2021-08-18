@@ -1,14 +1,9 @@
 abstract class AppRouteParameterValues {
-  static const FALSE = "false";
-  static const TRUE = "true";
+  static const FALSE = 'false';
+  static const TRUE = 'true';
 }
 
 class StaffSkillOverviewParameters {
-  final String id;
-  final String name;
-  final String edit;
-  final String assign;
-
   const StaffSkillOverviewParameters({
     required this.id,
     required this.name,
@@ -31,10 +26,15 @@ class StaffSkillOverviewParameters {
     );
   }
 
-  static const String ID = "id";
-  static const String NAME = "name";
-  static const String EDIT = "edit";
-  static const String ASSIGN = "assign";
+  final String id;
+  final String name;
+  final String edit;
+  final String assign;
+
+  static const String ID = 'id';
+  static const String NAME = 'name';
+  static const String EDIT = 'edit';
+  static const String ASSIGN = 'assign';
 
   Map<String, String> get toMap => {
         StaffSkillOverviewParameters.ID: id,

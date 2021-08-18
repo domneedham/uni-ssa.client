@@ -19,7 +19,7 @@ class ManagerSkillFormController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
@@ -32,7 +32,9 @@ class ManagerSkillFormController extends GetxController {
   final _selectedCategoryId = 0.obs;
   int get selectedCategoryId => _selectedCategoryId.value;
   set selectedCategoryId(int? value) {
-    if (value != null) _selectedCategoryId.value = value;
+    if (value != null) {
+      _selectedCategoryId.value = value;
+    }
   }
 
   @override
@@ -41,7 +43,7 @@ class ManagerSkillFormController extends GetxController {
     _getParameters();
     await fetchCategories();
 
-    nameController.value = TextEditingValue(text: editSkill?.name ?? "");
+    nameController.value = TextEditingValue(text: editSkill?.name ?? '');
   }
 
   @override
@@ -115,16 +117,16 @@ class ManagerSkillFormController extends GetxController {
         } else {
           await _saveEditSkill();
         }
-        Get.snackbar("Success", "Skill saved");
+        Get.snackbar('Success', 'Skill saved');
       } catch (e) {
-        Get.snackbar("Update failed", e.toString());
+        Get.snackbar('Update failed', e.toString());
       }
     } else {
-      Get.snackbar("Terrible", "Forms looking not so good");
+      Get.snackbar('Terrible', 'Forms looking not so good');
     }
   }
 
-  _saveNewSkill() async {
+  Future<void> _saveNewSkill() async {
     final selectedCategory =
         categories.firstWhere((element) => element.id == selectedCategoryId);
 
@@ -136,7 +138,7 @@ class ManagerSkillFormController extends GetxController {
     await skillRepo.create(skill);
   }
 
-  _saveEditSkill() async {
+  Future<void> _saveEditSkill() async {
     final selectedCategory =
         categories.firstWhere((element) => element.id == selectedCategoryId);
 

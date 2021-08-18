@@ -32,7 +32,7 @@ void main() {
 
       final res = controller.validateEmail(null);
 
-      expect(res, "Please enter an email");
+      expect(res, 'Please enter an email');
     });
 
     test('should fail if not an email', () async {
@@ -40,9 +40,9 @@ void main() {
 
       final controller = Get.find<LoginController>();
 
-      final res = controller.validateEmail("not an email");
+      final res = controller.validateEmail('not an email');
 
-      expect(res, "Email is not valid");
+      expect(res, 'Email is not valid');
     });
 
     test('should pass if an email', () async {
@@ -50,7 +50,7 @@ void main() {
 
       final controller = Get.find<LoginController>();
 
-      final res = controller.validateEmail("test@test.com");
+      final res = controller.validateEmail('test@test.com');
 
       expect(res, null);
     });
@@ -64,7 +64,7 @@ void main() {
 
       final res = controller.validatePassword(null);
 
-      expect(res, "Please enter a password");
+      expect(res, 'Please enter a password');
     });
 
     test('should fail if not longer than 8 characters', () async {
@@ -72,9 +72,9 @@ void main() {
 
       final controller = Get.find<LoginController>();
 
-      final res = controller.validatePassword("sevench");
+      final res = controller.validatePassword('sevench');
 
-      expect(res, "Password needs to be 8 characters or more");
+      expect(res, 'Password needs to be 8 characters or more');
     });
 
     test('should pass if a password', () async {
@@ -82,7 +82,7 @@ void main() {
 
       final controller = Get.find<LoginController>();
 
-      final res = controller.validatePassword("eightchr");
+      final res = controller.validatePassword('eightchr');
 
       expect(res, null);
     });
@@ -97,13 +97,13 @@ void main() {
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<LoginController>();
 
-      controller.emailController.text = "test@test.com";
-      controller.passwordController.text = "password";
+      controller.emailController.text = 'test@test.com';
+      controller.passwordController.text = 'password';
 
       await controller.login();
 
@@ -118,13 +118,13 @@ void main() {
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<LoginController>();
 
-      controller.emailController.text = "not an email";
-      controller.passwordController.text = "password";
+      controller.emailController.text = 'not an email';
+      controller.passwordController.text = 'password';
 
       await controller.login();
 
@@ -140,13 +140,13 @@ void main() {
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<LoginController>();
 
-      controller.emailController.text = "test@test.com";
-      controller.passwordController.text = "short";
+      controller.emailController.text = 'test@test.com';
+      controller.passwordController.text = 'short';
 
       await controller.login();
 

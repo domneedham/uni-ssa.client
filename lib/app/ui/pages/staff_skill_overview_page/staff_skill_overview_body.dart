@@ -12,21 +12,21 @@ class StaffSkillOverviewBody extends GetView<StaffSkillOverviewController> {
 
   @override
   Widget build(BuildContext context) {
-    final name = Get.parameters["name"];
+    final name = Get.parameters['name'];
     final skill = controller.skill!.value;
 
     return ListView(
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       children: [
         if (name == null) PageTitle(text: skill.name),
-        if (name != null) SizedBox(height: 16),
+        if (name != null) const SizedBox(height: 16),
         SkillCategoryTitle(category: skill.category),
-        SizedBox(height: 24),
-        StaffSkillOverviewRating(),
-        SizedBox(height: 24),
-        StaffSkillOverviewExpiry(),
-        SizedBox(height: 16),
-        StaffSkillOverviewSaveButton(),
+        const SizedBox(height: 24),
+        const StaffSkillOverviewRating(),
+        const SizedBox(height: 24),
+        const StaffSkillOverviewExpiry(),
+        const SizedBox(height: 16),
+        const StaffSkillOverviewSaveButton(),
       ],
     );
   }

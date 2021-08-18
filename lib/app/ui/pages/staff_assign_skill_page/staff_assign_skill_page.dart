@@ -13,12 +13,12 @@ class StaffAssignSkillPage extends GetView<StaffAssignSkillController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Assign Skill"),
+        title: const Text('Assign Skill'),
       ),
       body: Column(
         children: [
           StaffAssignSkillSearch(
-            hintText: "Search for a skill",
+            hintText: 'Search for a skill',
             textController: controller.textController,
           ),
           Obx(() {

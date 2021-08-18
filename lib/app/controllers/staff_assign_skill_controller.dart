@@ -17,7 +17,7 @@ class StaffAssignSkillController extends GetxController
   final skillList = RxList<Skill>();
 
   final textController = TextEditingController();
-  final searchText = "".obs;
+  final searchText = ''.obs;
 
   @override
   void onInit() {
@@ -29,7 +29,7 @@ class StaffAssignSkillController extends GetxController
     debounce(
       searchText,
       (_) => _search(),
-      time: Duration(seconds: 1),
+      time: const Duration(seconds: 1),
     );
   }
 
@@ -74,7 +74,7 @@ class StaffAssignSkillController extends GetxController
     isLoading.value = false;
   }
 
-  assignSkill(Skill skill) {
+  void assignSkill(Skill skill) {
     final parameters = StaffSkillOverviewParameters(
       id: skill.id.toString(),
       name: skill.name,

@@ -16,9 +16,9 @@ class ManagerStaffTabSearch extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextField(
         decoration: InputDecoration(
-          border: UnderlineInputBorder(),
+          border: const UnderlineInputBorder(),
           hintText: hintText,
-          suffixIcon: Icon(Icons.search),
+          suffixIcon: const Icon(Icons.search),
         ),
         controller: textController,
       ),

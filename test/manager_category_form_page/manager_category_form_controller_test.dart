@@ -74,7 +74,7 @@ void main() {
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(userRepo.user).thenReturn(managerOne);
 
-        final response = controller.validateName("Name");
+        final response = controller.validateName('Name');
         expect(response, null);
       });
 
@@ -108,15 +108,16 @@ void main() {
           .thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<ManagerCategoryFormController>();
-      controller.nameController.text = "Hello";
+      controller.nameController.text = 'Hello';
 
       await controller.save();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verify(categoryRepo.createCategory(any)).called(1);
     });
@@ -132,15 +133,16 @@ void main() {
           .thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<ManagerCategoryFormController>();
-      controller.nameController.text = "";
+      controller.nameController.text = '';
 
       await controller.save();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verifyNever(categoryRepo.createCategory(any));
     });

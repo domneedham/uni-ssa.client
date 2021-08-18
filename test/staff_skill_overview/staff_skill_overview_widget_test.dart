@@ -43,9 +43,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -53,9 +53,10 @@ void main() {
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
 
-      expect(find.text("Test Skill"), findsOneWidget);
+      expect(find.text('Test Skill'), findsOneWidget);
     });
 
     testWidgets('loading indicator is shown whilst loading',
@@ -64,9 +65,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -74,7 +75,8 @@ void main() {
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -84,18 +86,19 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
-      final error = Exception("Some error");
+      final error = Exception('Some error');
 
       when(mockStaffSkillRepo.getSkillById(1))
           .thenAnswer((_) async => throw error);
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(error.toString()), findsOneWidget);
@@ -108,9 +111,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -121,7 +124,8 @@ void main() {
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewBody()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewBody()));
 
       expect(find.byType(SkillCategoryTitle), findsOneWidget);
     });
@@ -131,9 +135,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -143,9 +147,10 @@ void main() {
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewBody()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewBody()));
 
       expect(find.byType(StaffSkillOverviewRating), findsOneWidget);
     });
@@ -155,9 +160,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -168,7 +173,8 @@ void main() {
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewBody()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewBody()));
 
       expect(find.byType(StaffSkillOverviewExpiry), findsOneWidget);
     });
@@ -178,9 +184,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -191,7 +197,8 @@ void main() {
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewBody()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewBody()));
 
       expect(find.byType(StaffSkillOverviewSaveButton), findsOneWidget);
     });
@@ -203,9 +210,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -217,7 +224,7 @@ void main() {
       Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.remove), findsOneWidget);
     });
@@ -227,9 +234,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -241,7 +248,7 @@ void main() {
       Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
@@ -252,9 +259,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -264,11 +271,11 @@ void main() {
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.rating.value = 3;
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.star), findsNWidgets(3));
     });
@@ -279,9 +286,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final mockSkillRepo = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -294,7 +301,7 @@ void main() {
       Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.star), findsNothing);
     });
@@ -305,9 +312,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -317,11 +324,11 @@ void main() {
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.rating.value = 3;
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.star_border), findsNWidgets(2));
     });
@@ -332,9 +339,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -344,11 +351,11 @@ void main() {
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.rating.value = 3;
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewRating()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewRating()));
 
       expect(find.byIcon(Icons.star), findsNWidgets(3));
 
@@ -367,9 +374,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -381,7 +388,7 @@ void main() {
       Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewExpiry()));
 
       expect(find.byIcon(Icons.calendar_today), findsOneWidget);
       expect(find.byType(IconButton), findsOneWidget);
@@ -392,9 +399,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -406,7 +413,7 @@ void main() {
       final controller = Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewExpiry()));
 
       expect(find.text(controller.formatDate(skillWithExpiry.expires)),
           findsOneWidget);
@@ -417,9 +424,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final mockSkillRepo = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -432,7 +439,7 @@ void main() {
       final controller = Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewExpiry()));
 
       expect(find.text(controller.formatDate(null)), findsOneWidget);
     });
@@ -443,9 +450,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -457,7 +464,7 @@ void main() {
       Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewExpiry()));
 
       await tester.tap(find.byIcon(Icons.calendar_today));
       await tester.pumpAndSettle();
@@ -471,9 +478,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -485,14 +492,14 @@ void main() {
       final controller = Get.find<StaffSkillOverviewController>();
 
       await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewExpiry()));
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewExpiry()));
 
       // should find skill with no expiry - showing 'No Expiry'
       expect(find.text(controller.formatDate(skillWithNoExpiry.expires)),
           findsOneWidget);
 
       // change expires in controller to tomorrow
-      final newDate = DateTime.now().add(Duration(days: 1));
+      final newDate = DateTime.now().add(const Duration(days: 1));
       controller.expires.value = newDate;
 
       await tester.pumpAndSettle();
@@ -508,9 +515,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -521,8 +528,8 @@ void main() {
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
 
-      await tester
-          .pumpWidget(TestableWidget(child: StaffSkillOverviewSaveButton()));
+      await tester.pumpWidget(
+          const TestableWidget(child: StaffSkillOverviewSaveButton()));
 
       expect(find.text('Save'), findsOneWidget);
     });

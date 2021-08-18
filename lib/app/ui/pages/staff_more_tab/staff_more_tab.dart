@@ -7,6 +7,8 @@ import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 import 'package:ssa_app/app/ui/pages/staff_more_tab/staff_more_tab_user_details.dart';
 
 class StaffMoreTab extends StatelessWidget {
+  const StaffMoreTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,15 +18,15 @@ class StaffMoreTab extends StatelessWidget {
       body: GetBuilder<StaffMoreTabController>(
         builder: (controller) {
           return ListView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               UserProfileHeader(user: controller.user),
-              Divider(),
-              StaffMoreTabUserDetails(),
-              Divider(),
+              const Divider(),
+              const StaffMoreTabUserDetails(),
+              const Divider(),
               MoreTabSettings(logout: controller.logout),
-              Divider(),
-              MoreTabAppInformation(),
+              const Divider(),
+              const MoreTabAppInformation(),
             ],
           );
         },

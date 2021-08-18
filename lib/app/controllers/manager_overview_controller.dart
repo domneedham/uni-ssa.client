@@ -11,21 +11,21 @@ class ManagerOverviewController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   Rx<Manager>? manager;
 
   @override
   void onInit() async {
     super.onInit();
-    await getUser(parameters["id"]!);
+    await getUser(parameters['id']!);
   }
 
   Future<void> getUser(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      Manager fetchedManager = await userRepo.getManagerById(parsedId);
+      final int parsedId = int.parse(id);
+      final Manager fetchedManager = await userRepo.getManagerById(parsedId);
       manager = fetchedManager.obs;
     } catch (e) {
       isError.value = true;
@@ -36,7 +36,7 @@ class ManagerOverviewController extends GetxController {
   }
 
   Future<Staff>? getStaffById(int id) async {
-    Staff fetchedStaff = await userRepo.getStaffById(id);
+    final Staff fetchedStaff = await userRepo.getStaffById(id);
     return fetchedStaff;
   }
 }

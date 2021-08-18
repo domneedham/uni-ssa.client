@@ -15,21 +15,21 @@ class StaffOverviewController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   Rx<Staff>? staff;
 
   @override
   void onInit() async {
     super.onInit();
-    await getUser(parameters["id"]!);
+    await getUser(parameters['id']!);
   }
 
   Future<void> getUser(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      Staff fetchedStaff = await userRepo.getStaffById(parsedId);
+      final int parsedId = int.parse(id);
+      final Staff fetchedStaff = await userRepo.getStaffById(parsedId);
       staff = fetchedStaff.obs;
     } catch (e) {
       isError.value = true;
@@ -46,12 +46,12 @@ class StaffOverviewController extends GetxController {
   String expiryText(StaffSkill skill) {
     if (skill.hasExpiry) {
       if (skill.isExpired) {
-        return "Expired";
+        return 'Expired';
       } else {
-        return "Not Expired";
+        return 'Not Expired';
       }
     } else {
-      return "No Expiry";
+      return 'No Expiry';
     }
   }
 
@@ -60,17 +60,17 @@ class StaffOverviewController extends GetxController {
       final date = Dates.formatUI(skill.expires!);
       if (skill.isExpired) {
         return Text(
-          "Expired on: $date",
-          style: TextStyle(color: Colors.red),
+          'Expired on: $date',
+          style: const TextStyle(color: Colors.red),
         );
       } else {
         return Text(
-          "Expires on: $date",
-          style: TextStyle(color: Colors.green),
+          'Expires on: $date',
+          style: const TextStyle(color: Colors.green),
         );
       }
     } else {
-      return Text("No Expiry");
+      return const Text('No Expiry');
     }
   }
 }

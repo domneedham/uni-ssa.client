@@ -27,13 +27,18 @@ class HomeController extends GetxController {
 
     if (repo.firstLaunch.isFalse) {
       // let animation run
-      Future.delayed(Duration(seconds: 1), () async {
-        final user = await repo.initLogin();
+      Future.delayed(const Duration(seconds: 1), () async {
+        try {
+          final user = await repo.initLogin();
 
-        // if user is null, must manually call navigate as the ever function
-        // will not be called
-        if (user == null) {
-          navigate(user);
+          // if user is null, must manually call navigate as the ever function
+          // will not be called
+          if (user == null) {
+            navigate(user);
+          }
+        } catch (e) {
+          navigate(null);
+          print('Failed to login on init');
         }
       });
     }

@@ -26,7 +26,7 @@ class ManagerSkillCard extends GetView<ManagerSkillTabController> {
                 skill.name,
                 style: Get.textTheme.headline6,
               ),
-              Text("Staff: ${skill.staff.length}")
+              Text('Staff: ${skill.staff.length}')
             ],
           ),
         ),

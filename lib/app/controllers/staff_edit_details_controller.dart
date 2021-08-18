@@ -42,9 +42,9 @@ class StaffEditDetailsController extends GetxController {
         );
         await userRepo.updateStaffDetails(staff);
 
-        Get.snackbar("Success", "Name updated");
+        Get.snackbar('Success', 'Name updated');
       } catch (e) {
-        Get.snackbar("Update failed", e.toString());
+        Get.snackbar('Update failed', e.toString());
       }
     }
   }

@@ -1,4 +1,5 @@
 class NoDataReturned implements Exception {
-  String cause;
   NoDataReturned(this.cause);
+
+  String cause;
 }

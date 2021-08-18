@@ -29,7 +29,7 @@ class StaffSkillCard extends GetView<StaffSkillTabController> {
               Wrap(
                 children: List.generate(
                   skill.rating.toInt(),
-                  (index) => Icon(Icons.star, size: 16),
+                  (index) => const Icon(Icons.star, size: 16),
                 ),
               ),
               Text(

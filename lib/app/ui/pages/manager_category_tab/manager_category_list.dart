@@ -21,20 +21,20 @@ class ManagerCategoryList extends GetView<ManagerCategoryTabController> {
           delete: () {
             Get.dialog(AlertDialog(
               title: Text(
-                  "Are you sure you want to delete ${item.name}? This will delete all skills in this category too."),
+                  'Are you sure you want to delete ${item.name}? This will delete all skills in this category too.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     Get.back();
                   },
-                  child: Text("No"),
+                  child: const Text('No'),
                 ),
                 TextButton(
                   onPressed: () async {
                     Get.back();
                     await controller.deleteCategory(item);
                   },
-                  child: Text("Yes"),
+                  child: const Text('Yes'),
                 ),
               ],
             ));

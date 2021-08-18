@@ -10,7 +10,7 @@ class LoginController extends GetxController {
 
   final isLoading = false.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
@@ -48,7 +48,7 @@ class LoginController extends GetxController {
       try {
         await userRepo.loginEmailPassword(email, password);
       } catch (e) {
-        Get.snackbar("Error", e.toString());
+        Get.snackbar('Error', e.toString());
       }
     }
   }

@@ -16,8 +16,8 @@ class StaffOverviewManagerSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text("Reports To:"),
+          padding: EdgeInsets.all(8),
+          child: Text('Reports To:'),
         ),
         UserListTile(user: staff.manager),
       ],

@@ -36,9 +36,9 @@ void main() {
     final mockStaffSkillRepo = TestMocks.skillStaffRepository;
     final _ = TestMocks.skillRepository;
 
-    Get.parameters = StaffSkillOverviewParameters(
-      id: "1",
-      name: "Test Skill",
+    Get.parameters = const StaffSkillOverviewParameters(
+      id: '1',
+      name: 'Test Skill',
       edit: AppRouteParameterValues.TRUE,
     ).toMap;
 
@@ -58,9 +58,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -73,7 +73,7 @@ void main() {
 
       final value = controller.formatDate(null);
 
-      expect(value, "No Expiry");
+      expect(value, 'No Expiry');
     });
 
     test('should return the formatted date param is valid', () async {
@@ -81,9 +81,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -106,9 +106,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -118,7 +118,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       controller.rating.value = 3;
       expect(controller.rating.value, 3);
@@ -132,9 +132,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -144,7 +144,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       controller.rating.value = 5;
       expect(controller.rating.value, 5);
@@ -160,9 +160,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -172,7 +172,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       controller.rating.value = 3;
       expect(controller.rating.value, 3);
@@ -185,9 +185,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -197,7 +197,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       controller.rating.value = 0;
       expect(controller.rating.value, 0);
@@ -213,9 +213,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -225,7 +225,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       expect(controller.isEdited.value, false);
 
@@ -239,9 +239,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -251,7 +251,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.rating.value = skillWithExpiry.rating;
 
       expect(controller.isEdited.value, false);
@@ -268,9 +268,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -280,7 +280,7 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.rating.value = skillWithExpiry.rating;
 
       expect(controller.isEdited.value, false);
@@ -298,9 +298,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -310,14 +310,14 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       final dateNow = skillWithExpiry.expires;
       controller.expires.value = dateNow;
 
       expect(controller.isEdited.value, false);
       expect(controller.expires.value, dateNow);
 
-      controller.setIsEdited(newExpiry: dateNow!.add(Duration(days: 1)));
+      controller.setIsEdited(newExpiry: dateNow!.add(const Duration(days: 1)));
 
       expect(controller.isEdited.value, true);
     });
@@ -329,9 +329,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -341,14 +341,14 @@ void main() {
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
       controller.expires.value = skillWithExpiry.expires;
 
       expect(controller.isEdited.value, false);
       expect(controller.expires.value, skillWithExpiry.expires);
 
       controller.setIsEdited(
-          newExpiry: skillWithExpiry.expires!.add(Duration(days: 1)));
+          newExpiry: skillWithExpiry.expires!.add(const Duration(days: 1)));
       expect(controller.isEdited.value, true);
 
       controller.setIsEdited(newExpiry: skillWithExpiry.expires);
@@ -362,9 +362,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -373,7 +373,8 @@ void main() {
       when(mockUserRepo.user).thenReturn(staffOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       // this inits the controller and sets the skill
@@ -381,7 +382,7 @@ void main() {
 
       await controller.saveEditedSkill();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verifyNever(mockStaffSkillRepo.saveEdited(any));
       verifyNever(mockStaffSkillRepo.saveNew(any));
@@ -392,9 +393,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final _ = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -406,7 +407,8 @@ void main() {
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       // this inits the controller and sets the skill
@@ -418,7 +420,7 @@ void main() {
 
       await controller.saveEditedSkill();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verify(mockStaffSkillRepo.saveEdited(any)).called(1);
       verifyNever(mockStaffSkillRepo.saveNew(any));
@@ -429,9 +431,9 @@ void main() {
       final mockStaffSkillRepo = TestMocks.skillStaffRepository;
       final mockSkillRepo = TestMocks.skillRepository;
 
-      Get.parameters = StaffSkillOverviewParameters(
-        id: "1",
-        name: "Test Skill",
+      Get.parameters = const StaffSkillOverviewParameters(
+        id: '1',
+        name: 'Test Skill',
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
@@ -444,7 +446,8 @@ void main() {
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffSkillOverviewPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       // this inits the controller and sets the skill
@@ -456,7 +459,7 @@ void main() {
 
       await controller.saveEditedSkill();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verifyNever(mockStaffSkillRepo.saveEdited(any));
       verify(mockStaffSkillRepo.saveNew(any)).called(1);

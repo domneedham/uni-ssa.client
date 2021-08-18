@@ -8,6 +8,7 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 import './gen_repo_mocks.mocks.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class TestMocks {
   /// Get an instance of [MockUserRepository].
   /// Calls Get.put() to solve dependency injection for the test.

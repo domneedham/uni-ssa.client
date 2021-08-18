@@ -3,7 +3,7 @@ import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 
 class SkillCategoryGrid extends StatelessWidget {
-  SkillCategoryGrid({
+  const SkillCategoryGrid({
     Key? key,
     this.childAspectRatio = 2.5,
     required this.entry,
@@ -23,7 +23,7 @@ class SkillCategoryGrid extends StatelessWidget {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: entry.value.length,
       itemBuilder: (ctx, pos) {
