@@ -6,6 +6,7 @@ import 'package:ssa_app/app/data/models/user/user.dart';
 import 'package:ssa_app/app/data/providers/auth_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/staff_provider.dart';
+import 'package:ssa_app/app/data/services/box_service.dart';
 import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 
 class UserRepository {
@@ -13,11 +14,13 @@ class UserRepository {
     required this.staffProvider,
     required this.managerProvider,
     required this.authProvider,
+    required this.boxService,
   });
 
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;
   final IAuthProvider authProvider;
+  final BoxService boxService;
 
   final box = GetStorage();
 
@@ -37,38 +40,6 @@ class UserRepository {
     } else {
       return null;
     }
-  }
-
-  void _writeTokens(
-    String? accessToken,
-    String? refreshToken,
-    String? role,
-    String email,
-  ) {
-    if (accessToken != null) {
-      box.remove('access_token');
-      box.write('access_token', accessToken);
-    }
-
-    if (refreshToken != null) {
-      box.remove('refresh_token');
-      box.write('refresh_token', refreshToken);
-    }
-
-    if (role != null) {
-      box.remove('role');
-      box.write('role', role);
-    }
-
-    box.remove('email');
-    box.write('email', email);
-  }
-
-  void _clearTokens() {
-    box.remove('access_token');
-    box.remove('refresh_token');
-    box.remove('role');
-    box.remove('email');
   }
 
   Future<Staff> _loginStaff(String email) async {
@@ -95,7 +66,7 @@ class UserRepository {
     } else if (role == 'MANAGER') {
       user = await _loginManager(email);
     } else {
-      _clearTokens();
+      boxService.clearAll();
       throw FailedToLoginException('Not a recognised user');
     }
 
@@ -111,20 +82,16 @@ class UserRepository {
     if (res['access_token'] != null &&
         res['refresh_token'] != null &&
         res['role'] != null) {
-      _writeTokens(
-        res['access_token'],
-        res['refresh_token'],
-        res['role'],
-        email,
-      );
+      boxService.writeAuthTokens(res['access_token'], res['refresh_token']);
+      boxService.writeUserDetails(res['role'], email);
     }
 
     return _login(res['role'], email);
   }
 
   Future<User?> initLogin() async {
-    final role = box.read('role');
-    final email = box.read('email');
+    final role = box.read(BoxService.USER_ROLE);
+    final email = box.read(BoxService.USER_EMAIL);
 
     if (role == null || email == null) {
       return null;
@@ -134,7 +101,7 @@ class UserRepository {
   }
 
   void logout() {
-    _clearTokens();
+    boxService.clearAll();
 
     _staff = null;
     _manager = null;

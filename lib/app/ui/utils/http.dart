@@ -1,6 +1,7 @@
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ssa_app/app/data/providers/auth_provider.dart';
+import 'package:ssa_app/app/data/services/box_service.dart';
 
 const String _AUTHORISATION_STRING = 'Authorization';
 
@@ -29,8 +30,11 @@ Request<dynamic> addRequestModifier(Request<dynamic> request) {
 Future<Request<dynamic>> addAuthenticator(Request<dynamic> request) async {
   print('Refreshing token');
   final res = await AuthProvider.to.refreshToken();
-  if (res['access_token'] != null) {
-    request.headers[_AUTHORISATION_STRING] = res['access_token']!;
+  if (res[BoxService.ACCESS_TOKEN] != null) {
+    // rewrite new auth token
+    BoxService.to.writeAuthTokens(res[BoxService.ACCESS_TOKEN], null);
+    // set new auth token in headers for request
+    request.headers[_AUTHORISATION_STRING] = res[BoxService.ACCESS_TOKEN]!;
   }
   return request;
 }

@@ -11,6 +11,7 @@ import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart'
 import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/box_service.dart';
 
 class AppBinding implements Bindings {
   @override
@@ -44,11 +45,14 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
+    Get.lazyPut<BoxService>(() => BoxService());
+
     Get.put<UserRepository>(
       UserRepository(
         staffProvider: Get.find(),
         managerProvider: Get.find(),
         authProvider: Get.find(),
+        boxService: Get.find(),
       ),
       permanent: true,
     );
