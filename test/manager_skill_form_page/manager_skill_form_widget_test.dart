@@ -7,11 +7,13 @@ import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form.
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/manager_skill_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_skill_form_test_data.dart';
 
 void main() {
+  final categoryOne = TestData.mockCategoryOne;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerSkillFormController>(() => ManagerSkillFormController());
   });
@@ -29,14 +31,14 @@ void main() {
     testWidgets('shows a loading indicator whilst the page is loading',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -44,30 +46,30 @@ void main() {
     testWidgets('shows a prompt if not categories are loaded',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => []);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text("You must create a category first"), findsOneWidget);
+      expect(find.text('You must create a category first'), findsOneWidget);
     });
 
     testWidgets('shows the form if categories are loaded',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerSkillForm), findsOneWidget);
@@ -76,16 +78,16 @@ void main() {
     testWidgets('shows error text if an error occurs',
         (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      final exception = Exception("Issue");
+      final exception = Exception('Issue');
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => throw exception);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);
@@ -95,32 +97,32 @@ void main() {
   group('add form', () {
     testWidgets('page title shows add', (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
-      expect(find.text("Add Skill"), findsOneWidget);
+      expect(find.text('Add Skill'), findsOneWidget);
     });
   });
 
   group('edit form', () {
     testWidgets('Page title shows edit', (WidgetTester tester) async {
       final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      TestMocks.skillRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
-      expect(find.text("Edit Skill"), findsOneWidget);
+      expect(find.text('Edit Skill'), findsOneWidget);
     });
   });
 }

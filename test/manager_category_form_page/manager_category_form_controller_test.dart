@@ -2,12 +2,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_category_form_controller.dart';
+import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'manager_category_form_test_data.dart';
+import '../testable_widget.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerNoStaff;
+  final categoryOne = TestData.mockCategoryOne;
+  final categoryTwo = TestData.mockCategoryTwo;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerCategoryFormController>(
         () => ManagerCategoryFormController());
@@ -33,7 +39,7 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.ADD);
     });
@@ -48,7 +54,7 @@ void main() {
 
       when(mockCatRepo.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.manager).thenReturn(managerOne);
+      when(userRepo.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.EDIT);
     });
@@ -66,9 +72,9 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
 
-        final response = controller.validateName("Name");
+        final response = controller.validateName('Name');
         expect(response, null);
       });
 
@@ -82,11 +88,63 @@ void main() {
 
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.manager).thenReturn(managerOne);
+        when(userRepo.user).thenReturn(managerOne);
 
         final response = controller.validateName(null);
         expect(response, isNotNull);
       });
+    });
+  });
+
+  group('save', () {
+    testWidgets('should call save if form is valid', (tester) async {
+      final categoryRepo = TestMocks.categoriesRepository;
+
+      Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
+
+      when(categoryRepo.getCategoryById(1))
+          .thenAnswer((_) async => categoryOne);
+      when(categoryRepo.createCategory(any))
+          .thenAnswer((_) async => categoryOne);
+
+      // need to pump for snackbar
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
+      await tester.pumpAndSettle();
+
+      final controller = Get.find<ManagerCategoryFormController>();
+      controller.nameController.text = 'Hello';
+
+      await controller.save();
+      // let the snackbar run
+      await tester.pump(const Duration(seconds: 5));
+
+      verify(categoryRepo.createCategory(any)).called(1);
+    });
+
+    testWidgets('should not call save if name is not valid', (tester) async {
+      final categoryRepo = TestMocks.categoriesRepository;
+
+      Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
+
+      when(categoryRepo.getCategoryById(1))
+          .thenAnswer((_) async => categoryOne);
+      when(categoryRepo.createCategory(any))
+          .thenAnswer((_) async => categoryOne);
+
+      // need to pump for snackbar
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
+      await tester.pumpAndSettle();
+
+      final controller = Get.find<ManagerCategoryFormController>();
+      controller.nameController.text = '';
+
+      await controller.save();
+      // let the snackbar run
+      await tester.pump(const Duration(seconds: 5));
+
+      verifyNever(categoryRepo.createCategory(any));
     });
   });
 }

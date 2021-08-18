@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
+import 'package:ssa_app/app/routes/app_pages.dart';
+import 'package:ssa_app/app/routes/app_route_parameters.dart';
 
 class StaffAssignSkillController extends GetxController
     with SingleGetTickerProviderMixin {
   TabController? tabController;
 
-  final skillRepo = Get.find<SkillStaffRepository>();
+  final staffSkillRepo = Get.find<StaffSkillRepository>();
+  final skillRepo = Get.find<SkillRepository>();
 
   final isLoading = false.obs;
   final skillList = RxList<Skill>();
 
   final textController = TextEditingController();
-  final searchText = "".obs;
+  final searchText = ''.obs;
 
   @override
   void onInit() {
@@ -25,7 +29,7 @@ class StaffAssignSkillController extends GetxController
     debounce(
       searchText,
       (_) => _search(),
-      time: Duration(seconds: 1),
+      time: const Duration(seconds: 1),
     );
   }
 
@@ -64,11 +68,19 @@ class StaffAssignSkillController extends GetxController
       return;
     }
 
-    final tempList = await skillRepo.searchSkillByName(searchText.value);
+    final tempList = await skillRepo.searchByName(searchText.value);
     skillList.value = tempList;
 
     isLoading.value = false;
   }
 
-  assignSkill(int id) {}
+  void assignSkill(Skill skill) {
+    final parameters = StaffSkillOverviewParameters(
+      id: skill.id.toString(),
+      name: skill.name,
+      assign: AppRouteParameterValues.TRUE,
+    );
+
+    Get.toNamed(Routes.STAFF_SKILL_OVERVIEW, parameters: parameters.toMap);
+  }
 }

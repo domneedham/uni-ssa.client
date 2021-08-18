@@ -15,9 +15,9 @@ class ManagerCategoryForm extends GetView<ManagerCategoryFormController> {
         child: Column(
           children: [
             TextFormField(
-              decoration: InputDecoration(labelText: "Name"),
+              decoration: const InputDecoration(labelText: 'Name'),
               validator: controller.validateName,
-              initialValue: controller.editCategory?.name,
+              controller: controller.nameController,
             ),
             const SizedBox(height: 8),
             Row(
@@ -31,7 +31,7 @@ class ManagerCategoryForm extends GetView<ManagerCategoryFormController> {
                 }),
                 ElevatedButton(
                   onPressed: controller.pickIcon,
-                  child: Text("Pick Icon"),
+                  child: const Text('Pick Icon'),
                 ),
               ],
             )

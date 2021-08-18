@@ -11,11 +11,14 @@ import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab_search.
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_tab/manager_staff_tab_manager.dart';
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/staff_tab/manager_staff_tab_staff.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_staff_tab_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+  final staffOne = TestData.mockStaffNoSkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerStaffTabController>(() => ManagerStaffTabController());
   });
@@ -34,35 +37,35 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
 
       expect(
           find.byWidgetPredicate((widget) =>
               widget is AppBar &&
               widget.title is Text &&
-              (widget.title as Text).data == "Staff"),
+              (widget.title as Text).data == 'Staff'),
           findsOneWidget);
     });
 
     testWidgets('the tabbar has two tabs', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(TabBar), findsOneWidget);
       expect(
           find.byWidgetPredicate(
-              (widget) => widget is Tab && widget.text == "Staff"),
+              (widget) => widget is Tab && widget.text == 'Staff'),
           findsOneWidget);
       expect(
           find.byWidgetPredicate(
-              (widget) => widget is Tab && widget.text == "Managers"),
+              (widget) => widget is Tab && widget.text == 'Managers'),
           findsOneWidget);
     });
 
@@ -70,13 +73,13 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byWidgetPredicate(
-          (widget) => widget is Tab && widget.text == "Staff"));
+          (widget) => widget is Tab && widget.text == 'Staff'));
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerStaffTabStaff), findsOneWidget);
@@ -86,13 +89,13 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byWidgetPredicate(
-          (widget) => widget is Tab && widget.text == "Managers"));
+          (widget) => widget is Tab && widget.text == 'Managers'));
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerStaffTabManager), findsOneWidget);
@@ -105,13 +108,14 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTabStaff()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerStaffTabStaff()));
       await tester.pumpAndSettle();
 
-      expect(find.textContaining("Search"), findsOneWidget);
-      expect(find.textContaining("staff member"), findsOneWidget);
+      expect(find.textContaining('Search'), findsOneWidget);
+      expect(find.textContaining('staff member'), findsOneWidget);
     });
   });
 
@@ -121,13 +125,14 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(mockManager);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerStaffTabManager()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerStaffTabManager()));
       await tester.pumpAndSettle();
 
-      expect(find.textContaining("Search"), findsOneWidget);
-      expect(find.textContaining("manager"), findsOneWidget);
+      expect(find.textContaining('Search'), findsOneWidget);
+      expect(find.textContaining('manager'), findsOneWidget);
     });
   });
 
@@ -135,17 +140,17 @@ void main() {
     testWidgets('the hint text is shown', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabSearch(
-          hintText: "Hello",
+          hintText: 'Hello',
           textController: TextEditingController(),
         ),
       ));
 
-      expect(find.text("Hello"), findsOneWidget);
+      expect(find.text('Hello'), findsOneWidget);
     });
     testWidgets('a search icon is shown', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabSearch(
-          hintText: "Hello",
+          hintText: 'Hello',
           textController: TextEditingController(),
         ),
       ));
@@ -161,14 +166,14 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "",
-          staffList: [],
+          searchText: '',
+          staffList: const [],
           onPressed: (int? _) {},
         ),
       ));
       await tester.pumpAndSettle();
 
-      expect(find.text("Waiting for a search"), findsOneWidget);
+      expect(find.text('Waiting for a search'), findsOneWidget);
     });
 
     testWidgets('shows happening a loading indicator if searching',
@@ -176,8 +181,8 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: true,
-          searchText: "",
-          staffList: [],
+          searchText: '',
+          staffList: const [],
           onPressed: (int? _) {},
         ),
       ));
@@ -190,13 +195,13 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "Not empty",
-          staffList: [],
+          searchText: 'Not empty',
+          staffList: const [],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text("No staff found"), findsOneWidget);
+      expect(find.text('No staff found'), findsOneWidget);
     });
 
     testWidgets('shows a message to the user if no manager items are found',
@@ -204,13 +209,13 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "Not empty",
-          managerList: [],
+          searchText: 'Not empty',
+          managerList: const [],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text("No managers found"), findsOneWidget);
+      expect(find.text('No managers found'), findsOneWidget);
     });
 
     testWidgets('shows a list of items if items are found',
@@ -218,8 +223,8 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "Not empty",
-          staffList: [mockStaff],
+          searchText: 'Not empty',
+          staffList: [staffOne],
           onPressed: (int? _) {},
         ),
       ));
@@ -232,13 +237,13 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "Not empty",
-          staffList: [mockStaff],
+          searchText: 'Not empty',
+          staffList: [staffOne],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text(mockStaff.name), findsOneWidget);
+      expect(find.text(staffOne.name), findsOneWidget);
     });
 
     testWidgets('the list is populated if manager items are found',
@@ -246,13 +251,13 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: ManagerStaffTabList(
           isLoading: false,
-          searchText: "Not empty",
-          managerList: [mockManager],
+          searchText: 'Not empty',
+          managerList: [managerOne],
           onPressed: (int? _) {},
         ),
       ));
 
-      expect(find.text(mockManager.name), findsOneWidget);
+      expect(find.text(managerOne.name), findsOneWidget);
     });
   });
 }

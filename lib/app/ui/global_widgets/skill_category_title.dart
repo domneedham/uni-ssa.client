@@ -17,7 +17,7 @@ class SkillCategoryTitle extends StatelessWidget {
       child: Row(
         children: [
           Icon(category.icon),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(
             category.name,
             style: Get.textTheme.headline5,

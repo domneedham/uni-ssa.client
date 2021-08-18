@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/staff_assign_skill_controller.dart';
+import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_list.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_page.dart';
 import 'package:ssa_app/app/ui/pages/staff_assign_skill_page/staff_assign_skill_search.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'staff_assign_skill_test_data.dart';
 
 void main() {
+  final skillOne = TestData.mockSkillOne;
+  final skillTwo = TestData.mockSkillTwo;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffAssignSkillController>(() => StaffAssignSkillController());
   });
@@ -30,8 +34,10 @@ void main() {
     testWidgets('appbar shows the right title', (WidgetTester tester) async {
       TestMocks.userRepository;
       TestMocks.skillStaffRepository;
+      TestMocks.skillRepository;
 
-      await tester.pumpWidget(TestableWidget(child: StaffAssignSkillPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffAssignSkillPage()));
 
       expect(find.text('Assign Skill'), findsOneWidget);
     });
@@ -41,18 +47,18 @@ void main() {
     testWidgets('the hint text is shown', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillSearch(
-          hintText: "Hello",
+          hintText: 'Hello',
           textController: TextEditingController(),
         ),
       ));
 
-      expect(find.text("Hello"), findsOneWidget);
+      expect(find.text('Hello'), findsOneWidget);
     });
 
     testWidgets('a search icon is shown', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillSearch(
-          hintText: "Hello",
+          hintText: 'Hello',
           textController: TextEditingController(),
         ),
       ));
@@ -68,14 +74,14 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "",
-          skillList: [],
-          onPressed: (int _) {},
+          searchText: '',
+          skillList: const [],
+          onPressed: (Skill _) {},
         ),
       ));
       await tester.pumpAndSettle();
 
-      expect(find.text("Waiting for a search"), findsOneWidget);
+      expect(find.text('Waiting for a search'), findsOneWidget);
     });
 
     testWidgets('shows a loading indicator if searching',
@@ -83,9 +89,9 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: true,
-          searchText: "",
-          skillList: [],
-          onPressed: (int _) {},
+          searchText: '',
+          skillList: const [],
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -97,13 +103,13 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: const [],
+          onPressed: (Skill _) {},
         ),
       ));
 
-      expect(find.text("No skills found"), findsOneWidget);
+      expect(find.text('No skills found'), findsOneWidget);
     });
 
     testWidgets('shows an item if items are found',
@@ -111,9 +117,9 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [mockSkillOne],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: [skillOne],
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -125,9 +131,9 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [mockSkillOne, mockSkillTwo],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: [skillOne, skillTwo],
+          onPressed: (Skill _) {},
         ),
       ));
 
@@ -140,35 +146,35 @@ void main() {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [mockSkillOne],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: [skillOne],
+          onPressed: (Skill _) {},
         ),
       ));
 
-      expect(find.text(mockSkillOne.name), findsOneWidget);
+      expect(find.text(skillOne.name), findsOneWidget);
     });
 
     testWidgets('shows the category name', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [mockSkillOne],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: [skillOne],
+          onPressed: (Skill _) {},
         ),
       ));
 
-      expect(find.text(mockSkillOne.category.name), findsOneWidget);
+      expect(find.text(skillOne.category.name), findsOneWidget);
     });
 
     testWidgets('shows add icon', (WidgetTester tester) async {
       await tester.pumpWidget(TestableWidget(
         child: StaffAssignSkillList(
           isLoading: false,
-          searchText: "Not empty",
-          skillList: [mockSkillOne],
-          onPressed: (int _) {},
+          searchText: 'Not empty',
+          skillList: [skillOne],
+          onPressed: (Skill _) {},
         ),
       ));
 

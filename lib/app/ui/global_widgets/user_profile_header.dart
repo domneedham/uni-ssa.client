@@ -17,15 +17,15 @@ class UserProfileHeader extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: CircleAvatar(
             child: Text(
-              "${user.firstname[0]}${user.surname[0]}",
-              style: TextStyle(fontSize: 36),
+              '${user.firstname[0]}${user.surname[0]}',
+              style: const TextStyle(fontSize: 36),
             ),
             radius: 48,
           ),
         ),
         Text(
           user.name,
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
       ],
     );

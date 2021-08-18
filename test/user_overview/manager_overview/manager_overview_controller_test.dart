@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/manager_overview_controller.dart';
 
+import '../../mocks/data.dart';
 import '../../mocks/mocks.dart';
-import 'manager_overview_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerWithStaff;
+  final staffOne = TestData.mockStaffNoSkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerOverviewController>(() => ManagerOverviewController());
   });
@@ -24,29 +27,29 @@ void main() {
     test('sets the user correctly if found', () async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
-      await controller.getUser("1");
+      await controller.getUser('1');
 
-      expect(controller.manager?.value, mockManager);
+      expect(controller.manager?.value, managerOne);
     });
 
     test('sets an error if the manager data was not loaded', () async {
       final mockUserRepo = TestMocks.userRepository;
 
-      final error = Exception("Some error");
+      final error = Exception('Some error');
 
       when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
-      await controller.getUser("1");
+      await controller.getUser('1');
 
       expect(controller.isError.value, true);
       expect(controller.error.value, error.toString());
@@ -57,10 +60,10 @@ void main() {
     test('calls the user repository get staff by id method', () async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
-      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => mockStaffOne);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
@@ -72,16 +75,16 @@ void main() {
     test('returns the right staff member', () async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => mockManager);
-      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => mockStaffOne);
+      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerOverviewController>();
 
       final value = await controller.getStaffById(1);
 
-      expect(value, mockStaffOne);
+      expect(value, staffOne);
     });
   });
 }

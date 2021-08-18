@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/repository/category_repository.dart';
+import 'package:ssa_app/app/data/repository/skill_repository.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
 class ManagerSkillFormController extends GetxController {
   final categoryRepository = Get.find<CategoryRepository>();
+  final skillRepo = Get.find<SkillRepository>();
 
   final parameters = Get.parameters;
   final arguments = Get.arguments;
@@ -16,17 +19,22 @@ class ManagerSkillFormController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
 
+  final nameController = TextEditingController();
+
   final _categories = RxList<Category>();
   RxList<Category> get categories => _categories;
+
   final _selectedCategoryId = 0.obs;
   int get selectedCategoryId => _selectedCategoryId.value;
   set selectedCategoryId(int? value) {
-    if (value != null) _selectedCategoryId.value = value;
+    if (value != null) {
+      _selectedCategoryId.value = value;
+    }
   }
 
   @override
@@ -34,6 +42,17 @@ class ManagerSkillFormController extends GetxController {
     super.onInit();
     _getParameters();
     await fetchCategories();
+
+    nameController.value = TextEditingValue(text: editSkill?.name ?? '');
+  }
+
+  @override
+  void onClose() async {
+    super.onClose();
+
+    if (formMode == ManagerSkillFormMode.EDIT) {
+      ManagerSkillOverviewController.to.update();
+    }
   }
 
   void _getParameters() {
@@ -89,13 +108,46 @@ class ManagerSkillFormController extends GetxController {
     return null;
   }
 
-  void save() {
+  Future<void> save() async {
     final status = _formKey.currentState?.validate();
     if (status ?? false) {
-      Get.snackbar("Excellent", "Forms looking good");
+      try {
+        if (formMode == ManagerSkillFormMode.ADD) {
+          await _saveNewSkill();
+        } else {
+          await _saveEditSkill();
+        }
+        Get.snackbar('Success', 'Skill saved');
+      } catch (e) {
+        Get.snackbar('Update failed', e.toString());
+      }
     } else {
-      Get.snackbar("Terrible", "Forms looking not so good");
+      Get.snackbar('Terrible', 'Forms looking not so good');
     }
+  }
+
+  Future<void> _saveNewSkill() async {
+    final selectedCategory =
+        categories.firstWhere((element) => element.id == selectedCategoryId);
+
+    final skill = Skill(
+      id: -1,
+      category: selectedCategory,
+      name: nameController.value.text,
+    );
+    await skillRepo.create(skill);
+  }
+
+  Future<void> _saveEditSkill() async {
+    final selectedCategory =
+        categories.firstWhere((element) => element.id == selectedCategoryId);
+
+    final skill = Skill(
+      id: editSkill!.id,
+      category: selectedCategory,
+      name: nameController.value.text,
+    );
+    await skillRepo.update(skill);
   }
 }
 

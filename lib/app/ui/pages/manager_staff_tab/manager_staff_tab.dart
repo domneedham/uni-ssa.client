@@ -5,24 +5,24 @@ import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_tab/manager_staff
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/staff_tab/manager_staff_tab_staff.dart';
 
 class ManagerStaffTab extends GetWidget<ManagerStaffTabController> {
-  ManagerStaffTab({Key? key}) : super(key: key);
-
-  final _widgets = [
-    ManagerStaffTabStaff(),
-    ManagerStaffTabManager(),
-  ];
+  const ManagerStaffTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const _widgets = [
+      ManagerStaffTabStaff(),
+      ManagerStaffTabManager(),
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Staff"),
+        title: const Text('Staff'),
         bottom: TabBar(
           controller: controller.tabController,
-          indicator: UnderlineTabIndicator(),
-          tabs: [
-            Tab(text: "Staff"),
-            Tab(text: "Managers"),
+          indicator: const UnderlineTabIndicator(),
+          tabs: const [
+            Tab(text: 'Staff'),
+            Tab(text: 'Managers'),
           ],
         ),
       ),

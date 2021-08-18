@@ -24,11 +24,11 @@ class ManagerCategoryListTile extends GetView<ManagerCategoryTabController> {
         children: [
           IconButton(
             onPressed: edit,
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
           ),
           IconButton(
             onPressed: delete,
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),

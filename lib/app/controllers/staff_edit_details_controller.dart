@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/data/models/user/user.dart';
+import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 
 class StaffEditDetailsController extends GetxController {
@@ -9,7 +9,7 @@ class StaffEditDetailsController extends GetxController {
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
 
-  User get user => userRepo.user;
+  Staff get user => userRepo.user as Staff;
 
   final firstnameController = TextEditingController();
   final surnameController = TextEditingController();
@@ -29,12 +29,23 @@ class StaffEditDetailsController extends GetxController {
     return null;
   }
 
-  void save() {
+  Future<void> save() async {
     final status = _formKey.currentState?.validate();
     if (status ?? false) {
-      Get.snackbar("Excellent", "Forms looking good");
-    } else {
-      Get.snackbar("Terrible", "Forms looking not so good");
+      try {
+        final staff = Staff(
+          id: user.id,
+          firstname: firstnameController.value.text,
+          surname: surnameController.value.text,
+          skills: user.skills,
+          manager: user.manager,
+        );
+        await userRepo.updateStaffDetails(staff);
+
+        Get.snackbar('Success', 'Name updated');
+      } catch (e) {
+        Get.snackbar('Update failed', e.toString());
+      }
     }
   }
 }

@@ -6,10 +6,14 @@ import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
-import 'manager_skill_tab_test_data.dart';
 
 void main() {
+  final managerStaffSkillOne = TestData.mockManagerStaffSkillOne;
+  final managerStaffSkillTwo = TestData.mockManagerStaffSkillTwo;
+  final managerOne = TestData.mockManagerWithStaff;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<ManagerSkillTabController>(() => ManagerSkillTabController());
@@ -30,18 +34,18 @@ void main() {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.skills).thenAnswer(
-        (_) async => [mockManagerStaffSkillOne, mockManagerStaffSkillTwo]);
+    when(mockSkillRepo.skills)
+        .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
 
-    when(mockUserRepo.manager).thenReturn(mockManager);
+    when(mockUserRepo.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
     final sortedMap = {
-      mockManagerStaffSkillTwo.category:
-          List<ManagerStaffSkill>.filled(1, mockManagerStaffSkillTwo),
-      mockManagerStaffSkillOne.category:
-          List<ManagerStaffSkill>.filled(1, mockManagerStaffSkillOne)
+      managerStaffSkillOne.category:
+          List<ManagerStaffSkill>.filled(1, managerStaffSkillOne),
+      managerStaffSkillTwo.category:
+          List<ManagerStaffSkill>.filled(1, managerStaffSkillTwo)
     };
 
     await controller.getSkills();
@@ -55,9 +59,9 @@ void main() {
     final mockSkillRepo = TestMocks.skillManagerRepository;
     final mockUserRepo = TestMocks.userRepository;
 
-    when(mockSkillRepo.skills).thenAnswer(
-        (_) async => [mockManagerStaffSkillOne, mockManagerStaffSkillTwo]);
-    when(mockUserRepo.manager).thenReturn(mockManager);
+    when(mockSkillRepo.skills)
+        .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
+    when(mockUserRepo.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
@@ -67,11 +71,11 @@ void main() {
 
     // get the map item with the category from mockSkillOne
     final mapItem = controllerMap!.entries
-        .where((element) => element.key == mockManagerStaffSkillOne.category)
+        .where((element) => element.key == managerStaffSkillOne.category)
         .first;
 
     // expect that the mapItem value (only one item in the list) is mockSkillOne
-    expect(mapItem.value[0], mockManagerStaffSkillOne);
+    expect(mapItem.value[0], managerStaffSkillOne);
   });
 
   group('view type functionality', () {
@@ -82,8 +86,8 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockSkillRepo.skills).thenAnswer(
-          (_) async => [mockManagerStaffSkillOne, mockManagerStaffSkillTwo]);
-      when(mockUserRepo.manager).thenReturn(mockManager);
+          (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 
@@ -103,8 +107,8 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
 
       when(mockSkillRepo.skills).thenAnswer(
-          (_) async => [mockManagerStaffSkillOne, mockManagerStaffSkillTwo]);
-      when(mockUserRepo.manager).thenReturn(mockManager);
+          (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 

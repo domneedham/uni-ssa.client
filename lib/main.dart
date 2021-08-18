@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ssa_app/app/bindings/app_binding.dart';
 import './app/routes/app_pages.dart';
 import './app/ui/theme/app_theme.dart';
 
-void main() {
-  runApp(StaffSkillAuditorApp());
+void main() async {
+  await GetStorage.init();
+  runApp(const StaffSkillAuditorApp());
 }
 
 class StaffSkillAuditorApp extends StatelessWidget {
+  const StaffSkillAuditorApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -17,7 +21,7 @@ class StaffSkillAuditorApp extends StatelessWidget {
       initialRoute: Routes.HOME,
       theme: appThemeData,
       defaultTransition: Transition.fade,
-      getPages: AppPages.pages,
+      getPages: pages,
       initialBinding: AppBinding(),
     );
   }

@@ -4,31 +4,31 @@ import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 import 'package:ssa_app/app/ui/utils/typedefs.dart';
 
 class StaffAssignSkillList extends StatelessWidget {
-  StaffAssignSkillList({
+  const StaffAssignSkillList({
     Key? key,
     required this.isLoading,
     required this.searchText,
     required this.skillList,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   final bool isLoading;
   final String searchText;
   final List<Skill> skillList;
-  final IntVoidCallback onPressed;
+  final SkillVoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return LoadingIndicator();
+      return const LoadingIndicator();
     }
     if (searchText.isEmpty) {
-      return Center(
-        child: Text("Waiting for a search"),
+      return const Center(
+        child: Text('Waiting for a search'),
       );
     }
     if (skillList.isEmpty) {
-      return Center(child: Text("No skills found"));
+      return const Center(child: Text('No skills found'));
     }
     return ListView.builder(
       shrinkWrap: true,
@@ -39,8 +39,8 @@ class StaffAssignSkillList extends StatelessWidget {
           title: Text(skill.name),
           subtitle: Text(skill.category.name),
           trailing: IconButton(
-            onPressed: () => onPressed(skill.id),
-            icon: Icon(Icons.add),
+            onPressed: () => onPressed(skill),
+            icon: const Icon(Icons.add),
           ),
         );
       },

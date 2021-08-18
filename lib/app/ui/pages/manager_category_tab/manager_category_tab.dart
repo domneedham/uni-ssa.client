@@ -13,11 +13,11 @@ class ManagerCategoryTab extends GetWidget<ManagerCategoryTabController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categories"),
+        title: const Text('Categories'),
         actions: [
           IconButton(
             onPressed: controller.addNewCategory,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
@@ -25,17 +25,17 @@ class ManagerCategoryTab extends GetWidget<ManagerCategoryTabController> {
         if (controller.categories != null) {
           final skills = controller.categories!;
           if (skills.isEmpty) {
-            return FutureStateText(text: "No skills loaded.");
+            return const FutureStateText(text: 'No categories loaded.');
           }
-          return ManagerCategoryList();
+          return const ManagerCategoryList();
         }
         if (controller.isError.value) {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

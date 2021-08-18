@@ -9,11 +9,11 @@ class StaffEditDetailsPage extends GetView<StaffEditDetailsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Details'),
+        title: const Text('Edit Details'),
         actions: [
           IconButton(
             onPressed: controller.save,
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           ),
         ],
       ),
@@ -25,13 +25,13 @@ class StaffEditDetailsPage extends GetView<StaffEditDetailsController> {
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: "Firstname"),
+                decoration: const InputDecoration(labelText: 'Firstname'),
                 validator: controller.validateName,
                 controller: controller.firstnameController,
               ),
               const SizedBox(height: 8),
               TextFormField(
-                decoration: InputDecoration(labelText: "Surname"),
+                decoration: const InputDecoration(labelText: 'Surname'),
                 validator: controller.validateName,
                 controller: controller.surnameController,
               ),

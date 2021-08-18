@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
-import 'package:ssa_app/app/data/repository/skill_staff_repository.dart';
+import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffOverviewController extends GetxController {
   final userRepo = Get.find<UserRepository>();
-  final skillRepo = Get.find<SkillStaffRepository>();
+  final skillRepo = Get.find<StaffSkillRepository>();
 
   final parameters = Get.parameters;
   final arguments = Get.arguments;
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   Rx<Staff>? staff;
 
   @override
   void onInit() async {
     super.onInit();
-    await getUser(parameters["id"]!);
+    await getUser(parameters['id']!);
   }
 
   Future<void> getUser(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      Staff fetchedStaff = await userRepo.getStaffById(parsedId);
+      final int parsedId = int.parse(id);
+      final Staff fetchedStaff = await userRepo.getStaffById(parsedId);
       staff = fetchedStaff.obs;
     } catch (e) {
       isError.value = true;
@@ -40,27 +39,19 @@ class StaffOverviewController extends GetxController {
     }
   }
 
-  Future<Manager>? getManagerById(int id) async {
-    return userRepo.getManagerById(id);
-  }
-
   Future<StaffSkill>? getSkillById(int id) async {
-    return skillRepo.getSkillByIdAsync(id);
-  }
-
-  Future<List<StaffSkill>> getSkillsByIds(List<int> ids) async {
-    return skillRepo.getSkillsByIds(ids);
+    return skillRepo.getSkillById(id);
   }
 
   String expiryText(StaffSkill skill) {
     if (skill.hasExpiry) {
       if (skill.isExpired) {
-        return "Expired";
+        return 'Expired';
       } else {
-        return "Not Expired";
+        return 'Not Expired';
       }
     } else {
-      return "No Expiry";
+      return 'No Expiry';
     }
   }
 
@@ -69,17 +60,17 @@ class StaffOverviewController extends GetxController {
       final date = Dates.formatUI(skill.expires!);
       if (skill.isExpired) {
         return Text(
-          "Expired on: $date",
-          style: TextStyle(color: Colors.red),
+          'Expired on: $date',
+          style: const TextStyle(color: Colors.red),
         );
       } else {
         return Text(
-          "Expires on: $date",
-          style: TextStyle(color: Colors.green),
+          'Expires on: $date',
+          style: const TextStyle(color: Colors.green),
         );
       }
     } else {
-      return Text("No Expiry");
+      return const Text('No Expiry');
     }
   }
 }

@@ -13,7 +13,7 @@ class ManagerOverviewPage extends GetWidget<ManagerOverviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Manager Overview"),
+        title: const Text('Manager Overview'),
       ),
       body: Obx(() {
         if (controller.manager != null) {
@@ -21,14 +21,13 @@ class ManagerOverviewPage extends GetWidget<ManagerOverviewController> {
           return ListView(
             children: [
               UserProfileHeader(user: manager),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Text("Staff list:"),
+              const Divider(),
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Text('Staff list:'),
               ),
               StaffList(
                 staffList: manager.staff,
-                future: (int id) => controller.getStaffById(id),
               )
             ],
           );
@@ -37,9 +36,9 @@ class ManagerOverviewPage extends GetWidget<ManagerOverviewController> {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

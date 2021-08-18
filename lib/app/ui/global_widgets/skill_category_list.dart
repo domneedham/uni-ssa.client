@@ -3,7 +3,7 @@ import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 
 class SkillCategoryList extends StatelessWidget {
-  SkillCategoryList({
+  const SkillCategoryList({
     Key? key,
     required this.entry,
     required this.cardBuilder,
@@ -15,7 +15,7 @@ class SkillCategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: entry.value.length,
       itemBuilder: (ctx, pos) {

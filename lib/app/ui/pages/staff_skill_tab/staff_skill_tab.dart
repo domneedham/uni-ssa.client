@@ -9,15 +9,17 @@ import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 import 'package:ssa_app/app/ui/pages/staff_skill_tab/staff_skill_card.dart';
 
 class StaffSkillTab extends GetWidget<StaffSkillTabController> {
+  const StaffSkillTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Skills'),
+        title: const Text('Your Skills'),
         actions: [
           IconButton(
             onPressed: controller.navigateToAssignSkill,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
@@ -25,7 +27,7 @@ class StaffSkillTab extends GetWidget<StaffSkillTabController> {
         if (controller.skills != null) {
           final skills = controller.skills!;
           if (skills.isEmpty) {
-            return FutureStateText(text: "You have no registered skills");
+            return const FutureStateText(text: 'You have no registered skills');
           }
           return SkillList(
             viewType: SkillListViewType.GRID,
@@ -38,10 +40,10 @@ class StaffSkillTab extends GetWidget<StaffSkillTabController> {
           return FutureStateText(text: controller.error.value.toString());
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
 
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

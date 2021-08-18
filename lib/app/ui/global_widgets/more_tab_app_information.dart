@@ -9,11 +9,11 @@ class MoreTabAppInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: const [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
-            "App Information",
+            'App Information',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -21,11 +21,11 @@ class MoreTabAppInformation extends StatelessWidget {
           ),
         ),
         AboutListTile(
-          applicationVersion: "Version: 0.1",
+          applicationVersion: 'Version: 1.0',
           aboutBoxChildren: [
-            Text("Developed by Dominic Needham for Staffordshire University.")
+            Text('Developed by Dominic Needham for Staffordshire University.')
           ],
-          child: Text("About"),
+          child: Text('About'),
         ),
       ],
     );

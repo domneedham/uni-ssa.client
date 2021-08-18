@@ -15,7 +15,7 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Staff Overview"),
+        title: const Text('Staff Overview'),
       ),
       body: Obx(() {
         if (controller.staff != null) {
@@ -26,11 +26,9 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
               const Divider(),
               StaffOverviewManagerSection(
                 staff: staff,
-                future: (id) => controller.getManagerById(id),
               ),
               const Divider(),
               StaffOverviewSkillList(
-                future: (List<int> ids) => controller.getSkillsByIds(ids),
                 subtitleFunction: (StaffSkill skill) =>
                     controller.expiryTextWidget(skill),
                 staff: staff,
@@ -44,7 +42,7 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
         if (controller.isLoading.value) {
           return const LoadingIndicator();
         }
-        return const FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

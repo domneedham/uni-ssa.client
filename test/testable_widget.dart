@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 /// Made into a class following standard pratice for making widgets in Flutter.
 class TestableWidget extends StatelessWidget {
   /// Creates a widget testable when using GetX.
-  TestableWidget({required this.child});
+  const TestableWidget({Key? key, required this.child}) : super(key: key);
 
   /// The widget to be tested.
   final Widget child;
@@ -15,7 +15,7 @@ class TestableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
-      data: MediaQueryData(),
+      data: const MediaQueryData(),
       child: GetMaterialApp(
         home: Scaffold(body: child),
       ),

@@ -5,11 +5,13 @@ import 'package:mockito/mockito.dart';
 import 'package:ssa_app/app/controllers/staff_edit_details_controller.dart';
 import 'package:ssa_app/app/ui/staff_edit_details_page/staff_edit_details_page.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'staff_edit_details_test_data.dart';
 
 void main() {
+  final staffOne = TestData.mockStaffWithExpirySkills;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffEditDetailsController>(() => StaffEditDetailsController());
   });
@@ -28,9 +30,10 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Edit Details'), findsOneWidget);
     });
@@ -38,9 +41,10 @@ void main() {
     testWidgets('shows a save button', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.byIcon(Icons.save), findsOneWidget);
     });
@@ -50,9 +54,10 @@ void main() {
     testWidgets('has a field for firstname', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Firstname'), findsOneWidget);
     });
@@ -60,9 +65,10 @@ void main() {
     testWidgets('has a field for surname', (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
 
       expect(find.text('Surname'), findsOneWidget);
     });
@@ -71,24 +77,26 @@ void main() {
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text(mockStaff.firstname), findsOneWidget);
+      expect(find.text(staffOne.firstname), findsOneWidget);
     });
 
     testWidgets('populates the surname field on load',
         (WidgetTester tester) async {
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.user).thenReturn(mockStaff);
+      when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text(mockStaff.surname), findsOneWidget);
+      expect(find.text(staffOne.surname), findsOneWidget);
     });
   });
 }

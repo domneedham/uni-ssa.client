@@ -12,11 +12,14 @@ class ManagerStaffTabController extends GetxController
   final userRepo = Get.find<UserRepository>();
 
   final isLoading = false.obs;
+  final isError = false.obs;
+  final error = ''.obs;
+
   final managerList = RxList<Manager>();
   final staffList = RxList<Staff>();
 
   final textController = TextEditingController();
-  final searchText = "".obs;
+  final searchText = ''.obs;
 
   ManagerStaffTabControllerStatus get tabControllerStatus {
     return tabController?.index == 0
@@ -34,7 +37,7 @@ class ManagerStaffTabController extends GetxController
     debounce(
       searchText,
       (_) => _search(),
-      time: Duration(seconds: 1),
+      time: const Duration(seconds: 1),
     );
   }
 
@@ -50,6 +53,8 @@ class ManagerStaffTabController extends GetxController
   void _onTabChange() {
     textController.clear();
     isLoading.value = false;
+    isError.value = false;
+    error.value = '';
   }
 
   void _onTextUpdate() {
@@ -74,13 +79,21 @@ class ManagerStaffTabController extends GetxController
       return;
     }
 
-    if (tabControllerStatus == ManagerStaffTabControllerStatus.STAFF) {
-      await _searchStaff();
-    } else {
-      await _searchManager();
-    }
+    try {
+      isError.value = false;
+      error.value = '';
 
-    isLoading.value = false;
+      if (tabControllerStatus == ManagerStaffTabControllerStatus.STAFF) {
+        await _searchStaff();
+      } else {
+        await _searchManager();
+      }
+    } catch (e) {
+      isError.value = true;
+      error.value = e.toString();
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> _searchStaff() async {
@@ -96,12 +109,12 @@ class ManagerStaffTabController extends GetxController
   void navigateToUserOverview(int? id) {
     if (id == null) {
       Get.snackbar(
-          "Error", "The user has not loaded correctly. Please try again");
+          'Error', 'The user has not loaded correctly. Please try again');
       return;
     }
 
     final sid = id.toString();
-    final parameters = {"id": sid};
+    final parameters = {'id': sid};
 
     if (tabControllerStatus == ManagerStaffTabControllerStatus.STAFF) {
       Get.toNamed(Routes.STAFF_OVERVIEW, parameters: parameters);

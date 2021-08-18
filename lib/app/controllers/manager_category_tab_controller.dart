@@ -5,25 +5,32 @@ import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
 class ManagerCategoryTabController extends GetxController {
+  static ManagerCategoryTabController get to => Get.find();
+
   final catRepo = Get.find<CategoryRepository>();
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   RxList<Category>? categories;
 
   @override
-  onInit() async {
+  void onInit() async {
     super.onInit();
+    await getCategories();
+  }
+
+  @override
+  void refresh() async {
     await getCategories();
   }
 
   Future<void> getCategories() async {
     try {
       isLoading.value = true;
-      final repoSkills = await catRepo.categories;
-      categories = repoSkills.obs;
+      final repoCategories = await catRepo.categories;
+      categories = repoCategories.obs;
     } catch (e) {
       isError.value = true;
       error.value = e.toString();
@@ -47,8 +54,13 @@ class ManagerCategoryTabController extends GetxController {
     );
   }
 
-  void deleteCategory(Category category) {
-    Get.snackbar("Delete!", "${category.name} would be deleted");
+  Future<void> deleteCategory(Category category) async {
+    try {
+      await catRepo.deleteCategory(category.id);
+      categories!.removeWhere((element) => element.id == category.id);
+    } catch (e) {
+      Get.snackbar('Failed to delete', e.toString());
+    }
   }
 
   void addNewCategory() {

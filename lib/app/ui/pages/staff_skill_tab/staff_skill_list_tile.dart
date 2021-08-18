@@ -20,14 +20,14 @@ class StaffSkillListTile extends StatelessWidget {
           spacing: 1,
           children: List.generate(
             skill.rating.toInt(),
-            (index) => Icon(
+            (index) => const Icon(
               Icons.star,
               size: 18,
             ),
           ),
         ),
       ),
-      trailing: Icon(Icons.chevron_right),
+      trailing: const Icon(Icons.chevron_right),
     );
   }
 }

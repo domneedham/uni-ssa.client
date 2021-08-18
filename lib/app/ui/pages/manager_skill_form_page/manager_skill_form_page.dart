@@ -13,11 +13,11 @@ class ManagerSkillFormPage extends GetWidget<ManagerSkillFormController> {
     return Scaffold(
       appBar: AppBar(
         title: controller.formMode == ManagerSkillFormMode.ADD
-            ? Text("Add Skill")
-            : Text("Edit Skill"),
+            ? const Text('Add Skill')
+            : const Text('Edit Skill'),
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: controller.save,
           )
         ],
@@ -27,15 +27,16 @@ class ManagerSkillFormPage extends GetWidget<ManagerSkillFormController> {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
         if (controller.categories.isNotEmpty) {
-          return ManagerSkillForm();
+          return const ManagerSkillForm();
         }
         if (controller.categories.isEmpty) {
-          return FutureStateText(text: "You must create a category first");
+          return const FutureStateText(
+              text: 'You must create a category first');
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

@@ -6,6 +6,8 @@ import 'package:ssa_app/app/ui/global_widgets/more_tab_settings.dart';
 import 'package:ssa_app/app/ui/global_widgets/user_profile_header.dart';
 
 class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
+  const ManagerMoreTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,13 +15,13 @@ class ManagerMoreTab extends GetWidget<ManagerMoreTabController> {
         title: const Text('More'),
       ),
       body: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           UserProfileHeader(user: controller.user),
-          Divider(),
-          MoreTabSettings(),
-          Divider(),
-          MoreTabAppInformation(),
+          const Divider(),
+          MoreTabSettings(logout: controller.logout),
+          const Divider(),
+          const MoreTabAppInformation(),
         ],
       ),
     );

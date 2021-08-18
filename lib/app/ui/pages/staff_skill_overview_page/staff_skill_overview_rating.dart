@@ -13,21 +13,21 @@ class StaffSkillOverviewRating extends GetView<StaffSkillOverviewController> {
         children: [
           IconButton(
             onPressed: controller.decrementRating,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Wrap(
             children: List.generate(5, (index) {
               if (index < controller.rating.value.toInt()) {
-                return Icon(Icons.star, size: 24);
+                return const Icon(Icons.star, size: 24);
               }
-              return Icon(Icons.star_border, size: 24);
+              return const Icon(Icons.star_border, size: 24);
             }),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           IconButton(
             onPressed: controller.incrementRating,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       );

@@ -6,21 +6,23 @@ import '../testable_widget.dart';
 
 void main() {
   testWidgets('shows an about list tile', (WidgetTester tester) async {
-    await tester.pumpWidget(TestableWidget(child: MoreTabAppInformation()));
+    await tester
+        .pumpWidget(const TestableWidget(child: MoreTabAppInformation()));
     await tester.pumpAndSettle();
 
     expect(find.byType(AboutListTile), findsOneWidget);
-    expect(find.text("About"), findsOneWidget);
+    expect(find.text('About'), findsOneWidget);
   });
 
   testWidgets('about popup shows information about the developer',
       (WidgetTester tester) async {
-    await tester.pumpWidget(TestableWidget(child: MoreTabAppInformation()));
+    await tester
+        .pumpWidget(const TestableWidget(child: MoreTabAppInformation()));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byType(AboutListTile));
     await tester.pumpAndSettle();
 
-    expect(find.textContaining("Dominic Needham"), findsOneWidget);
+    expect(find.textContaining('Dominic Needham'), findsOneWidget);
   });
 }

@@ -8,11 +8,14 @@ import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/manager_category_form_page.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
+import '../mocks/data.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
-import 'manager_category_form_test_data.dart';
 
 void main() {
+  final managerOne = TestData.mockManagerNoStaff;
+  final categoryOne = TestData.mockCategoryOne;
+
   final binding = BindingsBuilder(() {
     Get.lazyPut<ManagerCategoryFormController>(
         () => ManagerCategoryFormController());
@@ -33,7 +36,7 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -41,7 +44,8 @@ void main() {
 
       controller.isLoading.value = true;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -51,19 +55,20 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerCategoryFormController>();
       controller.isError.value = true;
-      controller.error.value = "Issue";
+      controller.error.value = 'Issue';
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
       // Build our app and trigger a frame.
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text("Issue"), findsOneWidget);
+      expect(find.text('Issue'), findsOneWidget);
     });
 
     testWidgets('category form is rendered if no error or not loading',
@@ -71,11 +76,12 @@ void main() {
       final _ = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerCategoryForm), findsOneWidget);
@@ -87,14 +93,15 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
 
-      expect(find.text("Add Category"), findsOneWidget);
+      expect(find.text('Add Category'), findsOneWidget);
     });
   });
 
@@ -103,14 +110,15 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
 
-      expect(find.text("Edit Category"), findsOneWidget);
+      expect(find.text('Edit Category'), findsOneWidget);
     });
   });
 
@@ -119,14 +127,15 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
 
-      await tester.tap(find.text("Pick Icon"));
+      await tester.tap(find.text('Pick Icon'));
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsOneWidget);
@@ -137,21 +146,22 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       final mockUserRepo = TestMocks.userRepository;
 
-      when(mockUserRepo.manager).thenReturn(managerOne);
+      when(mockUserRepo.user).thenReturn(managerOne);
       when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryFormPage()));
 
-      await tester.tap(find.text("Pick Icon"));
+      await tester.tap(find.text('Pick Icon'));
       await tester.pumpAndSettle();
       // this should be found as it is the first icon displayed
       await tester.tap(find.byIcon(Icons.ac_unit));
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsNothing);
-      expect(find.byIcon(Icons.ac_unit), findsOneWidget);
+      expect(find.byIcon(categoryOne.icon), findsOneWidget);
     });
   });
 }
