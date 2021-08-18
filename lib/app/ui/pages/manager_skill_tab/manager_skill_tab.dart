@@ -10,24 +10,26 @@ import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_card.dart';
 import 'manager_skill_list_tile.dart';
 
 class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
+  const ManagerSkillTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Skills"),
+        title: const Text('Skills'),
         actions: [
           PopupMenuButton(
-            icon: Icon(Icons.view_agenda_outlined),
+            icon: const Icon(Icons.view_agenda_outlined),
             onSelected: (SkillListViewType type) =>
                 controller.changeViewType(type),
             itemBuilder: (context) {
               return [
                 const PopupMenuItem(
-                  child: Text("List"),
+                  child: Text('List'),
                   value: SkillListViewType.LIST,
                 ),
                 const PopupMenuItem(
-                  child: Text("Grid"),
+                  child: Text('Grid'),
                   value: SkillListViewType.GRID,
                 ),
               ];
@@ -35,7 +37,7 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
           ),
           IconButton(
             onPressed: controller.createNewSkill,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
@@ -43,7 +45,7 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
         if (controller.skills != null) {
           final skills = controller.skills!;
           if (skills.isEmpty) {
-            return FutureStateText(text: "No skills loaded.");
+            return const FutureStateText(text: 'No skills loaded.');
           }
           return SkillList(
             gridChildAspectRatio: 2.5,
@@ -62,9 +64,9 @@ class ManagerSkillTab extends GetWidget<ManagerSkillTabController> {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

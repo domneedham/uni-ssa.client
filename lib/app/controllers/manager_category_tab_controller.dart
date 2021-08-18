@@ -11,23 +11,23 @@ class ManagerCategoryTabController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   RxList<Category>? categories;
 
   @override
-  onInit() async {
+  void onInit() async {
     super.onInit();
     await getCategories();
   }
 
+  @override
   void refresh() async {
     await getCategories();
   }
 
   Future<void> getCategories() async {
     try {
-      print("GET CATEGORIES");
       isLoading.value = true;
       final repoCategories = await catRepo.categories;
       categories = repoCategories.obs;
@@ -59,7 +59,7 @@ class ManagerCategoryTabController extends GetxController {
       await catRepo.deleteCategory(category.id);
       categories!.removeWhere((element) => element.id == category.id);
     } catch (e) {
-      Get.snackbar("Failed to delete", e.toString());
+      Get.snackbar('Failed to delete', e.toString());
     }
   }
 

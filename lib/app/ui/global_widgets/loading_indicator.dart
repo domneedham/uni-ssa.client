@@ -9,8 +9,8 @@ class LoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: PlatformUtils.isApple
-          ? CupertinoActivityIndicator()
-          : CircularProgressIndicator(),
+          ? const CupertinoActivityIndicator()
+          : const CircularProgressIndicator(),
     );
   }
 }

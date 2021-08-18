@@ -15,8 +15,8 @@ class ManagerSkillListTile extends GetView<ManagerSkillTabController> {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(skill.name),
-      subtitle: Text("Staff: ${skill.staff.length}"),
-      trailing: Icon(Icons.chevron_right),
+      subtitle: Text('Staff: ${skill.staff.length}'),
+      trailing: const Icon(Icons.chevron_right),
       onTap: () => controller.navigateToSkillOverview(skill.id, skill.name),
     );
   }

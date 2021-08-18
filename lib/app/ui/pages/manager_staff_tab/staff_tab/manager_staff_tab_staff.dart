@@ -14,7 +14,7 @@ class ManagerStaffTabStaff extends GetView<ManagerStaffTabController> {
     return Column(
       children: [
         ManagerStaffTabSearch(
-          hintText: "Search for a staff member",
+          hintText: 'Search for a staff member',
           textController: controller.textController,
         ),
         Obx(() {

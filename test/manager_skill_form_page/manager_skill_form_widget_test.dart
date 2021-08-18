@@ -37,7 +37,8 @@ void main() {
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -51,10 +52,11 @@ void main() {
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text("You must create a category first"), findsOneWidget);
+      expect(find.text('You must create a category first'), findsOneWidget);
     });
 
     testWidgets('shows the form if categories are loaded',
@@ -66,7 +68,8 @@ void main() {
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(ManagerSkillForm), findsOneWidget);
@@ -77,13 +80,14 @@ void main() {
       final mockCatRepo = TestMocks.categoriesRepository;
       TestMocks.skillRepository;
 
-      final exception = Exception("Issue");
+      final exception = Exception('Issue');
 
       when(mockCatRepo.categories).thenAnswer((_) async => throw exception);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(exception.toString()), findsOneWidget);
@@ -99,9 +103,10 @@ void main() {
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
-      expect(find.text("Add Skill"), findsOneWidget);
+      expect(find.text('Add Skill'), findsOneWidget);
     });
   });
 
@@ -114,9 +119,10 @@ void main() {
 
       Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
 
-      expect(find.text("Edit Skill"), findsOneWidget);
+      expect(find.text('Edit Skill'), findsOneWidget);
     });
   });
 }

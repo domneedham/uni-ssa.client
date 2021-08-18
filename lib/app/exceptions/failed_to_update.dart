@@ -1,16 +1,19 @@
-class FailedToUpdateException implements Exception {
-  final String cause;
+abstract class FailedToUpdateException implements Exception {
   FailedToUpdateException(this.cause);
+
+  final String cause;
 }
 
-class FailedToUpdateUserException extends FailedToUpdateException
-    implements Exception {
+class FailedToUpdateUserException implements FailedToUpdateException {
+  FailedToUpdateUserException(this.cause);
+
+  @override
   final String cause;
-  FailedToUpdateUserException(this.cause) : super(cause);
 }
 
-class FailedToUpdateCategoryException extends FailedToUpdateException
-    implements Exception {
+class FailedToUpdateCategoryException implements FailedToUpdateException {
+  FailedToUpdateCategoryException(this.cause);
+
+  @override
   final String cause;
-  FailedToUpdateCategoryException(this.cause) : super(cause);
 }

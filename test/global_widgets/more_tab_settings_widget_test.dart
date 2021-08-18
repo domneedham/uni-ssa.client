@@ -15,7 +15,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(SwitchListTile), findsOneWidget);
-    expect(find.text("Dark Mode"), findsOneWidget);
+    expect(find.text('Dark Mode'), findsOneWidget);
   });
 
   testWidgets('shows an option to logout', (WidgetTester tester) async {
@@ -26,7 +26,7 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    expect(find.text("Logout"), findsOneWidget);
+    expect(find.text('Logout'), findsOneWidget);
     expect(find.byIcon(Icons.logout), findsOneWidget);
   });
 
@@ -39,7 +39,7 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text("Logout"));
+      await tester.tap(find.text('Logout'));
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsOneWidget);
@@ -53,7 +53,7 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("Logout"));
+        await tester.tap(find.text('Logout'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsOneWidget);
@@ -62,14 +62,14 @@ void main() {
       testWidgets('shows yes and no option', (tester) async {
         await showAlertDialog(tester);
 
-        expect(find.text("Yes"), findsOneWidget);
-        expect(find.text("No"), findsOneWidget);
+        expect(find.text('Yes'), findsOneWidget);
+        expect(find.text('No'), findsOneWidget);
       });
 
       testWidgets('yes action closes the dialog', (tester) async {
         await showAlertDialog(tester);
 
-        await tester.tap(find.text("Yes"));
+        await tester.tap(find.text('Yes'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsNothing);
@@ -78,7 +78,7 @@ void main() {
       testWidgets('no action closes the dialog', (tester) async {
         await showAlertDialog(tester);
 
-        await tester.tap(find.text("No"));
+        await tester.tap(find.text('No'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsNothing);

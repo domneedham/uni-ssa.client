@@ -33,7 +33,7 @@ void main() {
 
         final controller = Get.find<StaffEditDetailsController>();
 
-        final response = controller.validateName("Name");
+        final response = controller.validateName('Name');
         expect(response, null);
       });
 
@@ -58,16 +58,17 @@ void main() {
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<StaffEditDetailsController>();
-      controller.firstnameController.text = "Hello";
-      controller.surnameController.text = "World";
+      controller.firstnameController.text = 'Hello';
+      controller.surnameController.text = 'World';
 
       await controller.save();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verify(userRepo.updateStaffDetails(any)).called(1);
     });
@@ -80,17 +81,18 @@ void main() {
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<StaffEditDetailsController>();
       // make invalid state
-      controller.firstnameController.text = "";
-      controller.surnameController.text = "World";
+      controller.firstnameController.text = '';
+      controller.surnameController.text = 'World';
 
       await controller.save();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verifyNever(userRepo.updateStaffDetails(any));
     });
@@ -102,17 +104,18 @@ void main() {
       when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: StaffEditDetailsPage()));
+      await tester
+          .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<StaffEditDetailsController>();
       // make invalid state
-      controller.firstnameController.text = "Hello";
-      controller.surnameController.text = "";
+      controller.firstnameController.text = 'Hello';
+      controller.surnameController.text = '';
 
       await controller.save();
       // let the snackbar run
-      await tester.pump(Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 5));
 
       verifyNever(userRepo.updateStaffDetails(any));
     });

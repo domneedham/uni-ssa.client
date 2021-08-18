@@ -50,7 +50,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillFormController>();
 
-      final exception = Exception("Error");
+      final exception = Exception('Error');
 
       when(mockCatRepo.categories).thenAnswer((_) async => throw exception);
 
@@ -119,7 +119,7 @@ void main() {
         when(mockCatRepo.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
-        final response = controller.validateName("Name");
+        final response = controller.validateName('Name');
         expect(response, null);
       });
 
@@ -185,16 +185,17 @@ void main() {
         when(mockSkillRepo.create(any)).thenAnswer((_) async => skillOne);
 
         // need to pump for snackbar
-        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester
+            .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
         await tester.pumpAndSettle();
 
         final controller = Get.find<ManagerSkillFormController>();
-        controller.nameController.text = "Hello";
+        controller.nameController.text = 'Hello';
         controller.selectedCategoryId = categoryOne.id;
 
         await controller.save();
         // let the snackbar run
-        await tester.pump(Duration(seconds: 5));
+        await tester.pump(const Duration(seconds: 5));
 
         verify(mockSkillRepo.create(any)).called(1);
       });
@@ -210,16 +211,17 @@ void main() {
         when(mockSkillRepo.create(any)).thenAnswer((_) async => skillOne);
 
         // need to pump for snackbar
-        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester
+            .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
         await tester.pumpAndSettle();
 
         final controller = Get.find<ManagerSkillFormController>();
-        controller.nameController.text = "";
+        controller.nameController.text = '';
         controller.selectedCategoryId = categoryOne.id;
 
         await controller.save();
         // let the snackbar run
-        await tester.pump(Duration(seconds: 5));
+        await tester.pump(const Duration(seconds: 5));
 
         verifyNever(mockSkillRepo.create(any));
       });
@@ -237,17 +239,18 @@ void main() {
         when(mockSkillRepo.update(any)).thenAnswer((_) async => skillOne);
 
         // need to pump for snackbar
-        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester
+            .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
         await tester.pumpAndSettle();
 
         final controller = Get.find<ManagerSkillFormController>();
         controller.editSkill = skillOne;
-        controller.nameController.text = "Hello";
+        controller.nameController.text = 'Hello';
         controller.selectedCategoryId = categoryOne.id;
 
         await controller.save();
         // let the snackbar run
-        await tester.pump(Duration(seconds: 5));
+        await tester.pump(const Duration(seconds: 5));
 
         verify(mockSkillRepo.update(any)).called(1);
       });
@@ -263,16 +266,17 @@ void main() {
         when(mockSkillRepo.update(any)).thenAnswer((_) async => skillOne);
 
         // need to pump for snackbar
-        await tester.pumpWidget(TestableWidget(child: ManagerSkillFormPage()));
+        await tester
+            .pumpWidget(const TestableWidget(child: ManagerSkillFormPage()));
         await tester.pumpAndSettle();
 
         final controller = Get.find<ManagerSkillFormController>();
-        controller.nameController.text = "";
+        controller.nameController.text = '';
         controller.selectedCategoryId = categoryOne.id;
 
         await controller.save();
         // let the snackbar run
-        await tester.pump(Duration(seconds: 5));
+        await tester.pump(const Duration(seconds: 5));
 
         verifyNever(mockSkillRepo.update(any));
       });

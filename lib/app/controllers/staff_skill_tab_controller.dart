@@ -15,7 +15,7 @@ class StaffSkillTabController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   RxMap<Category, List<StaffSkill>>? skills;
 
@@ -33,21 +33,21 @@ class StaffSkillTabController extends GetxController {
       final tempList = await skillRepo.getSkillsForUser(user.id);
 
       if (tempList.isEmpty) {
-        Map<Category, List<StaffSkill>> emptyMap = {};
+        final Map<Category, List<StaffSkill>> emptyMap = {};
         skills = emptyMap.obs;
         isLoading.value = false;
         return;
       }
 
       // get unique categories from skills
-      List<Category> cats = [];
-      tempList.forEach((element) {
+      final List<Category> cats = [];
+      for (final element in tempList) {
         final index =
             cats.indexWhere((cat) => cat.name == element.category.name);
         if (index == -1) {
           cats.add(element.category);
         }
-      });
+      }
 
       if (cats.isNotEmpty) {
         // sort alphabetically on the categories
@@ -55,16 +55,16 @@ class StaffSkillTabController extends GetxController {
       }
 
       // for each category, get the skills and insert into the map
-      Map<Category, List<StaffSkill>> list = {};
-      cats.forEach((cat) {
+      final Map<Category, List<StaffSkill>> list = {};
+      for (final cat in cats) {
         final items = tempList
             .where((element) => element.category.name == cat.name)
             .toList();
         if (items.isNotEmpty) {
-          Map<Category, List<StaffSkill>> item = {cat: items};
+          final Map<Category, List<StaffSkill>> item = {cat: items};
           list.addAll(item);
         }
-      });
+      }
 
       skills = list.obs;
     } catch (e) {
@@ -77,7 +77,7 @@ class StaffSkillTabController extends GetxController {
 
   String formatDate(DateTime? date) {
     if (date == null) {
-      return "No Expiry";
+      return 'No Expiry';
     } else {
       return Dates.formatUI(date);
     }
@@ -85,9 +85,9 @@ class StaffSkillTabController extends GetxController {
 
   void navigateToSkillOverview(StaffSkill skill) {
     final parameters = {
-      "id": skill.id.toString(),
-      "name": skill.name,
-      "edit": "true",
+      'id': skill.id.toString(),
+      'name': skill.name,
+      'edit': 'true',
     };
     Get.toNamed(Routes.STAFF_SKILL_OVERVIEW, parameters: parameters);
   }

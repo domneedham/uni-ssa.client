@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../../../controllers/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +12,7 @@ class HomePage extends GetView<HomeController> {
         return Center(
           child: FlutterLogo(
             size: controller.size.value,
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
           ),
         );
       }),

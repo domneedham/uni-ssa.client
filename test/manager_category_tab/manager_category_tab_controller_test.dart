@@ -40,7 +40,7 @@ void main() {
     test('sets the error if failed to load', () async {
       final mockCategoryRepo = TestMocks.categoriesRepository;
 
-      final exception = Exception("Failure");
+      final exception = Exception('Failure');
       when(mockCategoryRepo.categories).thenThrow(exception);
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -58,14 +58,15 @@ void main() {
       when(mockCategoryRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<ManagerCategoryTabController>();
 
       await controller.deleteCategory(categoryOne);
       // let the snackbar run
-      await tester.pumpAndSettle(Duration(seconds: 5));
+      await tester.pumpAndSettle(const Duration(seconds: 5));
 
       verify(mockCategoryRepo.deleteCategory(any)).called(1);
     });
@@ -77,7 +78,8 @@ void main() {
       when(mockCategoryRepo.categories).thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -87,7 +89,7 @@ void main() {
 
       await controller.deleteCategory(categoryOne);
       // let the snackbar run
-      await tester.pumpAndSettle(Duration(seconds: 5));
+      await tester.pumpAndSettle(const Duration(seconds: 5));
 
       expect(controller.categories!.toList(), []);
     });

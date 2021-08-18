@@ -4,8 +4,6 @@ import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 
 class ManagerStaffSkill extends Skill {
-  final List<User> staff;
-
   ManagerStaffSkill({
     required int id,
     required String name,
@@ -18,12 +16,14 @@ class ManagerStaffSkill extends Skill {
     required List<dynamic> staff,
   }) {
     return ManagerStaffSkill(
-      id: skill["id"] as int,
-      name: skill["name"] as String,
-      category: Category.fromJson(skill["category"]),
-      staff: List<User>.from((staff).map(
+      id: skill['id'] as int,
+      name: skill['name'] as String,
+      category: Category.fromJson(skill['category']),
+      staff: List<User>.from(staff.map(
         (e) => User.fromJson(e, UserRole.STAFF),
       )),
     );
   }
+
+  final List<User> staff;
 }

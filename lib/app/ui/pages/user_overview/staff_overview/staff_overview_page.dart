@@ -15,7 +15,7 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Staff Overview"),
+        title: const Text('Staff Overview'),
       ),
       body: Obx(() {
         if (controller.staff != null) {
@@ -42,7 +42,7 @@ class StaffOverviewPage extends GetWidget<StaffOverviewController> {
         if (controller.isLoading.value) {
           return const LoadingIndicator();
         }
-        return const FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

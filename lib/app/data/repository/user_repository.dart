@@ -9,18 +9,19 @@ import 'package:ssa_app/app/data/providers/staff_provider.dart';
 import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 
 class UserRepository {
-  final box = GetStorage();
-
-  static UserRepository get to => Get.find();
-
   UserRepository({
     required this.staffProvider,
     required this.managerProvider,
     required this.authProvider,
   });
+
   final IStaffProvider staffProvider;
   final IManagerProvider managerProvider;
   final IAuthProvider authProvider;
+
+  final box = GetStorage();
+
+  static UserRepository get to => Get.find();
 
   Staff? _staff;
   Manager? _manager;
@@ -45,29 +46,29 @@ class UserRepository {
     String email,
   ) {
     if (accessToken != null) {
-      box.remove("access_token");
-      box.write("access_token", accessToken);
+      box.remove('access_token');
+      box.write('access_token', accessToken);
     }
 
     if (refreshToken != null) {
-      box.remove("refresh_token");
-      box.write("refresh_token", refreshToken);
+      box.remove('refresh_token');
+      box.write('refresh_token', refreshToken);
     }
 
     if (role != null) {
-      box.remove("role");
-      box.write("role", role);
+      box.remove('role');
+      box.write('role', role);
     }
 
-    box.remove("email");
-    box.write("email", email);
+    box.remove('email');
+    box.write('email', email);
   }
 
   void _clearTokens() {
-    box.remove("access_token");
-    box.remove("refresh_token");
-    box.remove("role");
-    box.remove("email");
+    box.remove('access_token');
+    box.remove('refresh_token');
+    box.remove('role');
+    box.remove('email');
   }
 
   Future<Staff> _loginStaff(String email) async {
@@ -89,13 +90,13 @@ class UserRepository {
   Future<User> _login(String? role, String email) async {
     User user;
 
-    if (role == "STAFF") {
+    if (role == 'STAFF') {
       user = await _loginStaff(email);
-    } else if (role == "MANAGER") {
+    } else if (role == 'MANAGER') {
       user = await _loginManager(email);
     } else {
       _clearTokens();
-      throw FailedToLoginException("Not a recognised user");
+      throw FailedToLoginException('Not a recognised user');
     }
 
     loggedIn.value = true;
@@ -107,23 +108,23 @@ class UserRepository {
   Future<User> loginEmailPassword(String email, String password) async {
     final res = await authProvider.login(email, password);
 
-    if (res["access_token"] != null &&
-        res["refresh_token"] != null &&
-        res["role"] != null) {
+    if (res['access_token'] != null &&
+        res['refresh_token'] != null &&
+        res['role'] != null) {
       _writeTokens(
-        res["access_token"],
-        res["refresh_token"],
-        res["role"],
+        res['access_token'],
+        res['refresh_token'],
+        res['role'],
         email,
       );
     }
 
-    return _login(res["role"], email);
+    return _login(res['role'], email);
   }
 
   Future<User?> initLogin() async {
-    final role = box.read("role");
-    final email = box.read("email");
+    final role = box.read('role');
+    final email = box.read('email');
 
     if (role == null || email == null) {
       return null;
@@ -172,7 +173,7 @@ class UserRepository {
       _staff = s;
       return s;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

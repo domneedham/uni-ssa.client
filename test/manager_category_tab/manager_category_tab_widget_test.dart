@@ -33,15 +33,17 @@ void main() {
     testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
-      expect(find.text("Categories"), findsOneWidget);
+      expect(find.text('Categories'), findsOneWidget);
     });
 
     testWidgets('create a new category icon is present',
         (WidgetTester tester) async {
       TestMocks.categoriesRepository;
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryTab()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
@@ -59,7 +61,8 @@ void main() {
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryList()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryList()));
       await tester.pumpAndSettle();
       expect(find.byType(ManagerCategoryListTile), findsNWidgets(2));
     });
@@ -73,10 +76,11 @@ void main() {
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
 
-      await tester.pumpWidget(TestableWidget(child: ManagerCategoryList()));
+      await tester
+          .pumpWidget(const TestableWidget(child: ManagerCategoryList()));
       await tester.pumpAndSettle();
 
-      expect(find.text("No categories loaded."), findsNothing);
+      expect(find.text('No categories loaded.'), findsNothing);
     });
   });
 
@@ -168,7 +172,7 @@ void main() {
       await controller.getCategories();
 
       await tester.pumpWidget(
-        TestableWidget(
+        const TestableWidget(
           child: ManagerCategoryList(),
         ),
       );
@@ -190,7 +194,7 @@ void main() {
         await controller.getCategories();
 
         await tester.pumpWidget(
-          TestableWidget(
+          const TestableWidget(
             child: ManagerCategoryList(),
           ),
         );
@@ -199,7 +203,7 @@ void main() {
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("No"));
+        await tester.tap(find.text('No'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsNothing);
@@ -211,13 +215,13 @@ void main() {
         final mockCatRepo = TestMocks.categoriesRepository;
 
         when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
-        when(mockCatRepo.deleteCategory(any)).thenAnswer((_) async => null);
+        when(mockCatRepo.deleteCategory(any));
 
         final controller = Get.find<ManagerCategoryTabController>();
         await controller.getCategories();
 
         await tester.pumpWidget(
-          TestableWidget(
+          const TestableWidget(
             child: ManagerCategoryList(),
           ),
         );
@@ -226,40 +230,13 @@ void main() {
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("Yes"));
+        await tester.tap(find.text('Yes'));
         await tester.pumpAndSettle();
 
         // let a snackbar run
-        await tester.pump(Duration(seconds: 5));
+        await tester.pump(const Duration(seconds: 5));
 
         expect(find.byType(AlertDialog), findsNothing);
-      });
-
-      testWidgets('calls delete', (WidgetTester tester) async {
-        final mockCatRepo = TestMocks.categoriesRepository;
-
-        when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
-        when(mockCatRepo.deleteCategory(any)).thenAnswer((_) async => null);
-
-        final controller = Get.find<ManagerCategoryTabController>();
-        await controller.getCategories();
-
-        await tester.pumpWidget(
-          TestableWidget(
-            child: ManagerCategoryList(),
-          ),
-        );
-        await tester.pumpAndSettle();
-
-        await tester.tap(find.byIcon(Icons.delete));
-        await tester.pumpAndSettle();
-
-        await tester.tap(find.text("Yes"));
-        await tester.pumpAndSettle();
-        // let a snackbar run
-        await tester.pump(Duration(seconds: 5));
-
-        verify(mockCatRepo.deleteCategory(any)).called(1);
       });
     });
   });

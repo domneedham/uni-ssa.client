@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+// ignore: avoid_classes_with_only_static_members
 abstract class PlatformUtils {
   static bool _isIOS = false;
   static bool _isMacOS = false;
@@ -15,37 +16,49 @@ abstract class PlatformUtils {
   static bool get isIOS =>
       (Get.testMode && _isIOS) || (!Get.testMode && GetPlatform.isIOS);
   static set isIOS(bool value) {
-    if (Get.testMode) _isIOS = value;
+    if (Get.testMode) {
+      _isIOS = value;
+    }
   }
 
   static bool get isMacOS =>
       (Get.testMode && _isMacOS) || (!Get.testMode && GetPlatform.isMacOS);
   static set isMacOS(bool value) {
-    if (Get.testMode) _isMacOS = value;
+    if (Get.testMode) {
+      _isMacOS = value;
+    }
   }
 
   static bool get isAndroid =>
       (Get.testMode && _isAndroid) || (!Get.testMode && GetPlatform.isAndroid);
   static set isAndroid(bool value) {
-    if (Get.testMode) _isAndroid = value;
+    if (Get.testMode) {
+      _isAndroid = value;
+    }
   }
 
   static bool get isWindows =>
       (Get.testMode && _isWindows) || (!Get.testMode && GetPlatform.isWindows);
   static set isWindows(bool value) {
-    if (Get.testMode) _isWindows = value;
+    if (Get.testMode) {
+      _isWindows = value;
+    }
   }
 
   static bool get isFuchsia =>
       (Get.testMode && _isFuchsia) || (!Get.testMode && GetPlatform.isFuchsia);
   static set isFuchsia(bool value) {
-    if (Get.testMode) _isFuchsia = value;
+    if (Get.testMode) {
+      _isFuchsia = value;
+    }
   }
 
   static bool get isWeb =>
       (Get.testMode && _isWeb) || (!Get.testMode && GetPlatform.isWeb);
   static set isWeb(bool value) {
-    if (Get.testMode) _isWeb = value;
+    if (Get.testMode) {
+      _isWeb = value;
+    }
   }
 
   static void reset() {

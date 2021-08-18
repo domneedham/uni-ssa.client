@@ -16,7 +16,7 @@ class StaffSkillOverviewController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   Rx<StaffSkill>? skill;
   final rating = 0.obs;
@@ -39,8 +39,9 @@ class StaffSkillOverviewController extends GetxController {
   Future<void> getStaffSkill(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      StaffSkill fetchedSkill = await staffSkillRepo.getSkillById(parsedId);
+      final int parsedId = int.parse(id);
+      final StaffSkill fetchedSkill =
+          await staffSkillRepo.getSkillById(parsedId);
       skill = fetchedSkill.obs;
       rating.value = fetchedSkill.rating;
       expires.value = fetchedSkill.expires;
@@ -55,8 +56,8 @@ class StaffSkillOverviewController extends GetxController {
   Future<void> getSkill(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      Skill fetchedSkill = await skillRepo.findById(parsedId);
+      final int parsedId = int.parse(id);
+      final Skill fetchedSkill = await skillRepo.findById(parsedId);
       skill = StaffSkill(
         rating: 0,
         lastUpdated: DateTime.now(),
@@ -74,7 +75,7 @@ class StaffSkillOverviewController extends GetxController {
 
   String formatDate(DateTime? date) {
     if (date == null) {
-      return "No Expiry";
+      return 'No Expiry';
     } else {
       return Dates.formatUI(date);
     }
@@ -84,7 +85,7 @@ class StaffSkillOverviewController extends GetxController {
     final firstDate = DateTime.now();
     final initialDate = firstDate;
     // 4 years. Account for leap year
-    final lastDate = firstDate.add(Duration(days: (365 * 4) + 1));
+    final lastDate = firstDate.add(const Duration(days: (365 * 4) + 1));
     final datePicked = await showDatePicker(
       context: Get.context!,
       initialDate: initialDate,
@@ -99,7 +100,9 @@ class StaffSkillOverviewController extends GetxController {
 
   void incrementRating() {
     int newRating = rating.value + 1;
-    if (newRating > 5) newRating = 5;
+    if (newRating > 5) {
+      newRating = 5;
+    }
 
     rating.value = newRating;
     setIsEdited(newRating: newRating);
@@ -107,7 +110,9 @@ class StaffSkillOverviewController extends GetxController {
 
   void decrementRating() {
     int newRating = rating.value - 1;
-    if (newRating < 0) newRating = 0;
+    if (newRating < 0) {
+      newRating = 0;
+    }
 
     rating.value = newRating;
     setIsEdited(newRating: newRating);
@@ -133,7 +138,9 @@ class StaffSkillOverviewController extends GetxController {
   }
 
   Future<void> saveEditedSkill() async {
-    if (!isEdited.value) return;
+    if (!isEdited.value) {
+      return;
+    }
 
     try {
       final editedSkill = StaffSkill(
@@ -152,16 +159,15 @@ class StaffSkillOverviewController extends GetxController {
       if (parameters.assign != AppRouteParameterValues.FALSE) {
         await staffSkillRepo.saveNew(editedSkill);
       }
-      Get.snackbar("Success", "Skill saved");
+      Get.snackbar('Success', 'Skill saved');
     } catch (e) {
-      Get.snackbar("Failed to save", e.toString());
+      Get.snackbar('Failed to save', e.toString());
     }
   }
 
   @override
   void onClose() async {
-    // TODO
-    // temp fix to deal with UI update on navigating to skill tab
+    // TODO(Dom): temp fix to deal with UI update on navigating to skill tab
     final skillTabController = Get.find<StaffSkillTabController>();
     await skillTabController.getSkills();
     super.onClose();

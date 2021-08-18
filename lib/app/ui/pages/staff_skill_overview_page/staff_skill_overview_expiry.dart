@@ -11,11 +11,11 @@ class StaffSkillOverviewExpiry extends GetView<StaffSkillOverviewController> {
       return ListTile(
         title: Text(
           controller.formatDate(controller.expires.value),
-          style: TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18),
         ),
         trailing: IconButton(
           onPressed: () async => controller.datePicker(),
-          icon: Icon(Icons.calendar_today),
+          icon: const Icon(Icons.calendar_today),
         ),
       );
     });

@@ -7,6 +7,8 @@ import '../../../controllers/manager_skill_overview_controller.dart';
 import 'manager_skill_overview_user_list.dart';
 
 class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
+  const ManagerSkillOverviewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,19 +17,19 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
         actions: [
           IconButton(
             onPressed: controller.editSkill,
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
           ),
           IconButton(
             onPressed: () {
               Get.dialog(AlertDialog(
-                title: Text("Are you sure you want to delete?"),
+                title: const Text('Are you sure you want to delete?'),
                 actions: [
                   TextButton(
                     onPressed: () {
                       // pop the dialog
                       Get.back();
                     },
-                    child: Text("No"),
+                    child: const Text('No'),
                   ),
                   TextButton(
                     onPressed: () {
@@ -35,12 +37,12 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
                       Get.back();
                       controller.deleteSkill();
                     },
-                    child: Text("Yes"),
+                    child: const Text('Yes'),
                   ),
                 ],
               ));
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),
@@ -48,15 +50,15 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
         if (controller.skill != null) {
           final skill = controller.skill!.value;
           return ListView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SkillCategoryTitle(category: skill.category),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  "Staff Assigned:",
+                  'Staff Assigned:',
                   style: Get.textTheme.subtitle1,
                 ),
               ),
@@ -68,9 +70,9 @@ class ManagerSkillOverviewPage extends GetView<ManagerSkillOverviewController> {
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

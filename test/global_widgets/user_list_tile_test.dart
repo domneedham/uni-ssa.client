@@ -39,7 +39,7 @@ void main() {
   group('loading user list tile', () {
     testWidgets('renders a list tile', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingUserListTile()),
+        const TestableWidget(child: LoadingUserListTile()),
       );
 
       expect(find.byType(ListTile), findsOneWidget);
@@ -47,7 +47,7 @@ void main() {
 
     testWidgets('shows the person icon', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingUserListTile()),
+        const TestableWidget(child: LoadingUserListTile()),
       );
 
       expect(find.byIcon(Icons.person), findsOneWidget);
@@ -55,7 +55,7 @@ void main() {
 
     testWidgets('shows loading user text', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingUserListTile()),
+        const TestableWidget(child: LoadingUserListTile()),
       );
 
       expect(find.text('Loading user...'), findsOneWidget);
@@ -65,7 +65,7 @@ void main() {
   group('loading failed user list tile', () {
     testWidgets('renders a list tile', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingFailedUserListTile()),
+        const TestableWidget(child: LoadingFailedUserListTile()),
       );
 
       expect(find.byType(ListTile), findsOneWidget);
@@ -73,7 +73,7 @@ void main() {
 
     testWidgets('shows the person off icon', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingFailedUserListTile()),
+        const TestableWidget(child: LoadingFailedUserListTile()),
       );
 
       expect(find.byIcon(Icons.person_off), findsOneWidget);
@@ -81,7 +81,7 @@ void main() {
 
     testWidgets('shows user failed to load text', (WidgetTester tester) async {
       await tester.pumpWidget(
-        TestableWidget(child: LoadingFailedUserListTile()),
+        const TestableWidget(child: LoadingFailedUserListTile()),
       );
 
       expect(find.text('User failed to load'), findsOneWidget);

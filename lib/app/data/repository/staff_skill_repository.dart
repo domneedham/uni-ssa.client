@@ -7,7 +7,7 @@ class StaffSkillRepository {
   final IStaffSkillProvider staffSkillProvider;
 
   Future<StaffSkill> getSkillById(int id) async {
-    return await staffSkillProvider.getByIdDecoded(
+    return staffSkillProvider.getByIdDecoded(
       id,
       UserRepository.to.user!.id,
     );

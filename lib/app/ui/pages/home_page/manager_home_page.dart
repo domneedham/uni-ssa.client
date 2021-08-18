@@ -8,14 +8,17 @@ import 'package:ssa_app/app/ui/pages/manager_skill_tab/manager_skill_tab.dart';
 import 'package:ssa_app/app/ui/pages/manager_staff_tab/manager_staff_tab.dart';
 
 class ManagerHomePage extends StatelessWidget {
-  final _widgets = [
-    ManagerSkillTab(),
-    ManagerCategoryTab(),
-    ManagerStaffTab(),
-    ManagerMoreTab(),
-  ];
+  const ManagerHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    const _widgets = [
+      ManagerSkillTab(),
+      ManagerCategoryTab(),
+      ManagerStaffTab(),
+      ManagerMoreTab(),
+    ];
+
     return GetBuilder<ManagerController>(
       builder: (controller) {
         return Scaffold(
@@ -24,22 +27,22 @@ class ManagerHomePage extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             currentIndex: controller.selectedTab,
             onTap: controller.setSelectedTab,
-            items: [
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.star),
-                label: "Skills",
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.star),
+                label: 'Skills',
               ),
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.category),
-                label: "Categories",
+              BottomNavigationBarItem(
+                icon: Icon(Icons.category),
+                label: 'Categories',
               ),
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.people),
-                label: "Staff",
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: 'Staff',
               ),
-              const BottomNavigationBarItem(
-                icon: const Icon(Icons.more_horiz),
-                label: "More",
+              BottomNavigationBarItem(
+                icon: Icon(Icons.more_horiz),
+                label: 'More',
               ),
             ],
           ),

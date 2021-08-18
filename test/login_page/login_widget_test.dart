@@ -7,7 +7,7 @@ import 'package:ssa_app/app/ui/pages/login/login_page.dart';
 import '../mocks/mocks.dart';
 import '../testable_widget.dart';
 
-main() {
+void main() {
   final binding = BindingsBuilder(() {
     Get.lazyPut<LoginController>(() => LoginController());
   });
@@ -24,35 +24,35 @@ main() {
   testWidgets('shows the app title', (tester) async {
     TestMocks.userRepository;
 
-    await tester.pumpWidget(TestableWidget(child: LoginPage()));
+    await tester.pumpWidget(const TestableWidget(child: LoginPage()));
     await tester.pumpAndSettle();
 
-    expect(find.text("Staff Skill Auditor"), findsOneWidget);
+    expect(find.text('Staff Skill Auditor'), findsOneWidget);
   });
 
   group('form', () {
     testWidgets('shows an email box', (tester) async {
       TestMocks.userRepository;
 
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text("Email"), findsOneWidget);
+      expect(find.text('Email'), findsOneWidget);
     });
 
     testWidgets('shows a password box', (tester) async {
       TestMocks.userRepository;
 
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
-      expect(find.text("Password"), findsOneWidget);
+      expect(find.text('Password'), findsOneWidget);
     });
 
     testWidgets('shows a login button', (tester) async {
       TestMocks.userRepository;
 
-      await tester.pumpWidget(TestableWidget(child: LoginPage()));
+      await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
 
       final finder = find.byWidgetPredicate(

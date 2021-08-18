@@ -40,10 +40,10 @@ void main() {
           .thenAnswer((_) async => [managerStaffSkillOne]);
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
-      expect(find.text("Skills"), findsOneWidget);
+      expect(find.text('Skills'), findsOneWidget);
     });
 
     testWidgets('shows an option to create a new skill',
@@ -55,7 +55,7 @@ void main() {
           .thenAnswer((_) async => [managerStaffSkillOne]);
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
@@ -69,10 +69,10 @@ void main() {
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
-      expect(find.textContaining("No skills loaded."), findsWidgets);
+      expect(find.textContaining('No skills loaded.'), findsWidgets);
     });
   });
 
@@ -86,7 +86,7 @@ void main() {
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.byIcon(Icons.view_agenda_outlined), findsOneWidget);
@@ -101,14 +101,14 @@ void main() {
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byIcon(Icons.view_agenda_outlined));
       await tester.pumpAndSettle();
 
-      expect(find.text("List"), findsOneWidget);
-      expect(find.text("Grid"), findsOneWidget);
+      expect(find.text('List'), findsOneWidget);
+      expect(find.text('Grid'), findsOneWidget);
     });
 
     testWidgets(
@@ -125,13 +125,13 @@ void main() {
       // reset type to ensure it changes
       controller.viewType.value = SkillListViewType.GRID;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byIcon(Icons.view_agenda_outlined));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text("List"));
+      await tester.tap(find.text('List'));
 
       expect(controller.viewType.value, SkillListViewType.LIST);
     });
@@ -150,13 +150,13 @@ void main() {
       // reset type to ensure it changes
       controller.viewType.value = SkillListViewType.LIST;
 
-      await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byIcon(Icons.view_agenda_outlined));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text("Grid"));
+      await tester.tap(find.text('Grid'));
 
       expect(controller.viewType.value, SkillListViewType.GRID);
     });
@@ -252,7 +252,7 @@ void main() {
     when(mockSkillRepo.skills).thenAnswer((_) async => [managerStaffSkillOne]);
     when(mockUserRepo.user).thenReturn(managerOne);
 
-    await tester.pumpWidget(TestableWidget(child: ManagerSkillTab()));
+    await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
     await tester.pumpAndSettle();
 
     expect(find.byIcon(managerStaffSkillOne.category.icon), findsOneWidget);

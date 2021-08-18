@@ -34,7 +34,7 @@ void main() {
       final userRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerSkillOverviewController>();
 
@@ -42,7 +42,7 @@ void main() {
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       final testSkill = skillOne;
 
@@ -56,17 +56,17 @@ void main() {
       final userRepo = TestMocks.userRepository;
       TestMocks.skillRepository;
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerSkillOverviewController>();
 
-      final exception = Exception("Some error");
+      final exception = Exception('Some error');
 
       when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => Future.error(exception));
 
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       expect(controller.isError.value, true);
       expect(controller.error.value, exception.toString());
@@ -79,24 +79,25 @@ void main() {
       final userRepo = TestMocks.userRepository;
       final skillRepo = TestMocks.skillRepository;
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
+      // ignore: avoid_returning_null_for_void
       when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
       // need to pump for snackbar
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       final controller = Get.find<ManagerSkillOverviewController>();
-      await controller.getSkill("1");
+      await controller.getSkill('1');
 
       await controller.deleteSkill();
       // let the snackbar run
-      await tester.pumpAndSettle(Duration(seconds: 5));
+      await tester.pumpAndSettle(const Duration(seconds: 5));
 
       verify(skillRepo.delete(1)).called(1);
     });

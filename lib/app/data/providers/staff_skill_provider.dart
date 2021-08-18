@@ -19,22 +19,22 @@ abstract class IStaffSkillProvider {
 class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/skill/staff";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/skill/staff';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
   StaffSkill _decodeSkill(Map<String, dynamic>? val) {
     if (val == null) {
-      throw NoDataReturned("Skill not found");
+      throw NoDataReturned('Skill not found');
     }
     return StaffSkill.fromJson(val);
   }
 
   List<StaffSkill> _decodeSkillList(List<dynamic> val) {
     return List<StaffSkill>.from(
-      (val).map(
+      val.map(
         (x) => StaffSkill.fromJson(x),
       ),
     );
@@ -42,11 +42,11 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
 
   String _encodeSkill(StaffSkill skill, int sid) {
     return jsonEncode({
-      "skill": {"id": skill.id},
-      "staffDetails": {"id": sid},
-      "rating": skill.rating,
-      "lastUpdated": skill.lastUpdated.toIso8601String(),
-      "expires": skill.expires?.toIso8601String(),
+      'skill': {'id': skill.id},
+      'staffDetails': {'id': sid},
+      'rating': skill.rating,
+      'lastUpdated': skill.lastUpdated.toIso8601String(),
+      'expires': skill.expires?.toIso8601String(),
     });
   }
 
@@ -55,7 +55,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
     final res = await get('/');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("No skill found");
+      throw NoDataReturned('No skill found');
     }
 
     return _decodeSkillList(res.body);
@@ -65,7 +65,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   Future<StaffSkill> getById(int id, int sid) async {
     final res = await get('/$id/sid/$sid');
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("No skill found");
+      throw NoDataReturned('No skill found');
     }
 
     return _decodeSkill(res.body);
@@ -76,7 +76,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
     final res = await get('/sid/$id');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Skills not found");
+      throw NoDataReturned('Skills not found');
     }
 
     return _decodeSkillList(res.body);
@@ -86,7 +86,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   Future<StaffSkill> getByIdDecoded(int id, int sid) async {
     final res = await get('/$id/sid/$sid');
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("No skill found");
+      throw NoDataReturned('No skill found');
     }
 
     return _decodeSkill(res.body);

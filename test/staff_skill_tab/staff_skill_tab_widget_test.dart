@@ -42,7 +42,7 @@ void main() {
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
 
       expect(find.text('Your Skills'), findsOneWidget);
     });
@@ -55,7 +55,7 @@ void main() {
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -64,13 +64,13 @@ void main() {
       final mockUserRepo = TestMocks.userRepository;
       final mockSkillRepo = TestMocks.skillStaffRepository;
 
-      final error = Exception("Some error");
+      final error = Exception('Some error');
 
       when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
           .thenAnswer((_) async => throw error);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.text(error.toString()), findsOneWidget);
@@ -88,7 +88,7 @@ void main() {
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.text(staffSkillOne.category.name), findsOneWidget);
@@ -105,7 +105,7 @@ void main() {
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.byIcon(staffSkillOne.category.icon), findsOneWidget);
@@ -121,7 +121,7 @@ void main() {
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserRepo.user).thenReturn(staffWithSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(StaffSkillCard), findsNWidgets(2));
@@ -136,7 +136,7 @@ void main() {
           .thenAnswer((_) async => []);
       when(mockUserRepo.user).thenReturn(staffWithNoSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(StaffSkillCard), findsNothing);
@@ -151,11 +151,11 @@ void main() {
           .thenAnswer((_) async => []);
       when(mockUserRepo.user).thenReturn(staffWithNoSkills);
 
-      await tester.pumpWidget(TestableWidget(child: StaffSkillTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
 
       expect(
-          find.textContaining("You have no registered skills"), findsOneWidget);
+          find.textContaining('You have no registered skills'), findsOneWidget);
     });
   });
 
@@ -208,7 +208,7 @@ void main() {
         ),
       ));
 
-      expect(find.text("No Expiry"), findsOneWidget);
+      expect(find.text('No Expiry'), findsOneWidget);
     });
   });
 }

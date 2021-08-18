@@ -35,7 +35,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(Divider), findsNWidgets(2));
@@ -46,7 +46,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(UserProfileHeader), findsOneWidget);
@@ -57,7 +57,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(MoreTabSettings), findsOneWidget);
@@ -68,7 +68,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(managerOne);
 
-      await tester.pumpWidget(TestableWidget(child: ManagerMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: ManagerMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(MoreTabAppInformation), findsOneWidget);

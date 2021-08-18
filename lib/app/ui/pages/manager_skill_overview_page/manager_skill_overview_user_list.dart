@@ -16,7 +16,7 @@ class ManagerSkillOverviewUserList
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: skill.staff.length,
       itemBuilder: (c, pos) {

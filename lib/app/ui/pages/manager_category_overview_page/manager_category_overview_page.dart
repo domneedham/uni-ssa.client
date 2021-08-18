@@ -6,15 +6,16 @@ import 'package:ssa_app/app/ui/global_widgets/loading_indicator.dart';
 
 class ManagerCategoryOverviewPage
     extends GetView<ManagerCategoryOverviewController> {
-  final id = Get.parameters["id"]!;
-  final name = Get.parameters["name"];
+  const ManagerCategoryOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final name = Get.parameters['name'];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(name ?? "Category Overview"),
-        actions: [
+        title: Text(name ?? 'Category Overview'),
+        actions: const [
           IconButton(
             onPressed: null,
             icon: Icon(Icons.edit),
@@ -25,7 +26,7 @@ class ManagerCategoryOverviewPage
         if (controller.category != null) {
           final category = controller.category!.value;
           return ListView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [Text(category.name)],
           );
         }
@@ -33,9 +34,9 @@ class ManagerCategoryOverviewPage
           return FutureStateText(text: controller.error.value);
         }
         if (controller.isLoading.value) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
-        return FutureStateText(text: "Unknown state");
+        return const FutureStateText(text: 'Unknown state');
       }),
     );
   }

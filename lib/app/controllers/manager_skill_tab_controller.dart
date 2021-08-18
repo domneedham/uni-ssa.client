@@ -20,12 +20,12 @@ class ManagerSkillTabController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
 
   RxMap<Category, List<ManagerStaffSkill>>? skills;
 
   @override
-  onInit() async {
+  Future<void> onInit() async {
     super.onInit();
     await getSkills();
   }
@@ -37,14 +37,14 @@ class ManagerSkillTabController extends GetxController {
       final repoSkills = await skillRepo.skills;
 
       // get unique categories from skills
-      List<Category> cats = [];
-      repoSkills.forEach((element) {
+      final List<Category> cats = [];
+      for (final element in repoSkills) {
         final index =
             cats.indexWhere((cat) => cat.name == element.category.name);
         if (index == -1) {
           cats.add(element.category);
         }
-      });
+      }
 
       // sort alphabetically on the categories
       if (cats.isNotEmpty) {
@@ -52,16 +52,16 @@ class ManagerSkillTabController extends GetxController {
       }
 
       // for each category, get the skills and insert into the map
-      Map<Category, List<ManagerStaffSkill>> list = {};
-      cats.forEach((cat) {
+      final Map<Category, List<ManagerStaffSkill>> list = {};
+      for (final cat in cats) {
         final items = repoSkills
             .where((element) => element.category.name == cat.name)
             .toList();
         if (items.isNotEmpty) {
-          Map<Category, List<ManagerStaffSkill>> item = {cat: items};
+          final Map<Category, List<ManagerStaffSkill>> item = {cat: items};
           list.addAll(item);
         }
-      });
+      }
 
       if (skills != null) {
         skills!.value = list.obs;
@@ -81,16 +81,17 @@ class ManagerSkillTabController extends GetxController {
   }
 
   void navigateToSkillOverview(int id, String name) {
-    final parameters = <String, String>{"id": id.toString(), "name": name};
+    final parameters = <String, String>{'id': id.toString(), 'name': name};
     Get.toNamed(Routes.MANAGER_SKILL_OVERVIEW, parameters: parameters);
   }
 
   void createNewSkill() {
-    final parameters = {"mode": "add"};
+    final parameters = {'mode': 'add'};
     Get.toNamed(Routes.MANAGER_SKILL_FORM, parameters: parameters);
   }
 
-  void refresh() async {
+  @override
+  Future<void> refresh() async {
     await getSkills();
   }
 }

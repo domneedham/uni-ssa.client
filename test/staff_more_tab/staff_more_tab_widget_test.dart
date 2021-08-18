@@ -37,7 +37,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(Divider), findsNWidgets(3));
@@ -48,7 +48,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(StaffMoreTabUserDetails), findsOneWidget);
@@ -59,7 +59,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(UserProfileHeader), findsOneWidget);
@@ -70,7 +70,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(MoreTabSettings), findsOneWidget);
@@ -81,7 +81,7 @@ void main() {
 
       when(mockUserRepo.user).thenReturn(staffOne);
 
-      await tester.pumpWidget(TestableWidget(child: StaffMoreTab()));
+      await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
 
       expect(find.byType(MoreTabAppInformation), findsOneWidget);
@@ -96,7 +96,7 @@ void main() {
         when(mockUserRepo.user).thenReturn(staffOne);
 
         await tester
-            .pumpWidget(TestableWidget(child: StaffMoreTabUserDetails()));
+            .pumpWidget(const TestableWidget(child: StaffMoreTabUserDetails()));
         await tester.pumpAndSettle();
 
         expect(find.text('Edit Your Details'), findsOneWidget);
@@ -108,7 +108,7 @@ void main() {
         when(mockUserRepo.user).thenReturn(staffOne);
 
         await tester
-            .pumpWidget(TestableWidget(child: StaffMoreTabUserDetails()));
+            .pumpWidget(const TestableWidget(child: StaffMoreTabUserDetails()));
         await tester.pumpAndSettle();
 
         expect(find.byIcon(Icons.edit), findsOneWidget);
@@ -123,7 +123,7 @@ void main() {
         when(mockUserRepo.user).thenReturn(staffOne);
 
         await tester.pumpWidget(
-          TestableWidget(child: StaffMoreTabUserDetails()),
+          const TestableWidget(child: StaffMoreTabUserDetails()),
         );
         await tester.pumpAndSettle();
 

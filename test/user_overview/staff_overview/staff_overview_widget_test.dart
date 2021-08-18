@@ -11,8 +11,8 @@ import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview
 import 'package:ssa_app/app/ui/pages/user_overview/staff_overview/staff_overview_skill_list_tile.dart';
 
 import '../../mocks/data.dart';
-import '../../testable_widget.dart';
 import '../../mocks/mocks.dart';
+import '../../testable_widget.dart';
 
 void main() {
   final skillWithNoExpiry = TestData.mockStaffSkillOneWithNoExpiry;
@@ -20,18 +20,18 @@ void main() {
   final skillWithExpiryExpired = TestData.mockStaffSkillOneWithExpiryExpired;
   final managerOne = TestData.mockManagerWithStaff;
   final staffOne = TestData.mockStaffWithExpirySkills;
-  final mockError = Exception("Exception");
+  final mockError = Exception('Exception');
 
   final binding = BindingsBuilder(() {
     Get.lazyPut<StaffOverviewController>(() => StaffOverviewController());
   });
 
   void setUpSuccess() {
-    Get.parameters = {"id": "1"};
+    Get.parameters = {'id': '1'};
   }
 
   void setUpFailure() {
-    Get.parameters = {"id": "-1"};
+    Get.parameters = {'id': '-1'};
   }
 
   setUp(() async {
@@ -57,7 +57,7 @@ void main() {
     testWidgets('shows a loading indicator whilst loading',
         (WidgetTester tester) async {
       setUpSuccess();
-      await tester.pumpWidget(TestableWidget(child: StaffOverviewPage()));
+      await tester.pumpWidget(const TestableWidget(child: StaffOverviewPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -66,7 +66,7 @@ void main() {
         (WidgetTester tester) async {
       setUpFailure();
 
-      await tester.pumpWidget(TestableWidget(child: StaffOverviewPage()));
+      await tester.pumpWidget(const TestableWidget(child: StaffOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(mockError.toString()), findsOneWidget);
@@ -75,7 +75,7 @@ void main() {
     testWidgets('shows the profile header of the staff if successful',
         (WidgetTester tester) async {
       setUpSuccess();
-      await tester.pumpWidget(TestableWidget(child: StaffOverviewPage()));
+      await tester.pumpWidget(const TestableWidget(child: StaffOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.byType(UserProfileHeader), findsOneWidget);
@@ -189,7 +189,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.text("No Expiry"), findsOneWidget);
+        expect(find.text('No Expiry'), findsOneWidget);
       });
 
       testWidgets(

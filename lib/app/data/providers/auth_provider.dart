@@ -13,40 +13,40 @@ class AuthProvider extends GetConnect implements IAuthProvider {
 
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/auth";
+    httpClient.baseUrl = '$baseUrl/auth';
   }
 
   Map<String, String> _decodeLogin(dynamic val) {
     if (val == null) {
-      throw NoDataReturned("Login failed");
+      throw NoDataReturned('Login failed');
     }
 
-    if (val["access_token"] != null &&
-        val["refresh_token"] != null &&
-        val["role"] != null) {
+    if (val['access_token'] != null &&
+        val['refresh_token'] != null &&
+        val['role'] != null) {
       return {
-        "access_token": val["access_token"],
-        "refresh_token": val["refresh_token"],
-        "role": val["role"],
+        'access_token': val['access_token'],
+        'refresh_token': val['refresh_token'],
+        'role': val['role'],
       };
     } else {
-      throw FailedToLoginException("Not all required data returned");
+      throw FailedToLoginException('Not all required data returned');
     }
   }
 
   @override
   Future<Map<String, String>> login(String email, String password) async {
-    final encodedValue = "username=$email&password=$password";
+    final encodedValue = 'username=$email&password=$password';
 
     final res = await post(
       '/login',
       encodedValue,
-      contentType: "application/x-www-form-urlencoded",
-      headers: {"Accept": "application/json"},
+      contentType: 'application/x-www-form-urlencoded',
+      headers: {'Accept': 'application/json'},
     );
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Unable to login");
+      throw NoDataReturned('Unable to login');
     }
 
     return _decodeLogin(res.body);
@@ -54,7 +54,7 @@ class AuthProvider extends GetConnect implements IAuthProvider {
 
   @override
   Future<dynamic> refreshToken() async {
-    final res = await get('/token/refresh', headers: SsaHttp.refreshHeaders);
+    final res = await get('/token/refresh', headers: refreshHeaders);
     return res.body;
   }
 }

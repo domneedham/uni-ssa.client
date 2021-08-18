@@ -8,33 +8,34 @@ import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class TestData {
   static Category get mockCategoryOne =>
-      Category(id: 1, name: "Test Category One", icon: Icons.ac_unit);
+      Category(id: 1, name: 'Test Category One', icon: Icons.ac_unit);
   static Category get mockCategoryTwo =>
-      Category(id: 2, name: "Test Category Two", icon: Icons.access_alarm);
+      Category(id: 2, name: 'Test Category Two', icon: Icons.access_alarm);
 
   /// [Skill] class
   static Skill get mockSkillOne =>
-      Skill(id: 1, name: "Test Skill One", category: TestData.mockCategoryOne);
+      Skill(id: 1, name: 'Test Skill One', category: TestData.mockCategoryOne);
 
   /// [Skill] class
   static Skill get mockSkillTwo =>
-      Skill(id: 2, name: "Test Skill Two", category: TestData.mockCategoryTwo);
+      Skill(id: 2, name: 'Test Skill Two', category: TestData.mockCategoryTwo);
 
   static User get mockUserStaffOne =>
-      User(id: 1, firstname: "Staff", surname: "One", userRole: UserRole.STAFF);
+      User(id: 1, firstname: 'Staff', surname: 'One', userRole: UserRole.STAFF);
   static User get mockUserStaffTwo =>
-      User(id: 2, firstname: "Staff", surname: "Two", userRole: UserRole.STAFF);
+      User(id: 2, firstname: 'Staff', surname: 'Two', userRole: UserRole.STAFF);
   static User get mockUserStaffThree => User(
-      id: 3, firstname: "Staff", surname: "Three", userRole: UserRole.STAFF);
+      id: 3, firstname: 'Staff', surname: 'Three', userRole: UserRole.STAFF);
   static User get mockUserStaffFour => User(
-      id: 4, firstname: "Staff", surname: "Four", userRole: UserRole.STAFF);
+      id: 4, firstname: 'Staff', surname: 'Four', userRole: UserRole.STAFF);
 
   static User get mockUserManagerOne => User(
-      id: 5, firstname: "Manager", surname: "One", userRole: UserRole.MANAGER);
+      id: 5, firstname: 'Manager', surname: 'One', userRole: UserRole.MANAGER);
   static User get mockUserManagerTwo => User(
-      id: 6, firstname: "Manager", surname: "Two", userRole: UserRole.MANAGER);
+      id: 6, firstname: 'Manager', surname: 'Two', userRole: UserRole.MANAGER);
 
   static Manager get mockManagerNoStaff => Manager(
         id: TestData.mockUserManagerOne.id,
@@ -76,7 +77,7 @@ class TestData {
         category: TestData.mockSkillOne.category,
         lastUpdated: DateTime.now(),
         rating: 3,
-        expires: DateTime.now().add(Duration(days: 30)),
+        expires: DateTime.now().add(const Duration(days: 30)),
       );
 
   static StaffSkill get mockStaffSkillTwoWithExpiry => StaffSkill(
@@ -85,7 +86,7 @@ class TestData {
         category: TestData.mockSkillTwo.category,
         lastUpdated: DateTime.now(),
         rating: 3,
-        expires: DateTime.now().add(Duration(days: 30)),
+        expires: DateTime.now().add(const Duration(days: 30)),
       );
 
   static StaffSkill get mockStaffSkillOneWithExpiryExpired => StaffSkill(
@@ -94,7 +95,7 @@ class TestData {
         category: TestData.mockSkillOne.category,
         lastUpdated: DateTime.now(),
         rating: 3,
-        expires: DateTime.now().subtract(Duration(days: 30)),
+        expires: DateTime.now().subtract(const Duration(days: 30)),
       );
 
   static StaffSkill get mockStaffSkillTwoWithExpiryExpired => StaffSkill(
@@ -103,7 +104,7 @@ class TestData {
         category: TestData.mockSkillTwo.category,
         lastUpdated: DateTime.now(),
         rating: 3,
-        expires: DateTime.now().subtract(Duration(days: 30)),
+        expires: DateTime.now().subtract(const Duration(days: 30)),
       );
 
   /// [Staff] class with no skills assigned to them. ID = 1

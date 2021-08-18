@@ -7,10 +7,12 @@ import './app/ui/theme/app_theme.dart';
 
 void main() async {
   await GetStorage.init();
-  runApp(StaffSkillAuditorApp());
+  runApp(const StaffSkillAuditorApp());
 }
 
 class StaffSkillAuditorApp extends StatelessWidget {
+  const StaffSkillAuditorApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -19,7 +21,7 @@ class StaffSkillAuditorApp extends StatelessWidget {
       initialRoute: Routes.HOME,
       theme: appThemeData,
       defaultTransition: Transition.fade,
-      getPages: AppPages.pages,
+      getPages: pages,
       initialBinding: AppBinding(),
     );
   }

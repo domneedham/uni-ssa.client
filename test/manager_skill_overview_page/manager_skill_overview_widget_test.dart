@@ -39,10 +39,10 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
@@ -57,10 +57,10 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1", "name": skillOne.name};
+      Get.parameters = {'id': '1', 'name': skillOne.name};
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(skillOne.name), findsOneWidget);
@@ -76,10 +76,10 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(skillOne.category.name), findsOneWidget);
@@ -95,10 +95,10 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.byIcon(skillOne.category.icon), findsOneWidget);
@@ -114,10 +114,10 @@ void main() {
       when(mockSkillRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       expect(find.text(skillOne.staff.first.name), findsOneWidget);
@@ -130,15 +130,16 @@ void main() {
       final userRepo = TestMocks.userRepository;
       final skillRepo = TestMocks.skillRepository;
 
-      Get.parameters = {"id": "1"};
+      Get.parameters = {'id': '1'};
 
       when(userRepo.user).thenReturn(managerOne);
       when(skillManagerRepo.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
+      // ignore: avoid_returning_null_for_void
       when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
       await tester
-          .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+          .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byIcon(Icons.delete));
@@ -153,22 +154,23 @@ void main() {
         final userRepo = TestMocks.userRepository;
         final skillRepo = TestMocks.skillRepository;
 
-        Get.parameters = {"id": "1"};
+        Get.parameters = {'id': '1'};
 
         when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
+        // ignore: avoid_returning_null_for_void
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
-        await tester
-            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpWidget(
+            const TestableWidget(child: ManagerSkillOverviewPage()));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        expect(find.text("Yes"), findsOneWidget);
-        expect(find.text("No"), findsOneWidget);
+        expect(find.text('Yes'), findsOneWidget);
+        expect(find.text('No'), findsOneWidget);
       });
     });
 
@@ -178,21 +180,22 @@ void main() {
         final userRepo = TestMocks.userRepository;
         final skillRepo = TestMocks.skillRepository;
 
-        Get.parameters = {"id": "1"};
+        Get.parameters = {'id': '1'};
 
         when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
+        // ignore: avoid_returning_null_for_void
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
-        await tester
-            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpWidget(
+            const TestableWidget(child: ManagerSkillOverviewPage()));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("No"));
+        await tester.tap(find.text('No'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsNothing);
@@ -205,21 +208,22 @@ void main() {
         final userRepo = TestMocks.userRepository;
         final skillRepo = TestMocks.skillRepository;
 
-        Get.parameters = {"id": "1"};
+        Get.parameters = {'id': '1'};
 
         when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
+        // ignore: avoid_returning_null_for_void
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
-        await tester
-            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpWidget(
+            const TestableWidget(child: ManagerSkillOverviewPage()));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("Yes"));
+        await tester.tap(find.text('Yes'));
         await tester.pumpAndSettle();
 
         expect(find.byType(AlertDialog), findsNothing);
@@ -231,21 +235,22 @@ void main() {
         final userRepo = TestMocks.userRepository;
         final skillRepo = TestMocks.skillRepository;
 
-        Get.parameters = {"id": "1"};
+        Get.parameters = {'id': '1'};
 
         when(userRepo.user).thenReturn(managerOne);
         when(skillManagerRepo.getManagerStaffSkillById(1))
             .thenAnswer((_) async => skillOne);
+        // ignore: avoid_returning_null_for_void
         when(skillRepo.delete(1)).thenAnswer((_) async => null);
 
-        await tester
-            .pumpWidget(TestableWidget(child: ManagerSkillOverviewPage()));
+        await tester.pumpWidget(
+            const TestableWidget(child: ManagerSkillOverviewPage()));
         await tester.pumpAndSettle();
 
         await tester.tap(find.byIcon(Icons.delete));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text("Yes"));
+        await tester.tap(find.text('Yes'));
         await tester.pumpAndSettle();
 
         verify(skillRepo.delete(1)).called(1);

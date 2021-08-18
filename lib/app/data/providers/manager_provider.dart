@@ -13,24 +13,24 @@ abstract class IManagerProvider {
 class ManagerProvider extends GetConnect implements IManagerProvider {
   @override
   void onInit() {
-    httpClient.baseUrl = "${SsaHttp.baseUrl}/manager";
-    httpClient.addRequestModifier(SsaHttp.addRequestModifier);
-    httpClient.addAuthenticator(SsaHttp.addAuthenticator);
+    httpClient.baseUrl = '$baseUrl/manager';
+    httpClient.addRequestModifier(addRequestModifier);
+    httpClient.addAuthenticator(addAuthenticator);
     httpClient.maxAuthRetries = 3;
   }
 
   Manager _decodeManager(Map<String, dynamic> val) {
     return Manager.fromJson(
-      userDetails: val["userDetails"] as Map<String, dynamic>,
-      staff: val["staffDetails"],
+      userDetails: val['userDetails'] as Map<String, dynamic>,
+      staff: val['staffDetails'],
     );
   }
 
   List<Manager> _decodeManagerList(List<dynamic> val) {
-    return List<Manager>.from((val).map(
+    return List<Manager>.from(val.map(
       (x) => Manager.fromJson(
-        userDetails: x["userDetails"],
-        staff: x["staffDetails"],
+        userDetails: x['userDetails'],
+        staff: x['staffDetails'],
       ),
     ));
   }
@@ -40,7 +40,7 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
     final res = await get('/$id');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Manager not found");
+      throw NoDataReturned('Manager not found');
     }
 
     return _decodeManager(res.body);
@@ -51,7 +51,7 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
     final res = await get('/search/$name');
 
     if (res.hasError || res.body != null) {
-      throw NoDataReturned("No mangers found");
+      throw NoDataReturned('No mangers found');
     }
 
     return _decodeManagerList(res.body);
@@ -62,7 +62,7 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
     final res = await get('/email/$email');
 
     if (res.hasError || res.body == null) {
-      throw NoDataReturned("Manager not found");
+      throw NoDataReturned('Manager not found');
     }
 
     return _decodeManager(res.body);

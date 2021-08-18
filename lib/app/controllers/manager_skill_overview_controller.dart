@@ -15,10 +15,10 @@ class ManagerSkillOverviewController extends GetxController {
 
   final isLoading = true.obs;
   final isError = false.obs;
-  final error = "".obs;
+  final error = ''.obs;
   Rx<ManagerStaffSkill>? skill;
 
-  final _skillName = "Skill Overview".obs;
+  final _skillName = 'Skill Overview'.obs;
   String get skillName => _skillName.value;
 
   final parameters = Get.parameters;
@@ -26,10 +26,10 @@ class ManagerSkillOverviewController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    if (parameters["name"] != null) {
-      _skillName.value = parameters["name"]!;
+    if (parameters['name'] != null) {
+      _skillName.value = parameters['name']!;
     }
-    await getSkill(parameters["id"]!);
+    await getSkill(parameters['id']!);
   }
 
   @override
@@ -41,8 +41,8 @@ class ManagerSkillOverviewController extends GetxController {
   Future<void> getSkill(String id) async {
     try {
       isLoading.value = true;
-      int parsedId = int.parse(id);
-      ManagerStaffSkill fetchedSkill =
+      final int parsedId = int.parse(id);
+      final ManagerStaffSkill fetchedSkill =
           await managerStaffSkillRepo.getManagerStaffSkillById(parsedId);
       skill = fetchedSkill.obs;
     } catch (e) {
@@ -55,10 +55,10 @@ class ManagerSkillOverviewController extends GetxController {
 
   void editSkill() {
     if (skill == null) {
-      Get.snackbar("Edit!", "Skill is empty");
+      Get.snackbar('Edit!', 'Skill is empty');
     } else {
-      final parameters = {"mode": "edit"};
-      final arguments = {"skill": skill!.value};
+      final parameters = {'mode': 'edit'};
+      final arguments = {'skill': skill!.value};
       Get.toNamed(Routes.MANAGER_SKILL_FORM,
           parameters: parameters, arguments: arguments);
     }
@@ -73,6 +73,7 @@ class ManagerSkillOverviewController extends GetxController {
     }
   }
 
+  @override
   Future<void> refresh() async {
     await getSkill(skill!.value.id.toString());
     _skillName.value = skill!.value.name;

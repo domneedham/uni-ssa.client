@@ -20,11 +20,11 @@ class StaffOverviewSkillList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text("Skill List:"),
+          padding: EdgeInsets.all(8),
+          child: Text('Skill List:'),
         ),
         ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: skills.length,
           itemBuilder: (ctx, pos) {
