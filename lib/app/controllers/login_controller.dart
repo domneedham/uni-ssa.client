@@ -33,7 +33,7 @@ class LoginController extends GetxController {
     }
 
     if (value.length < 8) {
-      return 'Password needs to be longer than 8 characters';
+      return 'Password needs to be 8 characters or more';
     }
 
     return null;
@@ -46,7 +46,7 @@ class LoginController extends GetxController {
       final password = passwordController.text;
 
       try {
-        await userRepo.login(email, password);
+        await userRepo.loginEmailPassword(email, password);
       } catch (e) {
         Get.snackbar("Error", e.toString());
       }

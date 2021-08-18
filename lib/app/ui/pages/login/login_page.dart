@@ -27,14 +27,22 @@ class LoginPage extends GetView<LoginController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(labelText: "Email"),
+                    key: Key("email"),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Email",
+                    ),
                     controller: controller.emailController,
                     validator: controller.validateEmail,
                     autocorrect: false,
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    decoration: InputDecoration(labelText: "Password"),
+                    key: Key("password"),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
                     controller: controller.passwordController,
                     validator: controller.validatePassword,
                     autocorrect: false,

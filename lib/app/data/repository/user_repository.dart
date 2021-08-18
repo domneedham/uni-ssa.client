@@ -1,14 +1,16 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/user/user.dart';
-import 'package:ssa_app/app/data/models/enums/user_role.dart';
 import 'package:ssa_app/app/data/providers/auth_provider.dart';
 import 'package:ssa_app/app/data/providers/manager_provider.dart';
 import 'package:ssa_app/app/data/providers/staff_provider.dart';
 import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 
 class UserRepository {
+  final box = GetStorage();
+
   static UserRepository get to => Get.find();
 
   UserRepository({
@@ -36,28 +38,103 @@ class UserRepository {
     }
   }
 
-  Future<User> login(String email, String password) async {
+  void _writeTokens(
+    String? accessToken,
+    String? refreshToken,
+    String? role,
+    String email,
+  ) {
+    if (accessToken != null) {
+      box.remove("access_token");
+      box.write("access_token", accessToken);
+    }
+
+    if (refreshToken != null) {
+      box.remove("refresh_token");
+      box.write("refresh_token", refreshToken);
+    }
+
+    if (role != null) {
+      box.remove("role");
+      box.write("role", role);
+    }
+
+    box.remove("email");
+    box.write("email", email);
+  }
+
+  void _clearTokens() {
+    box.remove("access_token");
+    box.remove("refresh_token");
+    box.remove("role");
+    box.remove("email");
+  }
+
+  Future<Staff> _loginStaff(String email) async {
+    final staffRes = await staffProvider.getStaffByEmail(email);
+    _staff = staffRes;
+    loggedIn.value = true;
+    firstLaunch.value = true;
+    return staffRes;
+  }
+
+  Future<Manager> _loginManager(String email) async {
+    final managerRes = await managerProvider.getManagerByEmail(email);
+    _manager = managerRes;
+    loggedIn.value = true;
+    firstLaunch.value = true;
+    return managerRes;
+  }
+
+  Future<User> _login(String? role, String email) async {
+    User user;
+
+    if (role == "STAFF") {
+      user = await _loginStaff(email);
+    } else if (role == "MANAGER") {
+      user = await _loginManager(email);
+    } else {
+      _clearTokens();
+      throw FailedToLoginException("Not a recognised user");
+    }
+
+    loggedIn.value = true;
+    firstLaunch.value = true;
+
+    return user;
+  }
+
+  Future<User> loginEmailPassword(String email, String password) async {
     final res = await authProvider.login(email, password);
 
-    if (res == UserRole.STAFF) {
-      final staffRes = await staffProvider.getStaffByEmail(email);
-      _staff = staffRes;
-      print(_staff);
-      loggedIn.value = true;
-      firstLaunch.value = true;
-      return staffRes;
-    } else if (res == UserRole.MANAGER) {
-      final managerRes = await managerProvider.getManagerByEmail(email);
-      _manager = managerRes;
-      loggedIn.value = true;
-      firstLaunch.value = true;
-      return managerRes;
-    } else {
-      throw FailedToLoginException("No role for user");
+    if (res["access_token"] != null &&
+        res["refresh_token"] != null &&
+        res["role"] != null) {
+      _writeTokens(
+        res["access_token"],
+        res["refresh_token"],
+        res["role"],
+        email,
+      );
     }
+
+    return _login(res["role"], email);
+  }
+
+  Future<User?> initLogin() async {
+    final role = box.read("role");
+    final email = box.read("email");
+
+    if (role == null || email == null) {
+      return null;
+    }
+
+    return _login(role, email);
   }
 
   void logout() {
+    _clearTokens();
+
     _staff = null;
     _manager = null;
 
