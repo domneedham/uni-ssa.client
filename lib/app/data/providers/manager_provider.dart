@@ -49,8 +49,9 @@ class ManagerProvider extends GetConnect implements IManagerProvider {
   @override
   Future<List<Manager>> searchManagerByName(String name) async {
     final res = await get('/search/$name');
+    print(res.body);
 
-    if (res.hasError || res.body != null) {
+    if (res.hasError || res.body == null) {
       throw NoDataReturned('No mangers found');
     }
 
