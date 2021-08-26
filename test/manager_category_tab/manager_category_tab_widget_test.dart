@@ -32,7 +32,7 @@ void main() {
   group('tab', () {
     testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
       await tester
           .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
@@ -41,7 +41,7 @@ void main() {
 
     testWidgets('create a new category icon is present',
         (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
       await tester
           .pumpWidget(const TestableWidget(child: ManagerCategoryTab()));
       await tester.pumpAndSettle();
@@ -53,9 +53,9 @@ void main() {
     testWidgets(
         'widgets in the list are of ManagerCategoryListTile type if the list is populated',
         (WidgetTester tester) async {
-      final mockRepo = TestMocks.categoriesRepository;
+      final mockService = TestMocks.categoriesService;
 
-      when(mockRepo.categories)
+      when(mockService.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -69,9 +69,9 @@ void main() {
 
     testWidgets('shows no categories loaded if true',
         (WidgetTester tester) async {
-      final mockRepo = TestMocks.categoriesRepository;
+      final mockService = TestMocks.categoriesService;
 
-      when(mockRepo.categories).thenAnswer((_) async => []);
+      when(mockService.categories).thenAnswer((_) async => []);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -86,7 +86,7 @@ void main() {
 
   group('category tab listtile', () {
     testWidgets('shows the name of the category', (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -105,7 +105,7 @@ void main() {
     });
 
     testWidgets('shows the icon of the category', (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -124,7 +124,7 @@ void main() {
     });
 
     testWidgets('shows the edit icon', (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -143,7 +143,7 @@ void main() {
     });
 
     testWidgets('shows the delete icon', (WidgetTester tester) async {
-      TestMocks.categoriesRepository;
+      TestMocks.categoriesService;
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -164,9 +164,9 @@ void main() {
 
   group('delete category button press', () {
     testWidgets('shows an alert dialog', (WidgetTester tester) async {
-      final mockCatRepo = TestMocks.categoriesRepository;
+      final mockCatService = TestMocks.categoriesService;
 
-      when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -186,9 +186,9 @@ void main() {
 
     group('alert dialog no button', () {
       testWidgets('dismisses the alert dialog', (WidgetTester tester) async {
-        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockCatService = TestMocks.categoriesService;
 
-        when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+        when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
 
         final controller = Get.find<ManagerCategoryTabController>();
         await controller.getCategories();
@@ -212,10 +212,10 @@ void main() {
 
     group('alert dialog yes button', () {
       testWidgets('dismisses the alert dialog', (WidgetTester tester) async {
-        final mockCatRepo = TestMocks.categoriesRepository;
+        final mockCatService = TestMocks.categoriesService;
 
-        when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
-        when(mockCatRepo.deleteCategory(any));
+        when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+        when(mockCatService.deleteCategory(any));
 
         final controller = Get.find<ManagerCategoryTabController>();
         await controller.getCategories();

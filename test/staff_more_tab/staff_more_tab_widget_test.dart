@@ -33,9 +33,9 @@ void main() {
   group('staff more tab', () {
     testWidgets('shows dividers between major sections',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -44,9 +44,9 @@ void main() {
     });
 
     testWidgets('shows the user details section', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -55,9 +55,9 @@ void main() {
     });
 
     testWidgets('shows the profile header', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -66,9 +66,9 @@ void main() {
     });
 
     testWidgets('shows the settings list', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -77,9 +77,9 @@ void main() {
     });
 
     testWidgets('shows the app information', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester.pumpWidget(const TestableWidget(child: StaffMoreTab()));
       await tester.pumpAndSettle();
@@ -91,9 +91,9 @@ void main() {
   group('staff more tab user details', () {
     group('edit details', () {
       testWidgets('shows edit your details text', (WidgetTester tester) async {
-        final mockUserRepo = TestMocks.userRepository;
+        final mockUserService = TestMocks.userService;
 
-        when(mockUserRepo.user).thenReturn(staffOne);
+        when(mockUserService.user).thenReturn(staffOne);
 
         await tester
             .pumpWidget(const TestableWidget(child: StaffMoreTabUserDetails()));
@@ -103,9 +103,9 @@ void main() {
       });
 
       testWidgets('shows an edit button', (WidgetTester tester) async {
-        final mockUserRepo = TestMocks.userRepository;
+        final mockUserService = TestMocks.userService;
 
-        when(mockUserRepo.user).thenReturn(staffOne);
+        when(mockUserService.user).thenReturn(staffOne);
 
         await tester
             .pumpWidget(const TestableWidget(child: StaffMoreTabUserDetails()));
@@ -118,9 +118,9 @@ void main() {
     group('manager list tile', () {
       testWidgets('shows a user list tile if successfully loaded',
           (WidgetTester tester) async {
-        final mockUserRepo = TestMocks.userRepository;
+        final mockUserService = TestMocks.userService;
 
-        when(mockUserRepo.user).thenReturn(staffOne);
+        when(mockUserService.user).thenReturn(staffOne);
 
         await tester.pumpWidget(
           const TestableWidget(child: StaffMoreTabUserDetails()),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 
 class StaffEditDetailsController extends GetxController {
-  final userRepo = Get.find<UserRepository>();
+  final userService = Get.find<UserService>();
 
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
 
-  Staff get user => userRepo.user as Staff;
+  Staff get user => userService.user as Staff;
 
   final firstnameController = TextEditingController();
   final surnameController = TextEditingController();
@@ -40,7 +40,7 @@ class StaffEditDetailsController extends GetxController {
           skills: user.skills,
           manager: user.manager,
         );
-        await userRepo.updateStaffDetails(staff);
+        await userService.updateStaffDetails(staff);
 
         Get.snackbar('Success', 'Name updated');
       } catch (e) {

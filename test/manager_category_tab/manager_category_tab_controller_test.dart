@@ -27,9 +27,10 @@ void main() {
 
   group('get categories method', () {
     test('sets the categories if loaded correctly', () async {
-      final mockCategoryRepo = TestMocks.categoriesRepository;
+      final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.categories)
+          .thenAnswer((_) async => [categoryOne]);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -38,10 +39,10 @@ void main() {
     });
 
     test('sets the error if failed to load', () async {
-      final mockCategoryRepo = TestMocks.categoriesRepository;
+      final mockCategoryService = TestMocks.categoriesService;
 
       final exception = Exception('Failure');
-      when(mockCategoryRepo.categories).thenThrow(exception);
+      when(mockCategoryService.categories).thenThrow(exception);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -53,9 +54,10 @@ void main() {
 
   group('delete method', () {
     testWidgets('should call delete', (tester) async {
-      final mockCategoryRepo = TestMocks.categoriesRepository;
+      final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.categories)
+          .thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
       await tester
@@ -68,14 +70,15 @@ void main() {
       // let the snackbar run
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      verify(mockCategoryRepo.deleteCategory(any)).called(1);
+      verify(mockCategoryService.deleteCategory(any)).called(1);
     });
 
     testWidgets('deletes the category from the list if successful',
         (tester) async {
-      final mockCategoryRepo = TestMocks.categoriesRepository;
+      final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.categories)
+          .thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
       await tester

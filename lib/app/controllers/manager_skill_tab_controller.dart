@@ -2,19 +2,18 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
-import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/manager_staff_skill_service.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/global_widgets/skill_list.dart';
 
 class ManagerSkillTabController extends GetxController {
   static ManagerSkillTabController get to => Get.find();
 
-  final UserRepository userRepo = Get.find<UserRepository>();
-  final ManagerStaffSkillRepository skillRepo =
-      Get.find<ManagerStaffSkillRepository>();
+  final userService = Get.find<UserService>();
+  final skillService = Get.find<ManagerStaffSkillService>();
 
-  Manager get user => userRepo.user as Manager;
+  Manager get user => userService.user as Manager;
 
   final viewType = SkillListViewType.LIST.obs;
 
@@ -34,7 +33,7 @@ class ManagerSkillTabController extends GetxController {
     try {
       isLoading.value = true;
 
-      final repoSkills = await skillRepo.skills;
+      final repoSkills = await skillService.skills;
 
       // get unique categories from skills
       final List<Category> cats = [];

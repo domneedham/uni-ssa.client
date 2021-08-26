@@ -22,7 +22,7 @@ void main() {
   });
 
   testWidgets('shows the app title', (tester) async {
-    TestMocks.userRepository;
+    TestMocks.userService;
 
     await tester.pumpWidget(const TestableWidget(child: LoginPage()));
     await tester.pumpAndSettle();
@@ -32,7 +32,7 @@ void main() {
 
   group('form', () {
     testWidgets('shows an email box', (tester) async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
@@ -41,7 +41,7 @@ void main() {
     });
 
     testWidgets('shows a password box', (tester) async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();
@@ -50,7 +50,7 @@ void main() {
     });
 
     testWidgets('shows a login button', (tester) async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       await tester.pumpWidget(const TestableWidget(child: LoginPage()));
       await tester.pumpAndSettle();

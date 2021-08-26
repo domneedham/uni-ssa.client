@@ -30,9 +30,10 @@ void main() {
   group('page', () {
     testWidgets('shows a loading indicator whilst loading',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
 
       Get.parameters = {'id': '1'};
 
@@ -44,11 +45,12 @@ void main() {
 
     testWidgets('shows the error text if an error occurs',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
       final error = Exception('Some error');
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => throw error);
 
       Get.parameters = {'id': '1'};
 
@@ -61,9 +63,10 @@ void main() {
 
     testWidgets('shows the profile header of the manager if successful',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
 
       Get.parameters = {'id': '1'};
 
@@ -76,9 +79,10 @@ void main() {
 
     testWidgets('shows the staff list of the manager if successful',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
 
       Get.parameters = {'id': '1'};
 

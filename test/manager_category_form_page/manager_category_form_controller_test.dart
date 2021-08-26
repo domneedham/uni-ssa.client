@@ -30,31 +30,31 @@ void main() {
 
   group('form mode', () {
     test('is set to add if the parameters are for add', () async {
-      final userRepo = TestMocks.userRepository;
-      final mockCatRepo = TestMocks.categoriesRepository;
+      final userService = TestMocks.userService;
+      final mockCatService = TestMocks.categoriesService;
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
       final controller = Get.find<ManagerCategoryFormController>();
 
-      when(mockCatRepo.categories)
+      when(mockCatService.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.user).thenReturn(managerOne);
+      when(userService.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.ADD);
     });
 
     test('is set to edit if the parameters are for edit', () async {
-      final userRepo = TestMocks.userRepository;
-      final mockCatRepo = TestMocks.categoriesRepository;
+      final userService = TestMocks.userService;
+      final mockCatService = TestMocks.categoriesService;
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
       final controller = Get.find<ManagerCategoryFormController>();
 
-      when(mockCatRepo.categories)
+      when(mockCatService.categories)
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
-      when(userRepo.user).thenReturn(managerOne);
+      when(userService.user).thenReturn(managerOne);
 
       expect(controller.formMode, ManagerCategoryFormMode.EDIT);
     });
@@ -63,32 +63,32 @@ void main() {
   group('validate', () {
     group('name', () {
       test('should return null if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
-        final mockCatRepo = TestMocks.categoriesRepository;
+        final userService = TestMocks.userService;
+        final mockCatService = TestMocks.categoriesService;
 
         Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
         final controller = Get.find<ManagerCategoryFormController>();
 
-        when(mockCatRepo.categories)
+        when(mockCatService.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.user).thenReturn(managerOne);
+        when(userService.user).thenReturn(managerOne);
 
         final response = controller.validateName('Name');
         expect(response, null);
       });
 
       test('should return a string if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
-        final mockCatRepo = TestMocks.categoriesRepository;
+        final userService = TestMocks.userService;
+        final mockCatService = TestMocks.categoriesService;
 
         Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
         final controller = Get.find<ManagerCategoryFormController>();
 
-        when(mockCatRepo.categories)
+        when(mockCatService.categories)
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
-        when(userRepo.user).thenReturn(managerOne);
+        when(userService.user).thenReturn(managerOne);
 
         final response = controller.validateName(null);
         expect(response, isNotNull);
@@ -98,13 +98,13 @@ void main() {
 
   group('save', () {
     testWidgets('should call save if form is valid', (tester) async {
-      final categoryRepo = TestMocks.categoriesRepository;
+      final categoryService = TestMocks.categoriesService;
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      when(categoryRepo.getCategoryById(1))
+      when(categoryService.getCategoryById(1))
           .thenAnswer((_) async => categoryOne);
-      when(categoryRepo.createCategory(any))
+      when(categoryService.createCategory(any))
           .thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
@@ -119,17 +119,17 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verify(categoryRepo.createCategory(any)).called(1);
+      verify(categoryService.createCategory(any)).called(1);
     });
 
     testWidgets('should not call save if name is not valid', (tester) async {
-      final categoryRepo = TestMocks.categoriesRepository;
+      final categoryService = TestMocks.categoriesService;
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      when(categoryRepo.getCategoryById(1))
+      when(categoryService.getCategoryById(1))
           .thenAnswer((_) async => categoryOne);
-      when(categoryRepo.createCategory(any))
+      when(categoryService.createCategory(any))
           .thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
@@ -144,7 +144,7 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(categoryRepo.createCategory(any));
+      verifyNever(categoryService.createCategory(any));
     });
   });
 }

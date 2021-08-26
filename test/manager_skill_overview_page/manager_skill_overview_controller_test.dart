@@ -30,16 +30,16 @@ void main() {
 
   group('get skill', () {
     test('sets the right skill', () async {
-      final skillManagerRepo = TestMocks.skillManagerRepository;
-      final userRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final skillManagerService = TestMocks.skillManagerService;
+      final userService = TestMocks.userService;
+      TestMocks.skillService;
 
       Get.parameters = {'id': '1'};
 
       final controller = Get.find<ManagerSkillOverviewController>();
 
-      when(userRepo.user).thenReturn(managerOne);
-      when(skillManagerRepo.getManagerStaffSkillById(1))
+      when(userService.user).thenReturn(managerOne);
+      when(skillManagerService.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
 
       await controller.getSkill('1');
@@ -52,9 +52,9 @@ void main() {
     });
 
     test('sets an error if the id can not be found', () async {
-      final skillManagerRepo = TestMocks.skillManagerRepository;
-      final userRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final skillManagerService = TestMocks.skillManagerService;
+      final userService = TestMocks.userService;
+      TestMocks.skillService;
 
       Get.parameters = {'id': '1'};
 
@@ -62,8 +62,8 @@ void main() {
 
       final exception = Exception('Some error');
 
-      when(userRepo.user).thenReturn(managerOne);
-      when(skillManagerRepo.getManagerStaffSkillById(1))
+      when(userService.user).thenReturn(managerOne);
+      when(skillManagerService.getManagerStaffSkillById(1))
           .thenAnswer((_) async => Future.error(exception));
 
       await controller.getSkill('1');
@@ -75,17 +75,17 @@ void main() {
 
   group('delete method', () {
     testWidgets('should call delete', (tester) async {
-      final skillManagerRepo = TestMocks.skillManagerRepository;
-      final userRepo = TestMocks.userRepository;
-      final skillRepo = TestMocks.skillRepository;
+      final skillManagerService = TestMocks.skillManagerService;
+      final userService = TestMocks.userService;
+      final skillService = TestMocks.skillService;
 
       Get.parameters = {'id': '1'};
 
-      when(userRepo.user).thenReturn(managerOne);
-      when(skillManagerRepo.getManagerStaffSkillById(1))
+      when(userService.user).thenReturn(managerOne);
+      when(skillManagerService.getManagerStaffSkillById(1))
           .thenAnswer((_) async => skillOne);
       // ignore: avoid_returning_null_for_void
-      when(skillRepo.delete(1)).thenAnswer((_) async => null);
+      when(skillService.delete(1)).thenAnswer((_) async => null);
 
       // need to pump for snackbar
       await tester
@@ -99,7 +99,7 @@ void main() {
       // let the snackbar run
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      verify(skillRepo.delete(1)).called(1);
+      verify(skillService.delete(1)).called(1);
     });
   });
 }

@@ -32,9 +32,9 @@ void main() {
   });
 
   test('controller init should call get skill', () async {
-    final mockUserRepo = TestMocks.userRepository;
-    final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-    final _ = TestMocks.skillRepository;
+    final mockUserService = TestMocks.userService;
+    final mockStaffSkillService = TestMocks.skillStaffService;
+    final _ = TestMocks.skillService;
 
     Get.parameters = const StaffSkillOverviewParameters(
       id: '1',
@@ -42,21 +42,21 @@ void main() {
       edit: AppRouteParameterValues.TRUE,
     ).toMap;
 
-    when(mockStaffSkillRepo.getSkillById(1))
+    when(mockStaffSkillService.getSkillById(1))
         .thenAnswer((_) async => skillWithExpiry);
-    when(mockUserRepo.user).thenReturn(staffOne);
+    when(mockUserService.user).thenReturn(staffOne);
 
     // this inits the controller
     Get.find<StaffSkillOverviewController>();
 
-    verify(mockStaffSkillRepo.getSkillById(1)).called(1);
+    verify(mockStaffSkillService.getSkillById(1)).called(1);
   });
 
   group('format date method', () {
     test('should return no expiry if date param is null', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -64,9 +64,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -77,9 +77,9 @@ void main() {
     });
 
     test('should return the formatted date param is valid', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -87,9 +87,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller
       final controller = Get.find<StaffSkillOverviewController>();
@@ -102,9 +102,9 @@ void main() {
 
   group('increment rating method', () {
     test('should increment the rating value', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -112,9 +112,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -128,9 +128,9 @@ void main() {
     });
 
     test('should not increment the rating value higher than 5', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -138,9 +138,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -156,9 +156,9 @@ void main() {
 
   group('decrement rating method', () {
     test('should decrement the rating value', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -166,9 +166,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -181,9 +181,9 @@ void main() {
       expect(controller.rating.value, 2);
     });
     test('should not decrement the rating value less than 0', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -191,9 +191,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -209,9 +209,9 @@ void main() {
 
   group('set is edited method', () {
     test('does not set edited if no rating or expiry passed', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -219,9 +219,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -235,9 +235,9 @@ void main() {
     });
 
     test('sets edited to true if the rating has changed', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -245,9 +245,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -264,9 +264,9 @@ void main() {
     test(
         'sets edited to false if the rating has changed back to original value',
         () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -274,9 +274,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -294,9 +294,9 @@ void main() {
     });
 
     test('sets edited to true if the expiry has changed', () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -304,9 +304,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -325,9 +325,9 @@ void main() {
     test(
         'sets edited to false if the expiry has changed back to original value',
         () async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -335,9 +335,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // this inits the controller and sets the skill
       final controller = Get.find<StaffSkillOverviewController>();
@@ -358,9 +358,9 @@ void main() {
 
   group('save method', () {
     testWidgets('does nothing if not edited skill', (tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -368,9 +368,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // need to pump for snackbar
       await tester
@@ -384,14 +384,14 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(mockStaffSkillRepo.saveEdited(any));
-      verifyNever(mockStaffSkillRepo.saveNew(any));
+      verifyNever(mockStaffSkillService.saveEdited(any));
+      verifyNever(mockStaffSkillService.saveNew(any));
     });
 
     testWidgets('calls save edited if edit parameter is true', (tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -399,11 +399,11 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
-      when(mockStaffSkillRepo.saveEdited(any))
+      when(mockStaffSkillService.saveEdited(any))
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
@@ -422,14 +422,14 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verify(mockStaffSkillRepo.saveEdited(any)).called(1);
-      verifyNever(mockStaffSkillRepo.saveNew(any));
+      verify(mockStaffSkillService.saveEdited(any)).called(1);
+      verifyNever(mockStaffSkillService.saveNew(any));
     });
 
     testWidgets('calls save new if assign parameter is true', (tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final mockSkillRepo = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final mockSkillService = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -437,12 +437,12 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getSkillById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockSkillService.findById(1)).thenAnswer((_) async => basicSkill);
+      when(mockUserService.user).thenReturn(staffOne);
 
-      when(mockStaffSkillRepo.saveNew(any))
+      when(mockStaffSkillService.saveNew(any))
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
@@ -461,8 +461,8 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(mockStaffSkillRepo.saveEdited(any));
-      verify(mockStaffSkillRepo.saveNew(any)).called(1);
+      verifyNever(mockStaffSkillService.saveEdited(any));
+      verify(mockStaffSkillService.saveNew(any)).called(1);
     });
   });
 }

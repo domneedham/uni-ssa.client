@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_skill_overview_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
-import 'package:ssa_app/app/data/repository/category_repository.dart';
-import 'package:ssa_app/app/data/repository/skill_repository.dart';
+import 'package:ssa_app/app/data/services/category_service.dart';
+import 'package:ssa_app/app/data/services/skill_service.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
 class ManagerSkillFormController extends GetxController {
-  final categoryRepository = Get.find<CategoryRepository>();
-  final skillRepo = Get.find<SkillRepository>();
+  final categoryService = Get.find<CategoryService>();
+  final skillService = Get.find<SkillService>();
 
   final parameters = Get.parameters;
   final arguments = Get.arguments;
@@ -81,7 +81,7 @@ class ManagerSkillFormController extends GetxController {
   Future<void> fetchCategories() async {
     try {
       isLoading.value = true;
-      final cats = await categoryRepository.categories;
+      final cats = await categoryService.categories;
       if (cats.isNotEmpty && editSkill == null) {
         selectedCategoryId = cats[0].id;
       }
@@ -135,7 +135,7 @@ class ManagerSkillFormController extends GetxController {
       category: selectedCategory,
       name: nameController.value.text,
     );
-    await skillRepo.create(skill);
+    await skillService.create(skill);
   }
 
   Future<void> _saveEditSkill() async {
@@ -147,7 +147,7 @@ class ManagerSkillFormController extends GetxController {
       category: selectedCategory,
       name: nameController.value.text,
     );
-    await skillRepo.update(skill);
+    await skillService.update(skill);
   }
 }
 

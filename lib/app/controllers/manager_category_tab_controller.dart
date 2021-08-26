@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
-import 'package:ssa_app/app/data/repository/category_repository.dart';
+import 'package:ssa_app/app/data/services/category_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 
 class ManagerCategoryTabController extends GetxController {
   static ManagerCategoryTabController get to => Get.find();
 
-  final catRepo = Get.find<CategoryRepository>();
+  final catService = Get.find<CategoryService>();
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -29,7 +29,7 @@ class ManagerCategoryTabController extends GetxController {
   Future<void> getCategories() async {
     try {
       isLoading.value = true;
-      final repoCategories = await catRepo.categories;
+      final repoCategories = await catService.categories;
       categories = repoCategories.obs;
     } catch (e) {
       isError.value = true;
@@ -56,7 +56,7 @@ class ManagerCategoryTabController extends GetxController {
 
   Future<void> deleteCategory(Category category) async {
     try {
-      await catRepo.deleteCategory(category.id);
+      await catService.deleteCategory(category.id);
       categories!.removeWhere((element) => element.id == category.id);
     } catch (e) {
       Get.snackbar('Failed to delete', e.toString());

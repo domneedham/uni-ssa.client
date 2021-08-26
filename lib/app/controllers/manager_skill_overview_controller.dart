@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
-import 'package:ssa_app/app/data/repository/manager_staff_skill_repository.dart';
-import 'package:ssa_app/app/data/repository/skill_repository.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/manager_staff_skill_service.dart';
+import 'package:ssa_app/app/data/services/skill_service.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerSkillOverviewController extends GetxController {
   static ManagerSkillOverviewController get to => Get.find();
 
-  final managerStaffSkillRepo = Get.find<ManagerStaffSkillRepository>();
-  final skillRepo = Get.find<SkillRepository>();
-  final userRepo = Get.find<UserRepository>();
+  final managerStaffSkillService = Get.find<ManagerStaffSkillService>();
+  final skillService = Get.find<SkillService>();
+  final userService = Get.find<UserService>();
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -43,7 +43,7 @@ class ManagerSkillOverviewController extends GetxController {
       isLoading.value = true;
       final int parsedId = int.parse(id);
       final ManagerStaffSkill fetchedSkill =
-          await managerStaffSkillRepo.getManagerStaffSkillById(parsedId);
+          await managerStaffSkillService.getManagerStaffSkillById(parsedId);
       skill = fetchedSkill.obs;
     } catch (e) {
       isError.value = true;
@@ -66,7 +66,7 @@ class ManagerSkillOverviewController extends GetxController {
 
   Future<void> deleteSkill() async {
     try {
-      await skillRepo.delete(skill!.value.id);
+      await skillService.delete(skill!.value.id);
       Get.back();
     } catch (e) {
       Get.snackbar('Delete failed', e.toString());

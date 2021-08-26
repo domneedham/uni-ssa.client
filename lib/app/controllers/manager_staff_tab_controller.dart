@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 
 class ManagerStaffTabController extends GetxController
     with SingleGetTickerProviderMixin {
   TabController? tabController;
 
-  final userRepo = Get.find<UserRepository>();
+  final userService = Get.find<UserService>();
 
   final isLoading = false.obs;
   final isError = false.obs;
@@ -97,12 +97,12 @@ class ManagerStaffTabController extends GetxController
   }
 
   Future<void> _searchStaff() async {
-    final tempList = await userRepo.searchStaffByName(searchText.value);
+    final tempList = await userService.searchStaffByName(searchText.value);
     staffList.value = tempList;
   }
 
   Future<void> _searchManager() async {
-    final tempList = await userRepo.searchManagerByName(searchText.value);
+    final tempList = await userService.searchManagerByName(searchText.value);
     managerList.value = tempList;
   }
 

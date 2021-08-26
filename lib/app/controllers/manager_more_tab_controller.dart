@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/user/manager.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 
 class ManagerMoreTabController extends GetxController {
-  final userRepo = Get.find<UserRepository>();
+  final userService = Get.find<UserService>();
 
-  Manager get user => userRepo.user as Manager;
+  Manager get user => userService.user as Manager;
 
   void logout() {
-    userRepo.logout();
+    userService.logout();
   }
 }
