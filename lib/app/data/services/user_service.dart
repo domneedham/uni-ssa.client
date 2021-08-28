@@ -14,7 +14,7 @@ class UserService {
   });
 
   final BoxService boxService;
-  final UserRepository userRepository;
+  final IUserRepository userRepository;
 
   final box = GetStorage();
 
@@ -113,18 +113,18 @@ class UserService {
     return res;
   }
 
-  Future<List<Staff>> searchStaffByName(String searchText) async {
-    if (searchText.isEmpty) {
+  Future<List<Staff>> searchStaffByName(String name) async {
+    if (name.isEmpty) {
       return List.empty();
     }
-    return userRepository.searchStaffByName(searchText);
+    return userRepository.searchStaffByName(name);
   }
 
-  Future<List<Manager>> searchManagerByName(String searchText) async {
-    if (searchText.isEmpty) {
+  Future<List<Manager>> searchManagerByName(String name) async {
+    if (name.isEmpty) {
       return List.empty();
     }
-    final res = await userRepository.searchManagerByName(searchText);
+    final res = await userRepository.searchManagerByName(name);
     return res;
   }
 

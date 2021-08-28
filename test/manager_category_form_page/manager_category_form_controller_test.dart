@@ -102,10 +102,8 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      when(categoryService.getCategoryById(1))
-          .thenAnswer((_) async => categoryOne);
-      when(categoryService.createCategory(any))
-          .thenAnswer((_) async => categoryOne);
+      when(categoryService.getById(1)).thenAnswer((_) async => categoryOne);
+      when(categoryService.create(any)).thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
       await tester
@@ -119,7 +117,7 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verify(categoryService.createCategory(any)).called(1);
+      verify(categoryService.create(any)).called(1);
     });
 
     testWidgets('should not call save if name is not valid', (tester) async {
@@ -127,10 +125,8 @@ void main() {
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
-      when(categoryService.getCategoryById(1))
-          .thenAnswer((_) async => categoryOne);
-      when(categoryService.createCategory(any))
-          .thenAnswer((_) async => categoryOne);
+      when(categoryService.getById(1)).thenAnswer((_) async => categoryOne);
+      when(categoryService.create(any)).thenAnswer((_) async => categoryOne);
 
       // need to pump for snackbar
       await tester
@@ -144,7 +140,7 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(categoryService.createCategory(any));
+      verifyNever(categoryService.create(any));
     });
   });
 }

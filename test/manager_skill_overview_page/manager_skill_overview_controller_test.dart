@@ -39,8 +39,7 @@ void main() {
       final controller = Get.find<ManagerSkillOverviewController>();
 
       when(userService.user).thenReturn(managerOne);
-      when(skillManagerService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
 
       await controller.getSkill('1');
 
@@ -63,7 +62,7 @@ void main() {
       final exception = Exception('Some error');
 
       when(userService.user).thenReturn(managerOne);
-      when(skillManagerService.getManagerStaffSkillById(1))
+      when(skillManagerService.getById(1))
           .thenAnswer((_) async => Future.error(exception));
 
       await controller.getSkill('1');
@@ -82,8 +81,7 @@ void main() {
       Get.parameters = {'id': '1'};
 
       when(userService.user).thenReturn(managerOne);
-      when(skillManagerService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
       // ignore: avoid_returning_null_for_void
       when(skillService.delete(1)).thenAnswer((_) async => null);
 

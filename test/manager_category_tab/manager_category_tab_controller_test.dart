@@ -70,7 +70,7 @@ void main() {
       // let the snackbar run
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      verify(mockCategoryService.deleteCategory(any)).called(1);
+      verify(mockCategoryService.delete(any)).called(1);
     });
 
     testWidgets('deletes the category from the list if successful',

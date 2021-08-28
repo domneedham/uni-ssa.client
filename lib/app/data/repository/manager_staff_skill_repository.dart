@@ -1,15 +1,24 @@
 import 'package:ssa_app/app/data/models/skill/manager_staff_skill.dart';
 import 'package:ssa_app/app/data/providers/manager_staff_skill_provider.dart';
 
-class ManagerStaffSkillRepository {
-  ManagerStaffSkillRepository({required this.managerStaffSkillProvider});
+abstract class IManagerStaffSkillRepository {
+  Future<List<ManagerStaffSkill>> getAll();
+  Future<ManagerStaffSkill> getById(int id);
+}
+
+class ManagerStaffSkillRepository implements IManagerStaffSkillRepository {
+  ManagerStaffSkillRepository({
+    required this.managerStaffSkillProvider,
+  });
   final IManagerStaffSkillProvider managerStaffSkillProvider;
 
-  Future<ManagerStaffSkill> getManagerStaffSkillById(int id) async {
-    return managerStaffSkillProvider.getById(id);
+  @override
+  Future<List<ManagerStaffSkill>> getAll() {
+    return managerStaffSkillProvider.getAll();
   }
 
-  Future<List<ManagerStaffSkill>> get skills async {
-    return managerStaffSkillProvider.getAll();
+  @override
+  Future<ManagerStaffSkill> getById(int id) {
+    return managerStaffSkillProvider.getById(id);
   }
 }

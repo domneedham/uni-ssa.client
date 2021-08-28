@@ -31,8 +31,7 @@ class ManagerCategoryOverviewController extends GetxController {
     try {
       isLoading.value = true;
       final int parsedId = int.parse(id);
-      final Category fetchedCategory =
-          await catService.getCategoryById(parsedId);
+      final Category fetchedCategory = await catService.getById(parsedId);
       category = fetchedCategory.obs;
     } catch (e) {
       isError.value = true;

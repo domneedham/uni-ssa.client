@@ -50,7 +50,7 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
-    Get.lazyPut<UserRepository>(
+    Get.lazyPut<IUserRepository>(
       () => UserRepository(
         staffProvider: Get.find(),
         managerProvider: Get.find(),
@@ -58,25 +58,25 @@ class AppBinding implements Bindings {
       ),
       fenix: true,
     );
-    Get.lazyPut<StaffSkillRepository>(
+    Get.lazyPut<IStaffSkillRepository>(
       () => StaffSkillRepository(
         staffSkillProvider: Get.find(),
       ),
       fenix: true,
     );
-    Get.lazyPut<ManagerStaffSkillRepository>(
+    Get.lazyPut<IManagerStaffSkillRepository>(
       () => ManagerStaffSkillRepository(
         managerStaffSkillProvider: Get.find(),
       ),
       fenix: true,
     );
-    Get.lazyPut<CategoryRepository>(
+    Get.lazyPut<ICategoryRepository>(
       () => CategoryRepository(
         categoryProvider: Get.find(),
       ),
       fenix: true,
     );
-    Get.lazyPut<SkillRepository>(
+    Get.lazyPut<ISkillRepository>(
       () => SkillRepository(skillProvider: Get.find()),
       fenix: true,
     );

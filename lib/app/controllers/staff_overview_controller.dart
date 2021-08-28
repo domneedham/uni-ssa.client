@@ -40,7 +40,7 @@ class StaffOverviewController extends GetxController {
   }
 
   Future<StaffSkill>? getSkillById(int id) async {
-    return skillService.getSkillById(id);
+    return skillService.getById(id);
   }
 
   String expiryText(StaffSkill skill) {

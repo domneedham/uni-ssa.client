@@ -30,7 +30,7 @@ class StaffSkillTabController extends GetxController {
       isLoading.value = true;
 
       // get a list of all of the users skills
-      final tempList = await skillService.getSkillsForUser(user.id);
+      final tempList = await skillService.getAllByUserId(user.id);
 
       if (tempList.isEmpty) {
         final Map<Category, List<StaffSkill>> emptyMap = {};

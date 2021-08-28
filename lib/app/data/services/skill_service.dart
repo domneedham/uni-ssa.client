@@ -2,26 +2,28 @@ import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/repository/skill_repository.dart';
 
 class SkillService {
-  SkillService({required this.skillRepository});
-  final SkillRepository skillRepository;
+  SkillService({
+    required this.skillRepository,
+  });
+  final ISkillRepository skillRepository;
 
-  Future<List<Skill>> searchByName(String name) async {
+  Future<List<Skill>> searchByName(String name) {
     return skillRepository.searchByName(name);
   }
 
-  Future<Skill> findById(int id) async {
-    return skillRepository.findById(id);
+  Future<Skill> getById(int id) {
+    return skillRepository.getById(id);
   }
 
-  Future<Skill> create(Skill skill) async {
+  Future<Skill> create(Skill skill) {
     return skillRepository.create(skill);
   }
 
-  Future<Skill> update(Skill skill) async {
+  Future<Skill> update(Skill skill) {
     return skillRepository.update(skill);
   }
 
-  Future<void> delete(int id) async {
+  Future<void> delete(int id) {
     return skillRepository.delete(id);
   }
 }

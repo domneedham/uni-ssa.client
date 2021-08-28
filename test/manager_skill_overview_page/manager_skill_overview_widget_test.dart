@@ -36,8 +36,7 @@ void main() {
       TestMocks.skillService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockSkillService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -54,8 +53,7 @@ void main() {
       TestMocks.skillService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockSkillService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1', 'name': skillOne.name};
 
@@ -73,8 +71,7 @@ void main() {
       TestMocks.skillService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockSkillService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -92,8 +89,7 @@ void main() {
       TestMocks.skillService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockSkillService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -111,8 +107,7 @@ void main() {
       TestMocks.skillService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockSkillService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -133,8 +128,7 @@ void main() {
       Get.parameters = {'id': '1'};
 
       when(userService.user).thenReturn(managerOne);
-      when(skillManagerService.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
       // ignore: avoid_returning_null_for_void
       when(skillService.delete(1)).thenAnswer((_) async => null);
 
@@ -157,8 +151,7 @@ void main() {
         Get.parameters = {'id': '1'};
 
         when(userService.user).thenReturn(managerOne);
-        when(skillManagerService.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
         when(skillService.delete(1)).thenAnswer((_) async => null);
 
@@ -183,8 +176,7 @@ void main() {
         Get.parameters = {'id': '1'};
 
         when(userService.user).thenReturn(managerOne);
-        when(skillManagerService.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
         when(skillService.delete(1)).thenAnswer((_) async => null);
 
@@ -211,8 +203,7 @@ void main() {
         Get.parameters = {'id': '1'};
 
         when(userService.user).thenReturn(managerOne);
-        when(skillManagerService.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
         when(skillService.delete(1)).thenAnswer((_) async => null);
 
@@ -238,8 +229,7 @@ void main() {
         Get.parameters = {'id': '1'};
 
         when(userService.user).thenReturn(managerOne);
-        when(skillManagerService.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
         when(skillService.delete(1)).thenAnswer((_) async => null);
 

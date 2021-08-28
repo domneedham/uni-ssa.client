@@ -3,26 +3,28 @@ import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
 import 'package:ssa_app/app/data/services/user_service.dart';
 
 class StaffSkillService {
-  StaffSkillService({required this.staffSkillRepository});
-  final StaffSkillRepository staffSkillRepository;
+  StaffSkillService({
+    required this.staffSkillRepository,
+  });
+  final IStaffSkillRepository staffSkillRepository;
 
-  Future<StaffSkill> getSkillById(int id) async {
+  Future<StaffSkill> getById(int id) {
     return staffSkillRepository.getById(id, UserService.to.user!.id);
   }
 
-  Future<List<StaffSkill>> getSkillsForUser(int id) async {
+  Future<List<StaffSkill>> getAllByUserId(int id) {
     return staffSkillRepository.getAllByUserId(id);
   }
 
-  Future<List<StaffSkill>> get skills {
+  Future<List<StaffSkill>> getAll() {
     return staffSkillRepository.getAll();
   }
 
-  Future<StaffSkill> saveEdited(StaffSkill skill) {
-    return staffSkillRepository.update(skill, UserService.to.user!.id);
+  Future<StaffSkill> create(StaffSkill skill) {
+    return staffSkillRepository.create(skill, UserService.to.user!.id);
   }
 
-  Future<StaffSkill> saveNew(StaffSkill skill) {
-    return staffSkillRepository.create(skill, UserService.to.user!.id);
+  Future<StaffSkill> update(StaffSkill skill) {
+    return staffSkillRepository.update(skill, UserService.to.user!.id);
   }
 }

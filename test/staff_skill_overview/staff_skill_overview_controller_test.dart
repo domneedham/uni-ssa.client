@@ -42,14 +42,14 @@ void main() {
       edit: AppRouteParameterValues.TRUE,
     ).toMap;
 
-    when(mockStaffSkillService.getSkillById(1))
+    when(mockStaffSkillService.getById(1))
         .thenAnswer((_) async => skillWithExpiry);
     when(mockUserService.user).thenReturn(staffOne);
 
     // this inits the controller
     Get.find<StaffSkillOverviewController>();
 
-    verify(mockStaffSkillService.getSkillById(1)).called(1);
+    verify(mockStaffSkillService.getById(1)).called(1);
   });
 
   group('format date method', () {
@@ -64,7 +64,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -87,7 +87,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -112,7 +112,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -138,7 +138,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -166,7 +166,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -191,7 +191,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -219,7 +219,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -245,7 +245,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -274,7 +274,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -304,7 +304,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -335,7 +335,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -368,7 +368,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -384,8 +384,8 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(mockStaffSkillService.saveEdited(any));
-      verifyNever(mockStaffSkillService.saveNew(any));
+      verifyNever(mockStaffSkillService.update(any));
+      verifyNever(mockStaffSkillService.create(any));
     });
 
     testWidgets('calls save edited if edit parameter is true', (tester) async {
@@ -399,11 +399,11 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
-      when(mockStaffSkillService.saveEdited(any))
+      when(mockStaffSkillService.update(any))
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
@@ -422,8 +422,8 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verify(mockStaffSkillService.saveEdited(any)).called(1);
-      verifyNever(mockStaffSkillService.saveNew(any));
+      verify(mockStaffSkillService.update(any)).called(1);
+      verifyNever(mockStaffSkillService.create(any));
     });
 
     testWidgets('calls save new if assign parameter is true', (tester) async {
@@ -437,12 +437,12 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillService.findById(1)).thenAnswer((_) async => basicSkill);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => basicSkill);
       when(mockUserService.user).thenReturn(staffOne);
 
-      when(mockStaffSkillService.saveNew(any))
+      when(mockStaffSkillService.create(any))
           .thenAnswer((_) async => skillWithExpiry);
 
       // need to pump for snackbar
@@ -461,8 +461,8 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(mockStaffSkillService.saveEdited(any));
-      verify(mockStaffSkillService.saveNew(any)).called(1);
+      verifyNever(mockStaffSkillService.update(any));
+      verify(mockStaffSkillService.create(any)).called(1);
     });
   });
 }

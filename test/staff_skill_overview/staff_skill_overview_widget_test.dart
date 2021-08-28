@@ -49,7 +49,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -71,7 +71,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -93,7 +93,7 @@ void main() {
       ).toMap;
       final error = Exception('Some error');
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => throw error);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -117,7 +117,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -141,7 +141,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -166,7 +166,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -190,7 +190,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -216,7 +216,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -240,7 +240,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -265,7 +265,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -292,9 +292,9 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillService.findById(1)).thenAnswer((_) async => basicSkill);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => basicSkill);
       when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
@@ -318,7 +318,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -345,7 +345,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -380,7 +380,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -405,7 +405,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -430,9 +430,9 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillService.findById(1)).thenAnswer((_) async => basicSkill);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => basicSkill);
       when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
@@ -456,7 +456,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -484,7 +484,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithNoExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 
@@ -521,7 +521,7 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillService.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
       when(mockUserService.user).thenReturn(staffOne);
 

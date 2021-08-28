@@ -44,8 +44,6 @@ import 'package:ssa_app/app/data/services/user_service.dart' as _i25;
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
-// ignore_for_file: camel_case_types
-// ignore_for_file: unnecessary_overrides
 
 class _FakeIStaffProvider_0 extends _i1.Fake implements _i2.IStaffProvider {}
 
@@ -80,7 +78,8 @@ class _FakeSkill_12 extends _i1.Fake implements _i14.Skill {}
 
 class _FakeBoxService_13 extends _i1.Fake implements _i15.BoxService {}
 
-class _FakeUserRepository_14 extends _i1.Fake implements _i16.UserRepository {}
+class _FakeIUserRepository_14 extends _i1.Fake implements _i16.IUserRepository {
+}
 
 class _FakeGetStorage_15 extends _i1.Fake implements _i17.GetStorage {}
 
@@ -88,17 +87,17 @@ class _FakeRxBool_16 extends _i1.Fake implements _i18.RxBool {}
 
 class _FakeUser_17 extends _i1.Fake implements _i19.User {}
 
-class _FakeStaffSkillRepository_18 extends _i1.Fake
-    implements _i20.StaffSkillRepository {}
+class _FakeIStaffSkillRepository_18 extends _i1.Fake
+    implements _i20.IStaffSkillRepository {}
 
-class _FakeManagerStaffSkillRepository_19 extends _i1.Fake
-    implements _i21.ManagerStaffSkillRepository {}
+class _FakeIManagerStaffSkillRepository_19 extends _i1.Fake
+    implements _i21.IManagerStaffSkillRepository {}
 
-class _FakeCategoryRepository_20 extends _i1.Fake
-    implements _i22.CategoryRepository {}
+class _FakeICategoryRepository_20 extends _i1.Fake
+    implements _i22.ICategoryRepository {}
 
-class _FakeSkillRepository_21 extends _i1.Fake implements _i23.SkillRepository {
-}
+class _FakeISkillRepository_21 extends _i1.Fake
+    implements _i23.ISkillRepository {}
 
 class _FakeDuration_22 extends _i1.Fake implements Duration {}
 
@@ -163,13 +162,13 @@ class MockUserRepository extends _i1.Mock implements _i16.UserRepository {
               returnValue: Future<_i6.Manager>.value(_FakeManager_4()))
           as _i24.Future<_i6.Manager>);
   @override
-  _i24.Future<List<_i5.Staff>> searchStaffByName(String? searchText) =>
-      (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
+  _i24.Future<List<_i5.Staff>> searchStaffByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchStaffByName, [name]),
               returnValue: Future<List<_i5.Staff>>.value(<_i5.Staff>[]))
           as _i24.Future<List<_i5.Staff>>);
   @override
-  _i24.Future<List<_i6.Manager>> searchManagerByName(String? searchText) =>
-      (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
+  _i24.Future<List<_i6.Manager>> searchManagerByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchManagerByName, [name]),
               returnValue: Future<List<_i6.Manager>>.value(<_i6.Manager>[]))
           as _i24.Future<List<_i6.Manager>>);
   @override
@@ -211,13 +210,13 @@ class MockStaffSkillRepository extends _i1.Mock
           returnValue: Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
       as _i24.Future<List<_i8.StaffSkill>>);
   @override
-  _i24.Future<_i8.StaffSkill> update(_i8.StaffSkill? skill, int? userId) =>
-      (super.noSuchMethod(Invocation.method(#update, [skill, userId]),
+  _i24.Future<_i8.StaffSkill> create(_i8.StaffSkill? skill, int? userId) =>
+      (super.noSuchMethod(Invocation.method(#create, [skill, userId]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
-  _i24.Future<_i8.StaffSkill> create(_i8.StaffSkill? skill, int? userId) =>
-      (super.noSuchMethod(Invocation.method(#create, [skill, userId]),
+  _i24.Future<_i8.StaffSkill> update(_i8.StaffSkill? skill, int? userId) =>
+      (super.noSuchMethod(Invocation.method(#update, [skill, userId]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
@@ -239,17 +238,17 @@ class MockManagerStaffSkillRepository extends _i1.Mock
               returnValue: _FakeIManagerStaffSkillProvider_7())
           as _i9.IManagerStaffSkillProvider);
   @override
-  _i24.Future<List<_i10.ManagerStaffSkill>> get skills =>
-      (super.noSuchMethod(Invocation.getter(#skills),
+  _i24.Future<List<_i10.ManagerStaffSkill>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
               returnValue: Future<List<_i10.ManagerStaffSkill>>.value(
                   <_i10.ManagerStaffSkill>[]))
           as _i24.Future<List<_i10.ManagerStaffSkill>>);
   @override
-  _i24.Future<_i10.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue: Future<_i10.ManagerStaffSkill>.value(
-                  _FakeManagerStaffSkill_8()))
-          as _i24.Future<_i10.ManagerStaffSkill>);
+  _i24.Future<_i10.ManagerStaffSkill> getById(int? id) => (super.noSuchMethod(
+          Invocation.method(#getById, [id]),
+          returnValue:
+              Future<_i10.ManagerStaffSkill>.value(_FakeManagerStaffSkill_8()))
+      as _i24.Future<_i10.ManagerStaffSkill>);
   @override
   String toString() => super.toString();
 }
@@ -268,28 +267,28 @@ class MockCategoryRepository extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#categoryProvider),
           returnValue: _FakeICategoryProvider_9()) as _i11.ICategoryProvider);
   @override
-  _i24.Future<List<_i12.Category>> get categories =>
-      (super.noSuchMethod(Invocation.getter(#categories),
+  _i24.Future<_i12.Category> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
+              returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
+          as _i24.Future<_i12.Category>);
+  @override
+  _i24.Future<List<_i12.Category>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
               returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
           as _i24.Future<List<_i12.Category>>);
   @override
-  _i24.Future<_i12.Category> getCategoryById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
+  _i24.Future<_i12.Category> create(_i12.Category? category) =>
+      (super.noSuchMethod(Invocation.method(#create, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
           as _i24.Future<_i12.Category>);
   @override
-  _i24.Future<_i12.Category> createCategory(_i12.Category? category) =>
-      (super.noSuchMethod(Invocation.method(#createCategory, [category]),
+  _i24.Future<_i12.Category> update(_i12.Category? category) =>
+      (super.noSuchMethod(Invocation.method(#update, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
           as _i24.Future<_i12.Category>);
   @override
-  _i24.Future<_i12.Category> updateCategory(_i12.Category? category) =>
-      (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
-              returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
-          as _i24.Future<_i12.Category>);
-  @override
-  _i24.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
-      Invocation.method(#deleteCategory, [id]),
+  _i24.Future<void> delete(int? id) => (super.noSuchMethod(
+      Invocation.method(#delete, [id]),
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i24.Future<void>);
   @override
@@ -314,8 +313,8 @@ class MockSkillRepository extends _i1.Mock implements _i23.SkillRepository {
               returnValue: Future<List<_i14.Skill>>.value(<_i14.Skill>[]))
           as _i24.Future<List<_i14.Skill>>);
   @override
-  _i24.Future<_i14.Skill> findById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#findById, [id]),
+  _i24.Future<_i14.Skill> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
               returnValue: Future<_i14.Skill>.value(_FakeSkill_12()))
           as _i24.Future<_i14.Skill>);
   @override
@@ -350,9 +349,9 @@ class MockUserService extends _i1.Mock implements _i25.UserService {
       (super.noSuchMethod(Invocation.getter(#boxService),
           returnValue: _FakeBoxService_13()) as _i15.BoxService);
   @override
-  _i16.UserRepository get userRepository =>
+  _i16.IUserRepository get userRepository =>
       (super.noSuchMethod(Invocation.getter(#userRepository),
-          returnValue: _FakeUserRepository_14()) as _i16.UserRepository);
+          returnValue: _FakeIUserRepository_14()) as _i16.IUserRepository);
   @override
   _i17.GetStorage get box => (super.noSuchMethod(Invocation.getter(#box),
       returnValue: _FakeGetStorage_15()) as _i17.GetStorage);
@@ -387,13 +386,13 @@ class MockUserService extends _i1.Mock implements _i25.UserService {
               returnValue: Future<_i6.Manager>.value(_FakeManager_4()))
           as _i24.Future<_i6.Manager>);
   @override
-  _i24.Future<List<_i5.Staff>> searchStaffByName(String? searchText) =>
-      (super.noSuchMethod(Invocation.method(#searchStaffByName, [searchText]),
+  _i24.Future<List<_i5.Staff>> searchStaffByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchStaffByName, [name]),
               returnValue: Future<List<_i5.Staff>>.value(<_i5.Staff>[]))
           as _i24.Future<List<_i5.Staff>>);
   @override
-  _i24.Future<List<_i6.Manager>> searchManagerByName(String? searchText) =>
-      (super.noSuchMethod(Invocation.method(#searchManagerByName, [searchText]),
+  _i24.Future<List<_i6.Manager>> searchManagerByName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#searchManagerByName, [name]),
               returnValue: Future<List<_i6.Manager>>.value(<_i6.Manager>[]))
           as _i24.Future<List<_i6.Manager>>);
   @override
@@ -414,34 +413,34 @@ class MockStaffSkillService extends _i1.Mock implements _i26.StaffSkillService {
   }
 
   @override
-  _i20.StaffSkillRepository get staffSkillRepository =>
+  _i20.IStaffSkillRepository get staffSkillRepository =>
       (super.noSuchMethod(Invocation.getter(#staffSkillRepository),
-              returnValue: _FakeStaffSkillRepository_18())
-          as _i20.StaffSkillRepository);
+              returnValue: _FakeIStaffSkillRepository_18())
+          as _i20.IStaffSkillRepository);
   @override
-  _i24.Future<List<_i8.StaffSkill>> get skills => (super.noSuchMethod(
-          Invocation.getter(#skills),
-          returnValue: Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
-      as _i24.Future<List<_i8.StaffSkill>>);
-  @override
-  _i24.Future<_i8.StaffSkill> getSkillById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getSkillById, [id]),
+  _i24.Future<_i8.StaffSkill> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
-  _i24.Future<List<_i8.StaffSkill>> getSkillsForUser(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getSkillsForUser, [id]),
+  _i24.Future<List<_i8.StaffSkill>> getAllByUserId(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getAllByUserId, [id]),
               returnValue:
                   Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
           as _i24.Future<List<_i8.StaffSkill>>);
   @override
-  _i24.Future<_i8.StaffSkill> saveEdited(_i8.StaffSkill? skill) =>
-      (super.noSuchMethod(Invocation.method(#saveEdited, [skill]),
+  _i24.Future<List<_i8.StaffSkill>> getAll() => (super.noSuchMethod(
+          Invocation.method(#getAll, []),
+          returnValue: Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
+      as _i24.Future<List<_i8.StaffSkill>>);
+  @override
+  _i24.Future<_i8.StaffSkill> create(_i8.StaffSkill? skill) =>
+      (super.noSuchMethod(Invocation.method(#create, [skill]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
-  _i24.Future<_i8.StaffSkill> saveNew(_i8.StaffSkill? skill) =>
-      (super.noSuchMethod(Invocation.method(#saveNew, [skill]),
+  _i24.Future<_i8.StaffSkill> update(_i8.StaffSkill? skill) =>
+      (super.noSuchMethod(Invocation.method(#update, [skill]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
@@ -458,22 +457,22 @@ class MockManagerStaffSkillService extends _i1.Mock
   }
 
   @override
-  _i21.ManagerStaffSkillRepository get managerStaffSkillRepository =>
+  _i21.IManagerStaffSkillRepository get managerStaffSkillRepository =>
       (super.noSuchMethod(Invocation.getter(#managerStaffSkillRepository),
-              returnValue: _FakeManagerStaffSkillRepository_19())
-          as _i21.ManagerStaffSkillRepository);
+              returnValue: _FakeIManagerStaffSkillRepository_19())
+          as _i21.IManagerStaffSkillRepository);
   @override
-  _i24.Future<List<_i10.ManagerStaffSkill>> get skills =>
-      (super.noSuchMethod(Invocation.getter(#skills),
+  _i24.Future<_i10.ManagerStaffSkill> getById(int? id) => (super.noSuchMethod(
+          Invocation.method(#getById, [id]),
+          returnValue:
+              Future<_i10.ManagerStaffSkill>.value(_FakeManagerStaffSkill_8()))
+      as _i24.Future<_i10.ManagerStaffSkill>);
+  @override
+  _i24.Future<List<_i10.ManagerStaffSkill>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
               returnValue: Future<List<_i10.ManagerStaffSkill>>.value(
                   <_i10.ManagerStaffSkill>[]))
           as _i24.Future<List<_i10.ManagerStaffSkill>>);
-  @override
-  _i24.Future<_i10.ManagerStaffSkill> getManagerStaffSkillById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getManagerStaffSkillById, [id]),
-              returnValue: Future<_i10.ManagerStaffSkill>.value(
-                  _FakeManagerStaffSkill_8()))
-          as _i24.Future<_i10.ManagerStaffSkill>);
   @override
   String toString() => super.toString();
 }
@@ -487,32 +486,37 @@ class MockCategoryService extends _i1.Mock implements _i28.CategoryService {
   }
 
   @override
-  _i22.CategoryRepository get categoryRepository => (super.noSuchMethod(
+  _i22.ICategoryRepository get categoryRepository => (super.noSuchMethod(
       Invocation.getter(#categoryRepository),
-      returnValue: _FakeCategoryRepository_20()) as _i22.CategoryRepository);
+      returnValue: _FakeICategoryRepository_20()) as _i22.ICategoryRepository);
   @override
   _i24.Future<List<_i12.Category>> get categories =>
       (super.noSuchMethod(Invocation.getter(#categories),
               returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
           as _i24.Future<List<_i12.Category>>);
   @override
-  _i24.Future<_i12.Category> getCategoryById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#getCategoryById, [id]),
+  _i24.Future<_i12.Category> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
           as _i24.Future<_i12.Category>);
   @override
-  _i24.Future<_i12.Category> createCategory(_i12.Category? category) =>
-      (super.noSuchMethod(Invocation.method(#createCategory, [category]),
+  _i24.Future<List<_i12.Category>> getAll() =>
+      (super.noSuchMethod(Invocation.method(#getAll, []),
+              returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
+          as _i24.Future<List<_i12.Category>>);
+  @override
+  _i24.Future<_i12.Category> create(_i12.Category? category) =>
+      (super.noSuchMethod(Invocation.method(#create, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
           as _i24.Future<_i12.Category>);
   @override
-  _i24.Future<_i12.Category> updateCategory(_i12.Category? category) =>
-      (super.noSuchMethod(Invocation.method(#updateCategory, [category]),
+  _i24.Future<_i12.Category> update(_i12.Category? category) =>
+      (super.noSuchMethod(Invocation.method(#update, [category]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))
           as _i24.Future<_i12.Category>);
   @override
-  _i24.Future<void> deleteCategory(int? id) => (super.noSuchMethod(
-      Invocation.method(#deleteCategory, [id]),
+  _i24.Future<void> delete(int? id) => (super.noSuchMethod(
+      Invocation.method(#delete, [id]),
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i24.Future<void>);
   @override
@@ -528,17 +532,17 @@ class MockSkillService extends _i1.Mock implements _i29.SkillService {
   }
 
   @override
-  _i23.SkillRepository get skillRepository =>
+  _i23.ISkillRepository get skillRepository =>
       (super.noSuchMethod(Invocation.getter(#skillRepository),
-          returnValue: _FakeSkillRepository_21()) as _i23.SkillRepository);
+          returnValue: _FakeISkillRepository_21()) as _i23.ISkillRepository);
   @override
   _i24.Future<List<_i14.Skill>> searchByName(String? name) =>
       (super.noSuchMethod(Invocation.method(#searchByName, [name]),
               returnValue: Future<List<_i14.Skill>>.value(<_i14.Skill>[]))
           as _i24.Future<List<_i14.Skill>>);
   @override
-  _i24.Future<_i14.Skill> findById(int? id) =>
-      (super.noSuchMethod(Invocation.method(#findById, [id]),
+  _i24.Future<_i14.Skill> getById(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getById, [id]),
               returnValue: Future<_i14.Skill>.value(_FakeSkill_12()))
           as _i24.Future<_i14.Skill>);
   @override

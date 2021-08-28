@@ -94,7 +94,7 @@ class ManagerCategoryFormController extends GetxController {
             name: nameController.text,
             icon: selectedIcon,
           );
-          await categoryService.updateCategory(category);
+          await categoryService.update(category);
           Get.snackbar('Success', 'Category updated');
         } else {
           final category = Category(
@@ -102,7 +102,7 @@ class ManagerCategoryFormController extends GetxController {
             name: nameController.text,
             icon: selectedIcon,
           );
-          await categoryService.createCategory(category);
+          await categoryService.create(category);
           Get.snackbar('Success', 'Category created');
         }
       } catch (e) {

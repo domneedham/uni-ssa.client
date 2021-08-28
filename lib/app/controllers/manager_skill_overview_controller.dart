@@ -43,7 +43,7 @@ class ManagerSkillOverviewController extends GetxController {
       isLoading.value = true;
       final int parsedId = int.parse(id);
       final ManagerStaffSkill fetchedSkill =
-          await managerStaffSkillService.getManagerStaffSkillById(parsedId);
+          await managerStaffSkillService.getById(parsedId);
       skill = fetchedSkill.obs;
     } catch (e) {
       isError.value = true;

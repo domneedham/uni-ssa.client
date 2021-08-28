@@ -38,7 +38,7 @@ void main() {
       final mockUserService = TestMocks.userService;
       final mockSkillService = TestMocks.skillStaffService;
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -52,7 +52,7 @@ void main() {
       final mockUserService = TestMocks.userService;
       final mockSkillService = TestMocks.skillStaffService;
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserService.user).thenReturn(staffWithSkills);
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
@@ -66,7 +66,7 @@ void main() {
 
       final error = Exception('Some error');
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => throw error);
       when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -84,7 +84,7 @@ void main() {
       final mockSkillService = TestMocks.skillStaffService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -101,7 +101,7 @@ void main() {
       final mockSkillService = TestMocks.skillStaffService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -117,7 +117,7 @@ void main() {
       final mockSkillService = TestMocks.skillStaffService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
       when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -132,7 +132,7 @@ void main() {
       final mockSkillService = TestMocks.skillStaffService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.getSkillsForUser(staffWithNoSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
       when(mockUserService.user).thenReturn(staffWithNoSkills);
 
@@ -147,7 +147,7 @@ void main() {
       final mockSkillService = TestMocks.skillStaffService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.getSkillsForUser(staffWithNoSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
       when(mockUserService.user).thenReturn(staffWithNoSkills);
 

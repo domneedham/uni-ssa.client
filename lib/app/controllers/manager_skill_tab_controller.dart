@@ -33,7 +33,7 @@ class ManagerSkillTabController extends GetxController {
     try {
       isLoading.value = true;
 
-      final repoSkills = await skillService.skills;
+      final repoSkills = await skillService.getAll();
 
       // get unique categories from skills
       final List<Category> cats = [];

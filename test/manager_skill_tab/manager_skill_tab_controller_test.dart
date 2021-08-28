@@ -34,7 +34,7 @@ void main() {
     final mockSkillService = TestMocks.skillManagerService;
     final mockUserService = TestMocks.userService;
 
-    when(mockSkillService.skills)
+    when(mockSkillService.getAll())
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
 
     when(mockUserService.user).thenReturn(managerOne);
@@ -59,7 +59,7 @@ void main() {
     final mockSkillService = TestMocks.skillManagerService;
     final mockUserService = TestMocks.userService;
 
-    when(mockSkillService.skills)
+    when(mockSkillService.getAll())
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
     when(mockUserService.user).thenReturn(managerOne);
 
@@ -85,7 +85,7 @@ void main() {
       final mockSkillService = TestMocks.skillManagerService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.skills).thenAnswer(
+      when(mockSkillService.getAll()).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
       when(mockUserService.user).thenReturn(managerOne);
 
@@ -106,7 +106,7 @@ void main() {
       final mockSkillService = TestMocks.skillManagerService;
       final mockUserService = TestMocks.userService;
 
-      when(mockSkillService.skills).thenAnswer(
+      when(mockSkillService.getAll()).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
       when(mockUserService.user).thenReturn(managerOne);
 

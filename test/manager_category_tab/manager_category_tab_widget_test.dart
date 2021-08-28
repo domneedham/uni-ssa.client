@@ -215,7 +215,7 @@ void main() {
         final mockCatService = TestMocks.categoriesService;
 
         when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
-        when(mockCatService.deleteCategory(any));
+        when(mockCatService.delete(any));
 
         final controller = Get.find<ManagerCategoryTabController>();
         await controller.getCategories();

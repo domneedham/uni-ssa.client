@@ -33,7 +33,7 @@ void main() {
     final mockSkillService = TestMocks.skillStaffService;
     final mockUserService = TestMocks.userService;
 
-    when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+    when(mockSkillService.getAllByUserId(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
     when(mockUserService.user).thenReturn(staffWithSkills);
 
@@ -56,7 +56,7 @@ void main() {
     final mockSkillService = TestMocks.skillStaffService;
     final mockUserService = TestMocks.userService;
 
-    when(mockSkillService.getSkillsForUser(staffWithSkills.id))
+    when(mockSkillService.getAllByUserId(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne]);
     when(mockUserService.user).thenReturn(staffWithSkills);
 

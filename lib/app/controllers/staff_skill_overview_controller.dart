@@ -40,8 +40,7 @@ class StaffSkillOverviewController extends GetxController {
     try {
       isLoading.value = true;
       final int parsedId = int.parse(id);
-      final StaffSkill fetchedSkill =
-          await staffSkillService.getSkillById(parsedId);
+      final StaffSkill fetchedSkill = await staffSkillService.getById(parsedId);
       skill = fetchedSkill.obs;
       rating.value = fetchedSkill.rating;
       expires.value = fetchedSkill.expires;
@@ -57,7 +56,7 @@ class StaffSkillOverviewController extends GetxController {
     try {
       isLoading.value = true;
       final int parsedId = int.parse(id);
-      final Skill fetchedSkill = await skillService.findById(parsedId);
+      final Skill fetchedSkill = await skillService.getById(parsedId);
       skill = StaffSkill(
         rating: 0,
         lastUpdated: DateTime.now(),
@@ -153,11 +152,11 @@ class StaffSkillOverviewController extends GetxController {
       );
 
       if (parameters.edit != AppRouteParameterValues.FALSE) {
-        await staffSkillService.saveEdited(editedSkill);
+        await staffSkillService.update(editedSkill);
       }
 
       if (parameters.assign != AppRouteParameterValues.FALSE) {
-        await staffSkillService.saveNew(editedSkill);
+        await staffSkillService.create(editedSkill);
       }
       Get.snackbar('Success', 'Skill saved');
     } catch (e) {
