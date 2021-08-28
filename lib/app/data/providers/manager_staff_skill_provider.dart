@@ -4,7 +4,10 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IManagerStaffSkillProvider {
+  /// Finds the manager staff skill with the [id] given.
   Future<ManagerStaffSkill> getById(int id);
+
+  /// Finds all manager staff skills.
   Future<List<ManagerStaffSkill>> getAll();
 }
 

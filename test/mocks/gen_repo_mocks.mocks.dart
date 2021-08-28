@@ -2295,18 +2295,13 @@ class MockStaffSkillProvider extends _i1.Mock
                   Future<List<_i8.StaffSkill>>.value(<_i8.StaffSkill>[]))
           as _i24.Future<List<_i8.StaffSkill>>);
   @override
-  _i24.Future<_i8.StaffSkill> getByIdDecoded(int? id, int? sid) =>
-      (super.noSuchMethod(Invocation.method(#getByIdDecoded, [id, sid]),
+  _i24.Future<_i8.StaffSkill> update(_i8.StaffSkill? skill, int? sid) =>
+      (super.noSuchMethod(Invocation.method(#update, [skill, sid]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override
-  _i24.Future<_i8.StaffSkill> saveEdited(_i8.StaffSkill? skill, int? sid) =>
-      (super.noSuchMethod(Invocation.method(#saveEdited, [skill, sid]),
-              returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
-          as _i24.Future<_i8.StaffSkill>);
-  @override
-  _i24.Future<_i8.StaffSkill> saveNew(_i8.StaffSkill? skill, int? sid) =>
-      (super.noSuchMethod(Invocation.method(#saveNew, [skill, sid]),
+  _i24.Future<_i8.StaffSkill> create(_i8.StaffSkill? skill, int? sid) =>
+      (super.noSuchMethod(Invocation.method(#create, [skill, sid]),
               returnValue: Future<_i8.StaffSkill>.value(_FakeStaffSkill_6()))
           as _i24.Future<_i8.StaffSkill>);
   @override

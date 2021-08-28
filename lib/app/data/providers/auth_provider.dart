@@ -4,7 +4,10 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IAuthProvider {
+  /// Calls the login endpoint for any given user.
   Future<Map<String, String>> login(String email, String password);
+
+  /// Gets and returns a new access token using the refresh token.
   Future<dynamic> refreshToken();
 }
 

@@ -17,7 +17,7 @@ class StaffSkillRepository implements IStaffSkillRepository {
 
   @override
   Future<StaffSkill> getById(int id, int userId) async {
-    return staffSkillProvider.getByIdDecoded(id, userId);
+    return staffSkillProvider.getById(id, userId);
   }
 
   @override
@@ -32,11 +32,11 @@ class StaffSkillRepository implements IStaffSkillRepository {
 
   @override
   Future<StaffSkill> create(StaffSkill skill, int userId) {
-    return staffSkillProvider.saveNew(skill, userId);
+    return staffSkillProvider.create(skill, userId);
   }
 
   @override
   Future<StaffSkill> update(StaffSkill skill, int userId) {
-    return staffSkillProvider.saveEdited(skill, userId);
+    return staffSkillProvider.update(skill, userId);
   }
 }

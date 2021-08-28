@@ -6,11 +6,24 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class ISkillProvider {
+  /// Finds the skill with the [id] given.
   Future<Skill> getById(int id);
+
+  /// Finds all skills.
   Future<List<Skill>> getAll();
+
+  /// Returns all skills that match an exact or extended version of [name].
   Future<List<Skill>> searchByName(String name);
+
+  /// Creates a new skill.
   Future<Skill> create(Skill skill);
+
+  /// Updates an existing skill. All updated information should be present
+  /// in the [skill].
   Future<Skill> update(Skill skill);
+
+  /// Deletes the skill with the [id] given. This will also delete all staff-skills
+  /// that are associated with the skill.
   Future<void> deleteSkill(int id);
 }
 

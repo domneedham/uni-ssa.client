@@ -7,9 +7,18 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IStaffProvider {
+  /// Finds the staff member with the [id] given.
   Future<Staff> getStaffById(int id);
+
+  /// Searches for a staff member by the [name] given. This can be a partial
+  /// name and a match will be found.
   Future<List<Staff>> searchStaffByName(String name);
+
+  /// Updates the staff members details. Ensure all updated staff information
+  /// is passed to the method in the [staff] class.
   Future<Staff> updateDetails(Staff staff);
+
+  /// Finds the staff member with the [email] given.
   Future<Staff> getStaffByEmail(String email);
 }
 

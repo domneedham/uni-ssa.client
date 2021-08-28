@@ -7,13 +7,21 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IStaffSkillProvider {
+  /// Finds the staff skill with the [id] given, providing it matches the
+  /// [sid] (staff id) given.
   Future<StaffSkill> getById(int id, int sid);
-  Future<List<StaffSkill>> getAll();
-  Future<List<StaffSkill>> getAllForUser(int id);
-  Future<StaffSkill> getByIdDecoded(int id, int sid);
 
-  Future<StaffSkill> saveEdited(StaffSkill skill, int sid);
-  Future<StaffSkill> saveNew(StaffSkill skill, int sid);
+  /// Finds all staff skills.
+  Future<List<StaffSkill>> getAll();
+
+  /// Finds all staff skills for the staff member with the [id] given.
+  Future<List<StaffSkill>> getAllForUser(int id);
+
+  /// Updates the staff skill with the [skill]. The [sid] is the staff id.
+  Future<StaffSkill> update(StaffSkill skill, int sid);
+
+  /// Creates a new staff skill. The [sid] is the staff id.
+  Future<StaffSkill> create(StaffSkill skill, int sid);
 }
 
 class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
@@ -83,17 +91,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   }
 
   @override
-  Future<StaffSkill> getByIdDecoded(int id, int sid) async {
-    final res = await get('/$id/sid/$sid');
-    if (res.hasError || res.body == null) {
-      throw NoDataReturned('No skill found');
-    }
-
-    return _decodeSkill(res.body);
-  }
-
-  @override
-  Future<StaffSkill> saveEdited(StaffSkill skill, int sid) async {
+  Future<StaffSkill> update(StaffSkill skill, int sid) async {
     final encodedSkill = _encodeSkill(skill, sid);
     final res = await put('/update', encodedSkill);
     if (res.hasError) {
@@ -104,7 +102,7 @@ class StaffSkillProvider extends GetConnect implements IStaffSkillProvider {
   }
 
   @override
-  Future<StaffSkill> saveNew(StaffSkill skill, int sid) async {
+  Future<StaffSkill> create(StaffSkill skill, int sid) async {
     final encodedSkill = _encodeSkill(skill, sid);
     final res = await post('/assign', encodedSkill);
     if (res.hasError) {
