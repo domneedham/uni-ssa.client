@@ -29,7 +29,7 @@ class ManagerCategoryTabController extends GetxController {
   Future<void> getCategories() async {
     try {
       isLoading.value = true;
-      final repoCategories = await catService.categories;
+      final repoCategories = await catService.getAll();
       categories = repoCategories.obs;
     } catch (e) {
       isError.value = true;

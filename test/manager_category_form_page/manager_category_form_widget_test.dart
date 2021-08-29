@@ -94,7 +94,7 @@ void main() {
       final mockUserService = TestMocks.userService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -111,7 +111,7 @@ void main() {
       final mockUserService = TestMocks.userService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
@@ -128,7 +128,7 @@ void main() {
       final mockUserService = TestMocks.userService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
@@ -147,7 +147,7 @@ void main() {
       final mockUserService = TestMocks.userService;
 
       when(mockUserService.user).thenReturn(managerOne);
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 

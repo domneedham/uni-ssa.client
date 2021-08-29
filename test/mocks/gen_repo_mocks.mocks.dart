@@ -490,11 +490,6 @@ class MockCategoryService extends _i1.Mock implements _i28.CategoryService {
       Invocation.getter(#categoryRepository),
       returnValue: _FakeICategoryRepository_20()) as _i22.ICategoryRepository);
   @override
-  _i24.Future<List<_i12.Category>> get categories =>
-      (super.noSuchMethod(Invocation.getter(#categories),
-              returnValue: Future<List<_i12.Category>>.value(<_i12.Category>[]))
-          as _i24.Future<List<_i12.Category>>);
-  @override
   _i24.Future<_i12.Category> getById(int? id) =>
       (super.noSuchMethod(Invocation.method(#getById, [id]),
               returnValue: Future<_i12.Category>.value(_FakeCategory_10()))

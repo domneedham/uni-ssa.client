@@ -14,6 +14,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    // anytime the logged in variable changes, run the navigate function.
     ever(userService.loggedIn, (_) {
       navigate(user);
     });
@@ -46,6 +47,8 @@ class HomeController extends GetxController {
     super.onReady();
   }
 
+  /// Navigates to the screen according the [user] role. If null, will
+  /// navigate to the login screen.
   void navigate(User? user) {
     if (user == null) {
       Get.offAndToNamed(Routes.LOGIN);

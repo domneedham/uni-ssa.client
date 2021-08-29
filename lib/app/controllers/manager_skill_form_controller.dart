@@ -81,7 +81,7 @@ class ManagerSkillFormController extends GetxController {
   Future<void> fetchCategories() async {
     try {
       isLoading.value = true;
-      final cats = await categoryService.categories;
+      final cats = await categoryService.getAll();
       if (cats.isNotEmpty && editSkill == null) {
         selectedCategoryId = cats[0].id;
       }

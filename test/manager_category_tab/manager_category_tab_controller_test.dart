@@ -29,8 +29,7 @@ void main() {
     test('sets the categories if loaded correctly', () async {
       final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryService.categories)
-          .thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -42,7 +41,7 @@ void main() {
       final mockCategoryService = TestMocks.categoriesService;
 
       final exception = Exception('Failure');
-      when(mockCategoryService.categories).thenThrow(exception);
+      when(mockCategoryService.getAll()).thenThrow(exception);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -56,8 +55,7 @@ void main() {
     testWidgets('should call delete', (tester) async {
       final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryService.categories)
-          .thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
       await tester
@@ -77,8 +75,7 @@ void main() {
         (tester) async {
       final mockCategoryService = TestMocks.categoriesService;
 
-      when(mockCategoryService.categories)
-          .thenAnswer((_) async => [categoryOne]);
+      when(mockCategoryService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       // need to pump for snackbar
       await tester

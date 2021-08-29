@@ -7,6 +7,8 @@ import 'package:ssa_app/app/data/repository/user_repository.dart';
 import 'package:ssa_app/app/data/services/box_service.dart';
 import 'package:ssa_app/app/exceptions/failed_to_login.dart';
 
+/// Service for interacting with the [UserRepository]. Also keeps track of the
+/// current logged in user.
 class UserService {
   UserService({
     required this.boxService,
@@ -23,9 +25,16 @@ class UserService {
   Staff? _staff;
   Manager? _manager;
 
+  /// If the app has had its initial launch. Should not be reset after being
+  /// set to true.
   final firstLaunch = false.obs;
+
+  /// If the user is currently logged in.
   final loggedIn = false.obs;
 
+  /// Returns the current user of the application in the [User] subclass. The
+  /// returned value may be from a manager or staff member, depending on who
+  /// is logged in. The return may also be null if no one is logged in.
   User? get user {
     if (_staff != null) {
       return _staff;
@@ -70,6 +79,8 @@ class UserService {
     return user;
   }
 
+  /// Login the user via email and password. Sets the auth tokens in local
+  /// storage if the login was successful.
   Future<User> loginEmailPassword(String email, String password) async {
     final res = await userRepository.loginEmailPassword(email, password);
 
@@ -83,6 +94,7 @@ class UserService {
     return _login(res['role'], email);
   }
 
+  /// Login the user using their details already stored in local storage.
   Future<User?> initLogin() async {
     final role = box.read(BoxService.USER_ROLE);
     final email = box.read(BoxService.USER_EMAIL);
@@ -94,6 +106,7 @@ class UserService {
     return _login(role, email);
   }
 
+  /// Log the user out of the application. Clears all local storage.
   void logout() {
     boxService.clearAll();
 
@@ -103,16 +116,18 @@ class UserService {
     loggedIn.value = false;
   }
 
+  /// Finds the staff member with the [id] given.
   Future<Staff> getStaffById(int id) {
     return userRepository.getStaffById(id);
   }
 
-  Future<Manager> getManagerById(int id) async {
-    final res = await userRepository.getManagerById(id);
-
-    return res;
+  /// Finds the manager with the [id] given.
+  Future<Manager> getManagerById(int id) {
+    return userRepository.getManagerById(id);
   }
 
+  /// Searches for a staff member by the [name] given. This can be a partial
+  /// name and a match will be found.
   Future<List<Staff>> searchStaffByName(String name) async {
     if (name.isEmpty) {
       return List.empty();
@@ -120,14 +135,17 @@ class UserService {
     return userRepository.searchStaffByName(name);
   }
 
+  /// Searches for a manager by the [name] given. This can be a partial
+  /// name and a match will be found.
   Future<List<Manager>> searchManagerByName(String name) async {
     if (name.isEmpty) {
       return List.empty();
     }
-    final res = await userRepository.searchManagerByName(name);
-    return res;
+    return userRepository.searchManagerByName(name);
   }
 
+  /// Updates the staff members details. Ensure all updated staff information
+  /// is passed to the method in the [staff] class.
   Future<Staff> updateStaffDetails(Staff s) async {
     try {
       await userRepository.updateStaffDetails(s);

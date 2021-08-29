@@ -33,7 +33,7 @@ void main() {
       final mockCatService = TestMocks.categoriesService;
       TestMocks.skillService;
 
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -48,7 +48,7 @@ void main() {
       final mockCatService = TestMocks.categoriesService;
       TestMocks.skillService;
 
-      when(mockCatService.categories).thenAnswer((_) async => []);
+      when(mockCatService.getAll()).thenAnswer((_) async => []);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -64,7 +64,7 @@ void main() {
       final mockCatService = TestMocks.categoriesService;
       TestMocks.skillService;
 
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -82,7 +82,7 @@ void main() {
 
       final exception = Exception('Issue');
 
-      when(mockCatService.categories).thenAnswer((_) async => throw exception);
+      when(mockCatService.getAll()).thenAnswer((_) async => throw exception);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -99,7 +99,7 @@ void main() {
       final mockCatService = TestMocks.categoriesService;
       TestMocks.skillService;
 
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
@@ -115,7 +115,7 @@ void main() {
       final mockCatService = TestMocks.categoriesService;
       TestMocks.skillService;
 
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 

@@ -55,7 +55,7 @@ void main() {
         (WidgetTester tester) async {
       final mockService = TestMocks.categoriesService;
 
-      when(mockService.categories)
+      when(mockService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
       final controller = Get.find<ManagerCategoryTabController>();
@@ -71,7 +71,7 @@ void main() {
         (WidgetTester tester) async {
       final mockService = TestMocks.categoriesService;
 
-      when(mockService.categories).thenAnswer((_) async => []);
+      when(mockService.getAll()).thenAnswer((_) async => []);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -166,7 +166,7 @@ void main() {
     testWidgets('shows an alert dialog', (WidgetTester tester) async {
       final mockCatService = TestMocks.categoriesService;
 
-      when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       final controller = Get.find<ManagerCategoryTabController>();
       await controller.getCategories();
@@ -188,7 +188,7 @@ void main() {
       testWidgets('dismisses the alert dialog', (WidgetTester tester) async {
         final mockCatService = TestMocks.categoriesService;
 
-        when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+        when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
         final controller = Get.find<ManagerCategoryTabController>();
         await controller.getCategories();
@@ -214,7 +214,7 @@ void main() {
       testWidgets('dismisses the alert dialog', (WidgetTester tester) async {
         final mockCatService = TestMocks.categoriesService;
 
-        when(mockCatService.categories).thenAnswer((_) async => [categoryOne]);
+        when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
         when(mockCatService.delete(any));
 
         final controller = Get.find<ManagerCategoryTabController>();

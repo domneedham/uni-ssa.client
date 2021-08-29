@@ -34,7 +34,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillFormController>();
 
-      when(mockCatService.categories)
+      when(mockCatService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
       await controller.fetchCategories();
@@ -52,7 +52,7 @@ void main() {
 
       final exception = Exception('Error');
 
-      when(mockCatService.categories).thenAnswer((_) async => throw exception);
+      when(mockCatService.getAll()).thenAnswer((_) async => throw exception);
 
       await controller.fetchCategories();
 
@@ -68,7 +68,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillFormController>();
 
-      when(mockCatService.categories).thenAnswer((_) async => []);
+      when(mockCatService.getAll()).thenAnswer((_) async => []);
 
       await controller.fetchCategories();
 
@@ -85,7 +85,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillFormController>();
 
-      when(mockCatService.categories)
+      when(mockCatService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
       expect(controller.formMode, ManagerSkillFormMode.ADD);
@@ -99,7 +99,7 @@ void main() {
 
       final controller = Get.find<ManagerSkillFormController>();
 
-      when(mockCatService.categories)
+      when(mockCatService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
       expect(controller.formMode, ManagerSkillFormMode.EDIT);
@@ -116,7 +116,7 @@ void main() {
 
         final controller = Get.find<ManagerSkillFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
         final response = controller.validateName('Name');
@@ -131,7 +131,7 @@ void main() {
 
         final controller = Get.find<ManagerSkillFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
         final response = controller.validateName(null);
@@ -148,7 +148,7 @@ void main() {
 
         final controller = Get.find<ManagerSkillFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
         final response = controller.validateCategory(categoryOne.id);
@@ -163,7 +163,7 @@ void main() {
 
         final controller = Get.find<ManagerSkillFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
 
         final response = controller.validateCategory(null);
@@ -180,7 +180,7 @@ void main() {
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(mockSkillService.create(any)).thenAnswer((_) async => skillOne);
 
@@ -206,7 +206,7 @@ void main() {
 
         Get.parameters = ManagerSkillFormConstants.ADD_MODE_PARAMETERS;
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(mockSkillService.create(any)).thenAnswer((_) async => skillOne);
 
@@ -234,7 +234,7 @@ void main() {
 
         Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(mockSkillService.update(any)).thenAnswer((_) async => skillOne);
 
@@ -261,7 +261,7 @@ void main() {
 
         Get.parameters = ManagerSkillFormConstants.EDIT_MODE_PARAMETERS;
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(mockSkillService.update(any)).thenAnswer((_) async => skillOne);
 

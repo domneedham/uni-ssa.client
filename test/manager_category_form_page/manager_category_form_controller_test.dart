@@ -37,7 +37,7 @@ void main() {
 
       final controller = Get.find<ManagerCategoryFormController>();
 
-      when(mockCatService.categories)
+      when(mockCatService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
       when(userService.user).thenReturn(managerOne);
 
@@ -52,7 +52,7 @@ void main() {
 
       final controller = Get.find<ManagerCategoryFormController>();
 
-      when(mockCatService.categories)
+      when(mockCatService.getAll())
           .thenAnswer((_) async => [categoryOne, categoryTwo]);
       when(userService.user).thenReturn(managerOne);
 
@@ -70,7 +70,7 @@ void main() {
 
         final controller = Get.find<ManagerCategoryFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(userService.user).thenReturn(managerOne);
 
@@ -86,7 +86,7 @@ void main() {
 
         final controller = Get.find<ManagerCategoryFormController>();
 
-        when(mockCatService.categories)
+        when(mockCatService.getAll())
             .thenAnswer((_) async => [categoryOne, categoryTwo]);
         when(userService.user).thenReturn(managerOne);
 

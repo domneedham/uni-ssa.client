@@ -21,6 +21,7 @@ import 'package:ssa_app/app/data/services/user_service.dart';
 class AppBinding implements Bindings {
   @override
   void dependencies() {
+    // providers
     Get.lazyPut<IAuthProvider>(
       () => AuthProvider(),
       fenix: true,
@@ -50,6 +51,7 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
+    // repositories
     Get.lazyPut<IUserRepository>(
       () => UserRepository(
         staffProvider: Get.find(),
@@ -81,8 +83,9 @@ class AppBinding implements Bindings {
       fenix: true,
     );
 
+    // services
     Get.lazyPut<BoxService>(() => BoxService());
-
+    // needs to be called immediately to get user information.
     Get.put<UserService>(
       UserService(
         boxService: Get.find(),

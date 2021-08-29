@@ -12,7 +12,7 @@ abstract class ISkillProvider {
   /// Finds all skills.
   Future<List<Skill>> getAll();
 
-  /// Returns all skills that match an exact or extended version of [name].
+  /// Finds all skills that match an exact or extended version of [name].
   Future<List<Skill>> searchByName(String name);
 
   /// Creates a new skill.
@@ -22,8 +22,8 @@ abstract class ISkillProvider {
   /// in the [skill].
   Future<Skill> update(Skill skill);
 
-  /// Deletes the skill with the [id] given. This will also delete all staff-skills
-  /// that are associated with the skill.
+  /// Deletes the skill with the [id] given. This will also delete all
+  /// staff-skills that are associated with the skill.
   Future<void> deleteSkill(int id);
 }
 
