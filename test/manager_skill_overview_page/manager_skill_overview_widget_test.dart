@@ -31,13 +31,12 @@ void main() {
   group('page', () {
     testWidgets('loading indicator is shown whilst the skill is loading',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
+      TestMocks.skillService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockSkillRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -49,13 +48,12 @@ void main() {
 
     testWidgets('shows the skill name after loading',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
+      TestMocks.skillService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockSkillRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1', 'name': skillOne.name};
 
@@ -68,13 +66,12 @@ void main() {
 
     testWidgets('shows the skill category name after loading',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
+      TestMocks.skillService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockSkillRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -87,13 +84,12 @@ void main() {
 
     testWidgets('shows the skill category icon after loading',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
+      TestMocks.skillService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockSkillRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -106,13 +102,12 @@ void main() {
 
     testWidgets('shows the skill staff list after loading',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
-      TestMocks.skillRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
+      TestMocks.skillService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockSkillRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => skillOne);
 
       Get.parameters = {'id': '1'};
 
@@ -126,17 +121,16 @@ void main() {
 
   group('delete', () {
     testWidgets('should popup an alert dialog', (tester) async {
-      final skillManagerRepo = TestMocks.skillManagerRepository;
-      final userRepo = TestMocks.userRepository;
-      final skillRepo = TestMocks.skillRepository;
+      final skillManagerService = TestMocks.skillManagerService;
+      final userService = TestMocks.userService;
+      final skillService = TestMocks.skillService;
 
       Get.parameters = {'id': '1'};
 
-      when(userRepo.user).thenReturn(managerOne);
-      when(skillManagerRepo.getManagerStaffSkillById(1))
-          .thenAnswer((_) async => skillOne);
+      when(userService.user).thenReturn(managerOne);
+      when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
       // ignore: avoid_returning_null_for_void
-      when(skillRepo.delete(1)).thenAnswer((_) async => null);
+      when(skillService.delete(1)).thenAnswer((_) async => null);
 
       await tester
           .pumpWidget(const TestableWidget(child: ManagerSkillOverviewPage()));
@@ -150,17 +144,16 @@ void main() {
 
     group('alert dialog', () {
       testWidgets('should give a yes and no option', (tester) async {
-        final skillManagerRepo = TestMocks.skillManagerRepository;
-        final userRepo = TestMocks.userRepository;
-        final skillRepo = TestMocks.skillRepository;
+        final skillManagerService = TestMocks.skillManagerService;
+        final userService = TestMocks.userService;
+        final skillService = TestMocks.skillService;
 
         Get.parameters = {'id': '1'};
 
-        when(userRepo.user).thenReturn(managerOne);
-        when(skillManagerRepo.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(userService.user).thenReturn(managerOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
-        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+        when(skillService.delete(1)).thenAnswer((_) async => null);
 
         await tester.pumpWidget(
             const TestableWidget(child: ManagerSkillOverviewPage()));
@@ -176,17 +169,16 @@ void main() {
 
     group('no option', () {
       testWidgets('should dismiss the dialog', (tester) async {
-        final skillManagerRepo = TestMocks.skillManagerRepository;
-        final userRepo = TestMocks.userRepository;
-        final skillRepo = TestMocks.skillRepository;
+        final skillManagerService = TestMocks.skillManagerService;
+        final userService = TestMocks.userService;
+        final skillService = TestMocks.skillService;
 
         Get.parameters = {'id': '1'};
 
-        when(userRepo.user).thenReturn(managerOne);
-        when(skillManagerRepo.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(userService.user).thenReturn(managerOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
-        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+        when(skillService.delete(1)).thenAnswer((_) async => null);
 
         await tester.pumpWidget(
             const TestableWidget(child: ManagerSkillOverviewPage()));
@@ -204,17 +196,16 @@ void main() {
 
     group('yes option', () {
       testWidgets('should dismiss the dialog', (tester) async {
-        final skillManagerRepo = TestMocks.skillManagerRepository;
-        final userRepo = TestMocks.userRepository;
-        final skillRepo = TestMocks.skillRepository;
+        final skillManagerService = TestMocks.skillManagerService;
+        final userService = TestMocks.userService;
+        final skillService = TestMocks.skillService;
 
         Get.parameters = {'id': '1'};
 
-        when(userRepo.user).thenReturn(managerOne);
-        when(skillManagerRepo.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(userService.user).thenReturn(managerOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
-        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+        when(skillService.delete(1)).thenAnswer((_) async => null);
 
         await tester.pumpWidget(
             const TestableWidget(child: ManagerSkillOverviewPage()));
@@ -231,17 +222,16 @@ void main() {
 
       testWidgets('should call delete method on the controller',
           (tester) async {
-        final skillManagerRepo = TestMocks.skillManagerRepository;
-        final userRepo = TestMocks.userRepository;
-        final skillRepo = TestMocks.skillRepository;
+        final skillManagerService = TestMocks.skillManagerService;
+        final userService = TestMocks.userService;
+        final skillService = TestMocks.skillService;
 
         Get.parameters = {'id': '1'};
 
-        when(userRepo.user).thenReturn(managerOne);
-        when(skillManagerRepo.getManagerStaffSkillById(1))
-            .thenAnswer((_) async => skillOne);
+        when(userService.user).thenReturn(managerOne);
+        when(skillManagerService.getById(1)).thenAnswer((_) async => skillOne);
         // ignore: avoid_returning_null_for_void
-        when(skillRepo.delete(1)).thenAnswer((_) async => null);
+        when(skillService.delete(1)).thenAnswer((_) async => null);
 
         await tester.pumpWidget(
             const TestableWidget(child: ManagerSkillOverviewPage()));
@@ -253,7 +243,7 @@ void main() {
         await tester.tap(find.text('Yes'));
         await tester.pumpAndSettle();
 
-        verify(skillRepo.delete(1)).called(1);
+        verify(skillService.delete(1)).called(1);
       });
     });
   });

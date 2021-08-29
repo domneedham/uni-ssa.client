@@ -28,9 +28,9 @@ void main() {
   group('page', () {
     testWidgets('shows the right title in the appbar',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
@@ -39,9 +39,9 @@ void main() {
     });
 
     testWidgets('shows a save button', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
@@ -52,9 +52,9 @@ void main() {
 
   group('form', () {
     testWidgets('has a field for firstname', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
@@ -63,9 +63,9 @@ void main() {
     });
 
     testWidgets('has a field for surname', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
@@ -75,9 +75,9 @@ void main() {
 
     testWidgets('populates the firstname field on load',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));
@@ -88,9 +88,9 @@ void main() {
 
     testWidgets('populates the surname field on load',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffEditDetailsPage()));

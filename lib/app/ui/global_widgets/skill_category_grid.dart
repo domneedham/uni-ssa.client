@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 
+/// Shows the [cardBuilder] widget in grid form.
 class SkillCategoryGrid extends StatelessWidget {
   const SkillCategoryGrid({
     Key? key,
@@ -10,8 +11,13 @@ class SkillCategoryGrid extends StatelessWidget {
     required this.cardBuilder,
   }) : super(key: key);
 
+  /// The aspect ratio for the grid. Defaults to 2.5.
   final double? childAspectRatio;
+
+  /// The skill list, broken down into a category and skill list.
   final MapEntry<Category, List<Skill>> entry;
+
+  /// The builder function that returns how the grid entry should look.
   final Widget Function(Skill) cardBuilder;
 
   @override

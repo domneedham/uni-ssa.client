@@ -35,12 +35,12 @@ void main() {
   group('staff skill tab', () {
     testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserService = TestMocks.userService;
+      final mockSkillService = TestMocks.skillStaffService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
 
@@ -49,26 +49,26 @@ void main() {
 
     testWidgets('loading indicator is shown whilst loading',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserService = TestMocks.userService;
+      final mockSkillService = TestMocks.skillStaffService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
 
       expect(find.byType(LoadingIndicator), findsOneWidget);
     });
 
     testWidgets('shows error if one occurs', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockSkillRepo = TestMocks.skillStaffRepository;
+      final mockUserService = TestMocks.userService;
+      final mockSkillService = TestMocks.skillStaffService;
 
       final error = Exception('Some error');
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => throw error);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -81,12 +81,12 @@ void main() {
     testWidgets(
         'shows more than one skill category name if the user has more than one category in skills',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillStaffRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillStaffService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -98,12 +98,12 @@ void main() {
     testWidgets(
         'shows more than one skill category icon if the user has more than one category in skills',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillStaffRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillStaffService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -114,12 +114,12 @@ void main() {
 
     testWidgets('shows more than one skill if the user has more than one',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillStaffRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillStaffService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithSkills.id))
           .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(staffWithSkills);
+      when(mockUserService.user).thenReturn(staffWithSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -129,12 +129,12 @@ void main() {
 
     testWidgets('shows no card widgets if the user has no skills',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillStaffRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillStaffService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithNoSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
-      when(mockUserRepo.user).thenReturn(staffWithNoSkills);
+      when(mockUserService.user).thenReturn(staffWithNoSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -144,12 +144,12 @@ void main() {
 
     testWidgets('shows text informing the user they have no skills if true',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillStaffRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillStaffService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.getSkillsForUser(staffWithNoSkills.id))
+      when(mockSkillService.getAllByUserId(staffWithNoSkills.id))
           .thenAnswer((_) async => []);
-      when(mockUserRepo.user).thenReturn(staffWithNoSkills);
+      when(mockUserService.user).thenReturn(staffWithNoSkills);
 
       await tester.pumpWidget(const TestableWidget(child: StaffSkillTab()));
       await tester.pumpAndSettle();
@@ -161,8 +161,8 @@ void main() {
 
   group('staff skill card', () {
     setUp(() {
-      TestMocks.userRepository;
-      TestMocks.skillStaffRepository;
+      TestMocks.userService;
+      TestMocks.skillStaffService;
     });
 
     testWidgets('shows the skill name', (WidgetTester tester) async {

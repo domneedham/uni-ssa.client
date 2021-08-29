@@ -27,9 +27,9 @@ void main() {
   group('validate', () {
     group('name', () {
       test('should return null if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
+        final userService = TestMocks.userService;
 
-        when(userRepo.user).thenReturn(staffOne);
+        when(userService.user).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 
@@ -38,9 +38,9 @@ void main() {
       });
 
       test('should return a string if the name is not null', () async {
-        final userRepo = TestMocks.userRepository;
+        final userService = TestMocks.userService;
 
-        when(userRepo.user).thenReturn(staffOne);
+        when(userService.user).thenReturn(staffOne);
 
         final controller = Get.find<StaffEditDetailsController>();
 
@@ -52,10 +52,11 @@ void main() {
 
   group('save method', () {
     testWidgets('should call save if form is valid', (tester) async {
-      final userRepo = TestMocks.userRepository;
+      final userService = TestMocks.userService;
 
-      when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
+      when(userService.user).thenReturn(staffOne);
+      when(userService.updateStaffDetails(any))
+          .thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
       await tester
@@ -70,15 +71,16 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verify(userRepo.updateStaffDetails(any)).called(1);
+      verify(userService.updateStaffDetails(any)).called(1);
     });
 
     testWidgets('should not call save if firstname is not valid',
         (tester) async {
-      final userRepo = TestMocks.userRepository;
+      final userService = TestMocks.userService;
 
-      when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
+      when(userService.user).thenReturn(staffOne);
+      when(userService.updateStaffDetails(any))
+          .thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
       await tester
@@ -94,14 +96,15 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(userRepo.updateStaffDetails(any));
+      verifyNever(userService.updateStaffDetails(any));
     });
 
     testWidgets('should not call save if surname is not valid', (tester) async {
-      final userRepo = TestMocks.userRepository;
+      final userService = TestMocks.userService;
 
-      when(userRepo.user).thenReturn(staffOne);
-      when(userRepo.updateStaffDetails(any)).thenAnswer((_) async => staffOne);
+      when(userService.user).thenReturn(staffOne);
+      when(userService.updateStaffDetails(any))
+          .thenAnswer((_) async => staffOne);
 
       // need to pump for snackbar
       await tester
@@ -117,7 +120,7 @@ void main() {
       // let the snackbar run
       await tester.pump(const Duration(seconds: 5));
 
-      verifyNever(userRepo.updateStaffDetails(any));
+      verifyNever(userService.updateStaffDetails(any));
     });
   });
 }

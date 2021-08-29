@@ -4,9 +4,14 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class IManagerProvider {
+  /// Finds the manager with the [id] given.
   Future<Manager> getManagerById(int id);
+
+  /// Searches for a manager by the [name] given. This can be a partial
+  /// name and a match will be found.
   Future<List<Manager>> searchManagerByName(String name);
 
+  /// Finds the manager with the [email] given.
   Future<Manager> getManagerByEmail(String email);
 }
 

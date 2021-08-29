@@ -35,9 +35,9 @@ void main() {
   group('manager staff tab', () {
     testWidgets('the appbar shows the right title',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -51,9 +51,9 @@ void main() {
     });
 
     testWidgets('the tabbar has two tabs', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -71,9 +71,9 @@ void main() {
 
     testWidgets('clicking on the staff tab shows the right widget',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -87,9 +87,9 @@ void main() {
 
     testWidgets('clicking on the staff tab shows the right widget',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerStaffTab()));
       await tester.pumpAndSettle();
@@ -106,9 +106,9 @@ void main() {
     testWidgets(
         'search box shows appropriate messsage to show searching for staff',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: ManagerStaffTabStaff()));
@@ -123,9 +123,9 @@ void main() {
     testWidgets(
         'search box shows appropriate messsage to show searching for manager',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: ManagerStaffTabManager()));

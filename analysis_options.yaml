@@ -42,6 +42,8 @@ analyzer:
     - 'bin/cache/**'
       # Ignore protoc generated files
     - 'dev/conductor/lib/proto/*'
+      # Ignore mock generated files
+    - 'test/mocks/gen_repo_mocks.mocks.dart'
 
 linter:
   rules:

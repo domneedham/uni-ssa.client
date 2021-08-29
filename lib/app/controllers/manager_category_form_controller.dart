@@ -3,12 +3,12 @@ import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/manager_category_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
-import 'package:ssa_app/app/data/repository/category_repository.dart';
+import 'package:ssa_app/app/data/services/category_service.dart';
 import 'package:ssa_app/app/ui/pages/manager_category_form_page/utils/manager_category_form_constants.dart';
 import 'package:ssa_app/app/ui/pages/manager_skill_form_page/utils/manager_skill_form_constants.dart';
 
 class ManagerCategoryFormController extends GetxController {
-  final categoryRepository = Get.find<CategoryRepository>();
+  final categoryService = Get.find<CategoryService>();
 
   final parameters = Get.parameters;
   final arguments = Get.arguments;
@@ -94,7 +94,7 @@ class ManagerCategoryFormController extends GetxController {
             name: nameController.text,
             icon: selectedIcon,
           );
-          await categoryRepository.updateCategory(category);
+          await categoryService.update(category);
           Get.snackbar('Success', 'Category updated');
         } else {
           final category = Category(
@@ -102,7 +102,7 @@ class ManagerCategoryFormController extends GetxController {
             name: nameController.text,
             icon: selectedIcon,
           );
-          await categoryRepository.createCategory(category);
+          await categoryService.create(category);
           Get.snackbar('Success', 'Category created');
         }
       } catch (e) {

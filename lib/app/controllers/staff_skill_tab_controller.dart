@@ -2,16 +2,16 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/category.dart';
 import 'package:ssa_app/app/data/models/user/staff.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/staff_skill_service.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillTabController extends GetxController {
-  final UserRepository userRepo = Get.find<UserRepository>();
-  final StaffSkillRepository skillRepo = Get.find<StaffSkillRepository>();
+  final userService = Get.find<UserService>();
+  final skillService = Get.find<StaffSkillService>();
 
-  Staff get user => userRepo.user as Staff;
+  Staff get user => userService.user as Staff;
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -30,7 +30,7 @@ class StaffSkillTabController extends GetxController {
       isLoading.value = true;
 
       // get a list of all of the users skills
-      final tempList = await skillRepo.getSkillsForUser(user.id);
+      final tempList = await skillService.getAllByUserId(user.id);
 
       if (tempList.isEmpty) {
         final Map<Category, List<StaffSkill>> emptyMap = {};

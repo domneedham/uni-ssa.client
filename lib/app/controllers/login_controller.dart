@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 
 class LoginController extends GetxController {
-  final userRepo = Get.find<UserRepository>();
+  final userService = Get.find<UserService>();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -46,7 +46,7 @@ class LoginController extends GetxController {
       final password = passwordController.text;
 
       try {
-        await userRepo.loginEmailPassword(email, password);
+        await userService.loginEmailPassword(email, password);
       } catch (e) {
         Get.snackbar('Error', e.toString());
       }

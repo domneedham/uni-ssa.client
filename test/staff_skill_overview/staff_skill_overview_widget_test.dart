@@ -39,9 +39,9 @@ void main() {
   group('staff skill overview page', () {
     testWidgets('appbar title shows the right title if parameters set',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -49,9 +49,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
@@ -61,9 +61,9 @@ void main() {
 
     testWidgets('loading indicator is shown whilst loading',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -71,9 +71,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
@@ -82,9 +82,9 @@ void main() {
     });
 
     testWidgets('shows error if one occurs', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -93,9 +93,9 @@ void main() {
       ).toMap;
       final error = Exception('Some error');
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => throw error);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffSkillOverviewPage()));
@@ -107,9 +107,9 @@ void main() {
 
   group('staff skill overview body', () {
     testWidgets('shows the skill category title', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -117,9 +117,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -131,9 +131,9 @@ void main() {
     });
 
     testWidgets('shows the skill rating', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -141,9 +141,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -156,9 +156,9 @@ void main() {
     });
 
     testWidgets('shows the skill expiry', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -166,9 +166,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -180,9 +180,9 @@ void main() {
     });
 
     testWidgets('shows the save button', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -190,9 +190,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -206,9 +206,9 @@ void main() {
 
   group('staff skill overview rating', () {
     testWidgets('shows a decrement button', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -216,9 +216,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -230,9 +230,9 @@ void main() {
     });
 
     testWidgets('shows a increment button', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -240,9 +240,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -255,9 +255,9 @@ void main() {
 
     testWidgets('shows filled in stars for the rating if skill has one',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -265,9 +265,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -282,9 +282,9 @@ void main() {
 
     testWidgets('shows no filled in stars for the rating if assigning',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final mockSkillRepo = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final mockSkillService = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -292,10 +292,10 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => basicSkill);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -308,9 +308,9 @@ void main() {
 
     testWidgets('shows border stars for the rest of the rating up to 5',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -318,9 +318,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -335,9 +335,9 @@ void main() {
 
     testWidgets('refreshes the filled in icons on rating change',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -345,9 +345,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -370,9 +370,9 @@ void main() {
   group('staff skill overview expiry', () {
     testWidgets('shows a calendar icon as an icon button',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -380,9 +380,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -395,9 +395,9 @@ void main() {
     });
 
     testWidgets('shows the current expiry', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -405,9 +405,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -420,9 +420,9 @@ void main() {
     });
 
     testWidgets('shows no expiry if assigning', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final mockSkillRepo = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final mockSkillService = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -430,10 +430,10 @@ void main() {
         assign: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockSkillRepo.findById(1)).thenAnswer((_) async => basicSkill);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockSkillService.getById(1)).thenAnswer((_) async => basicSkill);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -446,9 +446,9 @@ void main() {
 
     testWidgets('shows the datepicker on button click',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -456,9 +456,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();
@@ -474,9 +474,9 @@ void main() {
 
     testWidgets('updates the date shown on date change',
         (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -484,9 +484,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithNoExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       final controller = Get.find<StaffSkillOverviewController>();
@@ -511,9 +511,9 @@ void main() {
 
   group('staff skill overview save button', () {
     testWidgets('shows save text', (WidgetTester tester) async {
-      final mockUserRepo = TestMocks.userRepository;
-      final mockStaffSkillRepo = TestMocks.skillStaffRepository;
-      final _ = TestMocks.skillRepository;
+      final mockUserService = TestMocks.userService;
+      final mockStaffSkillService = TestMocks.skillStaffService;
+      final _ = TestMocks.skillService;
 
       Get.parameters = const StaffSkillOverviewParameters(
         id: '1',
@@ -521,9 +521,9 @@ void main() {
         edit: AppRouteParameterValues.TRUE,
       ).toMap;
 
-      when(mockStaffSkillRepo.getSkillById(1))
+      when(mockStaffSkillService.getById(1))
           .thenAnswer((_) async => skillWithExpiry);
-      when(mockUserRepo.user).thenReturn(staffOne);
+      when(mockUserService.user).thenReturn(staffOne);
 
       // make sure controller fetches skill before rendering
       Get.find<StaffSkillOverviewController>();

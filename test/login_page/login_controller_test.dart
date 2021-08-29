@@ -26,7 +26,7 @@ void main() {
 
   group('validate email', () {
     test('should fail if null', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -36,7 +36,7 @@ void main() {
     });
 
     test('should fail if not an email', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -46,7 +46,7 @@ void main() {
     });
 
     test('should pass if an email', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -58,7 +58,7 @@ void main() {
 
   group('validate password', () {
     test('should fail if null', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -68,7 +68,7 @@ void main() {
     });
 
     test('should fail if not longer than 8 characters', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -78,7 +78,7 @@ void main() {
     });
 
     test('should pass if a password', () async {
-      TestMocks.userRepository;
+      TestMocks.userService;
 
       final controller = Get.find<LoginController>();
 
@@ -91,9 +91,9 @@ void main() {
   group('login', () {
     testWidgets('login should call login email password if valid',
         (tester) async {
-      final mockRepo = TestMocks.userRepository;
+      final mockService = TestMocks.userService;
 
-      when(mockRepo.loginEmailPassword(any, any))
+      when(mockService.loginEmailPassword(any, any))
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
@@ -107,14 +107,14 @@ void main() {
 
       await controller.login();
 
-      verify(mockRepo.loginEmailPassword(any, any)).called(1);
+      verify(mockService.loginEmailPassword(any, any)).called(1);
     });
 
     testWidgets('login should not call login email password if email not valid',
         (tester) async {
-      final mockRepo = TestMocks.userRepository;
+      final mockService = TestMocks.userService;
 
-      when(mockRepo.loginEmailPassword(any, any))
+      when(mockService.loginEmailPassword(any, any))
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
@@ -128,15 +128,15 @@ void main() {
 
       await controller.login();
 
-      verifyNever(mockRepo.loginEmailPassword(any, any));
+      verifyNever(mockService.loginEmailPassword(any, any));
     });
 
     testWidgets(
         'login should not call login email password if password not valid',
         (tester) async {
-      final mockRepo = TestMocks.userRepository;
+      final mockService = TestMocks.userService;
 
-      when(mockRepo.loginEmailPassword(any, any))
+      when(mockService.loginEmailPassword(any, any))
           .thenAnswer((_) async => userOne);
 
       // pump to init form key
@@ -150,7 +150,7 @@ void main() {
 
       await controller.login();
 
-      verifyNever(mockRepo.loginEmailPassword(any, any));
+      verifyNever(mockService.loginEmailPassword(any, any));
     });
   });
 }

@@ -3,16 +3,16 @@ import 'package:get/get.dart';
 import 'package:ssa_app/app/controllers/staff_skill_tab_controller.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
 import 'package:ssa_app/app/data/models/skill/staff_skill.dart';
-import 'package:ssa_app/app/data/repository/skill_repository.dart';
-import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
-import 'package:ssa_app/app/data/repository/user_repository.dart';
+import 'package:ssa_app/app/data/services/skill_service.dart';
+import 'package:ssa_app/app/data/services/staff_skill_service.dart';
+import 'package:ssa_app/app/data/services/user_service.dart';
 import 'package:ssa_app/app/routes/app_route_parameters.dart';
 import 'package:ssa_app/app/ui/utils/dates.dart';
 
 class StaffSkillOverviewController extends GetxController {
-  final skillRepo = Get.find<SkillRepository>();
-  final staffSkillRepo = Get.find<StaffSkillRepository>();
-  final userRepo = Get.find<UserRepository>();
+  final skillService = Get.find<SkillService>();
+  final staffSkillService = Get.find<StaffSkillService>();
+  final userService = Get.find<UserService>();
 
   final isLoading = true.obs;
   final isError = false.obs;
@@ -40,8 +40,7 @@ class StaffSkillOverviewController extends GetxController {
     try {
       isLoading.value = true;
       final int parsedId = int.parse(id);
-      final StaffSkill fetchedSkill =
-          await staffSkillRepo.getSkillById(parsedId);
+      final StaffSkill fetchedSkill = await staffSkillService.getById(parsedId);
       skill = fetchedSkill.obs;
       rating.value = fetchedSkill.rating;
       expires.value = fetchedSkill.expires;
@@ -57,7 +56,7 @@ class StaffSkillOverviewController extends GetxController {
     try {
       isLoading.value = true;
       final int parsedId = int.parse(id);
-      final Skill fetchedSkill = await skillRepo.findById(parsedId);
+      final Skill fetchedSkill = await skillService.getById(parsedId);
       skill = StaffSkill(
         rating: 0,
         lastUpdated: DateTime.now(),
@@ -153,11 +152,11 @@ class StaffSkillOverviewController extends GetxController {
       );
 
       if (parameters.edit != AppRouteParameterValues.FALSE) {
-        await staffSkillRepo.saveEdited(editedSkill);
+        await staffSkillService.update(editedSkill);
       }
 
       if (parameters.assign != AppRouteParameterValues.FALSE) {
-        await staffSkillRepo.saveNew(editedSkill);
+        await staffSkillService.create(editedSkill);
       }
       Get.snackbar('Success', 'Skill saved');
     } catch (e) {

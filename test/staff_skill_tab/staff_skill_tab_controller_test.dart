@@ -30,12 +30,12 @@ void main() {
   test(
       'getting the map of skills should return them alphabetically by category name',
       () async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+    final mockSkillService = TestMocks.skillStaffService;
+    final mockUserService = TestMocks.userService;
 
-    when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+    when(mockSkillService.getAllByUserId(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne, staffSkillTwo]);
-    when(mockUserRepo.user).thenReturn(staffWithSkills);
+    when(mockUserService.user).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();
@@ -53,12 +53,12 @@ void main() {
   });
 
   test('skills are organised into the categories correctly', () async {
-    final mockSkillRepo = TestMocks.skillStaffRepository;
-    final mockUserRepo = TestMocks.userRepository;
+    final mockSkillService = TestMocks.skillStaffService;
+    final mockUserService = TestMocks.userService;
 
-    when(mockSkillRepo.getSkillsForUser(staffWithSkills.id))
+    when(mockSkillService.getAllByUserId(staffWithSkills.id))
         .thenAnswer((_) async => [staffSkillOne]);
-    when(mockUserRepo.user).thenReturn(staffWithSkills);
+    when(mockUserService.user).thenReturn(staffWithSkills);
 
     // recover your controller
     final controller = Get.find<StaffSkillTabController>();

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Shows the app information that are shared for both manager and staff
+/// more tabs.
 class MoreTabAppInformation extends StatelessWidget {
   const MoreTabAppInformation({
     Key? key,

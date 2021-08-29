@@ -33,10 +33,10 @@ void main() {
   group('page', () {
     testWidgets('loading indicator is shown whilst the page is loading',
         (WidgetTester tester) async {
-      final _ = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final _ = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -52,10 +52,10 @@ void main() {
 
     testWidgets('error text is rendered if an error occurs',
         (WidgetTester tester) async {
-      final _ = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final _ = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerCategoryFormController>();
       controller.isError.value = true;
@@ -73,10 +73,10 @@ void main() {
 
     testWidgets('category form is rendered if no error or not loading',
         (WidgetTester tester) async {
-      final _ = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final _ = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -90,11 +90,11 @@ void main() {
 
   group('add form', () {
     testWidgets('page title shows add', (WidgetTester tester) async {
-      final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockCatService = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.ADD_MODE_PARAMETERS;
 
@@ -107,11 +107,11 @@ void main() {
 
   group('edit form', () {
     testWidgets('page title shows edit', (WidgetTester tester) async {
-      final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockCatService = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
@@ -124,11 +124,11 @@ void main() {
 
   group('icon picker', () {
     testWidgets('is shown on button click', (WidgetTester tester) async {
-      final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockCatService = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 
@@ -143,11 +143,11 @@ void main() {
 
     testWidgets('selected icon displays is rendered on the screen',
         (WidgetTester tester) async {
-      final mockCatRepo = TestMocks.categoriesRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockCatService = TestMocks.categoriesService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.user).thenReturn(managerOne);
-      when(mockCatRepo.categories).thenAnswer((_) async => [categoryOne]);
+      when(mockUserService.user).thenReturn(managerOne);
+      when(mockCatService.getAll()).thenAnswer((_) async => [categoryOne]);
 
       Get.parameters = ManagerCategoryFormConstants.EDIT_MODE_PARAMETERS;
 

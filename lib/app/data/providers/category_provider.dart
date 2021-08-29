@@ -8,10 +8,20 @@ import 'package:ssa_app/app/exceptions/no_data_found.dart';
 import 'package:ssa_app/app/ui/utils/http.dart';
 
 abstract class ICategoryProvider {
+  /// Fetches all categories that exist.
   Future<List<Category>> getAllCategories();
+
+  /// Fetches the category with [id] given.
   Future<Category> getCategoryById(int id);
+
+  /// Creates a new category from the [category] given.
   Future<Category> createCategory(Category category);
+
+  /// Updates the existing category. All information should be updated in
+  /// the [category].
   Future<Category> updateCategory(Category category);
+
+  /// Deletes the category and all skills/staff-skills that contain the category.
   Future<void> deleteCategory(int id);
 }
 

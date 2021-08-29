@@ -38,14 +38,14 @@ void main() {
     Get.testMode = true;
     binding.builder();
 
-    final mockUserRepo = TestMocks.userRepository;
-    final _ = TestMocks.skillStaffRepository;
+    final mockUserService = TestMocks.userService;
+    final _ = TestMocks.skillStaffService;
 
-    when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
-    when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
-    when(mockUserRepo.getStaffById(-1))
+    when(mockUserService.getStaffById(1)).thenAnswer((_) async => staffOne);
+    when(mockUserService.getManagerById(1)).thenAnswer((_) async => managerOne);
+    when(mockUserService.getStaffById(-1))
         .thenAnswer((_) async => throw mockError);
-    when(mockUserRepo.getManagerById(-1))
+    when(mockUserService.getManagerById(-1))
         .thenAnswer((_) async => throw mockError);
   });
 

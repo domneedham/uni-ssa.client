@@ -32,9 +32,9 @@ void main() {
 
   group('staff assign skill page', () {
     testWidgets('appbar shows the right title', (WidgetTester tester) async {
-      TestMocks.userRepository;
-      TestMocks.skillStaffRepository;
-      TestMocks.skillRepository;
+      TestMocks.userService;
+      TestMocks.skillStaffService;
+      TestMocks.skillService;
 
       await tester
           .pumpWidget(const TestableWidget(child: StaffAssignSkillPage()));

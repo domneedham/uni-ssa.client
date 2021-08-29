@@ -6,6 +6,8 @@ import './app/routes/app_pages.dart';
 import './app/ui/theme/app_theme.dart';
 
 void main() async {
+  // needs to be called before intialisation of the application for use as a
+  // dependancy in other services.
   await GetStorage.init();
   runApp(const StaffSkillAuditorApp());
 }

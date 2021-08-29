@@ -31,13 +31,13 @@ void main() {
   test(
       'getting the map of skills should return them alphabetically by category name',
       () async {
-    final mockSkillRepo = TestMocks.skillManagerRepository;
-    final mockUserRepo = TestMocks.userRepository;
+    final mockSkillService = TestMocks.skillManagerService;
+    final mockUserService = TestMocks.userService;
 
-    when(mockSkillRepo.skills)
+    when(mockSkillService.getAll())
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
 
-    when(mockUserRepo.user).thenReturn(managerOne);
+    when(mockUserService.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
@@ -56,12 +56,12 @@ void main() {
   });
 
   test('skills are organised into the categories correctly', () async {
-    final mockSkillRepo = TestMocks.skillManagerRepository;
-    final mockUserRepo = TestMocks.userRepository;
+    final mockSkillService = TestMocks.skillManagerService;
+    final mockUserService = TestMocks.userService;
 
-    when(mockSkillRepo.skills)
+    when(mockSkillService.getAll())
         .thenAnswer((_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-    when(mockUserRepo.user).thenReturn(managerOne);
+    when(mockUserService.user).thenReturn(managerOne);
 
     final controller = Get.find<ManagerSkillTabController>();
 
@@ -82,12 +82,12 @@ void main() {
     test(
         'change view type assigns the new value to the view type variable - grid',
         () async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills).thenAnswer(
+      when(mockSkillService.getAll()).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 
@@ -103,12 +103,12 @@ void main() {
     test(
         'change view type assigns the new value to the view type variable - list',
         () async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills).thenAnswer(
+      when(mockSkillService.getAll()).thenAnswer(
           (_) async => [managerStaffSkillOne, managerStaffSkillTwo]);
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
 

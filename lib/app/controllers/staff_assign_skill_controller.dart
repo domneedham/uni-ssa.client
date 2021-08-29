@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssa_app/app/data/models/skill/skill.dart';
-import 'package:ssa_app/app/data/repository/skill_repository.dart';
-import 'package:ssa_app/app/data/repository/staff_skill_repository.dart';
+import 'package:ssa_app/app/data/services/skill_service.dart';
+import 'package:ssa_app/app/data/services/staff_skill_service.dart';
 import 'package:ssa_app/app/routes/app_pages.dart';
 import 'package:ssa_app/app/routes/app_route_parameters.dart';
 
@@ -10,8 +10,8 @@ class StaffAssignSkillController extends GetxController
     with SingleGetTickerProviderMixin {
   TabController? tabController;
 
-  final staffSkillRepo = Get.find<StaffSkillRepository>();
-  final skillRepo = Get.find<SkillRepository>();
+  final staffSkillService = Get.find<StaffSkillService>();
+  final skillService = Get.find<SkillService>();
 
   final isLoading = false.obs;
   final skillList = RxList<Skill>();
@@ -68,7 +68,7 @@ class StaffAssignSkillController extends GetxController
       return;
     }
 
-    final tempList = await skillRepo.searchByName(searchText.value);
+    final tempList = await skillService.searchByName(searchText.value);
     skillList.value = tempList;
 
     isLoading.value = false;

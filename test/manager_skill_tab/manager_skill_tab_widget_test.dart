@@ -33,12 +33,12 @@ void main() {
   group('manager skill tab', () {
     testWidgets('appbar title shows the right title',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => [managerStaffSkillOne]);
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -48,12 +48,12 @@ void main() {
 
     testWidgets('shows an option to create a new skill',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => [managerStaffSkillOne]);
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -62,12 +62,12 @@ void main() {
 
     testWidgets('shows text informing the user skills failed to load if true',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -79,12 +79,12 @@ void main() {
   group('manager skill tab list view type', () {
     testWidgets('appbar has a popup menu button to select the view type',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -94,12 +94,12 @@ void main() {
 
     testWidgets('appbar popup menu button shows two options',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
       await tester.pumpAndSettle();
@@ -114,12 +114,12 @@ void main() {
     testWidgets(
         'appbar popup menu list option calls the controller function with the right enum value if list',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -139,12 +139,12 @@ void main() {
     testWidgets(
         'appbar popup menu list option calls the controller function with the right enum value if grid',
         (WidgetTester tester) async {
-      final mockSkillRepo = TestMocks.skillManagerRepository;
-      final mockUserRepo = TestMocks.userRepository;
+      final mockSkillService = TestMocks.skillManagerService;
+      final mockUserService = TestMocks.userService;
 
-      when(mockSkillRepo.skills)
+      when(mockSkillService.getAll())
           .thenAnswer((_) async => List<ManagerStaffSkill>.empty());
-      when(mockUserRepo.user).thenReturn(managerOne);
+      when(mockUserService.user).thenReturn(managerOne);
 
       final controller = Get.find<ManagerSkillTabController>();
       // reset type to ensure it changes
@@ -164,7 +164,7 @@ void main() {
 
   group('manager skill tab list tile', () {
     testWidgets('shows the name of the skill', (WidgetTester tester) async {
-      TestMocks.skillManagerRepository;
+      TestMocks.skillManagerService;
 
       await tester.pumpWidget(
         TestableWidget(
@@ -180,7 +180,7 @@ void main() {
 
     testWidgets('shows the number of staff allocated to the skill',
         (WidgetTester tester) async {
-      TestMocks.skillManagerRepository;
+      TestMocks.skillManagerService;
 
       await tester.pumpWidget(
         TestableWidget(
@@ -196,7 +196,7 @@ void main() {
     });
 
     testWidgets('shows the right chevron icon', (WidgetTester tester) async {
-      TestMocks.skillManagerRepository;
+      TestMocks.skillManagerService;
 
       await tester.pumpWidget(
         TestableWidget(
@@ -213,7 +213,7 @@ void main() {
 
   group('anager skill tab card', () {
     testWidgets('shows the name of the skill', (WidgetTester tester) async {
-      TestMocks.skillManagerRepository;
+      TestMocks.skillManagerService;
 
       await tester.pumpWidget(
         TestableWidget(
@@ -229,7 +229,7 @@ void main() {
 
     testWidgets('shows the number of staff allocated to the skill',
         (WidgetTester tester) async {
-      TestMocks.skillManagerRepository;
+      TestMocks.skillManagerService;
 
       await tester.pumpWidget(
         TestableWidget(
@@ -246,11 +246,12 @@ void main() {
   });
 
   testWidgets('all needed skill data is shown', (WidgetTester tester) async {
-    final mockSkillRepo = TestMocks.skillManagerRepository;
-    final mockUserRepo = TestMocks.userRepository;
+    final mockSkillService = TestMocks.skillManagerService;
+    final mockUserService = TestMocks.userService;
 
-    when(mockSkillRepo.skills).thenAnswer((_) async => [managerStaffSkillOne]);
-    when(mockUserRepo.user).thenReturn(managerOne);
+    when(mockSkillService.getAll())
+        .thenAnswer((_) async => [managerStaffSkillOne]);
+    when(mockUserService.user).thenReturn(managerOne);
 
     await tester.pumpWidget(const TestableWidget(child: ManagerSkillTab()));
     await tester.pumpAndSettle();

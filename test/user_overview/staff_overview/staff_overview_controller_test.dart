@@ -25,9 +25,10 @@ void main() {
 
   group('get user function', () {
     test('sets the user correctly if found', () async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
 
       Get.parameters = {'id': '1'};
 
@@ -39,11 +40,12 @@ void main() {
     });
 
     test('sets an error if the manager data was not loaded', () async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
       final error = Exception('Some error');
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => throw error);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => throw error);
 
       Get.parameters = {'id': '1'};
 
@@ -58,10 +60,11 @@ void main() {
 
   group('get staff by id function', () {
     test('calls the user repository get staff by id method', () async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
-      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
+      when(mockUserService.getStaffById(1)).thenAnswer((_) async => staffOne);
 
       Get.parameters = {'id': '1'};
 
@@ -69,14 +72,15 @@ void main() {
 
       await controller.getStaffById(1);
 
-      verify(mockUserRepo.getStaffById(1)).called(1);
+      verify(mockUserService.getStaffById(1)).called(1);
     });
 
     test('returns the right staff member', () async {
-      final mockUserRepo = TestMocks.userRepository;
+      final mockUserService = TestMocks.userService;
 
-      when(mockUserRepo.getManagerById(1)).thenAnswer((_) async => managerOne);
-      when(mockUserRepo.getStaffById(1)).thenAnswer((_) async => staffOne);
+      when(mockUserService.getManagerById(1))
+          .thenAnswer((_) async => managerOne);
+      when(mockUserService.getStaffById(1)).thenAnswer((_) async => staffOne);
 
       Get.parameters = {'id': '1'};
 
