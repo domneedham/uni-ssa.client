@@ -6,6 +6,8 @@ import 'package:ssa_app/app/ui/global_widgets/skill_category_list.dart';
 import './skill_category_title.dart';
 import 'skill_category_grid.dart';
 
+/// Shows the list of skills, in either a grid or list dependant on the
+/// [viewType] parameter.
 class SkillList extends StatelessWidget {
   const SkillList({
     Key? key,
@@ -16,10 +18,20 @@ class SkillList extends StatelessWidget {
     this.padding = 16,
   }) : super(key: key);
 
+  /// The skill list, broken down into a category and skill list.
   final Map<Category, List<Skill>> skills;
+
+  /// The builder function that returns how the grid entry should look.
   final Widget Function(Skill skill) cardBuilder;
+
+  /// Whether the list should render the list or grid view layout
   final SkillListViewType viewType;
+
+  /// The aspect ratio for the grid. Not required for the list or grid, though
+  /// will have a default when using the grid. See [SkillCategoryGrid].
   final double? gridChildAspectRatio;
+
+  /// The padding for the top of the list only.
   final double padding;
 
   @override

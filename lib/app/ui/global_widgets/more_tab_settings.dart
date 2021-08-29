@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// Shows the settings information that are shared for staff and manager more
+/// tabs.
 class MoreTabSettings extends StatelessWidget {
   const MoreTabSettings({
     Key? key,
