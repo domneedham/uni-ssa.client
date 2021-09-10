@@ -121,8 +121,6 @@ class ManagerSkillFormController extends GetxController {
       } catch (e) {
         Get.snackbar('Update failed', e.toString());
       }
-    } else {
-      Get.snackbar('Terrible', 'Forms looking not so good');
     }
   }
 

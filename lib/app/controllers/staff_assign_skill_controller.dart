@@ -8,8 +8,6 @@ import 'package:ssa_app/app/routes/app_route_parameters.dart';
 
 class StaffAssignSkillController extends GetxController
     with SingleGetTickerProviderMixin {
-  TabController? tabController;
-
   final staffSkillService = Get.find<StaffSkillService>();
   final skillService = Get.find<SkillService>();
 
@@ -22,9 +20,6 @@ class StaffAssignSkillController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    tabController = TabController(length: 2, vsync: this);
-    tabController!.addListener(_onTabChange);
-
     textController.addListener(_onTextUpdate);
     debounce(
       searchText,
@@ -36,15 +31,7 @@ class StaffAssignSkillController extends GetxController
   @override
   void onClose() {
     super.onClose();
-    if (tabController != null) {
-      tabController!.dispose();
-    }
     textController.dispose();
-  }
-
-  void _onTabChange() {
-    textController.clear();
-    isLoading.value = false;
   }
 
   void _onTextUpdate() {
